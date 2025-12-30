@@ -1,0 +1,20 @@
+%%% Для добавления Стр. над номерами страниц в оглавлении
+%%% http://tex.stackexchange.com/a/306950
+\usepackage{afterpage}
+
+%%% Списки %%%
+\usepackage{enumitem}
+
+%%% Оформление списка обозначений
+\usepackage[intoc]{nomencl}
+% Переопределения названий для nomencl. Так как опция russian не для utf8
+\renewcommand{\nomname}{Наиболее употребительные обозначения}%
+\renewcommand{\eqdeclaration}[1]{, см.~(#1)}%
+\renewcommand{\pagedeclaration}[1]{, стр.~#1}%
+\renewcommand{\nomAname}{Латинские буквы}%
+\renewcommand{\nomGname}{Греческие буквы}%
+\renewcommand{\nomXname}{Верхние индексы}%
+\renewcommand{\nomZname}{Индексы}%
+
+\makenomenclature
+\setlength{\nomitemsep}{-.8\parsep}
