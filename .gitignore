@@ -1,0 +1,17 @@
+*.swp
+*.bbl
+*.blg
+*.synctex.gz
+*.toc
+*.log
+*.xdv
+*.bcf
+*.aux
+*.fls
+*.out
+*.nlo
+*.fdb_latexmk
+.DS_Store
+*.run.xml
+*.ilg
+*.nls

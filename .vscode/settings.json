@@ -1,0 +1,16 @@
+{
+    "latex-workshop.latex.recipe.default": "lastUsed",
+    "ltex.language": "ru-RU",
+    "editor.wordWrap": "off",
+    "latex-workshop.formatting.latex": "latexindent",
+    "latex-workshop.synctex.afterBuild.enabled": false,
+    "latex-workshop.formatting.latexindent.args": [
+        "-l",
+        "%WORKSPACE_FOLDER%/latexindent.yaml",
+        "-m",
+        "-c",
+        "%DIR%/",
+        "%TMPFILE%",
+        "-y=defaultIndent: '%INDENT%'"
+    ]
+}

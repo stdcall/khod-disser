@@ -1,0 +1,96 @@
+{\aim} данной работы является исследование записанных в 2001 году проблем
+комбинаторного перечисления идеалов алгебры Ли $N\Phi(K)$
+\cite[Проблемы 1 и 2]{sigsam2001} и нахождение условия однозначности
+ее точной обертывающей алгебры.
+
+{\novelty}
+\begin{enumerate}[beginpenalty=10000] % https://tex.stackexchange.com/a/476052/104425
+    \item Впервые \ldots
+    \item Впервые \ldots
+    \item Было выполнено оригинальное исследование \ldots
+\end{enumerate}
+
+{\influence} Все основные результаты диссертации являются новыми. Работа носит теоретический характер.
+
+{\methods} Развиваемый Г.\:П.~Егорычевым с 1970-х годов метод интегрального представления
+и вычисления комбинаторных сумм (метод коэффициентов) находит приложения в
+многочисленных задачах алгебры, комбинаторного анализа и других областей
+математики, \cite{Egorychev84, Eg-2009, Leontiev2001, Riedel-2023,
+    Eg-2013}. Комбинаторная теорема \ref{th:Enum-Dn}, завершающая перечисление всех
+идеалов обертывающих алгебр классических типов, впервые применяется для
+вычисления 3-кратной комбинаторной суммы с $q$-биномиальными коэффициентами.
+См. также замечание~\ref{remark:problem-2}.
+
+    {\probation} Результаты диссертационной работы докладывались на заседаниях Красноярского
+алгебраического семинара (2016--2020\,гг.), на cеминаре им.~Н.\:А. Вавилова
+(СПбГУ, г.~Санкт-Петербург, 8 декабря 2017\,г.) и апробировались на следующих
+конференциях:
+\begin{enumerate}
+    \item Международная научная конференция студентов, аспирантов и молодых учёных
+          <<Проспект Свободный>>, 2016\,г., г.~Красноярск.
+    \item Международная конференция, посвященная 70-летию В.\,М.~Левчука <<Алгебра и
+          Логика: Теория и Приложения>>, 2016\,г., г.~Красноярск.
+    \item Международная конференция, посвященная 60-летию Института математики
+          им.~С.\:Л.~Соболева <<Математика в современном мире>>, 2017\,г.,
+          г.~Новосибирск.
+    \item Международная алгебраическая конференция, посвященная 110-летию со дня рождения
+          профессора А.\:Г.~Куроша, 2018\,г., г.~Москва.
+    \item Международная конференция <<Мальцевские чтения>>, 2016 и 2023\,г.,
+          г.~Новосибирск.
+\end{enumerate}
+
+\begin{refsection}[bl-author]
+    % Это refsection=1.
+    % Процитированные здесь работы:
+    %  * подсчитываются, для автоматического составления фразы "Основные результаты ..."
+    %  * попадают в авторскую библиографию, при usefootcite==0 и стиле `\insertbiblioauthor` или `\insertbiblioauthorgrouped`
+    %  * нумеруются там в зависимости от порядка команд `\printbibliography` в этом разделе.
+    %  * при использовании `\insertbiblioauthorgrouped`, порядок команд `\printbibliography` в нём должен быть тем же (см. biblio/biblatex.tex)
+    %
+    % Невидимый библиографический список для подсчёта количества публикаций:
+    \phantom{\printbibliography[heading=nobibheading, section=1, env=countauthorvak,          keyword=biblioauthorvak]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorwos,          keyword=biblioauthorwos]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorscopus,       keyword=biblioauthorscopus]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorconf,         keyword=biblioauthorconf]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorother,        keyword=biblioauthorother]%
+        \printbibliography[heading=nobibheading, section=1, env=countregistered,         keyword=biblioregistered]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorpatent,       keyword=biblioauthorpatent]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorprogram,      keyword=biblioauthorprogram]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthor,             keyword=biblioauthor]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorvakscopuswos, filter=vakscopuswos]%
+        \printbibliography[heading=nobibheading, section=1, env=countauthorscopuswos,    filter=scopuswos]}%
+    %
+    \nocite{*}%
+    %
+    {\publications} Основные результаты по теме диссертации изложены в~\arabic{citeauthor}~печатных изданиях,
+    \arabic{citeauthorvak} из которых изданы в журналах, рекомендованных ВАК%
+    \ifnum \value{citeauthorscopuswos}>0%
+        , \arabic{citeauthorscopuswos} "--- в~периодических научных журналах, индексируемых Web of~Science и Scopus%
+    \fi%
+    \ifnum \value{citeauthorconf}>0%
+        , \arabic{citeauthorconf} "--- в~тезисах докладов.
+    \else%
+        .
+    \fi%
+    % К публикациям, в которых излагаются основные научные результаты диссертации на соискание учёной
+    % степени, в рецензируемых изданиях приравниваются патенты на изобретения, патенты (свидетельства) на
+    % полезную модель, патенты на промышленный образец, патенты на селекционные достижения, свидетельства
+    % на программу для электронных вычислительных машин, базу данных, топологию интегральных микросхем,
+    % зарегистрированные в установленном порядке.(в ред. Постановления Правительства РФ от 21.04.2016 N 335)
+\end{refsection}%
+\begin{refsection}[bl-author]
+    % Это refsection=2.
+    % Процитированные здесь работы:
+    %  * попадают в авторскую библиографию, при usefootcite==0 и стиле `\insertbiblioauthorimportant`.
+    %  * ни на что не влияют в противном случае
+    \nocite{vmj2015}%vak
+    \nocite{jsfu2018}%patent
+    \nocite{imm2020}%program
+    \nocite{smj2023}%other
+\end{refsection}%
+%
+% Всё, что вне этих двух refsection, это refsection=0,
+%  * для диссертации - это нормальные ссылки, попадающие в обычную библиографию
+%  * для автореферата:
+%     * при usefootcite==0, ссылка корректно сработает только для источника из `external.bib`. Для своих работ --- напечатает "[0]" (и даже Warning не вылезет).
+%     * при usefootcite==1, ссылка сработает нормально. В авторской библиографии будут только процитированные в refsection=0 работы.
