@@ -894,7 +894,7 @@ $N\Phi(\mathbb{K})$ типа $A_{n-1}\ (n> 3)$ над полем $\mathbb{K}$
     алгебр $R$ и $NT(n+1,\mathbb{K})$ по модулю $n$-х степеней.
 
     Стандартность подалгебр $R(\Psi)$ в $R$ для подсистем корней $\Psi = \Psi(r,
-        p,s)$ типа $A_3$ в $\Phi_{l} \cup \Phi_{r}$ приводит к уточнению. Матричная
+        p,s)$ типа $A_3$ в $\Phi_{1} \cap \Phi_{n}$ приводит к уточнению. Матричная
     индексация корней и обозначения $e_{r}=e_{ij}$ при $r=r_{ij}$ $(1\leq j<i\leq
         n)$, наряду с ассоциативностью произведения $e_{n+1 n}e_{n n-1} \cdots
         e_{32}e_{21}=e_{n+1 1}$ и подалгебр $R(\Psi(r_{j1}, r_{ ij}, r_{n+1 i}))$ при
@@ -917,6 +917,9 @@ $N\Phi(\mathbb{K})$ типа $A_{n-1}\ (n> 3)$ над полем $\mathbb{K}$
     \Gamma\colon A = \bigoplus_{g \in G}A_g
 \]
 и включение $A_{g}A_{h} \subset A_{gh}$ выполняется для всех $g, h \in G$.
+
+Множество элементов $\{g \in G \mid A_g \neq 0 \}$ называется \emph{носителем}
+градуировки $\Gamma$.
 
 Элемент $a \in A_g$ будем называть \emph{однородным степени $g$} и писать
 $\mathrm{deg}_\Gamma(a) = g$. Отметим, что при таком определении $0 \in A$
@@ -979,22 +982,35 @@ $\sum_{g \in G}a_g$, где элементы $a_g \in A_g$ называются 
     \Gamma_2 \colon B = \bigoplus_{h \in G}B_h.
 \end{equation}
 
-\begin{definition}[{{\cite[определение 1.14]{kochetov2013}}}]\label{def:graded-equivalence}
-    %
-    Градуировки $\Gamma_1$ и $\Gamma_2$ называются \emph{эквивалентными}, если
-    существует изоморфизм алгебр $\phi \colon A \to B$ и для любого $g \in G$
-    найдется $h \in G$ такой, что $\phi(A_g) = B_h$.
-\end{definition}
+Градуировки $\Gamma_1$ и $\Gamma_2$ называются \emph{эквивалентными}, если
+существует изоморфизм алгебр $\phi \colon A \to B$ и для любого $g \in G$
+найдется $h \in G$ такой, что $\phi(A_g) = B_h$.
 
-Будем говорить, что $\Gamma_1$ является \emph{уточнением} градуировки
-$\Gamma_2$ если для любого $g \in G$ найдётся $h \in H$ такое, что $A_g \subset
-    A_h$. Если для некоторого $g \in G$ это включение строгое, то будем говорить о
+Будем говорить, что $\Gamma_2$ является \emph{уточнением} градуировки
+$\Gamma_1$ если для любого $h \in H$ найдётся $g \in G$ такое, что $A_h \subset
+    A_g$. Если для некоторого $h \in H$ это включение строгое, то будем говорить о
 собственном уточнении.
 
 Градуировка $\Gamma$ называется \emph{тонкой}, если она не допускает
 собственных уточнений (\cite[определение 2]{patera1989}). Тонкую градуировку
 $\Gamma$ будем называть \emph{одномерной}, если все ее ненулевые компоненты
 одномерны.
+
+\begin{lemma}\label{l:graded-fine-existence}
+    %
+    Если конечномерная алгебра $R$ градуирована, то у нее существует тонкая
+    градуировка.
+\end{lemma}
+\begin{proof}
+    %
+    Рассмотрим частичный порядок $\leq$ на градуировках алгебры $R$: $\Gamma_2 \leq
+        \Gamma_1$, если $\Gamma_2$ уточняет $\Gamma_1$.
+
+    Если градуировка $\Gamma_1$ алгебры $R$ не является тонкой, то у нее есть
+    строгое уточнение $\Gamma_2$. Аналогично для $\Gamma_2$ найдем строгое
+    уточнение $\Gamma_3$. Так как этот процесс не может повторяться более $\dim
+        R-1$ раз, то за конечное число шагов мы получим тонкую градуировку.
+\end{proof}
 
 Для любой алгебры $A$ наряду с ее односторонними аннуляторами выделяют
 аннулятор
@@ -1240,62 +1256,52 @@ $N\Phi(\mathbb{K})$ эта градуировка является одноме�
 
 \begin{proposition}\label{p:graded-AssocStrongerThanNrs-A3}
     %
-    Если точная обертывающая алгебра $R$ алгебры Ли $N\Phi(\mathbb{K})$ типа $A_3$
-    с тонкой $\mathbb{Z}\Phi$-градуировкой нильпотентна и ассоциативна, то $R
-        \simeq NT(4,\mathbb{K})$.
+    Если нильпотентная ассоциативная точная обертывающая алгебра $R$ алгебры Ли
+    $N\Phi(\mathbb{K})$ типа $A_3$ градуированна, то $R \simeq NT(4,\mathbb{K})$.
 \end{proposition}
 \begin{proof}
-    По условию, на алгебре $R$ задана тонкая $\mathbb{Z}\Phi$-градуировка
-    \begin{equation}\label{eq:graded-r-decompose}
-        \Gamma\colon R=\bigoplus_{\gamma\in \mathbb{Z}\Phi}R_\gamma
-    \end{equation}
-    и по предложению~\ref{p:fine-graded-nilpotent} она одномерна.
-
-    \medskip
-
-    Разложение векторного пространства \eqref{eq:graded-r-decompose} задаёт
-    градуировку и на ассоциированной алгебре Ли $R^{(-)}$.
-
-    На изоморфных алгебрах Ли $R^{(-)}$ и $N\Phi(\mathbb{K})$ заданы одномерные
-    градуировки. По лемме~\ref{l:one-dimensional-equivalence} эти градуировки
-    эквивалентны, то есть существует изоморфизм $\psi \colon R^{(-)} \to
-        N\Phi(\mathbb{K})$ такой, что для каждой ненулевой компоненты $R_\gamma$
-    найдётся $r\in\Phi^+$ и
+    На алгебре $N\Phi(\mathbb{K})$ типа $A_3$ фиксируем градуировку Картана
+    относительно ее базы $\{e_r\mid r\in\Phi^+\}$:
     \[
-        \psi(R_\gamma)=\mathbb{K}e_r.
+        \Gamma_C\colon N\Phi(\mathbb{K})=\bigoplus_{r\in\Phi^+}\mathbb{K}e_r.
     \]
 
-    Используя матричную индексацию корней, выберем в $R$ и $R^{(-)}$
-    базис из однородных элементов
-    \[
-        e_{21},e_{32},e_{43},e_{31},e_{42},e_{41}
-    \]
-    так, чтобы $\psi(e_{ij})$ совпадали с соответствующими элементами базиса в
-    $N\Phi(\mathbb{K})$. Тогда коммутаторы в $R$ и в $N\Phi(\mathbb{K})$ совпадают
-    с точностью до выбора знаков в базисе $N\Phi(\mathbb{K})$ и существуют
-    $\varepsilon_1,\varepsilon_2,\varepsilon_3\in\{\pm1\}$ такие, что
-    \[
-        [e_{32},e_{21}]=\varepsilon_1 e_{31},\qquad
-        [e_{43},e_{32}]=\varepsilon_2 e_{42},\qquad
-        [e_{42},e_{21}]=\varepsilon_3 e_{41}.
-    \]
-    Кроме того, из тождества Якоби
-    $[e_{43},[e_{32},e_{21}]]=[[e_{43},e_{32}],e_{21}]$ получаем
-    \[
-        [e_{43},e_{31}]=\varepsilon_4 e_{41},\qquad
-        \varepsilon_4\coloneq \varepsilon_1\varepsilon_2\varepsilon_3\in\{\pm1\}.
-    \]
+    По лемме~\ref{l:graded-fine-existence} и
+    предложению~\ref{p:fine-graded-nilpotent} найдется одномерная градуировка
+    \begin{equation*}%\label{eq:graded-r-decompose}
+        \Gamma\colon R=\bigoplus_{g\in G}R_g
+    \end{equation*}
+    алгебры $R$, которая имеет ровно $\dim R=6$ ненулевых компонент; она же задаёт
+    градуировку алгебры Ли $R^{(-)}$.
 
-    \medskip
+    По лемме~\ref{l:one-dimensional-equivalence} градуировки $\Gamma$ и
+    $\Gamma_{C}$ эквивалентны. Значит, существует изоморфизм алгебр Ли $\phi\colon
+        R^{(-)}\to N\Phi(\mathbb{K})$, переводящий каждую ненулевую компоненту $R_g$ в
+    некоторую корневую компоненту $\mathbb{K}e_r$; поскольку обе градуировки имеют
+    по $6$ ненулевых одномерных компонент, получаем биекцию между носителем
+    $\Gamma$ и множеством $\Phi^+$.
 
-    Так как $R$ --- градуированная ассоциативная алгебра, то $R_\alpha
-        R_\beta\subset R_{\alpha+\beta}$ для всех $\alpha,\beta\in\mathbb{Z}\Phi$.
-    Поскольку все ненулевые компоненты одномерны, произведение двух однородных
-    элементов либо равно нулю (если компонент $R_{\alpha+\beta}=0$), либо
-    пропорционально фиксированному базисному вектору компоненты $R_{\alpha+\beta}$.
+    Пусть $\Pi=\{\:r,\:p,\:s\:\}$ --- система простых корней типа $A_3$. Выберем
+    $\Gamma$-однородный базис в $R$, согласованный с $\phi$:
+    \begin{gather*}
+        e_{21}=\phi^{-1}(e_r),\quad e_{32}=\phi^{-1}(e_p),\quad e_{43}=\phi^{-1}(e_s),\\
+        e_{31}=\phi^{-1}(e_{r+p}),\quad e_{42}=\phi^{-1}(e_{s+p}),\quad
+        e_{41}=\phi^{-1}(e_{r+p+s}).
+    \end{gather*}
 
-    В частности, для выбранных $e_{ij}$ ненулевые произведения возможны лишь в
-    следующих случаях:
+    Согласованность умножения с градуировкой означает, что произведение двух
+    однородных элементов либо равно нулю, либо лежит в единственной компоненте
+    степени суммы. Для умножения в алгебре $R$ это оставляет (с точностью до
+    скаляров) только следующие возможные ненулевые произведения:
+    \[
+        e_{32}e_{21},\ e_{21}e_{32}\in\mathbb{K}e_{31};\qquad
+        e_{43}e_{32},\ e_{32}e_{43}\in\mathbb{K}e_{42};
+    \]
+    \[
+        e_{42}e_{21},\ e_{21}e_{42}\in\mathbb{K}e_{41};\qquad
+        e_{43}e_{31},\ e_{31}e_{43}\in\mathbb{K}e_{41}.
+    \]
+    Поэтому существуют $a,a',b,b',c,c',d,d'\in\mathbb{K}$ такие, что
     \[
         e_{32}e_{21}=ae_{31},\quad e_{21}e_{32}=a'e_{31};\qquad
         e_{43}e_{32}=be_{42},\quad e_{32}e_{43}=b'e_{42};
@@ -1304,202 +1310,50 @@ $N\Phi(\mathbb{K})$ эта градуировка является одноме�
         e_{42}e_{21}=ce_{41},\quad e_{21}e_{42}=c'e_{41};\qquad
         e_{43}e_{31}=de_{41},\quad e_{31}e_{43}=d'e_{41}.
     \]
-    Из равенств для коммутаторов получаем
+
+    Коммутатор в $R^{(-)}$ совпадает со скобкой Шевалле; для типа $A_3$ все
+    ненулевые структурные константы равны $\pm 1$. Поэтому существуют
+    $\varepsilon_i\in\{\pm 1\}$ такие, что
     \[
         a-a'=\varepsilon_1,\qquad b-b'=\varepsilon_2,\qquad c-c'=\varepsilon_3,\qquad
         d-d'=\varepsilon_4.
     \]
-
-    \medskip
-
-    Проверим ассоциативность на тройках, способных дать ненулевое произведение:
+    Тождество Якоби для тройки $(e_{43},e_{32},e_{21})$ даёт
     \[
-        \begin{aligned}
-            (e_{43}e_{21})e_{32}=0=e_{43}(e_{21}e_{32})=a'd\,e_{41}
-            \quad & \Rightarrow\quad a'd=0; \\
-            (e_{32}e_{21})e_{43}=ad'\,e_{41}=e_{32}(e_{21}e_{43})=0
-            \quad & \Rightarrow\quad ad'=0; \\
-            (e_{21}e_{43})e_{32}=0=e_{21}(e_{43}e_{32})=bc'\,e_{41}
-            \quad & \Rightarrow\quad bc'=0; \\
-            (e_{32}e_{43})e_{21}=b'c\,e_{41}=e_{32}(e_{43}e_{21})=0
-            \quad & \Rightarrow\quad b'c=0; \\
-            (e_{43}e_{32})e_{21}=bc\,e_{41}=e_{43}(e_{32}e_{21})=ad\,e_{41}
-            \quad & \Rightarrow\quad bc=ad.
-        \end{aligned}
+        [e_{43},[e_{32},e_{21}]]=[[e_{43},e_{32}],e_{21}]\quad\Rightarrow\quad
+        \varepsilon_1\varepsilon_4=\varepsilon_2\varepsilon_3,
+        \qquad \text{то есть }\qquad
+        \varepsilon_4=\varepsilon_1\varepsilon_2\varepsilon_3.
     \]
 
-    Рассмотрим два случая.
-
-    \medskip
-
-    \noindent
-    \emph{Случай $d\neq 0$.}
-    Из $a'd=0$ следует $a'=0$, откуда $a=\varepsilon_1$. Далее из $ad'=0$ получаем
-    $d'=0$, значит $d=\varepsilon_4$. Тогда из $bc=ad$ имеем
+    Ассоциативность нетривиальна только для троек суммарной степени $r+p+s$.
+    Учитывая, что по градуировке $e_{43}e_{21}=e_{21}e_{43}=0$, получаем систему
+    условий
     \[
-        bc=\varepsilon_1\varepsilon_4=\varepsilon_2\varepsilon_3\neq 0,
+        a'd=0,\qquad ad'=0,\qquad bc'=0,\qquad b'c=0,\qquad bc=ad.
     \]
-    поэтому $b\neq 0$ и $c\neq 0$. Из $bc'=0$ получаем $c'=0$, то есть
-    $c=\varepsilon_3$, а из $b'c=0$ следует $b'=0$, то есть $b=\varepsilon_2$.
-
-    Следовательно, таблица умножения в $R$ задаётся равенствами
-    \[
-        e_{32}e_{21}=\varepsilon_1e_{31},\quad e_{21}e_{32}=0;\qquad
-        e_{43}e_{32}=\varepsilon_2e_{42},\quad e_{32}e_{43}=0;
-    \]
-    \[
-        e_{42}e_{21}=\varepsilon_3e_{41},\quad e_{21}e_{42}=0;\qquad
-        e_{43}e_{31}=\varepsilon_1\varepsilon_2\varepsilon_3e_{41},\quad e_{31}e_{43}=0.
-    \]
-    После замены базиса в одномерных компонентах
+    Если $d\neq 0$, то из $a'd=0$ следует $a'=0$ и $a=\varepsilon_1$, а из $ad'=0$
+    получаем $d'=0$ и $d=\varepsilon_4$. Тогда
+    $bc=ad=\varepsilon_1\varepsilon_4\neq 0$, поэтому $b,c\neq 0$; равенства
+    $bc'=0$ и $b'c=0$ дают $c'=0$, $b'=0$ и, следовательно, $c=\varepsilon_3$,
+    $b=\varepsilon_2$. После замены
     \[
         e_{31}\mapsto \varepsilon_1e_{31},\qquad
         e_{42}\mapsto \varepsilon_2e_{42},\qquad
-        e_{41}\mapsto \varepsilon_2\varepsilon_3e_{41},
+        e_{41}\mapsto \varepsilon_2\varepsilon_3e_{41}
     \]
-    умножение в $R$ совпадает с умножением в $NT(4,\mathbb{K})$, то есть $R\simeq
-        NT(4,\mathbb{K})$.
+    умножение в $R$ совпадает с умножением в $NT(4,\mathbb{K})$.
 
-    \medskip
-
-    \noindent
-    \emph{Случай $d=0$.}
-    Тогда из $d-d'=\varepsilon_4$ получаем $d'=-\varepsilon_4$, и из $ad'=0$ следует
-    $a=0$, откуда $a'=-\varepsilon_1$. Аналогично, из $bc'=0$ и $b'c=0$ получаем
-    $b=0$, $b'=-\varepsilon_2$, $c=0$, $c'=-\varepsilon_3$. В этом случае таблица
-    умножения в $R$ имеет вид
-    \[
-        e_{32}e_{21}=0,\quad e_{21}e_{32}=-\varepsilon_1e_{31};\qquad
-        e_{43}e_{32}=0,\quad e_{32}e_{43}=-\varepsilon_2e_{42};
-    \]
-    \[
-        e_{42}e_{21}=0,\quad e_{21}e_{42}=-\varepsilon_3e_{41};\qquad
-        e_{43}e_{31}=0,\quad e_{31}e_{43}=-\varepsilon_1\varepsilon_2\varepsilon_3e_{41}.
-    \]
-    Отсюда следует, что $R$ отличается от $NT(4,\mathbb{K})^{(op)}$ лишь заменой
-    \[
-        e_{31}\mapsto -\varepsilon_1e_{31},\qquad
-        e_{42}\mapsto -\varepsilon_2e_{42},\qquad
-        e_{41}\mapsto \varepsilon_2\varepsilon_3e_{41},
-    \]
-    а потому по лемме~\ref{l:NT-opposite} имеем $R\simeq NT(4,\mathbb{K})$.
-\end{proof}
-
-\subsection{END}
-\begin{proposition}\label{p:AssocStrongerThanNrs-A3}
-    %
-    Если точная обертывающая алгебра $R$ алгебры Ли $N\Phi(\mathbb{K})$ типа $A_3$
-    ассоциативна и выполняются условия $e_re_s \in \mathbb{K}e_{r+s}\ (r,\ s \in
-        \Phi^+)$, то $R \simeq NT(4,\mathbb{K})$.
-\end{proposition}
-\begin{proof}
-    %
-    Рассмотрим базис Шевалле алгебры $N\Phi(\mathbb{K})$ типа $A_3$, составляющий
-    также базу алгебры $R$, в матричной индексации корней:
-    $e_{21},e_{32},e_{43},e_{31},e_{42},e_{41}$. По условию, произведения
-    полученных базисных элементов алгебры $R$ могут быть ненулевыми только для
-    следующих пар
-    \[
-        e_{32}e_{21}\in \mathbb{K}e_{31},\ \ e_{21}e_{32}\in \mathbb{K}e_{31};\qquad
-        e_{43}e_{32}\in \mathbb{K}e_{42},\ \ e_{32}e_{43}\in \mathbb{K}e_{42};
-    \]
-    \[
-        e_{42}e_{21}\in \mathbb{K}e_{41},\ \ e_{21}e_{42}\in \mathbb{K}e_{41};\qquad
-        e_{43}e_{31}\in \mathbb{K}e_{41},\ \ e_{31}e_{43}\in \mathbb{K}e_{41},
-    \]
-    а все остальные произведения равны нулю.
-
-    Обозначим коэффициенты:
-    \[
-        e_{32}e_{21}=ae_{31},\quad e_{21}e_{32}=a'e_{31};\qquad
-        e_{43}e_{32}=be_{42},\quad e_{32}e_{43}=b'e_{42};
-    \]
-    \[
-        e_{42}e_{21}=ce_{41},\quad e_{21}e_{42}=c'e_{41};\qquad
-        e_{43}e_{31}=de_{41},\quad e_{31}e_{43}=d'e_{41}.
-    \]
-    Так как $R^{(-)}\simeq N\Phi(\mathbb{K})$, коммутаторы в $R$ совпадают со
-    скобками алгебры Ли $N\Phi(\mathbb{K})$ (с точностью до выбора знаков в базисе
-    Шевалле). Поэтому существуют $\varepsilon_1,\varepsilon_2,\varepsilon_3\in\{\pm
-        1\}$ такие, что
-    \[
-        a-a'=\varepsilon_1,\qquad b-b'=\varepsilon_2,\qquad c-c'=\varepsilon_3.
-    \]
-    Знак для пары $(e_{43},e_{31})$ тождеством Якоби выражается через уже выбранные
-    знаки. Действительно, из равенства
-    $[e_{43},[e_{32},e_{21}]]=[[e_{43},e_{32}],e_{21}]$ получаем
-    \[
-        \varepsilon_1(d-d')\:=\:\varepsilon_2\varepsilon_3,
-        \qquad\text{то есть}\qquad
-        d-d'\:=\:\varepsilon_4,\ \ \varepsilon_4\coloneq \varepsilon_1\varepsilon_2\varepsilon_3\in\{\pm 1\}.
-    \]
-
-    Проверим ассоциативность на тройках, способных дать ненулевое произведение:
-    \[
-        \begin{aligned}
-            (e_{43}e_{21})e_{32}=0=e_{43}(e_{21}e_{32})=a'd\,e_{41}
-            \quad & \Rightarrow\quad a'd=0; \\
-            (e_{32}e_{21})e_{43}=ad'\,e_{41}=e_{32}(e_{21}e_{43})=0
-            \quad & \Rightarrow\quad ad'=0; \\
-            (e_{21}e_{43})e_{32}=0=e_{21}(e_{43}e_{32})=bc'\,e_{41}
-            \quad & \Rightarrow\quad bc'=0; \\
-            (e_{32}e_{43})e_{21}=b'c\,e_{41}=e_{32}(e_{43}e_{21})=0
-            \quad & \Rightarrow\quad b'c=0; \\
-            (e_{43}e_{32})e_{21}=bc\,e_{41}=e_{43}(e_{32}e_{21})=ad\,e_{41}
-            \quad & \Rightarrow\quad bc=ad.
-        \end{aligned}
-    \]
-
-    Если $d\ne 0$, то из $a'd=0$ следует $a'=0$, откуда $a=\varepsilon_1$; далее из
-    $ad'=0$ получаем $d'=0$, а значит $d=\varepsilon_4$. Тогда из $bc=ad$ имеем
-    \[
-        bc=\varepsilon_1\varepsilon_4=\varepsilon_2\varepsilon_3\ne 0,
-    \]
-    поэтому $b\ne 0$ и $c\ne 0$. Из $bc'=0$ получаем $c'=0$ и $c=\varepsilon_3$, а
-    из $b'c=0$ следует $b'=0$ и $b=\varepsilon_2$. Следовательно, таблица умножения
-    в $R$ задается равенствами
-    \[
-        e_{32}e_{21}=\varepsilon_1e_{31},\quad e_{21}e_{32}=0;\qquad
-        e_{43}e_{32}=\varepsilon_2e_{42},\quad e_{32}e_{43}=0;
-    \]
-    \[
-        e_{42}e_{21}=\varepsilon_3e_{41},\quad e_{21}e_{42}=0;\qquad
-        e_{43}e_{31}=\varepsilon_1\varepsilon_2\varepsilon_3e_{41},\quad e_{31}e_{43}=0
-    \]
-    и, с точностью до замены
-    \[
-        e_{31}\mapsto \varepsilon_1e_{31},\qquad
-        e_{42}\mapsto \varepsilon_2e_{42},\qquad
-        e_{41}\mapsto \varepsilon_2\varepsilon_3e_{41},
-    \]
-    умножение в $R$ совпадает с умножением в $NT(4,\mathbb{K})$, то есть $R\simeq
-        NT(4,\mathbb{K})$.
-
-    Если же $d=0$, то из $d-d'=\varepsilon_4$ получаем $d'=-\varepsilon_4$, и из
-    $ad'=0$ следует $a=0$, откуда $a'=-\varepsilon_1$. Аналогично, из равенств
-    $bc'=0$ и $b'c=0$ получаем $b=0$, $b'=-\varepsilon_2$, $c=0$,
-    $c'=-\varepsilon_3$. В этом случае таблица умножения в $R$ задается равенствами
-    \[
-        e_{32}e_{21}=0,\quad e_{21}e_{32}=-\varepsilon_1e_{31};\qquad
-        e_{43}e_{32}=0,\quad e_{32}e_{43}=-\varepsilon_2e_{42};
-    \]
-    \[
-        e_{42}e_{21}=0,\quad e_{21}e_{42}=-\varepsilon_3e_{41};\qquad
-        e_{43}e_{31}=0,\quad e_{31}e_{43}=-\varepsilon_1\varepsilon_2\varepsilon_3e_{41}.
-    \]
-    Следовательно, $R$ отличается от $NT(4,\mathbb{K})^{(op)}$ лишь заменой
-    \[
-        e_{31}\mapsto -\varepsilon_1e_{31},\qquad
-        e_{42}\mapsto -\varepsilon_2e_{42},\qquad
-        e_{41}\mapsto \varepsilon_2\varepsilon_3e_{41},
-    \]
-    а потому по лемме \ref{l:NT-opposite} имеем $R\simeq NT(4,\mathbb{K})$.
+    Если же $d=0$, то $d'=-\varepsilon_4$ и равенства выше аналогично влекут $a=0$,
+    $a'=-\varepsilon_1$, $b=0$, $b'=-\varepsilon_2$, $c=0$, $c'=-\varepsilon_3$.
+    Тем самым, $R\simeq NT(4,\mathbb{K})^{(op)}$, и по лемме \ref{l:NT-opposite}
+    снова $R\simeq NT(4,\mathbb{K})$.
 \end{proof}
 \begin{remark}\label{remark:LieAdmissible-Nonunique-Assoc-A3}
     %
-    Если же в предложении \ref{p:AssocStrongerThanNrs-A3} требовать лишь
-    Ли-допустимости (то есть $R^{(-)}\simeq N\Phi(\mathbb{K})$), то ассоциативная
-    алгебра, вообще говоря, не обязана быть изоморфной $NT(4,\mathbb{K})$.
+    Если же в предложении \ref{p:graded-AssocStrongerThanNrs-A3} не требовать
+    наличия градуировки у алгебры $R$, то она, вообще говоря, не обязана быть
+    изоморфной $NT(4,\mathbb{K})$.
 
     Действительно, в алгебре $NT(4,\mathbb{K})$ заменим умножение на новое $\ast$,
     полагая $x\ast y=xy$ для всех пар базисных элементов, кроме пары
@@ -1518,6 +1372,8 @@ $N\Phi(\mathbb{K})$ эта градуировка является одноме�
     как в $(NT(4,\mathbb{K}),\ast)$ элемент $e_{21}\notin\Ann_{\ell}$, поскольку
     $e_{21}\ast e_{32}=e_{41}\ne 0$, и потому $\dim\Ann_{\ell}=2$.
 \end{remark}
+
+\subsection{END}
 
 \begin{remark}\label{remark:Stand-Non-Assoc-An}
     Замена соотношений $e_{nj}e_{j1}= e_{n1}$ и $e_{j1}e_{nj}=0$ новыми
