@@ -20,9 +20,17 @@
 
 %%% Математические пакеты %%%
 \usepackage{amsthm,amsmath,amscd}   % Математические дополнения от AMS
-\usepackage{amsfonts,amssymb}       % Математические дополнения от AMS
+\usepackage{tikz-cd}
 \usepackage{mathtools}              % Добавляет окружение multlined
 \usepackage{xfrac}                  % Красивые дроби
+
+%%% Улучшение копирования из PDF %%%
+\ifxetexorluatex
+    % Для XeLaTeX и LuaLaTeX не нужен cmap
+\else
+    \usepackage{cmap}  % Улучшает копирование текста (включая индексы) из PDF
+\fi
+\usepackage{accsupp}                % Поддержка доступности (для копирования индексов)
 
 %%% Счётчики %%%
 \usepackage{aliascnt}
@@ -41,6 +49,10 @@
     % языка из babel. Такое решение русификации вывода выбрано вместо
     % определения в documentclass из опасности что-то лишнее передать во все
     % остальные пакеты, включая библиографию.
+
+    % Переопределяем устаревшие команды кириллицы для совместимости cleveref и
+    % fontspec
+    \DeclareTextCommand{\cyri}{TU}{и}
 
     % Добавление возможности использования пробелов в \labelcref
     % https://tex.stackexchange.com/a/340502/104425
@@ -99,4 +111,4 @@
 
 %%% Общее форматирование
 %\usepackage{soul}% Поддержка переносоустойчивых подчёркиваний и зачёркиваний
-\usepackage{icomma}  % Запятая в десятичных дробях
+%\usepackage{icomma}  % Запятая в десятичных дробях (несовместим с unicode-math)

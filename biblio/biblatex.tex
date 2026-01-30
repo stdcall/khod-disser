@@ -65,6 +65,20 @@
 %This command will copy the language field into the langid field and will then delete the contents of the language field. The language field will only be deleted if it was successfully copied into the langid field.
 \DeclareSourcemap{ %модификация bib файла перед тем, как им займётся biblatex
     \maps{
+        % Zotero часто экспортирует только год как `date = {YYYY}`.
+        % В связке biblatex/biber такое `date` может быть проигнорировано,
+        % из-за чего год пропадает из библиографии.
+        %
+        % Для записей вида date={YYYY} дублируем значение в `year` и очищаем
+        % `date`, чтобы biber не пытался валидировать год как дату.
+        \map[overwrite]{
+            \step[fieldsource=date,
+                match=\regexp{^[0-9]{4}$},
+                fieldset=year,
+                origfieldval,
+                final]
+            \step[fieldset=date, null]
+        }
         \map{% перекидываем значения полей language в поля langid, которыми пользуется biblatex
             \step[fieldsource=language, fieldset=langid, origfieldval, final]
             \step[fieldset=language, null]
@@ -411,6 +425,14 @@
 {} % end code
 {\stepcounter{citenum}} % item code: cчитает "печатаемые в библиографию" источники
 
+% То же самое, но БЕЗ сброса счётчика: удобно, когда итоговая библиография
+% печатается несколькими командами \printbibliography (например, внешний список +
+% публикации автора), а общий итог нужен один.
+\defbibenvironment{counteradd}
+{\renewcommand{\blx@driver}[1]{}}
+{}
+{\stepcounter{citenum}}
+
 \newtotcounter{citeauthorvak}
 \defbibenvironment{countauthorvak}
 {\setcounter{citeauthorvak}{0}\renewcommand{\blx@driver}[1]{}}
@@ -531,15 +553,26 @@
     }{}
 }
 \newcommand*{\insertbiblioauthor}{
+    % Счётчик общего количества наименований списка литературы (citenum)
+    % должен учитывать и этот подпункт.
+    \ifnumequal{\value{draft}}{0}{
+        \printbibliography[heading=nobibheading, section=0, env=counteradd, filter=papersregistered]
+    }{}
     \printbibliography[heading=pubgroup, section=0, filter=papersregistered, title=\bibtitleauthor]
 }
 \newcommand*{\insertbiblioauthorimportant}{
+    \ifnumequal{\value{draft}}{0}{
+        \printbibliography[heading=nobibheading, section=2, env=counteradd, filter=papersregistered]
+    }{}
     \printbibliography[heading=pubgroup, section=2, filter=papersregistered, title=\bibtitleauthorimportant]
 }
 
 % Вариант вывода печатных работ автора, с группировкой по типу источника.
 % Порядок команд `\printbibliography` должен соответствовать порядку в файле common/characteristic.tex
 \newcommand*{\insertbiblioauthorgrouped}{
+    \ifnumequal{\value{draft}}{0}{
+        \printbibliography[heading=nobibheading, section=0, env=counteradd, filter=papersregistered]
+    }{}
     \section*{\bibtitleauthor}
     \ifsynopsis
         \printbibliography[heading=pubsubgroup, section=0, keyword=biblioauthorvak,    title=\bibtitleauthorvak,resetnumbers=true] % Работы автора из списка ВАК (сброс нумерации)
@@ -555,5 +588,10 @@
 }
 
 \newcommand*{\insertbiblioexternal}{
+    % Это первая часть итогового списка литературы в диссертации,
+    % поэтому здесь сбрасываем счётчик citenum и считаем заново.
+    \ifnumequal{\value{draft}}{0}{
+        \printbibliography[heading=nobibheading, section=0, env=counter, keyword=biblioexternal]
+    }{}
     \printbibliography[heading=pubgroup,    section=0, keyword=biblioexternal,     title=\bibtitlefull]
 }

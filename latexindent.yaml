@@ -1,3 +1,4 @@
+defaultIndent: "    "
 removeTrailingWhitespace:
     afterProcessing: 1
 modifyLineBreaks:

@@ -1,5 +1,8 @@
 {
     "recommendations": [
-        "james-yu.latex-workshop"
+        "james-yu.latex-workshop",
+        "davidanson.vscode-markdownlint",
+        "ltex-plus.vscode-ltex-plus",
+        "dnut.rewrap-revived"
     ]
 }

@@ -1,16 +1,40 @@
 {
-    "latex-workshop.latex.recipe.default": "lastUsed",
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.recipe.default": "latexmk (latexmkrc)",
     "ltex.language": "ru-RU",
     "editor.wordWrap": "off",
     "latex-workshop.formatting.latex": "latexindent",
-    "latex-workshop.synctex.afterBuild.enabled": false,
     "latex-workshop.formatting.latexindent.args": [
         "-l",
         "%WORKSPACE_FOLDER%/latexindent.yaml",
         "-m",
         "-c",
-        "%DIR%/",
+        "%DIR%/.latexindent-backups",
         "%TMPFILE%",
         "-y=defaultIndent: '%INDENT%'"
-    ]
+    ],
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.view.pdf.tab.editorGroup": "right",
+    "latex-workshop.view.pdf.sidebar.open": "persist",
+    "latex-workshop.view.pdf.sidebar.view": "outline",
+    "latex-workshop.view.outline.sync.viewer": true,
+    "latex-workshop.synctex.afterBuild.enabled": false,
+    "[latex]": {
+        "editor.minimap.enabled": false,
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+        "editor.detectIndentation": false
+    },
+    "markdownlint.config": {
+        "extends": ".markdownlint.json"
+    },
+    "[markdown]": {
+        "editor.rulers": [80],
+        "editor.formatOnSave": true,
+        "rewrap.wrappingColumn": 80,
+        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+        "editor.codeActionsOnSave": {
+            "source.fixAll.markdownlint": "explicit"
+        }
+    }
 }

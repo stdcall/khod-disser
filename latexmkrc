@@ -1,8 +1,37 @@
-$pdflatex = 'lualatex -synctex=1 -file-line-error -recorder %O %S';
+$pdflatex = 'lualatex -synctex=1 -interaction=nonstopmode -halt-on-error -file-line-error -recorder %O %S';
 $pdf_mode = 1;
 
 # record access files
 $recorder = 1;
+
+# Ensure subdirectories exist in output directory for \include files
+# This is needed when using -outdir option with \include{Dissertation/...}
+{
+    no warnings 'redefine';
+    # Save original function
+    my $original_rdb_run1 = \&rdb_run1;
+
+    # Variable to track if we already created directories (captured in closure)
+    my $dirs_created = 0;
+
+    # Override rdb_run1 to create subdirectories before first compilation
+    *rdb_run1 = sub {
+        # Create subdirectories on first call
+        if (!$dirs_created && $out_dir && $out_dir ne '.') {
+            my @subdirs = ('Dissertation', 'common', 'biblio');
+            foreach my $subdir (@subdirs) {
+                my $target_dir = "$out_dir/$subdir";
+                unless (-d $target_dir) {
+                    mkdir $target_dir or warn "Could not create directory '$target_dir': $!";
+                }
+            }
+            $dirs_created = 1;
+        }
+
+        # Call original function
+        return &$original_rdb_run1(@_);
+    };
+}
 
 # delete bibtex generated files
 $bibtex_use = 2;

@@ -12,5 +12,403 @@
 %\newtheorem{proof}{Доказательство}\def\theproof{}
 \newtheorem{remark}{Замечание}
 
+%-------------------------------------------------
+% Проверка правильности префиксов лейблов
+%-------------------------------------------------
+\RequirePackage{xstring}
+
+% Сохраняем оригинальную команду \label
+\let\originallabel\label
+
+% Переменная для хранения типа текущего теоремного окружения
+\let\currenttheoremtype\relax
+
+% Флаг: нужно ли пропустить проверку (например, внутри equation)
+\newif\ifskiptheoremcheck
+\skiptheoremcheckfalse
+
+% Вспомогательная команда для проверки префикса
+\newcommand{\checklabelprefix}[2]{%
+    % #1 - ожидаемый префикс, #2 - лейбл
+    \StrBefore{#2}{:}[\labelprefix]%
+    \IfStrEq{\labelprefix}{}{%
+        % Нет двоеточия - ошибка
+        \errmessage{Label #2 must have prefix. Expected: #1:#2 (see README.md)}%
+        \originallabel{#2}%
+    }{%
+        % Есть префикс - проверяем правильность
+        \IfStrEq{\labelprefix}{#1}{%
+            % Правильный префикс - создаем лейбл
+            \originallabel{#2}%
+        }{%
+            % Неправильный префикс - ошибка
+            \errmessage{Label #2 has wrong prefix \labelprefix:. Expected: #1: (see README.md)}%
+            \originallabel{#2}%
+        }%
+    }%
+}
+
+% Переопределяем \label один раз глобально
+\renewcommand{\label}[1]{%
+    \ifskiptheoremcheck
+        % Проверка отключена (внутри equation и т.д.) - просто создаем лейбл
+        \originallabel{#1}%
+    \else
+        \ifx\currenttheoremtype\relax
+            % Вне теоремных окружений - просто вызываем оригинальный \label
+            \originallabel{#1}%
+        \else
+            % Внутри теоремного окружения - проверяем префикс
+            \checklabelprefix{\currenttheoremtype}{#1}%
+        \fi
+    \fi
+}
+
+% Устанавливаем тип окружения при входе и сбрасываем при выходе
+\AtBeginEnvironment{theorem}{\def\currenttheoremtype{th}}
+\AtEndEnvironment{theorem}{\let\currenttheoremtype\relax}
+\AtBeginEnvironment{lemma}{\def\currenttheoremtype{l}}
+\AtEndEnvironment{lemma}{\let\currenttheoremtype\relax}
+\AtBeginEnvironment{proposition}{\def\currenttheoremtype{p}}
+\AtEndEnvironment{proposition}{\let\currenttheoremtype\relax}
+\AtBeginEnvironment{corollary}{\def\currenttheoremtype{corollary}}
+\AtEndEnvironment{corollary}{\let\currenttheoremtype\relax}
+\AtBeginEnvironment{definition}{\def\currenttheoremtype{def}}
+\AtEndEnvironment{definition}{\let\currenttheoremtype\relax}
+\AtBeginEnvironment{remark}{\def\currenttheoremtype{remark}}
+\AtEndEnvironment{remark}{\let\currenttheoremtype\relax}
+
+% Отключаем проверку при входе в математические окружения и другие окружения с лейблами
+% Используем BeforeBeginEnvironment и AfterEndEnvironment для более надежной работы
+\BeforeBeginEnvironment{equation}{\skiptheoremchecktrue}
+\AfterEndEnvironment{equation}{\skiptheoremcheckfalse}
+\BeforeBeginEnvironment{equation*}{\skiptheoremchecktrue}
+\AfterEndEnvironment{equation*}{\skiptheoremcheckfalse}
+\BeforeBeginEnvironment{align}{\skiptheoremchecktrue}
+\AfterEndEnvironment{align}{\skiptheoremcheckfalse}
+\BeforeBeginEnvironment{align*}{\skiptheoremchecktrue}
+\AfterEndEnvironment{align*}{\skiptheoremcheckfalse}
+\BeforeBeginEnvironment{gather}{\skiptheoremchecktrue}
+\AfterEndEnvironment{gather}{\skiptheoremcheckfalse}
+\BeforeBeginEnvironment{gather*}{\skiptheoremchecktrue}
+\AfterEndEnvironment{gather*}{\skiptheoremcheckfalse}
+\BeforeBeginEnvironment{multline}{\skiptheoremchecktrue}
+\AfterEndEnvironment{multline}{\skiptheoremcheckfalse}
+\BeforeBeginEnvironment{multline*}{\skiptheoremchecktrue}
+\AfterEndEnvironment{multline*}{\skiptheoremcheckfalse}
+\BeforeBeginEnvironment{figure}{\skiptheoremchecktrue}
+\AfterEndEnvironment{figure}{\skiptheoremcheckfalse}
+\BeforeBeginEnvironment{table}{\skiptheoremchecktrue}
+\AfterEndEnvironment{table}{\skiptheoremcheckfalse}
+
+\ifpresentation
+\else
+    %-------------------------------------------------
+    % Настройка cleveref для теоремных окружений
+    %-------------------------------------------------
+
+    % Базовые названия (именительный падеж, единственное/множественное число)
+    % Пример: \cref{th:main} → "теорема 1.1", \Cref{th:main} → "Теорема 1.1"
+    \crefname{theorem}{теорема}{теоремы}
+    \Crefname{theorem}{Теорема}{Теоремы}
+
+    \crefname{lemma}{лемма}{леммы}
+    \Crefname{lemma}{Лемма}{Леммы}
+
+    \crefname{proposition}{предложение}{предложения}
+    \Crefname{proposition}{Предложение}{Предложения}
+
+    \crefname{corollary}{следствие}{следствия}
+    \Crefname{corollary}{Следствие}{Следствия}
+
+    \crefname{definition}{определение}{определения}
+    \Crefname{definition}{Определение}{Определения}
+
+    \crefname{remark}{замечание}{замечания}
+    \Crefname{remark}{Замечание}{Замечания}
+
+    \makeatletter
+    % --- РОДИТЕЛЬНЫЙ ПАДЕЖ (чего?) ---
+    % Использование: \crefRod{label} — только единственное число
+    % Для множественного используйте \cref{label1,label2} в именительном падеже
+    \newcommand{\crefRod}[1]{%
+        \begingroup
+        % Сохраняем оригинальные форматы
+        \let\cref@theorem@format@orig\cref@theorem@format
+        \let\cref@lemma@format@orig\cref@lemma@format
+        \let\cref@proposition@format@orig\cref@proposition@format
+        \let\cref@corollary@format@orig\cref@corollary@format
+        \let\cref@definition@format@orig\cref@definition@format
+        \let\cref@remark@format@orig\cref@remark@format
+        % Устанавливаем форматы для родительного падежа
+        \crefformat{theorem}{теоремы~##2##1##3}% доказательство теоремы 1.1
+        \crefformat{lemma}{леммы~##2##1##3}% из леммы 2.3
+        \crefformat{proposition}{предложения~##2##1##3}% в силу предложения 1.5
+        \crefformat{corollary}{следствия~##2##1##3}% из следствия 1.2
+        \crefformat{definition}{определения~##2##1##3}% в силу определения 3.1
+        \crefformat{remark}{замечания~##2##1##3}% из замечания 2.4
+        \cref{#1}%
+        % Восстанавливаем оригинальные форматы
+        \global\let\cref@theorem@format\cref@theorem@format@orig
+        \global\let\cref@lemma@format\cref@lemma@format@orig
+        \global\let\cref@proposition@format\cref@proposition@format@orig
+        \global\let\cref@corollary@format\cref@corollary@format@orig
+        \global\let\cref@definition@format\cref@definition@format@orig
+        \global\let\cref@remark@format\cref@remark@format@orig
+        \endgroup
+    }
+    \newcommand{\CrefRod}[1]{%
+        \begingroup
+        % Сохраняем оригинальные форматы
+        \let\cref@theorem@format@orig\cref@theorem@format
+        \let\cref@lemma@format@orig\cref@lemma@format
+        \let\cref@proposition@format@orig\cref@proposition@format
+        \let\cref@corollary@format@orig\cref@corollary@format
+        \let\cref@definition@format@orig\cref@definition@format
+        \let\cref@remark@format@orig\cref@remark@format
+        % Устанавливаем форматы для родительного падежа
+        \crefformat{theorem}{Теоремы~##2##1##3}% Теоремы 1.1 (с заглавной)
+        \crefformat{lemma}{Леммы~##2##1##3}% Леммы 2.3 (с заглавной)
+        \crefformat{proposition}{Предложения~##2##1##3}% Предложения 1.5 (с заглавной)
+        \crefformat{corollary}{Следствия~##2##1##3}% Следствия 1.2 (с заглавной)
+        \crefformat{definition}{Определения~##2##1##3}% Определения 3.1 (с заглавной)
+        \crefformat{remark}{Замечания~##2##1##3}% Замечания 2.4 (с заглавной)
+        \cref{#1}%
+        % Восстанавливаем оригинальные форматы
+        \global\let\cref@theorem@format\cref@theorem@format@orig
+        \global\let\cref@lemma@format\cref@lemma@format@orig
+        \global\let\cref@proposition@format\cref@proposition@format@orig
+        \global\let\cref@corollary@format\cref@corollary@format@orig
+        \global\let\cref@definition@format\cref@definition@format@orig
+        \global\let\cref@remark@format\cref@remark@format@orig
+        \endgroup
+    }
+
+    % --- ДАТЕЛЬНЫЙ ПАДЕЖ (чему?) ---
+    % Использование: \crefDat{label} — только единственное число
+    \newcommand{\crefDat}[1]{%
+        \begingroup
+        % Сохраняем оригинальные форматы
+        \let\cref@theorem@format@orig\cref@theorem@format
+        \let\cref@lemma@format@orig\cref@lemma@format
+        \let\cref@proposition@format@orig\cref@proposition@format
+        \let\cref@corollary@format@orig\cref@corollary@format
+        \let\cref@definition@format@orig\cref@definition@format
+        \let\cref@remark@format@orig\cref@remark@format
+        % Устанавливаем форматы для дательного падежа
+        \crefformat{theorem}{теореме~##2##1##3}% согласно теореме 1.1
+        \crefformat{lemma}{лемме~##2##1##3}% по лемме 2.3
+        \crefformat{proposition}{предложению~##2##1##3}% благодаря предложению 1.5
+        \crefformat{corollary}{следствию~##2##1##3}% согласно следствию 1.2
+        \crefformat{definition}{определению~##2##1##3}% по определению 3.1
+        \crefformat{remark}{замечанию~##2##1##3}% согласно замечанию 2.4
+        \cref{#1}%
+        % Восстанавливаем оригинальные форматы
+        \global\let\cref@theorem@format\cref@theorem@format@orig
+        \global\let\cref@lemma@format\cref@lemma@format@orig
+        \global\let\cref@proposition@format\cref@proposition@format@orig
+        \global\let\cref@corollary@format\cref@corollary@format@orig
+        \global\let\cref@definition@format\cref@definition@format@orig
+        \global\let\cref@remark@format\cref@remark@format@orig
+        \endgroup
+    }
+    \newcommand{\CrefDat}[1]{%
+        \begingroup
+        % Сохраняем оригинальные форматы
+        \let\cref@theorem@format@orig\cref@theorem@format
+        \let\cref@lemma@format@orig\cref@lemma@format
+        \let\cref@proposition@format@orig\cref@proposition@format
+        \let\cref@corollary@format@orig\cref@corollary@format
+        \let\cref@definition@format@orig\cref@definition@format
+        \let\cref@remark@format@orig\cref@remark@format
+        % Устанавливаем форматы для дательного падежа
+        \crefformat{theorem}{Теореме~##2##1##3}% Теореме 1.1 (с заглавной)
+        \crefformat{lemma}{Лемме~##2##1##3}% Лемме 2.3 (с заглавной)
+        \crefformat{proposition}{Предложению~##2##1##3}% Предложению 1.5 (с заглавной)
+        \crefformat{corollary}{Следствию~##2##1##3}% Следствию 1.2 (с заглавной)
+        \crefformat{definition}{Определению~##2##1##3}% Определению 3.1 (с заглавной)
+        \crefformat{remark}{Замечанию~##2##1##3}% Замечанию 2.4 (с заглавной)
+        \cref{#1}%
+        % Восстанавливаем оригинальные форматы
+        \global\let\cref@theorem@format\cref@theorem@format@orig
+        \global\let\cref@lemma@format\cref@lemma@format@orig
+        \global\let\cref@proposition@format\cref@proposition@format@orig
+        \global\let\cref@corollary@format\cref@corollary@format@orig
+        \global\let\cref@definition@format\cref@definition@format@orig
+        \global\let\cref@remark@format\cref@remark@format@orig
+        \endgroup
+    }
+
+    % --- ВИНИТЕЛЬНЫЙ ПАДЕЖ (что?) ---
+    % Использование: \crefVin{label} — только единственное число
+    \newcommand{\crefVin}[1]{%
+        \begingroup
+        % Сохраняем оригинальные форматы
+        \let\cref@theorem@format@orig\cref@theorem@format
+        \let\cref@lemma@format@orig\cref@lemma@format
+        \let\cref@proposition@format@orig\cref@proposition@format
+        \let\cref@corollary@format@orig\cref@corollary@format
+        \let\cref@definition@format@orig\cref@definition@format
+        \let\cref@remark@format@orig\cref@remark@format
+        % Устанавливаем форматы для винительного падежа
+        \crefformat{theorem}{теорему~##2##1##3}% докажем теорему 1.1
+        \crefformat{lemma}{лемму~##2##1##3}% применим лемму 2.3
+        \crefformat{proposition}{предложение~##2##1##3}% см. предложение 1.5
+        \crefformat{corollary}{следствие~##2##1##3}% докажем следствие 1.2
+        \crefformat{definition}{определение~##2##1##3}% см. определение 3.1
+        \crefformat{remark}{замечание~##2##1##3}% см. замечание 2.4
+        \cref{#1}%
+        % Восстанавливаем оригинальные форматы
+        \global\let\cref@theorem@format\cref@theorem@format@orig
+        \global\let\cref@lemma@format\cref@lemma@format@orig
+        \global\let\cref@proposition@format\cref@proposition@format@orig
+        \global\let\cref@corollary@format\cref@corollary@format@orig
+        \global\let\cref@definition@format\cref@definition@format@orig
+        \global\let\cref@remark@format\cref@remark@format@orig
+        \endgroup
+    }
+    \newcommand{\CrefVin}[1]{%
+        \begingroup
+        % Сохраняем оригинальные форматы
+        \let\cref@theorem@format@orig\cref@theorem@format
+        \let\cref@lemma@format@orig\cref@lemma@format
+        \let\cref@proposition@format@orig\cref@proposition@format
+        \let\cref@corollary@format@orig\cref@corollary@format
+        \let\cref@definition@format@orig\cref@definition@format
+        \let\cref@remark@format@orig\cref@remark@format
+        % Устанавливаем форматы для винительного падежа
+        \crefformat{theorem}{Теорему~##2##1##3}% Теорему 1.1 (с заглавной)
+        \crefformat{lemma}{Лемму~##2##1##3}% Лемму 2.3 (с заглавной)
+        \crefformat{proposition}{Предложение~##2##1##3}% Предложение 1.5 (с заглавной)
+        \crefformat{corollary}{Следствие~##2##1##3}% Следствие 1.2 (с заглавной)
+        \crefformat{definition}{Определение~##2##1##3}% Определение 3.1 (с заглавной)
+        \crefformat{remark}{Замечание~##2##1##3}% Замечание 2.4 (с заглавной)
+        \cref{#1}%
+        % Восстанавливаем оригинальные форматы
+        \global\let\cref@theorem@format\cref@theorem@format@orig
+        \global\let\cref@lemma@format\cref@lemma@format@orig
+        \global\let\cref@proposition@format\cref@proposition@format@orig
+        \global\let\cref@corollary@format\cref@corollary@format@orig
+        \global\let\cref@definition@format\cref@definition@format@orig
+        \global\let\cref@remark@format\cref@remark@format@orig
+        \endgroup
+    }
+
+    % --- ТВОРИТЕЛЬНЫЙ ПАДЕЖ (чем?) ---
+    % Использование: \crefTvor{label} — только единственное число
+    \newcommand{\crefTvor}[1]{%
+        \begingroup
+        % Сохраняем оригинальные форматы
+        \let\cref@theorem@format@orig\cref@theorem@format
+        \let\cref@lemma@format@orig\cref@lemma@format
+        \let\cref@proposition@format@orig\cref@proposition@format
+        \let\cref@corollary@format@orig\cref@corollary@format
+        \let\cref@definition@format@orig\cref@definition@format
+        \let\cref@remark@format@orig\cref@remark@format
+        % Устанавливаем форматы для творительного падежа
+        \crefformat{theorem}{теоремой~##2##1##3}% воспользуемся теоремой 1.1
+        \crefformat{lemma}{леммой~##2##1##3}% пользуясь леммой 2.3
+        \crefformat{proposition}{предложением~##2##1##3}% воспользуемся предложением 1.5
+        \crefformat{corollary}{следствием~##2##1##3}% вместе со следствием 1.2
+        \crefformat{definition}{определением~##2##1##3}% пользуясь определением 3.1
+        \crefformat{remark}{замечанием~##2##1##3}% вместе с замечанием 2.4
+        \cref{#1}%
+        % Восстанавливаем оригинальные форматы
+        \global\let\cref@theorem@format\cref@theorem@format@orig
+        \global\let\cref@lemma@format\cref@lemma@format@orig
+        \global\let\cref@proposition@format\cref@proposition@format@orig
+        \global\let\cref@corollary@format\cref@corollary@format@orig
+        \global\let\cref@definition@format\cref@definition@format@orig
+        \global\let\cref@remark@format\cref@remark@format@orig
+        \endgroup
+    }
+    \newcommand{\CrefTvor}[1]{%
+        \begingroup
+        % Сохраняем оригинальные форматы
+        \let\cref@theorem@format@orig\cref@theorem@format
+        \let\cref@lemma@format@orig\cref@lemma@format
+        \let\cref@proposition@format@orig\cref@proposition@format
+        \let\cref@corollary@format@orig\cref@corollary@format
+        \let\cref@definition@format@orig\cref@definition@format
+        \let\cref@remark@format@orig\cref@remark@format
+        % Устанавливаем форматы для творительного падежа
+        \crefformat{theorem}{Теоремой~##2##1##3}% Теоремой 1.1 (с заглавной)
+        \crefformat{lemma}{Леммой~##2##1##3}% Леммой 2.3 (с заглавной)
+        \crefformat{proposition}{Предложением~##2##1##3}% Предложением 1.5 (с заглавной)
+        \crefformat{corollary}{Следствием~##2##1##3}% Следствием 1.2 (с заглавной)
+        \crefformat{definition}{Определением~##2##1##3}% Определением 3.1 (с заглавной)
+        \crefformat{remark}{Замечанием~##2##1##3}% Замечанием 2.4 (с заглавной)
+        \cref{#1}%
+        % Восстанавливаем оригинальные форматы
+        \global\let\cref@theorem@format\cref@theorem@format@orig
+        \global\let\cref@lemma@format\cref@lemma@format@orig
+        \global\let\cref@proposition@format\cref@proposition@format@orig
+        \global\let\cref@corollary@format\cref@corollary@format@orig
+        \global\let\cref@definition@format\cref@definition@format@orig
+        \global\let\cref@remark@format\cref@remark@format@orig
+        \endgroup
+    }
+
+    % --- ПРЕДЛОЖНЫЙ ПАДЕЖ (о чём? где?) ---
+    % Использование: \crefPred{label} — только единственное число
+    \newcommand{\crefPred}[1]{%
+        \begingroup
+        % Сохраняем оригинальные форматы
+        \let\cref@theorem@format@orig\cref@theorem@format
+        \let\cref@lemma@format@orig\cref@lemma@format
+        \let\cref@proposition@format@orig\cref@proposition@format
+        \let\cref@corollary@format@orig\cref@corollary@format
+        \let\cref@definition@format@orig\cref@definition@format
+        \let\cref@remark@format@orig\cref@remark@format
+        % Устанавливаем форматы для предложного падежа
+        \crefformat{theorem}{теореме~##2##1##3}% в теореме 1.1
+        \crefformat{lemma}{лемме~##2##1##3}% о лемме 2.3
+        \crefformat{proposition}{предложении~##2##1##3}% в предложении 1.5
+        \crefformat{corollary}{следствии~##2##1##3}% при следствии 1.2
+        \crefformat{definition}{определении~##2##1##3}% в определении 3.1
+        \crefformat{remark}{замечании~##2##1##3}% о замечании 2.4
+        \cref{#1}%
+        % Восстанавливаем оригинальные форматы
+        \global\let\cref@theorem@format\cref@theorem@format@orig
+        \global\let\cref@lemma@format\cref@lemma@format@orig
+        \global\let\cref@proposition@format\cref@proposition@format@orig
+        \global\let\cref@corollary@format\cref@corollary@format@orig
+        \global\let\cref@definition@format\cref@definition@format@orig
+        \global\let\cref@remark@format\cref@remark@format@orig
+        \endgroup
+    }
+    \newcommand{\CrefPred}[1]{%
+        \begingroup
+        % Сохраняем оригинальные форматы
+        \let\cref@theorem@format@orig\cref@theorem@format
+        \let\cref@lemma@format@orig\cref@lemma@format
+        \let\cref@proposition@format@orig\cref@proposition@format
+        \let\cref@corollary@format@orig\cref@corollary@format
+        \let\cref@definition@format@orig\cref@definition@format
+        \let\cref@remark@format@orig\cref@remark@format
+        % Устанавливаем форматы для предложного падежа
+        \crefformat{theorem}{Теореме~##2##1##3}% Теореме 1.1 (с заглавной)
+        \crefformat{lemma}{Лемме~##2##1##3}% Лемме 2.3 (с заглавной)
+        \crefformat{proposition}{Предложении~##2##1##3}% Предложении 1.5 (с заглавной)
+        \crefformat{corollary}{Следствии~##2##1##3}% Следствии 1.2 (с заглавной)
+        \crefformat{definition}{Определении~##2##1##3}% Определении 3.1 (с заглавной)
+        \crefformat{remark}{Замечании~##2##1##3}% Замечании 2.4 (с заглавной)
+        \cref{#1}%
+        % Восстанавливаем оригинальные форматы
+        \global\let\cref@theorem@format\cref@theorem@format@orig
+        \global\let\cref@lemma@format\cref@lemma@format@orig
+        \global\let\cref@proposition@format\cref@proposition@format@orig
+        \global\let\cref@corollary@format\cref@corollary@format@orig
+        \global\let\cref@definition@format\cref@definition@format@orig
+        \global\let\cref@remark@format\cref@remark@format@orig
+        \endgroup
+    }
+    \makeatother
+\fi
+
 \DeclareMathOperator*{\res}{res}
 \DeclareMathOperator*{\Ann}{Ann}
+\DeclareMathOperator*{\Supp}{Supp}
+\newcommand{\quot}[2]{#1\mathbin{/}#2}
+%\def\rt{\mathbin{\restriction}}
+%\DeclareMathSymbol{\restriction}{\mathord}{AMSa}{"16}
