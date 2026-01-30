@@ -21,9 +21,16 @@
 %%% Математические пакеты %%%
 \usepackage{amsthm,amsmath,amscd}   % Математические дополнения от AMS
 \usepackage{tikz-cd}
-\usepackage{amsfonts,amssymb}       % Математические дополнения от AMS
 \usepackage{mathtools}              % Добавляет окружение multlined
 \usepackage{xfrac}                  % Красивые дроби
+
+%%% Улучшение копирования из PDF %%%
+\ifxetexorluatex
+    % Для XeLaTeX и LuaLaTeX не нужен cmap
+\else
+    \usepackage{cmap}  % Улучшает копирование текста (включая индексы) из PDF
+\fi
+\usepackage{accsupp}                % Поддержка доступности (для копирования индексов)
 
 %%% Счётчики %%%
 \usepackage{aliascnt}
@@ -100,4 +107,4 @@
 
 %%% Общее форматирование
 %\usepackage{soul}% Поддержка переносоустойчивых подчёркиваний и зачёркиваний
-\usepackage{icomma}  % Запятая в десятичных дробях
+%\usepackage{icomma}  % Запятая в десятичных дробях (несовместим с unicode-math)

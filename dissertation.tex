@@ -6,9 +6,6 @@
 \input{common/packages}
 \input{Dissertation/dispackages}
 \input{Dissertation/userpackages}
-\usepackage{polyglossia}
-\setmainlanguage[babelshorthands=true]{russian}
-\setotherlanguage{english}
 
 \input{Dissertation/setup}
 
@@ -1051,8 +1048,8 @@ $\Gamma$ будем называть \emph{одномерной}, если вс�
     \shorthandoff{"}
     \begin{tikzcd}[column sep=small]
         0 \arrow[r] &
-        U \arrow[r, "\alpha"] &
-        V \arrow[r, "\beta"] &
+        U \arrow[r, "\alpha"{xshift=-2pt}] &
+        V \arrow[r, "\beta"{xshift=-2pt}] &
         W \arrow[r] &
         0
     \end{tikzcd}
@@ -1086,8 +1083,8 @@ $\Gamma$ будем называть \emph{одномерной}, если вс�
         \shorthandoff{"}
         \begin{tikzcd}[column sep=small]
             0 \arrow[r] &
-            I \arrow[r, "i"] &
-            A \arrow[r, "\pi"] &
+            I \arrow[r, "i"{xshift=-2pt}] &
+            A \arrow[r, "\pi"{xshift=-2pt}] &
             A/I \arrow[r] &
             0
         \end{tikzcd}

@@ -12,5 +12,7 @@
         "%DIR%/",
         "%TMPFILE%",
         "-y=defaultIndent: '%INDENT%'"
-    ]
+    ],
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.view.pdf.viewer": "tab"
 }
