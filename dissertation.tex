@@ -19,6 +19,7 @@
 
 \input{common/styles}           % Стили общие для диссертации и автореферата
 \input{common/theorems}
+\input{common/math}
 \input{Dissertation/disstyles}
 \input{Dissertation/userstyles}
 \input{biblio/biblatex}
@@ -2009,31 +2010,36 @@ $B_n$, в силу \eqref{InclusRBn-Dn}, определены и монотон�
 
     \medskip
 
-    Пусть $K^m$ "--- пространство строк длины $m$ над $\mathbb{K}$. Подпространство
-    $S$ назовем \emph{координатно полным}, если для каждого номера $i$ $(1 \leq i
-        \leq m)$ в $S$ существует элемент с ненулевой $i$-той координатой. Ясно, что в
-    алгебре Ли $N\Phi(\mathbb{K})$ любой стандартный идеал $H$ с
+    Пусть $\mathbb{K}^m$ "--- пространство строк длины $m$ над $\mathbb{K}$.
+    Подпространство $S$ назовем \emph{координатно полным}, если оно не лежит ни в
+    одной гиперплоскости
+    \[
+        H_i = \{x \in \mathbb{K}^m \mid x_i = 0\}
+        \quad (1 \leq i \leq m).
+    \]
+    %
+    Ясно, что в алгебре Ли $N\Phi(\mathbb{K})$ любой стандартный идеал $H$ с
     $\mathcal{L}=\mathcal{L}(H)$ порядка $m$ записывается в виде
     \begin{equation}\label{hls}
         H(\mathcal{L},S) = Q(\mathcal{L}) + \{ a_1e_{r_1} + a_2e_{r_2}
         + \dots + a_me_{r_m} \,|\, (a_1,a_2,\dots,a_m)\in S \}
     \end{equation}
-    для однозначно определенного координатно полного подпространства $S$ в $K^m$.
+    для однозначно определенного координатно полного подпространства $S$ в $\mathbb{K}^m$.
 
     \medskip
 
-    Число всех координатно полных $t$-мерных подпространств пространства $K^m$ при
-    $K=GF(q)$ обозначим через $\tilde V(m,t,q)$, а через $B(\Phi,m)$ "--- число
-    всех $m$-элементных множеств углов $\mathcal{L}$ в $\Phi^+$. Из биективности
-    соответствия \eqref{hls} между стандартными идеалами и парами $(\mathcal{L},
-        S)$ сразу же вытекает
+    Число всех координатно полных $t$-мерных подпространств пространства
+    $\mathbb{K}^m$ при $\mathbb{K}=GF(q)$ обозначим через $V(m,t,q)$, а через
+    $B(\Phi,m)$ "--- число всех $m$-элементных множеств углов $\mathcal{L}$ в
+    $\Phi^+$. Из биективности соответствия \eqref{hls} между стандартными идеалами
+    и парами $(\mathcal{L}, S)$ сразу же вытекает
 
     \medskip
 
     \begin{lemma}\label{l:enum-stand-id-reduct-BV}
         Число стандартных идеалов алгебры Ли $N\Phi(q)$ ранга $n$ равно
         \[
-            1+\sum\limits_{m=1}^{n}B(\Phi,m)\, \ \sum\limits_{t=1}^{m}{\widetilde V}(m,t,q).
+            1+\sum\limits_{m=1}^{n}B(\Phi,m)\, \ \sum\limits_{t=1}^{m}V(m,t,q).
         \]
     \end{lemma}
 
@@ -2044,36 +2050,36 @@ $B_n$, в силу \eqref{InclusRBn-Dn}, определены и монотон�
         B(A_{n-1},m) = \frac{1}{n}\binom{n}{m}\binom{n}{m+1}.
     \]
 
-    Для требуемых в лемме~\ref{l:enum-stand-id-reduct-BV} чисел $\widetilde{V}(m,
-        t, q)$ в~\cite{kriv-lev2015} найдена формула
+    Для требуемых в лемме~\ref{l:enum-stand-id-reduct-BV} чисел $V(m, t, q)$
+    в~\cite{kriv-lev2015} найдена формула
     \[
-        \widetilde{V}(m,t,q) =\qquad \mkern-18mu \mkern-18mu \sum\limits_{1=j_1<j_2<\ldots
-            < j_{t}\leq m}  \!\! \frac{(q^t-1)^{m-j_{t}}}{(q-1)^{t-j_{t}}}\cdot
-        \prod_{k=2}^{t-1}\left(\frac{q^k-1}{q-1}\right)^{j_{k+1}-j_k-1}\mkern-18mu
-        \mkern-18mu \mkern-18mu \mkern-18mu \qquad \qquad .
+        V(m,t,q) = \mathlarger{\sum}_{\raisebox{-0.6ex}{$\scriptstyle \mathclap{1=j_1<j_2<\ldots
+                            < j_{t}\leq m}$}}  \ \frac{(q^t-1)^{m-j_{t}}}{(q-1)^{t-j_{t}}}\cdot
+        \prod_{k=2}^{t-1}\left(\frac{q^k-1}{q-1}\right)^{\mathrlap{j_{k+1}-j_k-1}}
+        .
     \]
 
     \noindent
     Применяя к ней разработанный \cite{Egorychev84} метод интегрального
     представления комбинаторных сумм, включающих $q$-биномиальные коэффициенты, Г.\:П.~Егорычев
-    установил \cite[Леммы~3 и 4]{IzvIrkGU-2016} рекуррентное соотношение
+    установил \cite[леммы~3 и 4]{IzvIrkGU-2016} рекуррентное соотношение
     \begin{equation}\label{eq:vmt-rec}
-        \widetilde{V}(m,t,q) = \sum_{k=0}^{m-t} (q^t -1)^k \times
-        \widetilde{V}(m-1-k,t-1,q)
+        V(m,t,q) = \sum_{k=0}^{m-t} (q^t -1)^k \times
+        V(m-1-k,t-1,q)
     \end{equation}
     и следующее утверждение.
 
     \begin{lemma}\label{l:vmt-comb}
         Справедлива следующая формула
         \begin{equation}\label{eq:vmt-comb}
-            \widetilde{V}(m,t,q) = \sum_{k=0}^{m-t} (-1)^{m-t-k} q^k \binom{m-1}{t+k-1}
-            {t+k-1 \brack k}_q.
+            V(m,t,q) = \sum_{k=0}^{m-t} (-1)^{m-t-k} q^k \binom{m-1}{t+k-1}
+            {t+k-1 \brack k}_{\mathrlap{q}}.
         \end{equation}
     \end{lemma}
 
     \medskip
 
-    В~\cite[Заключение]{IzvIrkGU-2016} высказывалась потребность
+    В~\cite[заключение]{IzvIrkGU-2016} высказывалась потребность
     алгебраически-комбинаторного доказательства формул \eqref{eq:vmt-rec} и
     \eqref{eq:vmt-comb}. Доказана
 
@@ -2081,8 +2087,8 @@ $B_n$, в силу \eqref{InclusRBn-Dn}, определены и монотон�
         %
         Справедлива формула
         \begin{equation}\label{eq:vmt-comb-1}
-            \widetilde{V}(m,t,q) = \sum_{k=0}^{m-t} (-1)^k \binom{m}{k}
-            {m-k \brack t}_q.
+            V(m,t,q) = \sum_{k=0}^{m-t} (-1)^k \binom{m}{k}
+            {m-k \brack t}_{\mathrlap{q}}.
         \end{equation}
     \end{lemma}
 
@@ -2090,37 +2096,37 @@ $B_n$, в силу \eqref{InclusRBn-Dn}, определены и монотон�
         К формуле \eqref{eq:vmt-comb-1} приводят $q$-аналог ${n \brack
                     k}_q = {n \brack n-k}_q$ известной комбинаторной формулы и
         подстановка в \eqref{eq:vmt-comb} тождества
-        %
-        \[q^k{t+k-1 \brack k}_q = {t+k \brack t}_q - {t+k-1 \brack t}_q.\]
-        %
-        Докажем формулу \eqref{eq:vmt-comb-1} для числа $\widetilde{V}(m, t,q)$ всех
-        координатно полных $t$-мерных подпространств в $K^m$ при $K=GF(q)$. Н.\,Д.
-        Ходюня получает рекуррентную формулу \eqref{eq:vmt-rec} перенесением схемы
-        перечисления канонических баз в лемме \ref{l:LieIdeal}.
+        \[
+            q^k{t+k-1 \brack k}_q = {t+k \brack t}_q - {t+k-1 \brack t}_{\mathrlap{q}}.
+        \]
+        Докажем формулу \eqref{eq:vmt-comb-1} для числа $V(m, t,q)$ всех координатно
+        полных $t$-мерных подпространств в $\mathbb{K}^m$ при $\mathbb{K}=GF(q)$.
+        Н.\,Д. Ходюня получает рекуррентную формулу \eqref{eq:vmt-rec} перенесением
+        схемы перечисления канонических баз в лемме \ref{l:LieIdeal}.
 
         \medskip
 
-        Известно, что число всех $t$-мерных подпространств в $K^m$ при $K=GF(q)$ равно
-        ${m \brack t}_q$. Пусть $U_i$ ($1\leq i \leq m$) "--- подпространство
-        размерности $m-1$ всех векторов в $K^m$ c нулевой $i$-й координатой. Тогда
-        любое подпространство в $U_i$ не является координатно полным в $K^m$, а каждое
-        подпространство в $K^m$, не являющееся координатно полным, лежит хотя бы в
-        одном подпространстве $U_i$.
+        Известно, что число всех $t$-мерных подпространств в $\mathbb{K}^m$ при
+        $\mathbb{K}=GF(q)$ равно ${m \brack t}_q$. Пусть $H_i $\ ($1\leq i \leq m$)
+        "--- координатная гиперплоскость всех векторов в $\mathbb{K}^m$ c нулевой $i$-й
+        координатой. Тогда любое подпространство в $H_i$ не является координатно полным
+        в $\mathbb{K}^m$, а каждое подпространство в $\mathbb{K}^m$, не являющееся
+        координатно полным, лежит хотя бы в одном подпространстве $H_i$.
 
         \medskip
 
-        Обозначим через $\hat{U}_i$ множество всех $t$-мерных подпространств в $U_i$.
+        Обозначим через $\hat{H}_i$ множество всех $t$-мерных подпространств в $H_i$.
         Формулу~\eqref{eq:vmt-comb-1} находим, пользуясь формулой включений-исключений,
         %
         \[
-            \widetilde{V}(m,t,q) = {m \brack t}_q - \sum_i|\hat{U}_i| +
-            \sum_{i \neq j}|\hat{U}_i \cap \hat{U}_j| - \sum_{i \neq j \neq
-                k}|\hat{U}_i \cap \hat{U}_j \cap \hat{U}_k| + \cdots =
+            V(m,t,q) = {m \brack t}_q - \sum_i|\hat{H}_i| +
+            \sum_{i \neq j}|\hat{H}_i \cap \hat{H}_j| - \sum_{i \neq j \neq
+                k}|\hat{H}_i \cap \hat{H}_j \cap \hat{H}_k| + \cdots =
         \]
         \[
             {m \brack t}_q-\binom{m}{1}{m-1 \brack t}_q + \binom{m}{2}{m-2
                 \brack t}_q
-            + \cdots + (-1)^{m-t}\binom{m}{m-t}{m-(m-t) \brack t}_q. %\qedhere
+            + \cdots + (-1)^{m-t}\binom{m}{m-t}{m-(m-t) \brack t}_{\mathrlap{q}}. \qedhere
         \]
     \end{proof}
 
@@ -2136,8 +2142,8 @@ $B_n$, в силу \eqref{InclusRBn-Dn}, определены и монотон�
     использованием метода интегрального представления комбинаторных сумм
     (\cite{Egorychev84}, \cite{Eg-Lev-1996}, \cite{sigsam2001} и др.). Эти числа
     указаны явно в выписанном в теореме \ref{th:enum-stand-id-classical} виде для
-    типов $B_n$ и $C_n$ в~\cite[Предложение~17]{reiner97}, а для типа $D_n$ "---
-    в~\cite[Теорема~1.2]{reiner04}.
+    типов $B_n$ и $C_n$ в~\cite[предложение~17]{reiner97}, а для типа $D_n$ "---
+    в~\cite[теорема~1.2]{reiner04}.
 
     \medskip
 
@@ -2357,7 +2363,7 @@ $RD_n(q)$.
         Число нестандартных идеалов алгебры $RD_n(q)$ равно
         \begin{equation}\label{eq:enum-Dn-1}
             \sum_{m=2}^{n-1} \sum_{i=2}^{n-1} \sum_{k=1}^{n-i}
-            B(m,n,i,k)\sum_{t=1}^{m-1}q^t(q-1)\widetilde{V}(m-1,t,q).
+            B(m,n,i,k)\sum_{t=1}^{m-1}q^t(q-1)V(m-1,t,q).
         \end{equation}
     \end{lemma}
 
@@ -2367,7 +2373,7 @@ $RD_n(q)$.
         над $\mathbb{K}$ равно $q^t(q-1)$. Согласно доказательству леммы
         \ref{l:LieIdeal}, число возможностей выбора матриц $||a_{ij}||$,
         требуемых для канонических базисов идеалов, совпадает с
-        $\widetilde{V}(m-1,t,q)$ при любых $t,m$. Отсюда для числа
+        $V(m-1,t,q)$ при любых $t,m$. Отсюда для числа
         нестандартных идеалов алгебры $RD_n(q)$ получаем формулу
         \eqref{eq:enum-Dn-1}.
     \end{proof}
