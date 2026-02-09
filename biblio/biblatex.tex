@@ -94,7 +94,7 @@
         }
         \map[overwrite]{% перекидываем значения полей shortjournal, если они есть, в поля journal, которыми пользуется biblatex
             \step[fieldsource=shortjournal, final]
-            \step[fieldset=journal, origfieldval]
+            \step[fieldset=journaltitle, origfieldval]
             \step[fieldset=shortjournal, null]
         }
         \map[overwrite]{% перекидываем значения полей shortbooktitle, если они есть, в поля booktitle, которыми пользуется biblatex
