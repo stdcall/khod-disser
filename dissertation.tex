@@ -207,7 +207,7 @@ $A$ с умножением $\alpha \cdot \beta=(\alpha* \beta)t$, где $t$ "-
 \begin{proof}
     Доказательство первого утверждения леммы для идеала $H$ в $R_{\Phi}$ c
     множеством углов $\mathcal{L}(H)=\{r\}$ проводим с помощью индукции по
-    $h(\Phi)-ht(r)$. Ясно, что $Q(\rho) = 0 \subset H \subset T(r)$. Пусть $r$ "---
+    $\mathrm{h}(\Phi)-\height(r)$. Ясно, что $Q(\rho) = 0 \subset H \subset T(r)$. Пусть $r$ "---
     не максимальный корень. Тогда существует простой корень $p$ с условием $r+p \in
         \Phi^+$ и одно из произведений $e_pe_r$, $e_re_p$ равно $e_{r+p}$. Поэтому
     множество $(\mathbb{K}e_p)H + H(\mathbb{K}e_p)$ по модулю $Q(r+p)$ совпадает с $\mathbb{K}e_{r+p}$ и, по
@@ -539,8 +539,8 @@ $C_4^+\cup B_4^+$ с пересечением
 корнями однозначно определяет линейный порядок $\prec$ на $F_4^+$.
 
 Рассмотрим произвольную точную обертывающую алгебру $R_\Phi$ алгебры Ли
-$N\Phi(\mathbb{K})$ типа $F_4$. Пусть $L_i= \sum_{ht(r) \geq i }T(r), \ 1 \leq
-    i < h$.
+$N\Phi(\mathbb{K})$ типа $F_4$. Пусть $L_i= \sum_{\height(r) \geq i }T(r), \ 1
+    \leq i < h$.
 \begin{lemma}
     Идеал $H \subset L_4$ точной обертывающей алгебры $R_\Phi$ типа $F_4$
     является стандартным.
@@ -1006,7 +1006,7 @@ $\sum_{g \in G}a_g$, где элементы $a_g \in A_g$ называются 
 \medskip
 
 Будем говорить, что $\Gamma_2$ является \emph{уточнением} градуировки
-$\Gamma_1$, если существует гомоморфизм \emph{огрубления} $\phi\colon H \to G$
+$\Gamma_1$, если существует \emph{гомоморфизм огрубления} $\phi\colon H \to G$
 такой, что для каждого $h \in H$ выполняется включение $A_h \subset
     A_{\phi(h)}$. Если для некоторого $h \in H$ это включение строгое, то будем
 говорить о \emph{собственном уточнении}.
@@ -1196,8 +1196,8 @@ $\Gamma$ будем называть \emph{градуировкой ширины
 
 \begin{proposition}\label{p:fine-graded-nilpotent}
     %
-    Любая тонкая градуировка конечномерной нильпотентной ассоциативной алгебры $A$
-    является является градуировкой ширины один.
+    Любая тонкая градуировка конечномерной нильпотентной алгебры $A$ является
+    градуировкой ширины один.
 \end{proposition}
 \begin{proof}
     %
@@ -1282,7 +1282,7 @@ $\Gamma$ будем называть \emph{градуировкой ширины
     компоненту $B_h$.
 \end{proof}
 
-\subsection{Новое теорема для \texorpdfstring{$A_n$}{Aₙ}}\label{sec:new-An}
+\subsection{Новая теорема для \texorpdfstring{$A_n$}{Aₙ}}\label{sec:new-An}
 %
 На алгебре $N\Phi(\mathbb{K})$ зафиксируем градуировку $\Gamma_C$ относительно
 % положительной части базиса Шевалле
@@ -1294,13 +1294,13 @@ $\Gamma$ будем называть \emph{градуировкой ширины
     .
 \end{equation*}
 
-\begin{lemma}\label{l:An-enveloping-Graded-width-1}
+\begin{lemma}\label{l:enveloping-Graded-width-1}
     %
-    Пусть $R$ "--- нильпотентная ассоциативная точная обертывающая алгебра
-    конечномерной алгебры Ли $N\Phi(\mathbb{K})$. Если $R$ градуирована, то $R$
-    можно реализовать на линейном пространстве $N\Phi(\mathbb{K})$ так, что $e_re_s
-        = 0$, если $r+s \not\in \Phi^{+}$ и коммутатор в $R^{(-)}$ совпадает с
-    коммутатором в $N\Phi(\mathbb{K})$.
+    Пусть $R$ "--- нильпотентная точная обертывающая алгебра алгебры Ли
+    $N\Phi(\mathbb{K})$. Если $R$ градуирована, то $R$ можно реализовать на
+    линейном пространстве $N\Phi(\mathbb{K})$ так, что $e_re_s = 0$, если $r+s
+        \not\in \Phi^{+}$ и коммутатор в $R^{(-)}$ совпадает с коммутатором в
+    $N\Phi(\mathbb{K})$.
 \end{lemma}
 \begin{proof}
     По \crefDat{l:graded-fine-existence} и \crefDat{p:fine-graded-nilpotent}
@@ -1385,7 +1385,7 @@ $\mathfrak{sl}_{n+1}(\mathbb{K})$ (см., например, \cite[\S 11.2.1]{car
     базисных элементов задается формулой $[e_{ij}, e_{kl}] = \delta_{jk}e_{il} -
         \delta_{li}e_{kj}$.
 
-    Кроме того, \cref{l:An-enveloping-Graded-width-1} гарантирует, что
+    Кроме того, \cref{l:enveloping-Graded-width-1} гарантирует, что
     $e_{ij}e_{kl} = 0$, если сумма соответствующих корней не является корнем, и
     $e_{ij}e_{jk}, e_{jk}e_{ij} \in \mathbb{K}e_{ik}$ в противном случае.
 
@@ -1517,6 +1517,7 @@ $\mathfrak{sl}_{n+1}(\mathbb{K})$ (см., например, \cite[\S 11.2.1]{car
     как в $(NT(4,\mathbb{K}),\ast)$ элемент $e_{21}\notin\Ann_{\ell}$, поскольку
     $e_{21}\ast e_{32}=e_{41}\ne 0$, и потому $\dim\Ann_{\ell}=2$.
 \end{remark}
+
 \subsection{END}
 
 \begin{remark}\label{remark:Stand-Non-Assoc-An}
@@ -1963,18 +1964,166 @@ $B_n$, в силу \eqref{InclusRBn-Dn}, определены и монотон�
 \FloatBarrier
 
 \chapter{Проблемы перечисления идеалов нильтреугольных алгебр Шевалле}\label{ch:enumeration}
-\section{Проблема перечисления стандартных идеалов} \label{sec:Problem-1}
 Проблемы комбинаторного перечисления стандартных идеалов и всех идеалов алгебр
 Ли $N\Phi(q) \coloneq N\Phi(GF(q))$ классических типов записаны в 2001 году
-\cite[Проблемы 1 и 2]{sigsam2001}. Полное решение проблемы~1 дает следующая
-теорема (анонсировалась в \cite{DAN2018}), использующая $q$-биномиальные
-коэффициенты
+\cite[проблемы 1 и 2]{sigsam2001}.
 
+\medskip
+
+Согласно~\cite[\S~4]{JA-12}, стандартный идеал $H$ в $N\Phi(\mathbb{K})$
+характеризуют множество $\mathcal{L}=\mathcal{L}(H)$ его углов и \emph{фрейм}
+$\mathcal{F}(H)$, определяемый условиями
+%
+\[\mathcal{F} (H)\subset \sum_{s\in \mathcal{L}}\mathbb{K}e_{s},\quad \mathcal{F}(H)=H \mod
+    Q(\mathcal{L}).\]
+%
+Таким образом, стандартность $H$ равносильна условию $H=Q(\mathcal{L}) +
+    \mathcal{F}(H)$.
+
+Известные перечисления (\cite[следствие 4.3]{vL74}, \cite[теорема
+    2.1.2]{Egorychev77}, \cite{Eg-Lev-1996,eS05}) нормальных подгрупп групп
+$U\Phi(\mathbb{K})$ над полем $\mathbb{K}$, инвариантных относительно
+диагональных автоморфизмов, редуцируются к перечислению стандартных идеалов $H$
+колец Ли $N\Phi(\mathbb{K})$ с фреймом $\mathcal{F}(H) = \sum_{s\in
+        \mathcal{L}} \mathbb{K}e_{s}$, то есть вида $T(\mathcal{L})$. Тем самым, они
+редуцируются к перечислению определенных путей в решетках, зависящих от выбора
+типа алгебры $N\Phi(\mathbb{K})$.
+
+\section{Координатно полные подпространства \texorpdfstring{$\mathbb{F}_q^m$}{F₍q₎ᵐ} и их перечисление}\label{s:coordinate-complete}
+%
+Пусть $\mathbb{K}^m$ "--- пространство строк длины $m$ над $\mathbb{K}$.
+Подпространство $S$ в $\mathbb{K}^m$ назовем \emph{координатно полным}, если
+оно не лежит ни в одной координатной гиперплоскости $H_i = \{x \in \mathbb{K}^m
+    \mid x_i = 0\}$ $(1 \leq i \leq m)$. (Координатно полные подпространства
+$\mathbb{F}_q^m$ также называют невырожденными линейными кодами в теории
+кодирования, \cite[\S 1.1.2]{acodes2007}.)
+
+\medskip
+
+Число всех координатно полных $t$-мерных подпространств пространства
+$\mathbb{F}_q^m$ обозначим через $V_q(m,t)$. В~\cite[лемма 2]{kriv-lev2015}
+найдена формула
 \[
-    {n \brack k}_q \coloneq\prod_{i=0}^{k-1}\frac{1-q^{n-i}}{1-q^{i+1}}.
+    V_q(m,t) = \mathlarger{\sum}_{\raisebox{-0.6ex}{$\scriptstyle \mathclap{1=j_1<j_2<\ldots
+                        < j_{t}\leq m}$}}  \ \frac{(q^t-1)^{m-j_{t}}}{(q-1)^{t-j_{t}}}\cdot
+    \prod_{k=2}^{t-1}\left(\frac{q^k-1}{q-1}\right)^{\mathrlap{j_{k+1}-j_k-1}}
+    .
 \]
+Применяя к ней разработанный \cite{Egorychev77} метод интегрального
+представления комбинаторных сумм, включающих $q$-биномиальные коэффициенты
+\[
+    {n \brack k}_q \coloneq\prod_{i=0}^{k-1}\frac{1-q^{n-i}}{1-q^{i+1}},
+\]
+Г.\:П.~Егорычев установил \cite[леммы~3 и 4]{IzvIrkGU-2016} рекуррентное
+соотношение
+\begin{equation}\label{eq:vmt-rec-egorychev}
+    V_q(m,t) = \sum_{k=0}^{mt} (q^t -1)^k \times
+    V_q(m-1-k,t-1)
+\end{equation}
+и следующее утверждение.
 
-\begin{theorem}\label{th:enum-stand-id-classical}
+\begin{lemma}[Г.\:П. Егорычев]
+    Справедлива следующая формула
+    \begin{equation}\label{eq:vmt-comb-egorychev}
+        V_q(m,t) = \sum_{k=0}^{m-t} (-1)^{m-t-k} q^k \binom{m-1}{t+k-1}
+        {t+k-1 \brack k}_{\mathrlap{q}}.
+    \end{equation}
+\end{lemma}
+
+\medskip
+
+В~\cite[заключение]{IzvIrkGU-2016} высказывалась потребность
+алгебраически-комбинаторного доказательства формул \eqref{eq:vmt-rec-egorychev}
+и \eqref{eq:vmt-comb-egorychev}. Доказана
+
+\begin{lemma}[{{\cite[лемма 2.3]{smj2023}}}]\label{l:vmt-comb}
+    %
+    Справедлива формула
+    \begin{equation}\label{eq:vmt-comb}
+        V_q(m,t) = \sum_{k=t}^{m} (-1)^{m-k} \binom{m}{k}
+        {k \brack t}_{\mathrlap{q}}.
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    Докажем формулу \eqref{eq:vmt-comb} для числа $V_q(m, t)$ всех координатно
+    полных $t$-мерных подпространств в $\mathbb{F}_q^m$.
+    Н.\,Д. Ходюня получает рекуррентную формулу \eqref{eq:vmt-rec-egorychev}
+    перенесением схемы перечисления канонических баз в лемме \ref{l:LieIdeal}.
+
+    \medskip
+
+    Известно \cite[предложение 1.3.18]{stanley-ec1-ru}, что число всех $t$-мерных
+    подпространств в $\mathbb{F}_q^m$ равно ${m \brack t}_q$. Пусть $H_i $\ ($1\leq
+        i \leq m$) "--- координатная гиперплоскость всех векторов в $\mathbb{F}_q^m$ c
+    нулевой $i$-й координатой. Тогда любое подпространство в $H_i$ не является
+    координатно полным в $\mathbb{F}_q^m$, а каждое подпространство в
+    $\mathbb{F}_q^m$, не являющееся координатно полным, лежит хотя бы в одном
+    подпространстве $H_i$.
+
+    \medskip
+
+    Обозначим через $\hat{H}_i$ множество всех $t$-мерных подпространств в $H_i$.
+    Для любого набора попарно различных индексов $i_1, \ldots, i_k$ пересечение
+    $H_{i_1}\cap\ldots\cap H_{i_k}$ состоит из векторов с нулевыми координатами
+    $i_1,\ldots,i_k$ и потому изоморфно $\mathbb{F}_q^{m-k}$. Следовательно,
+    $|\hat{H}_{i_1}\cap\ldots\cap\hat{H}_{i_k}| = {m-k\brack t}_q$, причем это
+    значение зависит лишь от числа $k$, а не от выбора индексов. Так как число
+    $k$-элементных подмножеств в $\{1,\ldots,m\}$ равно $\binom{m}{k}$, формула
+    включений-исключений дает
+    \begin{equation}\label{eq:vmt-comb-old}
+        V_q(m,t) = \sum_{k=0}^{m-t} (-1)^k \binom{m}{k}
+        {m-k \brack t}_{\mathrlap{q}}.
+    \end{equation}
+    %
+    Подстановка $j=m-k$ в \eqref{eq:vmt-comb-old} завершает доказательство леммы.
+\end{proof}
+
+\begin{remark}
+    К формуле \eqref{eq:vmt-comb-old} также приводят $q$-аналог ${n \brack k}_q =
+        {n \brack n-k}_q$ известной комбинаторной формулы и подстановка в
+    \eqref{eq:vmt-comb-egorychev} тождества
+    \[
+        q^k{t+k-1 \brack k}_q = {t+k \brack t}_q - {t+k-1 \brack t}_{\mathrlap{q}}.
+    \]
+    %Это дает решение задачи 1 из \cite{IzvIrkGU-2016}.
+\end{remark}
+
+\medskip
+
+Отметим в заключение параграфа равенство чисел $V_q(n,s)$ числам $A_n^{(s)}$ из
+\cite[формула~(9)]{carlitz1933}:
+\[
+    A_n^{(s)} = \sum_{k=s}^{n}(-1)^{n-k}\binom{n}{k}\qbinom{k}{s}.
+\]
+Числа $A_n^{(s)}$ возникли у Л.~Карлитца при перечислении подполей абелевых
+расширений поля $\mathbb{Q}$. Пусть $K/\mathbb{Q}$ "--- расширение Галуа с
+элементарной абелевой группой
+$\mathrm{Gal}(K/\mathbb{Q})\simeq{(\mathbb{Z}/q\mathbb{Z})}^n$ ($q$ "---
+простое), порождённой автоморфизмами $\sigma_1,\ldots,\sigma_n$ поля $K$.
+Обозначим через $K_i$ неподвижное поле автоморфизма $\sigma_i$; тогда
+$K_1,\ldots,K_n$ "--- все максимальные промежуточные поля расширения
+$K/\mathbb{Q}$. Число $A_n^{(s)}$ подсчитывает те промежуточные поля $k$
+($\mathbb{Q}\subset k \subset K$, $[k:\mathbb{Q}]=q^s$), которые не содержатся
+ни в одном из подполей $K_i$.
+
+\medskip
+
+По соответствию Галуа промежуточное поле $k$ с $[k:\mathbb{Q}]=q^s$ отвечает
+подгруппе $H$ группы $\mathrm{Gal}(K/\mathbb{Q})\simeq\mathbb{F}_q^n$ индекса
+$q^s$; так как подгруппы элементарной абелевой $q$-группы суть подпространства,
+$H$ "--- подпространство $\mathbb{F}_q^n$ коразмерности~$s$. Подполе $K_i$ "---
+координатной гиперплоскости $\{x\in\mathbb{F}_q^n \mid x_i=0\}$. Поэтому
+условие $k\not\subset K_i$ для всех $i$ равносильно тому, что $H$ не содержит
+ни одного стандартного базисного вектора $e_i$. Переходя к ортогональному
+дополнению $H^\perp$, получаем биекцию таких подпространств с $s$-мерными
+координатно полными подпространствами в $\mathbb{F}_q^n$, откуда $A_n^{(s)} =
+    V_q(n,s)$.
+
+\section{Проблема перечисления стандартных идеалов} \label{sec:Problem-1}
+%
+Полное решение проблемы~1 из \cite{sigsam2001} дает следующая теорема.
+\begin{theorem}[{{\cite[теорема 1]{smj2023}}}]\label{th:enum-stand-id-classical}
     Число стандартных идеалов алгебры Ли $N\Phi(q)$ классического типа
     $\Phi$ лиева ранга $n$ равно
     %
@@ -1989,171 +2138,63 @@ $B_n$, в силу \eqref{InclusRBn-Dn}, определены и монотон�
     \]
 \end{theorem}
 \begin{proof}
-    Согласно~\cite{JA-12}, стандартный идеал $H$ в $N\Phi(\mathbb{K})$ характеризуют
-    множество $\mathcal{L}=\mathcal{L}(H)$ его углов и \emph{фрейм}
-    $\mathcal{F}(H)$, определяемый условиями
-    %
-    \[\mathcal{F} (H)\subset \sum_{s\in \mathcal{L}}\mathbb{K}e_{s},\quad \mathcal{F}(H)=H \mod
-        Q(\mathcal{L}).\]
-    %
-    Таким образом, стандартность $H$ равносильна условию $H=Q(\mathcal{L}) +
-        \mathcal{F}(H)$.
-
-    Известные перечисления (\cite[Следствие 4.3]{vL74}, \cite[Теорема
-        2.1.2]{Egorychev84}, \cite{Eg-Lev-1996}, \cite{eS05}) нормальных подгрупп групп
-    $U\Phi(\mathbb{K})$ над полем $\mathbb{K}$, инвариантных относительно
-    диагональных автоморфизмов, редуцируются к перечислению стандартных идеалов $H$
-    колец Ли $N\Phi(\mathbb{K})$ с фреймом $\mathcal{F}(H) = \sum_{s\in
-            \mathcal{L}} \mathbb{K}e_{s}$, то есть вида $T(\mathcal{L})$. Тем самым, они
-    редуцируются к перечислению определенных путей в решетках, зависящих от выбора
-    типа алгебры $N\Phi(\mathbb{K})$.
-
-    \medskip
-
-    Пусть $\mathbb{K}^m$ "--- пространство строк длины $m$ над $\mathbb{K}$.
-    Подпространство $S$ назовем \emph{координатно полным}, если оно не лежит ни в
-    одной гиперплоскости
-    \[
-        H_i = \{x \in \mathbb{K}^m \mid x_i = 0\}
-        \quad (1 \leq i \leq m).
-    \]
-    %
     Ясно, что в алгебре Ли $N\Phi(\mathbb{K})$ любой стандартный идеал $H$ с
     $\mathcal{L}=\mathcal{L}(H)$ порядка $m$ записывается в виде
-    \begin{equation}\label{hls}
+    \begin{equation}\label{eq:hls}
         H(\mathcal{L},S) = Q(\mathcal{L}) + \{ a_1e_{r_1} + a_2e_{r_2}
         + \dots + a_me_{r_m} \,|\, (a_1,a_2,\dots,a_m)\in S \}
     \end{equation}
-    для однозначно определенного координатно полного подпространства $S$ в $\mathbb{K}^m$.
+    %
+    для однозначно определенного координатно полного подпространства $S$ в
+    $\mathbb{K}^m$.
 
     \medskip
 
-    Число всех координатно полных $t$-мерных подпространств пространства
-    $\mathbb{K}^m$ при $\mathbb{K}=GF(q)$ обозначим через $V(m,t,q)$, а через
-    $B(\Phi,m)$ "--- число всех $m$-элементных множеств углов $\mathcal{L}$ в
-    $\Phi^+$. Из биективности соответствия \eqref{hls} между стандартными идеалами
-    и парами $(\mathcal{L}, S)$ сразу же вытекает
+    Как и в \S~\ref{s:coordinate-complete}, число всех координатно полных
+    $t$-мерных подпространств пространства $\mathbb{K}^m$ при $\mathbb{K}=GF(q)$
+    обозначим через $V_q(m,t)$, а через $B(\Phi,m)$ "--- число всех $m$-элементных
+    множеств углов $\mathcal{L}$ в $\Phi^+$. Из биективности соответствия
+    \eqref{eq:hls} между стандартными идеалами и парами $(\mathcal{L}, S)$ сразу же
+    вытекает
 
     \medskip
 
     \begin{lemma}\label{l:enum-stand-id-reduct-BV}
         Число стандартных идеалов алгебры Ли $N\Phi(q)$ ранга $n$ равно
         \[
-            1+\sum\limits_{m=1}^{n}B(\Phi,m)\, \ \sum\limits_{t=1}^{m}V(m,t,q).
+            1+\sum\limits_{m=1}^{n}B(\Phi,m)\, \ \sum\limits_{t=1}^{m}V_q(m,t).
         \]
     \end{lemma}
 
     В~\cite{vmj2015} задача \textbf{(A)} исследовалась для типа $A_n$. Числа
-    $B(\Phi,m)=B(A_{n},m)$ вычислены ранее \cite[Теорема~2.1.2]{Egorychev84} (см.
+    $B(\Phi,m)=B(A_{n},m)$ вычислены ранее \cite[теорема~2.1.2]{Egorychev77} (см.
     также \cite{vL74} и \cite{Tolasov-1977}):
     \[
         B(A_{n-1},m) = \frac{1}{n}\binom{n}{m}\binom{n}{m+1}.
     \]
 
-    Для требуемых в лемме~\ref{l:enum-stand-id-reduct-BV} чисел $V(m, t, q)$
-    в~\cite{kriv-lev2015} найдена формула
-    \[
-        V(m,t,q) = \mathlarger{\sum}_{\raisebox{-0.6ex}{$\scriptstyle \mathclap{1=j_1<j_2<\ldots
-                            < j_{t}\leq m}$}}  \ \frac{(q^t-1)^{m-j_{t}}}{(q-1)^{t-j_{t}}}\cdot
-        \prod_{k=2}^{t-1}\left(\frac{q^k-1}{q-1}\right)^{\mathrlap{j_{k+1}-j_k-1}}
-        .
-    \]
-
-    \noindent
-    Применяя к ней разработанный \cite{Egorychev84} метод интегрального
-    представления комбинаторных сумм, включающих $q$-биномиальные коэффициенты, Г.\:П.~Егорычев
-    установил \cite[леммы~3 и 4]{IzvIrkGU-2016} рекуррентное соотношение
-    \begin{equation}\label{eq:vmt-rec}
-        V(m,t,q) = \sum_{k=0}^{m-t} (q^t -1)^k \times
-        V(m-1-k,t-1,q)
-    \end{equation}
-    и следующее утверждение.
-
-    \begin{lemma}\label{l:vmt-comb}
-        Справедлива следующая формула
-        \begin{equation}\label{eq:vmt-comb}
-            V(m,t,q) = \sum_{k=0}^{m-t} (-1)^{m-t-k} q^k \binom{m-1}{t+k-1}
-            {t+k-1 \brack k}_{\mathrlap{q}}.
-        \end{equation}
-    \end{lemma}
-
-    \medskip
-
-    В~\cite[заключение]{IzvIrkGU-2016} высказывалась потребность
-    алгебраически-комбинаторного доказательства формул \eqref{eq:vmt-rec} и
-    \eqref{eq:vmt-comb}. Доказана
-
-    \begin{lemma}\label{l:vmt-comb-1}
-        %
-        Справедлива формула
-        \begin{equation}\label{eq:vmt-comb-1}
-            V(m,t,q) = \sum_{k=0}^{m-t} (-1)^k \binom{m}{k}
-            {m-k \brack t}_{\mathrlap{q}}.
-        \end{equation}
-    \end{lemma}
-
-    \begin{proof}
-        К формуле \eqref{eq:vmt-comb-1} приводят $q$-аналог ${n \brack
-                    k}_q = {n \brack n-k}_q$ известной комбинаторной формулы и
-        подстановка в \eqref{eq:vmt-comb} тождества
-        \[
-            q^k{t+k-1 \brack k}_q = {t+k \brack t}_q - {t+k-1 \brack t}_{\mathrlap{q}}.
-        \]
-        Докажем формулу \eqref{eq:vmt-comb-1} для числа $V(m, t,q)$ всех координатно
-        полных $t$-мерных подпространств в $\mathbb{K}^m$ при $\mathbb{K}=GF(q)$.
-        Н.\,Д. Ходюня получает рекуррентную формулу \eqref{eq:vmt-rec} перенесением
-        схемы перечисления канонических баз в лемме \ref{l:LieIdeal}.
-
-        \medskip
-
-        Известно, что число всех $t$-мерных подпространств в $\mathbb{K}^m$ при
-        $\mathbb{K}=GF(q)$ равно ${m \brack t}_q$. Пусть $H_i $\ ($1\leq i \leq m$)
-        "--- координатная гиперплоскость всех векторов в $\mathbb{K}^m$ c нулевой $i$-й
-        координатой. Тогда любое подпространство в $H_i$ не является координатно полным
-        в $\mathbb{K}^m$, а каждое подпространство в $\mathbb{K}^m$, не являющееся
-        координатно полным, лежит хотя бы в одном подпространстве $H_i$.
-
-        \medskip
-
-        Обозначим через $\hat{H}_i$ множество всех $t$-мерных подпространств в $H_i$.
-        Формулу~\eqref{eq:vmt-comb-1} находим, пользуясь формулой включений-исключений,
-        %
-        \[
-            V(m,t,q) = {m \brack t}_q - \sum_i|\hat{H}_i| +
-            \sum_{i \neq j}|\hat{H}_i \cap \hat{H}_j| - \sum_{i \neq j \neq
-                k}|\hat{H}_i \cap \hat{H}_j \cap \hat{H}_k| + \cdots =
-        \]
-        \[
-            {m \brack t}_q-\binom{m}{1}{m-1 \brack t}_q + \binom{m}{2}{m-2
-                \brack t}_q
-            + \cdots + (-1)^{m-t}\binom{m}{m-t}{m-(m-t) \brack t}_{\mathrlap{q}}. \qedhere
-        \]
-    \end{proof}
-
-    \medskip
-
-    Леммы \ref{l:enum-stand-id-reduct-BV} и \ref{l:vmt-comb-1} вместе с указанной
-    формулой для числа $B(A_{n-1},m)$ завершают доказательство теоремы
-    \ref{th:enum-stand-id-classical} для типа $A_n$.
+    \Cref{l:vmt-comb,l:enum-stand-id-reduct-BV} вместе с указанной
+    формулой для числа $B(A_{n-1},m)$ завершают доказательство
+    \crefRod{th:enum-stand-id-classical} для типа $A_n$.
 
     \medskip
 
     Числа $B(\Phi,m)$ исследовались для классических типов в различных ситуациях с
     использованием метода интегрального представления комбинаторных сумм
-    (\cite{Egorychev84}, \cite{Eg-Lev-1996}, \cite{sigsam2001} и др.). Эти числа
-    указаны явно в выписанном в теореме \ref{th:enum-stand-id-classical} виде для
+    (\cite{Egorychev77}, \cite{Eg-Lev-1996}, \cite{sigsam2001} и др.). Эти числа
+    указаны явно в выписанном в \crefPred{th:enum-stand-id-classical} виде для
     типов $B_n$ и $C_n$ в~\cite[предложение~17]{reiner97}, а для типа $D_n$ "---
     в~\cite[теорема~1.2]{reiner04}.
 
     \medskip
 
-    Учитывая леммы \ref{l:enum-stand-id-reduct-BV} и \ref{l:vmt-comb-1},
-    доказательство теоремы \ref{th:enum-stand-id-classical} завершено.
+    Учитывая \cref{l:vmt-comb,l:enum-stand-id-reduct-BV}, доказательство теоремы
+    \ref{th:enum-stand-id-classical} завершено.
 \end{proof}
 
 \medskip
 
-Решая проблему~1 из \cite{sigsam2001}, теорема \ref{th:enum-stand-id-classical}
+Решая проблему~1 из \cite{sigsam2001}, \cref{th:enum-stand-id-classical}
 завершает решение задачи~\textbf{(A)} для классических типов. Для
 исключительных типов ее решает
 \begin{theorem}[{{\cite[теорема 2.1]{jsfu2018}}}]\label{th:enum-stand-id-exceptional}
@@ -2231,7 +2272,7 @@ $N\Phi(q)$ классических типов, в \cite[\S\ 4]{vmj2015} рас�
 
 \begin{proof} Ясно, что $Q(\mathcal{L})+H=Q(\mathcal{L})+\mathcal{F}(H)$
     есть стандартный идеал в $N\Phi(\mathbb{K})$, имеющий вид $H(\mathcal{L},S)$
-    из \eqref{hls}. Элементы $\alpha_i\in H$ и равенства
+    из \eqref{eq:hls}. Элементы $\alpha_i\in H$ и равенства
     \eqref{eq:base-1} получаем, используя известный изоморфизм
     \[
         (H+Q(\mathcal{L})) / Q(\mathcal{L}) \simeq H / H \cap Q(\mathcal{L}).
@@ -2267,12 +2308,12 @@ $N\Phi(q)$ классических типов, в \cite[\S\ 4]{vmj2015} рас�
 так, что
 %
 \begin{equation}\label{eq:r-stepsId}
-    s_i=s+p_1+p_2+\cdots + p_i\in \Phi^+, \quad 1\leq i< n-ht(s),
+    s_i=s+p_1+p_2+\cdots + p_i\in \Phi^+, \quad 1\leq i< n-\height(s),
 \end{equation}
 %
-то $Q(s_{i})\subset H$ при $i=n-1-ht(s)$. Поэтому существует наименьший номер
-$\mathbb{K}$ с условиями $Q(s_k) \subset H$ и $1\leq k\leq n-1-ht(s)$.
-Записывая $\mathcal{L}$ в виде
+то $Q(s_{i})\subset H$ при $i=n-1-\height(s)$. Поэтому существует наименьший
+номер $\mathbb{K}$ с условиями $Q(s_k) \subset H$ и $1\leq k\leq
+    n-1-\height(s)$. Записывая $\mathcal{L}$ в виде
 \begin{equation}\label{eq:R-stepsId}
     \mathcal{L}=\{r_1=s, r_2=\bar{s}, r_3, \dots, r_m\}\quad (2\leq
     m=|\mathcal{L}| <n),
@@ -2305,7 +2346,7 @@ $\mathbb{K}$ с условиями $Q(s_k) \subset H$ и $1\leq k\leq n-1-ht(s)$
 множество углов $\mathcal{L}=\mathcal{L}(H)$ вида \eqref{eq:R-stepsId},
 параметры $k, t$ с условиями
 \[
-    1\leq k\leq n-1-ht(s),\quad 1\leq t= \dim_K\ H / H \cap Q(\mathcal{L}) <|\mathcal{L}|=m <n,
+    1\leq k\leq n-1-\height(s),\quad 1\leq t= \dim_K\ H / H \cap Q(\mathcal{L}) <|\mathcal{L}|=m <n,
 \]
 элементы $c\neq 0$, $d_1, \dots , d_t$ из $\mathbb{K}$ и $t\times m$-матрица
 $||a_{ij}||$ над $\mathbb{K}$ ранга $t$\ с условиями $a_{12}=c$ и
@@ -2321,7 +2362,7 @@ $||a_{ij}||$ над $\mathbb{K}$ ранга $t$\ с условиями $a_{12}=c
 
 \section{Метод коэффициентов и перечисление идеалов алгебры \texorpdfstring{$RD_n(q)$}{RDₙ(q)}}\label{sec:egorychev-RDn}
 %
-Теорема \ref{th:enum-stand-id-classical}, решая проблему 1 из \cite{sigsam2001}
+\Cref{th:enum-stand-id-classical}, решая проблему 1 из \cite{sigsam2001}
 о числе всех стандартных идеалов алгебры Ли $N\Phi(q)$ классического типа над
 полем $K=GF(q)$, дает и число всех идеалов ее обертывающей алгебры
 $R_{\Phi}(q)$, когда она стандартна.
@@ -2392,7 +2433,7 @@ $RD_n(q)$.
     \]
 
     Оператор формального вычета $\res$ (контурный интеграл) имеет ряд свойств (см.,
-    например, \cite{Egorychev84}). Из них наиболее часто используются следующие
+    например, \cite{Egorychev77}). Из них наиболее часто используются следующие
     два.
 
     \medskip
@@ -2548,7 +2589,7 @@ $RD_n(q)$.
         Тем самым, доказательство \crefRod{l:B'-Dn} завершается.
     \end{proof}
 
-    Применяя к \crefDat{l:rdn} \cref{l:vmt-comb-1,l:B'-Dn} получаем утверждение
+    Применяя к \crefDat{l:rdn} \cref{l:vmt-comb,l:B'-Dn} получаем утверждение
     \crefRod{th:Enum-Dn}.
 \end{proof}
 
