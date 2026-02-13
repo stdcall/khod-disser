@@ -23,6 +23,7 @@ endif
 
 clean:
 	latexmk -c
+	rm -rf `biber --cache`
 	rm -f $(MAINSOURCE).{aux,bcf,bbl,fls,log,out,run.xml,toc}
 
 archive:
