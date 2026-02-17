@@ -1602,7 +1602,7 @@ $\Lambda^2V$ "--- внешний квадрат $V$. Как векторное �
 
 Через $L_x\colon y\mapsto xy$ $(x,y \in R)$ обозначим линейные операторы левого
 умножения в алгебре $R$.
-\begin{definition}\label{def:prelie}
+\begin{definition}\label{def:pre-lie-algebra}
     %
     Алгебра $R$ над полем $\mathbb{K}$ называется \emph{(левой) прелиевой}, если
     ее умножение удовлетворяет тождеству
@@ -1616,11 +1616,14 @@ $\Lambda^2V$ "--- внешний квадрат $V$. Как векторное �
     \end{equation}
 \end{definition}
 
+Как и в ассоциативном случае, всякая прелиева алгебра Ли-допустима: если
+положить $[x,y]\coloneq xy-yx$, то $(R,[\ ,\ ])$ является алгеброй Ли.
+
 \medskip
 
 По аналогии c \crefTvor{def:semidirect-lie}, введем понятие полупрямого
 произведения и для прелиевых алгебр.
-\begin{definition}\label{def:semidirect-assoc} \emph{Полупрямой суммой}
+\begin{definition}\label{def:semidirect-pre-lie} \emph{Полупрямой суммой}
     $A\ltimes_{\tau} I$ прелиевых алгебр $A$ и $I$ назовем прямую сумму
     векторных пространств $A$ и $I$, снабженную операцией умножения по формуле
     \[
@@ -1635,11 +1638,11 @@ $\Lambda^2V$ "--- внешний квадрат $V$. Как векторное �
 
 \medskip
 
-\begin{theorem}\label{th:semidirect-prelie}
+\begin{theorem}\label{th:semidirect-pre-lie}
     %
     Пусть $A$ и $I$ --- ассоциативные алгебры и $\tau\colon A^{(-)}\to\Der(I)$ ---
     гомоморфизм алгебры Ли $A^{(-)}$ в $\Der(I)$. Тогда алгебра $A\ltimes_{\tau} I$
-    из \crefRod{def:semidirect-assoc} является прелиевой. Более того, ее
+    из \crefRod{def:semidirect-pre-lie} является прелиевой. Более того, ее
     коммутаторная алгебра Ли изоморфна полупрямой сумме $A^{(-)}\ltimes_\tau
         I^{(-)}$ в смысле \crefRod{def:semidirect-lie}, причем
     \[
@@ -1690,7 +1693,7 @@ $\Lambda^2V$ "--- внешний квадрат $V$. Как векторное �
 \end{theorem}
 \begin{proof}
     %
-    По \crefDat{th:semidirect-prelie} алгебра $R=R_1\ltimes_{\tau}R_2$ прелиева, а
+    По \crefDat{th:semidirect-pre-lie} алгебра $R=R_1\ltimes_{\tau}R_2$ прелиева, а
     значит, Ли-допустима. Кроме того,
     \[
         R^{(-)}\simeq R_1^{(-)}\ltimes R_2^{(-)}\simeq \mathfrak{l}\ltimes_{\rho}\mathfrak{h}\simeq L,
@@ -1824,9 +1827,6 @@ $NT(n,\mathbb{K})\subset RB'_n(\mathbb{K})$ на идеале $V\oplus\Lambda^2V
     $RB'_n(\mathbb{K})/\Lambda^2V\simeq NT(n+1,\mathbb{K})$.
 \end{proof}
 
-%
-Как и в ассоциативном случае, всякая прелиева алгебра Ли-допустима: если
-положить $[x,y]\coloneq xy-yx$, то $(R,[\ ,\ ])$ является алгеброй Ли.
 \begin{lemma}\label{l:RBnprime-prelie-assoc}
     %
     Алгебра $RB'_n(\mathbb{K})$ является прелиевой.
