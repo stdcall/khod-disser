@@ -1578,49 +1578,135 @@ $\Lambda^2V$ "--- внешний квадрат $V$. Как векторное �
     \underbrace{\langle e_{i,-j}\mid 1\le j<i\le n\rangle}_{\simeq\,\Lambda^2V}.
 \]
 \begin{definition}[{{\cite[\S~I.2.11]{vinberg-onishik}}}]\label{def:semidirect-lie}
-    \emph{Полупрямой суммой $\mathfrak{g}\ltimes_{\tau} \mathfrak{h}$} алгебр
+    %
+    \emph{Полупрямой суммой $\mathfrak{g}\ltimes_{\phi} \mathfrak{h}$} алгебр
     Ли $\mathfrak{g}$ и $\mathfrak{h}$ называется прямая сумма векторных
     пространств $\mathfrak{g}$ и $\mathfrak{h}$, снабженная операцией
     коммутирования по формуле
     \[
-        [(x,a),(y,b)] = \bigl([x,y],\ \tau(x)b-\tau(y)a + [a,b]\bigr),
+        [(x,a),(y,b)] = \bigl([x,y],\ \phi(x)b-\phi(y)a + [a,b]\bigr),
         \qquad x,y\in\mathfrak{g},\ a,b\in\mathfrak{h},
     \]
-    где $\tau\colon\mathfrak{g}\to\Der(\mathfrak{h})$ "--- некоторый гомоморфизм
+    где $\phi\colon\mathfrak{g}\to\Der(\mathfrak{h})$ "--- некоторый гомоморфизм
     алгебры Ли $\mathfrak{g}$ в алгебру Ли дифференцирований $\Der(\mathfrak{h})$.
 \end{definition}
 %
-Обозначая через $\tau$ присоединенное действие $NB_n(\Psi)$ на идеале $V \oplus
+Обозначая через $\phi$ присоединенное действие $NB_n(\Psi)$ на идеале $V \oplus
     \Lambda^2V$, получаем разложение $NB_n(\mathbb{K})$ в полупрямую сумму алгебр
 Ли
 \begin{equation}\label{eq:NBn-semi-direct-sum}
-    NB_n(\mathbb{K})\simeq NA_{n-1}(\mathbb{K}) \ltimes_\tau (V \oplus \Lambda^2V).
+    NB_n(\mathbb{K})\simeq NA_{n-1}(\mathbb{K}) \ltimes_\phi (V \oplus \Lambda^2V).
 \end{equation}
 
 \medskip
 
-По аналогии \crefVin{def:semidirect-lie}, введем понятие полупрямого
-произведения и для ассоциативных алгебр.
+Через $L_x\colon y\mapsto xy$ $(x,y \in R)$ обозначим линейные операторы левого
+умножения в алгебре $R$.
+\begin{definition}\label{def:prelie}
+    %
+    Алгебра $R$ над полем $\mathbb{K}$ называется \emph{(левой) прелиевой}, если
+    ее умножение удовлетворяет тождеству
+    \begin{equation}\label{eq:Pre-Lie-Id}
+        (xy)z-x(yz)=(yx)z-y(xz)\qquad (x,y,z\in R).
+    \end{equation}
+    или, эквивалентно, отображение $L\colon x \mapsto L_x$ задает представление
+    $R^{(-)}$ в $\mathfrak{gl}(R)$:
+    \begin{equation}\label{eq:Pre-Lie-Repr-Id}
+        [L_x,L_y]=L_{[x,y]} \quad (x,y \in R)
+    \end{equation}
+\end{definition}
+
+\medskip
+
+По аналогии c \crefTvor{def:semidirect-lie}, введем понятие полупрямого
+произведения и для прелиевых алгебр.
 \begin{definition}\label{def:semidirect-assoc} \emph{Полупрямой суммой}
-    $A\ltimes_{\tau} I$ ассоциативных алгебр $A$ и $I$ называется прямая сумма
-    векторных пространств $A$ и $I$, снабженная операцией умножения по формуле
+    $A\ltimes_{\tau} I$ прелиевых алгебр $A$ и $I$ назовем прямую сумму
+    векторных пространств $A$ и $I$, снабженную операцией умножения по формуле
     \[
         (x,a)(y,b) = (xy,\ \tau(x)b + ab),
         \qquad x,y\in A,\ a,b\in I,
     \]
-    где $\tau\colon A \to \End_{\mathbb{K}}(I)$ "--- некоторый гомоморфизм
-    алгебры $A$ в алгебру эндоморфизмов $\End_{\mathbb{K}}(I)$.
+    где $\tau\colon A^{(-)} \to \Der(I)$ "--- некоторый гомоморфизм алгебры Ли
+    $A^{(-)}$ в алгебру Ли дифференцирований $\Der(I)$.
 \end{definition}
 
-Отметим, что вообще говоря, полупрямая сумма ассоциативных алгебр может быть
-неассоциативной.
+Отметим, что полупрямая сумма ассоциативных алгебр может быть неассоциативной.
 
 \medskip
 
-Используя разложение \eqref{eq:NBn-semi-direct-sum}, построим точную
-обертывающую алгебры $NB_n(\mathbb{K})$ в виде полупрямой суммы двух
-ассоциативных алгебр на линейных пространствах $NA_{n-1}(\mathbb{K})$ и $V
-    \oplus \Lambda^2V$.
+\begin{theorem}\label{th:semidirect-prelie}
+    %
+    Пусть $A$ и $I$ --- ассоциативные алгебры и $\tau\colon A^{(-)}\to\Der(I)$ ---
+    гомоморфизм алгебры Ли $A^{(-)}$ в $\Der(I)$. Тогда алгебра $A\ltimes_{\tau} I$
+    из \crefRod{def:semidirect-assoc} является прелиевой. Более того, ее
+    коммутаторная алгебра Ли изоморфна полупрямой сумме $A^{(-)}\ltimes_\tau
+        I^{(-)}$ в смысле \crefRod{def:semidirect-lie}, причем
+    \[
+        [(x,a),(y,b)]=\bigl([x,y],\ \tau(x)b-\tau(y)a+[a,b]\bigr).
+    \]
+\end{theorem}
+\begin{proof}
+    %
+    Прелиевость докажем с помощью \eqref{eq:Pre-Lie-Repr-Id}: нужно показать
+    $[L_p,L_q]=L_{[p,q]}$ для всех $p,q\in A\ltimes_{\tau} I$. Для $p=(x,a)$
+    оператор $L_p$ действует на $A\oplus I$ по формуле
+    \[
+        L_{(x,a)}(y,b)=(xy,\ \tau(x)b+ab),
+    \]
+    то есть на второй компоненте равен $\tau(x)+L_a$. Так как $A$ и $I$
+    ассоциативны, получаем $[L_x,L_y]=L_{[x,y]}$ и $[L_a,L_b]=L_{[a,b]}$. Кроме
+    того, из того, что $\tau$ "--- гомоморфизм алгебры Ли $A^{(-)}$, следует
+    $[\tau(x),\tau(y)]=\tau([x,y])$, а из того, что $\tau(x)\in\Der(I)$ следует
+    $[\tau(x),L_a]=L_{\tau(x)a}$. Складывая эти равенства, получаем
+    $[L_{(x,a)},L_{(y,b)}]=L_{[(x,a),(y,b)]}$, то есть $A\ltimes_{\tau} I$
+    прелиева.
+
+    \medskip
+
+    Формула для коммутатора получается непосредственным вычитанием:
+    \[
+        (x,a)(y,b)-(y,b)(x,a)=\bigl([x,y],\ \tau(x)b-\tau(y)a+[a,b]\bigr).
+    \]
+\end{proof}
+
+\begin{theorem}\label{th:enveloping-semidirect}
+    %
+    Пусть $L\simeq \mathfrak{l}\ltimes_{\rho}\mathfrak{h}$ "--- полупрямая сумма
+    алгебр Ли в смысле \crefRod{def:semidirect-lie}. Пусть $R_1$ и $R_2$ "---
+    ассоциативные точные обертывающие алгебры алгебр Ли $\mathfrak{l}$ и
+    $\mathfrak{h}$ соответственно, то есть $R_1^{(-)}\simeq\mathfrak{l}$ и
+    $R_2^{(-)}\simeq\mathfrak{h}$. Пусть также задан гомоморфизм алгебр $\tau\colon
+        R_1\to\Der(R_2)$ такой, что
+    \begin{enumerate}
+        \item $\tau$ является гомоморфизмом алгебры Ли $R_1^{(-)}$;
+        \item индуцированное действием $\tau$ действие алгебры Ли $R_1^{(-)}$ на $R_2^{(-)}$
+              совпадает (с точностью до фиксированных изоморфизмов
+              $R_1^{(-)}\simeq\mathfrak{l}$ и $R_2^{(-)}\simeq\mathfrak{h}$) с действием
+              $\rho$.
+    \end{enumerate}
+    Тогда алгебра $R\coloneq R_1\ltimes_{\tau} R_2$ является точной обертывающей
+    алгеброй алгебры Ли $L$ и при этом $R$ является прелиевой алгеброй.
+\end{theorem}
+\begin{proof}
+    %
+    По \crefDat{th:semidirect-prelie} алгебра $R=R_1\ltimes_{\tau}R_2$ прелиева, а
+    значит, Ли-допустима. Кроме того,
+    \[
+        R^{(-)}\simeq R_1^{(-)}\ltimes R_2^{(-)}\simeq \mathfrak{l}\ltimes_{\rho}\mathfrak{h}\simeq L,
+    \]
+    откуда $R$ является точной обертывающей алгеброй алгебры Ли $L$.
+\end{proof}
+
+Применим теорему \ref{th:enveloping-semidirect} к разложению
+\eqref{eq:NBn-semi-direct-sum}. Здесь $\phi$ является присоединенным действием
+подалгебры $NB_n(\Psi)\simeq NA_{n-1}(\mathbb{K})$ на идеале
+$V\oplus\Lambda^2V$. Поэтому требуется построить ассоциативные точные
+обертывающие алгебры для $NA_{n-1}(\mathbb{K})$ и для $\mathfrak{h}\coloneq
+    V\oplus\Lambda^2V$, а также определить действие $\tau$ алгебры Ли $R_1^{(-)}$
+на $R_2^{(-)}$, согласованное с действием $\phi$.
+
+\medskip
 
 Заменим в \eqref{eq:NBn-semi-direct-sum} лиеву алгебру $NA_{n-1}(\mathbb{K})$
 на ее точную обертывающую алгебру $NT(n,\mathbb{K})$ и присоединенное действие
@@ -1643,7 +1729,12 @@ $\Lambda^2V$ согласовано с умножением в $I$:
     X\cdot(uv)=(X\cdot u)v+u(X\cdot v)\qquad (X\in NT(n,\mathbb{K}),\ u,v\in V).
 \]
 
-Определим алгебру $RB'_n(\mathbb{K})$ как полупрямую сумму ассоциативных алгебр
+Тем самым выполнено условие \emph{(1)} теоремы \ref{th:enveloping-semidirect}.
+
+\medskip
+
+Определим алгебру $RB'_n(\mathbb{K})$\label{def:RBnprime} как полупрямую сумму
+ассоциативных алгебр
 \begin{equation}\label{eq:RB'n-definition}
     RB'_n(\mathbb{K})\coloneq
     NT(n,\mathbb{K})\ltimes  (V\oplus \Lambda^2V).
@@ -1674,6 +1765,14 @@ $\omega,\eta\in\Lambda^2V$, имеем:
          & e_{k j}e_{i,-j}=-e_{k,-i},\qquad &  & e_{i,-j}e_{k j}=0\qquad      &  & (k>i>j\ge 1).
     \end{alignat*}
 \end{remark}
+
+\medskip
+
+Из таблицы умножения видно, что действие коммутатором элементов
+$NT(n,\mathbb{K})\subset RB'_n(\mathbb{K})$ на идеале $V\oplus\Lambda^2V$
+совпадает с присоединенным действием подалгебры $NB_n(\Psi)\subset
+    NB_n(\mathbb{K})$; тем самым выполнено условие \emph{(2)} теоремы
+\ref{th:enveloping-semidirect}.
 
 \medskip
 
@@ -1725,23 +1824,6 @@ $\omega,\eta\in\Lambda^2V$, имеем:
     $RB'_n(\mathbb{K})/\Lambda^2V\simeq NT(n+1,\mathbb{K})$.
 \end{proof}
 
-\medskip
-
-Через $L_x\colon y\mapsto xy$ $(x,y \in R)$ обозначим линейные операторы левого
-умножения в алгебре $R$.
-\begin{definition}\label{def:prelie}
-    %
-    Алгебра $R$ над полем $\mathbb{K}$ называется \emph{прелиевой} (или
-    \emph{левосимметрической}), если ее умножение удовлетворяет тождеству
-    \begin{equation}\label{eq:Pre-Lie-Id}
-        (xy)z-x(yz)=(yx)z-y(xz)\qquad (x,y,z\in R).
-    \end{equation}
-    или, эквивалентно, отображение $L\colon x \mapsto L_x$ задает представление
-    $R^{(-)}$ в $\mathfrak{gl}(R)$:
-    \begin{equation}\label{eq:Pre-Lie-Repr-Id}
-        [L_x,L_y]=L_{[x,y]} \quad (x,y \in R)
-    \end{equation}
-\end{definition}
 %
 Как и в ассоциативном случае, всякая прелиева алгебра Ли-допустима: если
 положить $[x,y]\coloneq xy-yx$, то $(R,[\ ,\ ])$ является алгеброй Ли.
