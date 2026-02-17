@@ -1562,52 +1562,99 @@ $NB_n(\mathbb{K})$ алгебры $N\Phi(\mathbb{K})$ типа $B_n$ с умно
 
 \medskip
 
-Ясно, что $NB_n(\Psi)\coloneq \langle e_{ij}\mid 1\le j<i\le n\rangle$ является
-подалгеброй в $NB_n(\mathbb{K})$. Как векторное пространство имеем прямую сумму
+Ясно, что $NB_n(\Psi)\coloneq \langle e_r\mid r \in \Psi \rangle \simeq
+    NA_{n-1}(\mathbb{K})$ является подалгеброй в $NB_n(\mathbb{K})$.
+
+\medskip
+
+Пусть $V \coloneq \mathbb{K}^n$, $v_1,\dots,v_n$ "--- фиксированный базис $V$ и
+$\Lambda^2V$ "--- внешний квадрат $V$. Как векторное пространство имеем прямую
+сумму
 \[
     NB_n(\mathbb{K})
     = NB_n(\Psi)\ \oplus\
     \underbrace{\langle e_{i0}\mid 1\le i\le n\rangle}_{\simeq\,V}
     \ \oplus\
-    \underbrace{\langle e_{i,-j}\mid 1\le j<i\le n\rangle}_{\simeq\,\Lambda^2V},
+    \underbrace{\langle e_{i,-j}\mid 1\le j<i\le n\rangle}_{\simeq\,\Lambda^2V}.
 \]
-где $V\simeq \mathbb{K}^n$ и $\Lambda^2V$ "--- внешний квадрат $V$. При этом
-подпространство $V \oplus \Lambda^2V$ является идеалом в $NB_n(\mathbb{K})$, и
-потому
-\[
-    NB_n(\mathbb{K})=NB_n(\Psi)\ltimes (V \oplus \Lambda^2V)
-\]
-как полупрямая сумма алгебр Ли \fixme{(ссылка на теорему Мальцева-Леви в
-    Вингберге?)}. Действие $NB_n(\Psi)$ на $I$ есть ограничение присоединенного
-представления и согласуется с указанными отождествлениями $I\simeq
-    V\oplus\Lambda^2V$: например, $[e_{ij},e_{j0}]=e_{i0}$ и
-$[e_{ij},e_{j,-k}]=e_{i,-k}$ при $i>j>k$.
+\begin{definition}[{{\cite[\S~I.2.11]{vinberg-onishik}}}]\label{def:semidirect-lie}
+    \emph{Полупрямой суммой $\mathfrak{g}\ltimes_{\tau} \mathfrak{h}$} алгебр
+    Ли $\mathfrak{g}$ и $\mathfrak{h}$ называется прямая сумма векторных
+    пространств $\mathfrak{g}$ и $\mathfrak{h}$, снабженная операцией
+    коммутирования по формуле
+    \[
+        [(x,a),(y,b)] = \bigl([x,y],\ \tau(x)b-\tau(y)a + [a,b]\bigr),
+        \qquad x,y\in\mathfrak{g},\ a,b\in\mathfrak{h},
+    \]
+    где $\tau\colon\mathfrak{g}\to\Der(\mathfrak{h})$ "--- некоторый гомоморфизм
+    алгебры Ли $\mathfrak{g}$ в алгебру Ли дифференцирований $\Der(\mathfrak{h})$.
+\end{definition}
+%
+Обозначая через $\tau$ присоединенное действие $NB_n(\Psi)$ на идеале $V \oplus
+    \Lambda^2V$, получаем разложение $NB_n(\mathbb{K})$ в полупрямую сумму алгебр
+Ли
+\begin{equation}\label{eq:NBn-semi-direct-sum}
+    NB_n(\mathbb{K})\simeq NA_{n-1}(\mathbb{K}) \ltimes_\tau (V \oplus \Lambda^2V).
+\end{equation}
 
 \medskip
 
-\begin{definition}\label{def:RBnprime}
-    %
-    Пусть $V = \mathbb{K}^n$ и $v_1,\dots,v_n$ "--- фиксированный базис $V$.
-    Алгебра $NT(n,\mathbb{K})$ действует слева на $V$ естественным образом; это
-    действие продолжается на внешний квадрат $\Lambda^2V$ с базисом $v_i\wedge v_j$
-    при $i>j$ по правилу
+По аналогии \crefVin{def:semidirect-lie}, введем понятие полупрямого
+произведения и для ассоциативных алгебр.
+\begin{definition}\label{def:semidirect-assoc} \emph{Полупрямой суммой}
+    $A\ltimes_{\tau} I$ ассоциативных алгебр $A$ и $I$ называется прямая сумма
+    векторных пространств $A$ и $I$, снабженная операцией умножения по формуле
     \[
-        X\cdot(v_i\wedge v_j)=(X\cdot v_i)\wedge v_j + v_i\wedge(X\cdot v_j).
+        (x,a)(y,b) = (xy,\ \tau(x)b + ab),
+        \qquad x,y\in A,\ a,b\in I,
     \]
-
-    \medskip
-
-    Алгебру $RB'_n(\mathbb{K})$ определим как алгебру на векторном пространстве
-    \[
-        RB'_n(\mathbb{K})\coloneq NT(n,\mathbb{K})\oplus V\oplus \Lambda^2V
-    \]
-    с умножением
-    \[
-        (X +v_i + \omega)(Y+ v_j + \eta)\coloneq
-        XY + X\cdot v_j + X\cdot \eta + v_i\wedge v_j,
-    \]
-    где $X,Y\in NT(n,\mathbb{K})$, $u,v\in V$, $\omega,\eta\in\Lambda^2V$.
+    где $\tau\colon A \to \End_{\mathbb{K}}(I)$ "--- некоторый гомоморфизм
+    алгебры $A$ в алгебру эндоморфизмов $\End_{\mathbb{K}}(I)$.
 \end{definition}
+
+Отметим, что вообще говоря, полупрямая сумма ассоциативных алгебр может быть
+неассоциативной.
+
+\medskip
+
+Используя разложение \eqref{eq:NBn-semi-direct-sum}, построим точную
+обертывающую алгебры $NB_n(\mathbb{K})$ в виде полупрямой суммы двух
+ассоциативных алгебр на линейных пространствах $NA_{n-1}(\mathbb{K})$ и $V
+    \oplus \Lambda^2V$.
+
+Заменим в \eqref{eq:NBn-semi-direct-sum} лиеву алгебру $NA_{n-1}(\mathbb{K})$
+на ее точную обертывающую алгебру $NT(n,\mathbb{K})$ и присоединенное действие
+$\tau$ "--- на естественное левое действие $NT(n,\mathbb{K})$ на $V\simeq
+    \mathbb{K}^n$. Это действие продолжается на внешний квадрат $\Lambda^2V$ по
+правилу
+\[
+    X\cdot(u\wedge v)\coloneq (X\cdot u)\wedge v + u\wedge (X\cdot v).
+\]
+
+\medskip
+
+Ассоциативное произведение на пространстве $I = V\oplus \Lambda^2V$ зададим
+равенством $uv\coloneq u\wedge v$ для $u,v\in V$, а все произведения с
+множителем из $\Lambda^2V$ приравняем нулю. В частности, из равенства $v\wedge
+    u=-u\wedge v$ следует, что умножение на $V$ кососимметрично. Тогда $I$ является
+ассоциативной алгеброй, а заданное выше действие $NT(n,\mathbb{K})$ на $V$ и
+$\Lambda^2V$ согласовано с умножением в $I$:
+\[
+    X\cdot(uv)=(X\cdot u)v+u(X\cdot v)\qquad (X\in NT(n,\mathbb{K}),\ u,v\in V).
+\]
+
+Определим алгебру $RB'_n(\mathbb{K})$ как полупрямую сумму ассоциативных алгебр
+\begin{equation}\label{eq:RB'n-definition}
+    RB'_n(\mathbb{K})\coloneq
+    NT(n,\mathbb{K})\ltimes  (V\oplus \Lambda^2V).
+\end{equation}
+
+По построению, полагая при $X,Y\in NT(n,\mathbb{K})$, $u,v\in V$ и
+$\omega,\eta\in\Lambda^2V$, имеем:
+\[
+    (X+u+\omega)(Y+v+\eta)\coloneq
+    XY + X\cdot v + X\cdot \eta + u\wedge v.
+\]
 
 \begin{remark}\label{remark:RBnprime-table}
     %
@@ -1617,7 +1664,7 @@ $[e_{ij},e_{j,-k}]=e_{i,-k}$ при $i>j>k$.
         E_{ij}\longleftrightarrow e_{ij},\qquad v_i\longleftrightarrow e_{i0},\qquad
         v_i\wedge v_j\longleftrightarrow e_{i,-j}\quad (i>j),
     \]
-    где $E_{ij}$ "--- матричные единицы в $NT(n,\mathbb{K})$. Тогда из определения
+    где $E_{ij}$ "--- матричные единицы в $NT(n,\mathbb{K})$. Тогда из построения
     \ref{def:RBnprime} получаем таблицу умножения в корневом базисе
     $NB_n(\mathbb{K})$:
     \begin{alignat*}{3}
@@ -1640,16 +1687,15 @@ $[e_{ij},e_{j,-k}]=e_{i,-k}$ при $i>j>k$.
 
 \begin{lemma}\label{l:RBnprime-quotient-NT}
     %
-    Фактор-алгебра $RB'_n(\mathbb{K})/\Lambda^2V$ изоморфна алгебре
+    Фактор-алгебра $\quot{RB'_n(\mathbb{K})}{\Lambda^2V}$ изоморфна алгебре
     $NT(n+1,\mathbb{K})$.
 \end{lemma}
 \begin{proof}
     %
-    Из определения \ref{def:RBnprime} видно, что $\Lambda^2V$ устойчиво
-    относительно правого умножения (так как
-    $(X+u+\omega)\eta=X\cdot\eta\in\Lambda^2V$) и относительно левого умножения
-    (так как $\eta(Y+v+\omega')=0$). Следовательно, $\Lambda^2V$ является
-    двухсторонним идеалом.
+    Из построения \ref{def:RBnprime} видно, что $\Lambda^2V$ устойчиво относительно
+    правого умножения (так как $(X+u+\omega)\eta=X\cdot\eta\in\Lambda^2V$) и
+    относительно левого умножения (так как $\eta(Y+v+\omega')=0$). Следовательно,
+    $\Lambda^2V$ является двухсторонним идеалом.
 
     \medskip
 
@@ -1705,7 +1751,7 @@ $[e_{ij},e_{j,-k}]=e_{i,-k}$ при $i>j>k$.
 \end{lemma}
 \begin{proof}
     %
-    По определению \ref{def:RBnprime} имеем разложение векторного пространства
+    По построению \ref{def:RBnprime} имеем разложение векторного пространства
     $RB'_n(\mathbb{K})=NT(n,\mathbb{K})\oplus V\oplus \Lambda^2V$ и умножение
     \[
         (X+u+\omega)(Y+v+\eta)=XY+X\cdot v+X\cdot\eta+u\wedge v.
@@ -1771,14 +1817,12 @@ $[e_{ij},e_{j,-k}]=e_{i,-k}$ при $i>j>k$.
     леммам \ref{corollary:RBnprime-basic} и \ref{l:RBnprime-prelie-assoc} алгебра
     $RB'_n(\mathbb{K})$ является нильпотентной градуированной прелиевой точной
     обертывающей алгеброй. Кроме того, по лемме \ref{l:RBnprime-quotient-NT} фактор
-    $RB'_n(\mathbb{K})/W\simeq NT(n+1,\mathbb{K})$ ассоциативен, а по
-    \crefDat{remark:RBnprime-table} произведение на $V$ кососимметрично.
+    $RB'_n(\mathbb{K})/W\simeq NT(n+1,\mathbb{K})$ ассоциативен и, по
+    \crefDat{def:RBnprime}, произведение на $V$ кососимметрично.
 
     \medskip
 
-    Докажем единственность с точностью до изоморфизма, пользуясь определением
-    \ref{def:RBnprime} и таблицей умножения из замечания
-    \ref{remark:RBnprime-table}.
+    Докажем единственность с точностью до изоморфизма.
 
     \medskip
 
