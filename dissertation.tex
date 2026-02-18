@@ -1543,7 +1543,7 @@ $B_n$, $C_n$ и $D_n$, используем их известные разлож
 \fixme{(ссылка или доказательство? GPT-based.)}
 \begin{align*}
     NB_n(\mathbb{K}) & \simeq NA_{n-1}(\mathbb{K}) \ltimes_\phi (V \oplus \Lambda^2V), \\
-    ND_n(\mathbb{K}) & \simeq NA_{n-1}(\mathbb{K}) \ltimes_\phi \Lambda^2V, \\
+    ND_n(\mathbb{K}) & \simeq NA_{n-1}(\mathbb{K}) \ltimes_\phi \Lambda^2V,            \\
     NC_n(\mathbb{K}) & \simeq NA_{n-1}(\mathbb{K}) \ltimes_\phi \Sym^2V.
 \end{align*}
 
@@ -1566,8 +1566,8 @@ $B_n$, $C_n$ и $D_n$, используем их известные разлож
 умножения в алгебре $R$.
 \begin{definition}\label{def:pre-lie-algebra}
     %
-    Алгебра $R$ над полем $\mathbb{K}$ называется \emph{(левой) прелиевой}, если ее
-    умножение удовлетворяет тождеству
+    Алгебра $R$ над полем $\mathbb{K}$ называется \emph{(левой) прелиевой
+        (левосимметрической)}, если ее умножение удовлетворяет тождеству
     \begin{equation}\label{eq:Pre-Lie-Id}
         (xy)z-x(yz)=(yx)z-y(xz)\qquad (x,y,z\in R).
     \end{equation}
@@ -1580,6 +1580,12 @@ $B_n$, $C_n$ и $D_n$, используем их известные разлож
 
 Как и в ассоциативном случае, всякая прелиева алгебра Ли-допустима: если
 положить $[x,y]\coloneq xy-yx$, то $(R,[\ ,\ ])$ является алгеброй Ли.
+
+Левосимметрическую точную обертывающую алгебры ли $L$ называют также
+\emph{афинной структурой на $L$}. Вопрос Милнора (\cite{milnor-left-sym}) о
+существовании афинных структур для произвольной алгебры Ли долгое время считался
+имеющим положительный ответ. Однако, для нильпотентных алгебр Ли были построены
+контрпримеры \cite{burde-counter-example}.
 
 \medskip
 
@@ -1649,15 +1655,15 @@ $B_n$, $C_n$ и $D_n$, используем их известные разлож
     $[\tau_x,L_a]=L_{\tau_x(a)}$.
 
     Пользуясь полученными тождествами, в ограничениях на $R$ и $I$ получаем
-    \begin{gather*}
-        \restr{[L_{(x,a)}, L_{(y,b)}]}{R} = [L_x, L_y] = L_{[x,y]} = \restr{L_{[(x,a),(y,b)]}}{R},\\
-        \restr{[L_{(x,a)}, L_{(y,b)}]}{I} = [\tau_x + L_a, \tau_y + L_b] =
-            [\tau_x, \tau_y] + [L_a, \tau_y] + [\tau_x, L_b] + [L_a, L_b] = \\
-        \tau_{[x,y]} - L_{\tau_y(a)} + L_{\tau_x(b)} + L_{[a,b]} =
-        \tau_{[x,y]} + L_{[a,b] + \tau_x(b) - \tau_y(a)} = \\
-        \restr{L_{([x,y],\ \tau_x(b) - \tau_y(a) + [a,b])}}{I} =
+    \begin{align*}
+        \restr{[L_{(x,a)}, L_{(y,b)}]}{R}                        & = [L_x, L_y] = L_{[x,y]} = \restr{L_{[(x,a),(y,b)]}}{R}, \\
+        \restr{[L_{(x,a)}, L_{(y,b)}]}{I}                        & = [\tau_x + L_a, \tau_y + L_b] =
+        [\tau_x, \tau_y] + [L_a, \tau_y] + [\tau_x, L_b] + [L_a, L_b] =                                                     \\
+        \tau_{[x,y]} - L_{\tau_y(a)} + L_{\tau_x(b)} + L_{[a,b]} & =
+        \tau_{[x,y]} + L_{[a,b] + \tau_x(b) - \tau_y(a)} =                                                                  \\
+        \restr{L_{([x,y],\ \tau_x(b) - \tau_y(a) + [a,b])}}{I}   & =
         \restr{L_{[(x,a),(y,b)]}}{I}.
-    \end{gather*}
+    \end{align*}
 
     Поскольку оба оператора $[L_{(x,a)}, L_{(y,b)}]$ и $L_{[(x,a),(y,b)]}$
     сохраняют подпространства $R$ и $I$ и совпадают на них, получаем
