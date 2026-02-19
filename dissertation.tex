@@ -1310,7 +1310,7 @@ $\Gamma$ будем называть \emph{градуировкой ширины
     .
 \end{equation*}
 
-\begin{lemma}\label{l:enveloping-Graded-width-1}
+\begin{lemma}\label{l:enveloping-roots-grading}
     %
     Пусть $R$ "--- нильпотентная точная обертывающая алгебра алгебры Ли
     $N\Phi(\mathbb{K})$. Если $R$ градуирована, то $R$ можно реализовать на
@@ -1402,7 +1402,7 @@ $\mathfrak{sl}_{n+1}(\mathbb{K})$ (см., например, \cite[\S 11.2.1]{car
     базисных элементов задается формулой $[e_{ij}, e_{kl}] = \delta_{jk}e_{il} -
         \delta_{li}e_{kj}$.
 
-    Кроме того, \cref{l:enveloping-Graded-width-1} гарантирует, что $e_{ij}e_{kl} =
+    Кроме того, \cref{l:enveloping-roots-grading} гарантирует, что $e_{ij}e_{kl} =
         0$, если сумма соответствующих корней не является корнем, и $e_{ij}e_{jk},
         e_{jk}e_{ij} \in \mathbb{K}e_{ik}$ в противном случае.
 
@@ -1538,9 +1538,44 @@ $\mathfrak{sl}_{n+1}(\mathbb{K})$ (см., например, \cite[\S 11.2.1]{car
 %
 \subsection{Прелиевы алгебры и их полупрямые суммы}\label{sec:pre-lie-algs}
 %
-Для построения точных обертывающих алгебр алгебры Ли $N\Phi(\mathbb{K})$ типов
-$B_n$, $C_n$ и $D_n$, используем их известные разложения в полупрямые суммы:
-\fixme{(ссылка или доказательство? GPT-based.)}
+Через $L_x\colon y\mapsto xy$ $(x,y \in R)$ обозначим линейные операторы левого
+умножения в алгебре $R$.
+\begin{definition}\label{def:pre-lie-algebra}
+    %
+    Алгебра $R$ над полем $\mathbb{K}$ называется \emph{прелиевой} или
+    \emph{левосимметрической}, если ее умножение удовлетворяет тождеству
+    \begin{equation*}\label{eq:Pre-Lie-Id}
+        (xy)z-x(yz)=(yx)z-y(xz) \qquad (x,y,z\in R)
+    \end{equation*}
+    или, эквивалентно, отображение $L\colon x \mapsto L_x$ задает представление
+    $R^{(-)}$ в $\mathfrak{gl}(R)$:
+    \begin{equation*}\label{eq:Pre-Lie-Repr-Id}
+        [L_x,L_y]=L_{[x,y]} \mathrlap{\qquad (x,y \in R).}
+    \end{equation*}
+\end{definition}
+
+Как и в ассоциативном случае, всякая прелиева алгебра Ли-допустима: если
+положить $[x,y]\coloneq xy-yx$, то $(R,[\ ,\ ])$ является алгеброй Ли.
+
+\medskip
+
+Левосимметрическую точную обертывающую алгебры Ли $L$ также называют
+\emph{афинной структурой на $L$}. Хорошо известно
+(\cite{burde-pre-lie-survey}), что полупростая алгебра Ли не допускает афинных
+структур. В \cite{milnor-left-sym} Дж. Милнор поставил вопрос, эквивалентный
+вопросу о существовании афинных структур для разрешимых алгебр Ли. В
+\cite{burde-counter-example} были построены примеры нильпотентных алгебр Ли, не
+допускающие афинных структур.
+
+Левосимметрическая алгебра $R$ называетcя \emph{алгеброй Новикова}, если в ней
+выполняется правая коммутативность: $R_yR_z = R_zR_y$ для всех $y,z \in R$. В
+\cite{burde-graaf-2013} разрабатывался метод классификации алгебр Новикова с
+заданной ассоциированной алгеброй Ли.
+
+%
+Для построения прелиевых точных обертывающих алгебр алгебры Ли
+$N\Phi(\mathbb{K})$ типов $B_n$, $C_n$ и $D_n$, используем их известные
+разложения в полупрямые суммы: \fixme{(ссылка или доказательство? GPT-based.)}
 \begin{align*}
     NB_n(\mathbb{K}) & \simeq NA_{n-1}(\mathbb{K}) \ltimes_\phi (V \oplus \Lambda^2V), \\
     ND_n(\mathbb{K}) & \simeq NA_{n-1}(\mathbb{K}) \ltimes_\phi \Lambda^2V,            \\
@@ -1562,42 +1597,18 @@ $B_n$, $C_n$ и $D_n$, используем их известные разлож
     $\phi_x = \phi(x)$.
 \end{definition}
 
-Через $L_x\colon y\mapsto xy$ $(x,y \in R)$ обозначим линейные операторы левого
-умножения в алгебре $R$.
-\begin{definition}\label{def:pre-lie-algebra}
-    %
-    Алгебра $R$ над полем $\mathbb{K}$ называется \emph{(левой) прелиевой
-        (левосимметрической)}, если ее умножение удовлетворяет тождеству
-    \begin{equation}\label{eq:Pre-Lie-Id}
-        (xy)z-x(yz)=(yx)z-y(xz)\qquad (x,y,z\in R).
-    \end{equation}
-    или, эквивалентно, отображение $L\colon x \mapsto L_x$ задает представление
-    $R^{(-)}$ в $\mathfrak{gl}(R)$:
-    \begin{equation}\label{eq:Pre-Lie-Repr-Id}
-        [L_x,L_y]=L_{[x,y]} \quad (x,y \in R)
-    \end{equation}
-\end{definition}
-
-Как и в ассоциативном случае, всякая прелиева алгебра Ли-допустима: если
-положить $[x,y]\coloneq xy-yx$, то $(R,[\ ,\ ])$ является алгеброй Ли.
-
-Левосимметрическую точную обертывающую алгебру алгебры Ли $L$ называют также
-\emph{афинной структурой на $L$}. Хорошо известно, что полупростая алгебра Ли
-не допускает афинных структур \cite{burde-pre-lie-survey}. Долгое время
-оставался открытым вопрос Милнора \cite{milnor-left-sym} о существовании
-полных афинных структур для разрешимых алгебр Ли. Однако для нильпотентных
-алгебр Ли были построены контрпримеры \cite{burde-counter-example}.
-
 \medskip
 
 По аналогии c \crefTvor{def:semidirect-lie}, введем понятие полупрямой суммы
 для прелиевых алгебр.
-\begin{definition}\label{def:semidirect-pre-lie} \emph{Полупрямой суммой}
+\begin{definition}\label{def:semidirect-pre-lie}
+    %
+    \emph{Полупрямой суммой}
     $R\ltimes_{\tau} I$ прелиевых алгебр $R$ и $I$ назовем прямую сумму
     векторных пространств $R$ и $I$, снабженную операцией умножения по формуле
     \[
-        (x,a)(y,b) = (xy,\ \tau_x(b) + ab),
-        \qquad x,y\in R,\ a,b\in I,
+        (x,a)(y,b) = (xy,\ \tau_x(b) + ab)
+        \mathrlap{\qquad (x,y\in R,\ a,b\in I)}
     \]
     где $\tau\colon R^{(-)} \to \Der(I)$ "--- некоторый гомоморфизм алгебры Ли
     $R^{(-)}$ в алгебру Ли дифференцирований $\Der(I)$ и $\tau_x = \tau(x)$.
@@ -1657,14 +1668,14 @@ $R^{(-)}$ и $I^{(-)}$ с тем же действием $\tau$.
     Пользуясь полученными тождествами, в ограничениях на $R$ и $I$ получаем
     \begin{align*}
         \restr{[L_{(x,a)}, L_{(y,b)}]}{R}
-         & = [L_x, L_y] = L_{[x,y]} \\
-         & = \restr{L_{[(x,a),(y,b)]}}{R}, \\
+         & = [L_x, L_y] = L_{[x,y]}                                        \\
+         & = \restr{L_{[(x,a),(y,b)]}}{R},                                 \\
         \restr{[L_{(x,a)}, L_{(y,b)}]}{I}
-         & = [\tau_x + L_a, \tau_y + L_b] \\
+         & = [\tau_x + L_a, \tau_y + L_b]                                  \\
          & = [\tau_x, \tau_y] + [L_a, \tau_y] + [\tau_x, L_b] + [L_a, L_b] \\
-         & = \tau_{[x,y]} - L_{\tau_y(a)} + L_{\tau_x(b)} + L_{[a,b]} \\
-         & = \tau_{[x,y]} + L_{[a,b] + \tau_x(b) - \tau_y(a)} \\
-         & = \restr{L_{([x,y],\ \tau_x(b) - \tau_y(a) + [a,b])}}{I} \\
+         & = \tau_{[x,y]} - L_{\tau_y(a)} + L_{\tau_x(b)} + L_{[a,b]}      \\
+         & = \tau_{[x,y]} + L_{[a,b] + \tau_x(b) - \tau_y(a)}              \\
+         & = \restr{L_{([x,y],\ \tau_x(b) - \tau_y(a) + [a,b])}}{I}        \\
          & = \restr{L_{[(x,a),(y,b)]}}{I}.
     \end{align*}
 
@@ -1697,11 +1708,57 @@ $R^{(-)}$ и $I^{(-)}$ с тем же действием $\tau$.
     откуда $R\ltimes_{\tau}I$ является точной обертывающей алгеброй алгебры Ли $L$.
 \end{proof}
 
+\begin{corollary}\label{corollary:enveloping-semidirect-isomorphism}
+    %
+    Пусть алгебры $R=R_1\ltimes_{\tau} I_1$ и $R' = R_2\ltimes_{\tau'} I_2$
+    являются прелиевыми точными обертывающими алгебры Ли $L =
+        \mathfrak{l}\ltimes_{\phi}\mathfrak{h}$, построенными по
+    \crefDat{corollary:enveloping-semidirect} из прелиевых точных обертывающих
+    алгебр $R_1,I_1$ и $R_2,I_2$ для $\mathfrak{l}$ и $\mathfrak{h}$. Предположим,
+    что существуют изоморфизмы прелиевых алгебр $f\colon R_1\to R_2$ и $g\colon
+        I_1\to I_2$ такие, что для всякого $x\in R_1$ коммутативна диаграмма
+    \[
+        \shorthandoff{"}
+        \begin{tikzcd}
+            I_1 \arrow[r,"\tau_x"] \arrow[d,"g"'] & I_1 \arrow[d,"g"] \\
+            I_2 \arrow[r,"\tau'_{f(x)}"']        & I_2.
+        \end{tikzcd}
+        \shorthandon{"}
+    \]
+    Тогда отображение $F\colon R \to R'$, заданное равенством $F(x,a) =
+        (f(x),g(a))$, является изоморфизмом прелиевых алгебр $R \simeq R'$.
+\end{corollary}
+\begin{proof}
+    %
+    Для $x,y\in R$ и $a,b\in I$ имеем
+    \[
+        F\bigl((x,a)(y,b)\bigr)
+        =F\bigl(xy,\ \tau_x(b)+ab\bigr)
+        =\bigl(f(xy),\ g(\tau_x(b))+g(ab)\bigr).
+    \]
+    Так как $f$ и $g$ являются гомоморфизмами прелиевых алгебр, получаем
+    $f(xy)=f(x)f(y)$ и $g(ab)=g(a)g(b)$. По коммутативности диаграммы имеем
+    $g(\tau_x(b))=\tau'_{f(x)}(g(b))$. Следовательно,
+    \[
+        F\bigl((x,a)(y,b)\bigr)
+        =\bigl(f(x)f(y),\ \tau'_{f(x)}(g(b))+g(a)g(b)\bigr)
+        =F(x,a)\,F(y,b),
+    \]
+    то есть $F$ является гомоморфизмом прелиевых алгебр. Ясно, что $F$ биективно,
+    так как $f$ и $g$ биективны.
+\end{proof}
+
 \subsection{Новая теорема для \texorpdfstring{$B_n$}{Bₙ}}\label{sec:new-Bn}
 %
-Пусть $\Psi \coloneq A_{n-1}^+$ из \eqref{eq:An-Root-System}. Систему
-положительных корней $\Phi^+$ типа $B_n$ можно представить в виде объединения
-(\cite[таблица 2]{bourbaki72}):
+Используем \crefVin{th:semidirect-pre-lie} и ее
+\crefVin{corollary:enveloping-semidirect} для построения прелиевой точной
+обертывающей нильтреугольный алгебры $N\Phi(\mathbb{K})$ типа $B_n$.
+
+\medskip
+
+Пусть $\Psi = A_{n-1}^+$ из \eqref{eq:An-Root-System}. Систему положительных
+корней типа $B_n$ можно представить в виде объединения (\cite[таблица
+    2]{bourbaki72})
 \[
     B_n^+=\Psi \cup
     \{\epsilon_i \mid 1\leq i\leq n\} \cup
@@ -1724,250 +1781,237 @@ $NB_n(\mathbb{K})$ алгебры $N\Phi(\mathbb{K})$ типа $B_n$ с умно
 
 \medskip
 
-Ясно, что $NB_n(\Psi)\coloneq \langle e_r\mid r \in \Psi \rangle \simeq
-    NA_{n-1}(\mathbb{K})$ является подалгеброй в $NB_n(\mathbb{K})$.
+Ясно, что $NA_{n-1}(\mathbb{K}) = \langle e_r\mid r \in A_{n-1} \rangle$
+является подалгеброй в $NB_n(\mathbb{K})$.
+
+\medskip
+
+Обозначая через $\phi$ присоединенное действие $NA_{n-1}(\mathbb{K})$ на идеале
+$T(r_{10})$, получаем разложение $NB_n(\mathbb{K})$ в полупрямую сумму алгебр
+Ли
+\begin{equation}\label{eq:NBn-semi-direct-sum}
+    NB_n(\mathbb{K})\simeq NA_{n-1}(\mathbb{K}) \ltimes_\phi T(r_{10}).
+\end{equation}
+
+\medskip
+
+Построим точную обертывающую алгебры $NB_n(\mathbb{K})$ как полупрямую сумму
+ассоциативных алгебр.
 
 \medskip
 
 Пусть $V \coloneq \mathbb{K}^n$, $v_1,\dots,v_n$ "--- фиксированный базис $V$ и
-$\Lambda^2V$ "--- внешний квадрат $V$. Как векторное пространство имеем прямую
-сумму
+$\Lambda^2V$ "--- внешний квадрат $V$. Отождествим $V$ с подпространством
+$\langle e_{i0}\mid 1\le i\le n\rangle$ в $T(r_{10})$ по правилу
+$v_i\longleftrightarrow e_{i0}$. Аналогично, отождествим $\Lambda^2V$ с
+$\langle e_{i,-j}\mid 1\le j<i\le n\rangle$, положив
 \[
-    NB_n(\mathbb{K})
-    = NB_n(\Psi)\ \oplus\
-    \underbrace{\langle e_{i0}\mid 1\le i\le n\rangle}_{\simeq\,V}
-    \ \oplus\
-    \underbrace{\langle e_{i,-j}\mid 1\le j<i\le n\rangle}_{\simeq\,\Lambda^2V}.
+    v_i\wedge v_j \longleftrightarrow e_{i,-j}.
 \]
-%
-Обозначая через $\phi$ присоединенное действие $NB_n(\Psi)$ на идеале $V \oplus
-    \Lambda^2V$, получаем разложение $NB_n(\mathbb{K})$ в полупрямую сумму алгебр
-Ли
-\begin{equation}\label{eq:NBn-semi-direct-sum}
-    NB_n(\mathbb{K})\simeq NA_{n-1}(\mathbb{K}) \ltimes_\phi (V \oplus \Lambda^2V).
-\end{equation}
-
-\medskip
-
-Применим \crefVin{corollary:enveloping-semidirect} к разложению
-\eqref{eq:NBn-semi-direct-sum}. Здесь $\phi$ является присоединенным действием
-подалгебры $NB_n(\Psi)\simeq NA_{n-1}(\mathbb{K})$ на идеале
-$V\oplus\Lambda^2V$. Поэтому достаточно выбрать прелиевы точные обертывающие
-алгебры $R$ и $I$ для $NA_{n-1}(\mathbb{K})$ и для $\mathfrak{h}\coloneq
-    V\oplus\Lambda^2V$, а также задать гомоморфизм алгебр Ли $\tau\colon
-    R^{(-)}\to\Der(I)$, согласованный с действием $\phi$.
-
-\medskip
-
-В качестве прелиевой точной обертывающей алгебры $R$ алгебры Ли
-$NA_{n-1}(\mathbb{K})$ возьмем ассоциативную алгебру $NT(n,\mathbb{K})$.
-Определим действие $\tau$ алгебры Ли $R^{(-)}$ на $V\simeq\mathbb{K}^n$ как
-естественное левое действие $NT(n,\mathbb{K})$ на столбцах. Это действие
-продолжается на внешний квадрат $\Lambda^2V$ по правилу
+Тогда как векторное пространство имеем прямую сумму
 \[
-    X\cdot(u\wedge v)\coloneq (X\cdot u)\wedge v + u\wedge (X\cdot v).
+    T(r_{10}) = V \oplus \Lambda^2V.
 \]
-
-\medskip
-
-В качестве $I$ положим $V\oplus \Lambda^2V$ и зададим на $I$ ассоциативное
-умножение равенством $uv\coloneq u\wedge v$ для $u,v\in V$, а все произведения
-с множителем из $\Lambda^2V$ приравняем нулю. В частности, из равенства
-$v\wedge u=-u\wedge v$ следует, что умножение на $V$ кососимметрично. Тогда $I$
-является ассоциативной алгеброй, а заданное выше действие $NT(n,\mathbb{K})$ на
-$V$ и $\Lambda^2V$ согласовано с умножением в $I$:
+Подалгебра $\Lambda^2V$ является центром $T(r_{10})$ и скобка Ли в $T(r_{10})$
+описывается формулой
 \[
-    X\cdot(uv)=(X\cdot u)v+u(X\cdot v)\qquad (X\in NT(n,\mathbb{K}),\ u,v\in V).
+    [v_i,v_j]=2(v_i\wedge v_j) \mathrlap{\qquad (v_i,v_j\in V).}
 \]
-
-Определим алгебру $RB'_n(\mathbb{K})$\label{def:RBnprime} как полупрямую сумму
-ассоциативных алгебр
-\begin{equation}\label{eq:RB'n-definition}
-    RB'_n(\mathbb{K})\coloneq
-    NT(n,\mathbb{K})\ltimes  (V\oplus \Lambda^2V).
-\end{equation}
-
-По построению, полагая при $X,Y\in NT(n,\mathbb{K})$, $u,v\in V$ и
-$\omega,\eta\in\Lambda^2V$, имеем:
+Поскольку $T(r_{10})^3 = 0$, то умножение
 \[
-    (X+u+\omega)(Y+v+\eta)\coloneq
-    XY + X\cdot v + X\cdot \eta + u\wedge v.
+    (\Lambda^2V)^2 = 0, \qquad
+    v_i\cdot v_j=
+    \begin{cases}
+        \dfrac12v_i \wedge v_j, & \Char \mathbb{K}\neq 2, \\[4pt]
+        0,                      & \text{иначе}
+    \end{cases}
 \]
-
-\begin{remark}\label{remark:RBnprime-table}
-    %
-    Отождествим линейные пространства $RB'_n(\mathbb{K})$ и $NB_n(\mathbb{K})$,
-    положив
-    \[
-        E_{ij}\longleftrightarrow e_{ij},\qquad v_i\longleftrightarrow e_{i0},\qquad
-        v_i\wedge v_j\longleftrightarrow e_{i,-j}\quad (i>j),
-    \]
-    где $E_{ij}$ "--- матричные единицы в $NT(n,\mathbb{K})$. Тогда из построения
-    \ref{def:RBnprime} получаем таблицу умножения в корневом базисе
-    $NB_n(\mathbb{K})$:
-    \begin{alignat*}{3}
-         & e_{ij}e_{jk} = e_{ik},\qquad     &  & e_{jk}e_{ij} = 0 \qquad      &  & (i > j > |k| \geq 0) \\
-         & e_{i0}e_{j0}=e_{i,-j},\qquad     &  & e_{j0}e_{i0}=-e_{i,-j}\qquad &  & (i>j\ge 1),          \\
-         & e_{ij}e_{k,-j}=e_{k,-i},\qquad   &  & e_{k,-j}e_{ij}=0\qquad       &  & (k>i>j\ge 1),        \\
-         & e_{k j}e_{i,-j}=-e_{k,-i},\qquad &  & e_{i,-j}e_{k j}=0\qquad      &  & (k>i>j\ge 1).
-    \end{alignat*}
-\end{remark}
+дает ассоциативную обертывающую алгебру $(V \oplus \Lambda^2V, \cdot)$,
+изоморфную $T(r_{10})$.
 
 \medskip
 
-Из таблицы умножения видно, что действие коммутатором элементов
-$NT(n,\mathbb{K})\subset RB'_n(\mathbb{K})$ на идеале $V\oplus\Lambda^2V$
-совпадает с присоединенным действием подалгебры $NB_n(\Psi)\subset
-    NB_n(\mathbb{K})$.
-
-\medskip
-
-\begin{corollary}\label{corollary:RBnprime-basic}
+Присоединенное действие $\phi$ алгебры Ли $NA_{n-1}(\mathbb{K})$ на $V$
+совпадает с естественным действием алгебры $NT(n,\mathbb{K})$ на столбцах, а на
+$\Lambda^2V$ является индуцированным действием на внешнем квадрате:
+\[
+    \phi_x(u\wedge v)=\phi_x(u)\wedge v+u\wedge \phi_x(v).
+\]
+Применяя теперь \crefVin{corollary:enveloping-semidirect}
+\crefRod{th:semidirect-pre-lie} получаем следующую теорему.
+\begin{theorem}
     %
-    $RB'_n(\mathbb{K})$ является нильпотентной градуированной алгеброй. Кроме
-    того, коммутатор в $RB'_n(\mathbb{K})$ совпадает со скобкой в
-    $NB_n(\mathbb{K})$, то есть $RB'_n(\mathbb{K})$ является точной обертывающей
-    алгеброй алгебры Ли $NB_n(\mathbb{K})$.
-\end{corollary}
-
-\begin{lemma}\label{l:RBnprime-quotient-NT}
-    %
-    Фактор-алгебра $\quot{RB'_n(\mathbb{K})}{\Lambda^2V}$ изоморфна алгебре
-    $NT(n+1,\mathbb{K})$.
-\end{lemma}
-\begin{proof}
-    %
-    Из построения \ref{def:RBnprime} видно, что $\Lambda^2V$ устойчиво относительно
-    правого умножения (так как $(X+u+\omega)\eta=X\cdot\eta\in\Lambda^2V$) и
-    относительно левого умножения (так как $\eta(Y+v+\omega')=0$). Следовательно,
-    $\Lambda^2V$ является двухсторонним идеалом.
-
-    \medskip
-
-    Рассмотрим отображение $\varphi\colon NT(n,\mathbb{K})\oplus V\to
-        NT(n+1,\mathbb{K})$,
+    Полупрямая сумма ассоциативных алгебр
     \[
-        \varphi(X+u)=
-        \begin{pmatrix}
-            0 & 0 \\
-            u & X
-        \end{pmatrix},
+        RB'_n(\mathbb{K}) = NT(n,\mathbb{K}) \ltimes_\phi (V \oplus \Lambda^2V, \cdot)
     \]
-    где $u$ рассматриваем как столбец в $\mathbb{K}^n$ в фиксированном базисе $V$.
-    Так как $X$ "--- нижняя нильтреугольная $n\times n$ матрица, то $\varphi(X+u)$
-    является нижней нильтреугольной матрицей порядка $n+1$. Тогда
-    \[
-        \varphi(X+u)\,\varphi(Y+v)=
-        \begin{pmatrix}
-            0        & 0  \\
-            X\cdot v & XY
-        \end{pmatrix}
-        =\varphi\bigl(XY+X\cdot v\bigr)
-        =\varphi\bigl((X+u)(Y+v)\bigr),
-    \]
-    поскольку в факторе по $\Lambda^2V$ произведение $uv$ обращается в нуль.
-    Следовательно, $\varphi$ задает изоморфизм алгебр
-    $RB'_n(\mathbb{K})/\Lambda^2V\simeq NT(n+1,\mathbb{K})$.
-\end{proof}
-
-\begin{theorem}\label{th:RBnprime-unique}
-    %
-    Пусть $R$ "--- нильпотентная градуированная точная обертывающая алгебра алгебры
-    Ли $NB_n(\mathbb{K})$ ($ n \geq 3$). Предположим, что $R$ прелиева и
-    фактор-алгебра $R/W$ ассоциативна, где
-    \[
-        W\coloneq \langle e_{i,-j}\mid 1\le j<i\le n\rangle.
-    \]
-    Предположим, наконец, что $\mathrm{char}\,\mathbb{K}\neq 2$ и произведение на
-    $V\coloneq \langle e_{i0}\mid 1\le i\le n\rangle$ кососимметрично. Тогда
-    $R\simeq RB'_n(\mathbb{K})$.
+    является прелиевой точной обертывающей алгебры $NB_n(\mathbb{K})$.
 \end{theorem}
-\begin{proof}
-    %
-    Существование алгебры, удовлетворяющей условиям теоремы, уже установлено: по
-    леммам \ref{corollary:RBnprime-basic} и \ref{l:RBnprime-prelie-assoc} алгебра
-    $RB'_n(\mathbb{K})$ является нильпотентной градуированной прелиевой точной
-    обертывающей алгеброй. Кроме того, по лемме \ref{l:RBnprime-quotient-NT} фактор
-    $RB'_n(\mathbb{K})/W\simeq NT(n+1,\mathbb{K})$ ассоциативен и, по
-    \crefDat{def:RBnprime}, произведение на $V$ кососимметрично.
 
-    \medskip
+% \begin{remark}\label{remark:RBnprime-table}
+%     %
+%     Отождествим линейные пространства $RB'_n(\mathbb{K})$ и $NB_n(\mathbb{K})$,
+%     положив
+%     \[
+%         E_{ij}\longleftrightarrow e_{ij},\qquad v_i\longleftrightarrow e_{i0},\qquad
+%         v_i\wedge v_j\longleftrightarrow e_{i,-j}\quad (i>j),
+%     \]
+%     где $E_{ij}$ "--- матричные единицы в $NT(n,\mathbb{K})$. Тогда из построения
+%     \ref{def:RBnprime} получаем таблицу умножения в корневом базисе
+%     $NB_n(\mathbb{K})$:
+%     \begin{alignat*}{3}
+%          & e_{ij}e_{jk} = e_{ik},\qquad     &  & e_{jk}e_{ij} = 0 \qquad      &  & (i > j > |k| \geq 0) \\
+%          & e_{i0}e_{j0}=e_{i,-j},\qquad     &  & e_{j0}e_{i0}=-e_{i,-j}\qquad &  & (i>j\ge 1),          \\
+%          & e_{ij}e_{k,-j}=e_{k,-i},\qquad   &  & e_{k,-j}e_{ij}=0\qquad       &  & (k>i>j\ge 1),        \\
+%          & e_{k j}e_{i,-j}=-e_{k,-i},\qquad &  & e_{i,-j}e_{k j}=0\qquad      &  & (k>i>j\ge 1).
+%     \end{alignat*}
+% \end{remark}
 
-    Докажем единственность с точностью до изоморфизма.
+% \medskip
 
-    \medskip
+% \begin{corollary}\label{corollary:RBnprime-basic}
+%     %
+%     $RB'_n(\mathbb{K})$ является нильпотентной градуированной алгеброй.
+% \end{corollary}
 
-    По \crefDat{l:enveloping-Graded-width-1} можем реализовать $R$ на линейном
-    пространстве $NB_n(\mathbb{K})$ в корневом базисе так, что $e_re_s=0$ при
-    $r+s\notin\Phi^+$ и $e_re_s\in \mathbb{K}e_{r+s}$ при $r+s\in\Phi^+$, а
-    коммутатор в $R^{(-)}$ совпадает с лиевой скобкой в $NB_n(\mathbb{K})$.
-    Обозначим
-    \[
-        A_0\coloneq R(\Psi),\qquad V\coloneq \langle e_{i0}\mid 1\le i\le n\rangle,
-        \qquad W\coloneq \langle e_{i,-j}\mid 1\le j<i\le n\rangle.
-    \]
+% \begin{lemma}\label{l:RBnprime-quotient-NT}
+%     %
+%     Фактор-алгебра $\quot{RB'_n(\mathbb{K})}{\Lambda^2V}$ изоморфна алгебре
+%     $NT(n+1,\mathbb{K})$.
+% \end{lemma}
+% \begin{proof}
+%     %
+%     Из построения \ref{def:RBnprime} видно, что $\Lambda^2V$ устойчиво относительно
+%     правого умножения (так как $(X+u+\omega)\eta=X\cdot\eta\in\Lambda^2V$) и
+%     относительно левого умножения (так как $\eta(Y+v+\omega')=0$). Следовательно,
+%     $\Lambda^2V$ является двухсторонним идеалом.
 
-    \medskip
+%     \medskip
 
-    Рассмотрим градуированный идеал $W=\langle e_{i,-j}\mid 1\le j<i\le n\rangle$ и
-    градуированную фактор-алгебру $\bar R\coloneq R/W$. В $\bar R$ имеем $\bar
-        V\bar V=0$, а коммутатор в $\bar R^{(-)}$ совпадает со скобкой в фактор-алгебре
-    Ли $NB_n(\mathbb{K})/W \simeq NA_n(\mathbb{K})$.
+%     Рассмотрим отображение $\varphi\colon NT(n,\mathbb{K})\oplus V\to
+%         NT(n+1,\mathbb{K})$,
+%     \[
+%         \varphi(X+u)=
+%         \begin{pmatrix}
+%             0 & 0 \\
+%             u & X
+%         \end{pmatrix},
+%     \]
+%     где $u$ рассматриваем как столбец в $\mathbb{K}^n$ в фиксированном базисе $V$.
+%     Так как $X$ "--- нижняя нильтреугольная $n\times n$ матрица, то $\varphi(X+u)$
+%     является нижней нильтреугольной матрицей порядка $n+1$. Тогда
+%     \[
+%         \varphi(X+u)\,\varphi(Y+v)=
+%         \begin{pmatrix}
+%             0        & 0  \\
+%             X\cdot v & XY
+%         \end{pmatrix}
+%         =\varphi\bigl(XY+X\cdot v\bigr)
+%         =\varphi\bigl((X+u)(Y+v)\bigr),
+%     \]
+%     поскольку в факторе по $\Lambda^2V$ произведение $uv$ обращается в нуль.
+%     Следовательно, $\varphi$ задает изоморфизм алгебр
+%     $RB'_n(\mathbb{K})/\Lambda^2V\simeq NT(n+1,\mathbb{K})$.
+% \end{proof}
 
-    \medskip
+% \begin{theorem}\label{th:RBnprime-unique}
+%     %
+%     Пусть $R$ "--- нильпотентная градуированная точная обертывающая алгебра алгебры
+%     Ли $NB_n(\mathbb{K})$ ($ n \geq 3$). Предположим, что $R$ прелиева и
+%     фактор-алгебра $R/W$ ассоциативна, где
+%     \[
+%         W\coloneq \langle e_{i,-j}\mid 1\le j<i\le n\rangle.
+%     \]
+%     Предположим, наконец, что $\mathrm{char}\,\mathbb{K}\neq 2$ и произведение на
+%     $V\coloneq \langle e_{i0}\mid 1\le i\le n\rangle$ кососимметрично. Тогда
+%     $R\simeq RB'_n(\mathbb{K})$.
+% \end{theorem}
+% \begin{proof}
+%     %
+%     Существование алгебры, удовлетворяющей условиям теоремы, уже установлено: по
+%     леммам \ref{corollary:RBnprime-basic} и \ref{l:RBnprime-prelie-assoc} алгебра
+%     $RB'_n(\mathbb{K})$ является нильпотентной градуированной прелиевой точной
+%     обертывающей алгеброй. Кроме того, по лемме \ref{l:RBnprime-quotient-NT} фактор
+%     $RB'_n(\mathbb{K})/W\simeq NT(n+1,\mathbb{K})$ ассоциативен и, по
+%     \crefDat{def:RBnprime}, произведение на $V$ кососимметрично.
 
-    По условию теоремы фактор-алгебра $\bar R$ ассоциативна. Таким образом
-    выполняются все условия теоремы \ref{th:Stand-Graded-An} и $\bar R\simeq
-        NT(n+1,\mathbb{K})$. Зафиксируем такой изоморфизм, согласованный с корневой
-    градуировкой. Тогда образ $A_0$ в $\bar R$ отождествляется с подалгеброй
-    $NT(n,\mathbb{K})$, а образ $V$ --- со стандартным модулем $\mathbb{K}^n$
-    (первым столбцом), и потому левое действие $A_0$ на $V$ совпадает с
-    естественным действием $NT(n,\mathbb{K})$ на $\mathbb{K}^n$.
+%     \medskip
 
-    \medskip
+%     Докажем единственность с точностью до изоморфизма.
 
-    Из равенства коммутатора со скобкой в $NB_n(\mathbb{K})$ теперь также получаем
-    нулевое правое действие $V\cdot A_0=0$: при $i>j$ имеем
-    $[e_{ij},e_{j0}]=e_{i0}$ и (так как $e_{ij}e_{j0}=e_{i0}$) получаем
-    $e_{j0}e_{ij}=0$; при $k\ne j$ равенство $[e_{ij},e_{k0}]=0$ вместе с
-    $e_{ij}e_{k0}=0$ по корневой градуировке дает $e_{k0}e_{ij}=0$.
+%     \medskip
 
-    \medskip
+%     По \crefDat{l:enveloping-roots-grading} можем реализовать $R$ на линейном
+%     пространстве $NB_n(\mathbb{K})$ в корневом базисе так, что $e_re_s=0$ при
+%     $r+s\notin\Phi^+$ и $e_re_s\in \mathbb{K}e_{r+s}$ при $r+s\in\Phi^+$, а
+%     коммутатор в $R^{(-)}$ совпадает с лиевой скобкой в $NB_n(\mathbb{K})$.
+%     Обозначим
+%     \[
+%         A_0\coloneq R(\Psi),\qquad V\coloneq \langle e_{i0}\mid 1\le i\le n\rangle,
+%         \qquad W\coloneq \langle e_{i,-j}\mid 1\le j<i\le n\rangle.
+%     \]
 
-    Далее, из равенств $[e_{i0},e_{j0}]=2e_{i,-j}$ (при $i>j$) и условия $uv+vu=0$
-    для $u,v\in V$ получаем $e_{i0}e_{j0}=e_{i,-j}$. Действительно,
-    \[
-        2e_{i0}e_{j0}=e_{i0}e_{j0}-e_{j0}e_{i0}=[e_{i0},e_{j0}]=2e_{i,-j},
-    \]
-    и при $\mathrm{char}\,\mathbb{K}\neq 2$ отсюда следует требуемое равенство.
-    Положим $u\wedge v\coloneq uv$; тогда $W$ естественно отождествляется с
-    $\Lambda^2V$.
+%     \medskip
 
-    \medskip
+%     Рассмотрим градуированный идеал $W=\langle e_{i,-j}\mid 1\le j<i\le n\rangle$ и
+%     градуированную фактор-алгебру $\bar R\coloneq R/W$. В $\bar R$ имеем $\bar
+%         V\bar V=0$, а коммутатор в $\bar R^{(-)}$ совпадает со скобкой в фактор-алгебре
+%     Ли $NB_n(\mathbb{K})/W \simeq NA_n(\mathbb{K})$.
 
-    Осталось восстановить умножение $A_0\times W\to W$. Пусть $u,v\in V$ и $a\in
-        A_0$. По тождеству прелиевости \eqref{eq:Pre-Lie-Id} для тройки $(u,v,a)$ и с
-    учетом $V\cdot A_0=0$ получаем
-    \[
-        (uv)a=(vu)a.
-    \]
-    Так как $uv=-vu$, то $2(uv)a=0$ и, значит, $(uv)a=0$, то есть $W\cdot A_0=0$.
-    Поэтому из тождества прелиевости для тройки $(a,u,v)$ получаем
-    \[
-        a(uv)=(au)v+u(av),
-    \]
-    что в обозначениях $uv=u\wedge v$ переписывается как
-    \[
-        a\cdot(u\wedge v)=(a\cdot u)\wedge v+u\wedge(a\cdot v),
-    \]
-    то есть действие $A_0$ на $W$ совпадает с индуцированным действием на
-    $\Lambda^2V$.
+%     \medskip
 
-    \medskip
+%     По условию теоремы фактор-алгебра $\bar R$ ассоциативна. Таким образом
+%     выполняются все условия теоремы \ref{th:Stand-Graded-An} и $\bar R\simeq
+%         NT(n+1,\mathbb{K})$. Зафиксируем такой изоморфизм, согласованный с корневой
+%     градуировкой. Тогда образ $A_0$ в $\bar R$ отождествляется с подалгеброй
+%     $NT(n,\mathbb{K})$, а образ $V$ --- со стандартным модулем $\mathbb{K}^n$
+%     (первым столбцом), и потому левое действие $A_0$ на $V$ совпадает с
+%     естественным действием $NT(n,\mathbb{K})$ на $\mathbb{K}^n$.
 
-    Таким образом, умножение в $R$ совпадает с умножением из определения
-    \ref{def:RBnprime}, следовательно, $R\simeq RB'_n(\mathbb{K})$.
-\end{proof}
+%     \medskip
+
+%     Из равенства коммутатора со скобкой в $NB_n(\mathbb{K})$ теперь также получаем
+%     нулевое правое действие $V\cdot A_0=0$: при $i>j$ имеем
+%     $[e_{ij},e_{j0}]=e_{i0}$ и (так как $e_{ij}e_{j0}=e_{i0}$) получаем
+%     $e_{j0}e_{ij}=0$; при $k\ne j$ равенство $[e_{ij},e_{k0}]=0$ вместе с
+%     $e_{ij}e_{k0}=0$ по корневой градуировке дает $e_{k0}e_{ij}=0$.
+
+%     \medskip
+
+%     Далее, из равенств $[e_{i0},e_{j0}]=2e_{i,-j}$ (при $i>j$) и условия $uv+vu=0$
+%     для $u,v\in V$ получаем $e_{i0}e_{j0}=e_{i,-j}$. Действительно,
+%     \[
+%         2e_{i0}e_{j0}=e_{i0}e_{j0}-e_{j0}e_{i0}=[e_{i0},e_{j0}]=2e_{i,-j},
+%     \]
+%     и при $\mathrm{char}\,\mathbb{K}\neq 2$ отсюда следует требуемое равенство.
+%     Положим $u\wedge v\coloneq uv$; тогда $W$ естественно отождествляется с
+%     $\Lambda^2V$.
+
+%     \medskip
+
+%     Осталось восстановить умножение $A_0\times W\to W$. Пусть $u,v\in V$ и $a\in
+%         A_0$. По тождеству прелиевости \eqref{eq:Pre-Lie-Id} для тройки $(u,v,a)$ и с
+%     учетом $V\cdot A_0=0$ получаем
+%     \[
+%         (uv)a=(vu)a.
+%     \]
+%     Так как $uv=-vu$, то $2(uv)a=0$ и, значит, $(uv)a=0$, то есть $W\cdot A_0=0$.
+%     Поэтому из тождества прелиевости для тройки $(a,u,v)$ получаем
+%     \[
+%         a(uv)=(au)v+u(av),
+%     \]
+%     что в обозначениях $uv=u\wedge v$ переписывается как
+%     \[
+%         a\cdot(u\wedge v)=(a\cdot u)\wedge v+u\wedge(a\cdot v),
+%     \]
+%     то есть действие $A_0$ на $W$ совпадает с индуцированным действием на
+%     $\Lambda^2V$.
+
+%     \medskip
+
+%     Таким образом, умножение в $R$ совпадает с умножением из определения
+%     \ref{def:RBnprime}, следовательно, $R\simeq RB'_n(\mathbb{K})$.
+% \end{proof}
 
 \subsection{END}
 
