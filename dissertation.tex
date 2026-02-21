@@ -1764,20 +1764,20 @@ $R^{(-)}$ и $I^{(-)}$ с тем же действием $\tau$.
     \{\epsilon_i \mid 1\leq i\leq n\} \cup
     \{\epsilon_i + \epsilon_j \mid 1\leq j<i\leq n\},\quad \Pi(B_n)=\Pi(\Psi) \cup \{\epsilon_1\}.
 \]
-Таким образом, $B_n^+$ составляется из корней вида
-\[
-    p_{i,mj} = \epsilon_i - m\epsilon_j, \quad
-    1 \leq j \leq i  \leq n,\
-    m \in \{0, -1, +1\}.
-\]
-%
-Полагая $e_r = e_{i,mj}$ при $r=p_{i,mj}$, получаем реализацию
-$NB_n(\mathbb{K})$ алгебры $N\Phi(\mathbb{K})$ типа $B_n$ с умножением:
-\begin{alignat*}{2}
-    [e_{ij},e_{jv}]   & = e_{iv},    \quad &  & i > j > |v| \geq 0; \\
-    [e_{jv},e_{i,-v}] & = e_{i,-j},  \quad &  & i > j > |v| > 0;    \\
-    [e_{i0},e_{j0}]   & = 2e_{i,-j}, \quad &  & i > j \geq 1.
-\end{alignat*}
+% Таким образом, $B_n^+$ составляется из корней вида
+% \[
+%     p_{i,mj} = \epsilon_i - m\epsilon_j, \quad
+%     1 \leq j \leq i  \leq n,\
+%     m \in \{0, -1, +1\}.
+% \]
+% %
+% Полагая $e_r = e_{i,mj}$ при $r=p_{i,mj}$, получаем реализацию
+% $NB_n(\mathbb{K})$ алгебры $N\Phi(\mathbb{K})$ типа $B_n$ с умножением:
+% \begin{alignat*}{2}
+%     [e_{ij},e_{jv}]   & = e_{iv},    \quad &  & i > j > |v| \geq 0; \\
+%     [e_{jv},e_{i,-v}] & = e_{i,-j},  \quad &  & i > j > |v| > 0;    \\
+%     [e_{i0},e_{j0}]   & = 2e_{i,-j}, \quad &  & i > j \geq 1.
+% \end{alignat*}
 
 \medskip
 
@@ -1800,50 +1800,57 @@ $T(r_{10})$, получаем разложение $NB_n(\mathbb{K})$ в пол�
 
 \medskip
 
-Пусть $V \coloneq \mathbb{K}^n$, $v_1,\dots,v_n$ "--- фиксированный базис $V$ и
-$\Lambda^2V$ "--- внешний квадрат $V$. Отождествим $V$ с подпространством
-$\langle e_{i0}\mid 1\le i\le n\rangle$ в $T(r_{10})$ по правилу
-$v_i\longleftrightarrow e_{i0}$. Аналогично, отождествим $\Lambda^2V$ с
-$\langle e_{i,-j}\mid 1\le j<i\le n\rangle$, положив
+Поскольку $NT(n,\mathbb{K})$ является ассоциативной точной обертывающей алгеброй
+алгебры Ли $NA_{n-1}(\mathbb{K})$, зафиксируем изоморфизм алгебр Ли
 \[
-    v_i\wedge v_j \longleftrightarrow e_{i,-j}.
+    \iota\colon NT(n,\mathbb{K})^{(-)}\xrightarrow{\sim}NA_{n-1}(\mathbb{K}).
 \]
-Тогда как векторное пространство имеем прямую сумму
+Тогда действие $NT(n,\mathbb{K})^{(-)}$ на идеале $T(r_{10})$ определим
+композицией
 \[
-    T(r_{10}) = V \oplus \Lambda^2V.
+    NT(n,\mathbb{K})^{(-)}\xrightarrow{\ \iota\ }NA_{n-1}(\mathbb{K})
+    \xrightarrow{\ \phi\ }\Der\bigl(T(r_{10})\bigr).
 \]
-Подалгебра $\Lambda^2V$ является центром $T(r_{10})$ и скобка Ли в $T(r_{10})$
-описывается формулой
-\[
-    [v_i,v_j]=2(v_i\wedge v_j) \mathrlap{\qquad (v_i,v_j\in V).}
-\]
-Поскольку $T(r_{10})^3 = 0$, то умножение
-\[
-    (\Lambda^2V)^2 = 0, \qquad
-    v_i\cdot v_j=
-    \begin{cases}
-        \dfrac12v_i \wedge v_j, & \Char \mathbb{K}\neq 2, \\[4pt]
-        0,                      & \text{иначе}
-    \end{cases}
-\]
-дает ассоциативную обертывающую алгебру $(V \oplus \Lambda^2V, \cdot)$,
-изоморфную $T(r_{10})$.
+% Пусть $V \coloneq \mathbb{K}^n$, $v_1,\dots,v_n$ "--- фиксированный базис $V$ и
+% $\Lambda^2V$ "--- внешний квадрат $V$. Отождествим $V$ с подпространством
+% $\langle e_{i0}\mid 1\le i\le n\rangle$ в $T(r_{10})$ по правилу
+% $v_i\longleftrightarrow e_{i0}$. Аналогично, отождествим $\Lambda^2V$ с
+% $\langle e_{i,-j}\mid 1\le j<i\le n\rangle$, положив
+% \[
+%     v_i\wedge v_j \longleftrightarrow e_{i,-j}.
+% \]
+% Тогда как векторное пространство имеем прямую сумму
+% \[
+%     T(r_{10}) = V \oplus \Lambda^2V.
+% \]
+% Подалгебра $\Lambda^2V$ является центром $T(r_{10})$ и скобка Ли в $T(r_{10})$
+% описывается формулой
+% \[
+%     [v_i,v_j]=2(v_i\wedge v_j) \mathrlap{\qquad (v_i,v_j\in V).}
+% \]
 
 \medskip
 
-Присоединенное действие $\phi$ алгебры Ли $NA_{n-1}(\mathbb{K})$ на $V$
-совпадает с естественным действием алгебры $NT(n,\mathbb{K})$ на столбцах, а на
-$\Lambda^2V$ является индуцированным действием на внешнем квадрате:
+Поскольку $T(r_{10})^3 = 0$, то умножение
 \[
-    \phi_x(u\wedge v)=\phi_x(u)\wedge v+u\wedge \phi_x(v).
+    e_r e_s=
+    \begin{cases}
+        \dfrac12[e_r,e_s], & \Char \mathbb{K}\neq 2, \\[4pt]
+        0,                      & \text{иначе}
+    \end{cases}
+    \mathrlap{\qquad(e_r,e_s \in T_{r_{10}})}
 \]
+дает ассоциативную обертывающую алгебру, изоморфную $T(r_{10})$.
+
+\medskip
+
 Применяя теперь \crefVin{corollary:enveloping-semidirect}
 \crefRod{th:semidirect-pre-lie} получаем следующую теорему.
 \begin{theorem}
     %
     Полупрямая сумма ассоциативных алгебр
     \[
-        RB'_n(\mathbb{K}) = NT(n,\mathbb{K}) \ltimes_\phi (V \oplus \Lambda^2V, \cdot)
+        RB'_n(\mathbb{K}) = NT(n,\mathbb{K}) \ltimes_{\iota \circ \phi} T(r_{10})
     \]
     является прелиевой точной обертывающей алгебры $NB_n(\mathbb{K})$.
 \end{theorem}
