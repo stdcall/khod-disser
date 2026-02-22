@@ -1622,12 +1622,80 @@ $R^{(-)}$ и $I^{(-)}$ с тем же действием $\tau$.
 
 \medskip
 
-Полупрямая сумма ассоциативных алгебр может быть неассоциативной, но, как
-устанавливает следующая теорема, всегда является прелиевой.
+Как показывают следующие две теоремы, полупрямая сумма ассоциативных алгебр
+может быть неассоциативной, но всегда является прелиевой.
+\begin{theorem}\label{th:semidirect-assoc-cond}
+    %
+    Пусть $R$ и $I$ "--- ассоциативные алгебры и $\tau\colon R^{(-)}\to\Der(I)$ ---
+    гомоморфизм алгебры Ли $R^{(-)}$ в $\Der(I)$. Тогда алгебра $R\ltimes_{\tau} I$
+    ассоциативна тогда и только тогда, когда выполнены условия:
+    \begin{enumerate}
+        \item[\textup{(A)}] $\tau_{xy}=\tau_x\tau_y$ для всех $x,y\in R$;
+        \item[\textup{(B)}] $\tau_x(I)\subset \Ann_r(I)$ для всех $x\in R$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    %
+    Пусть выполняются условия (A) и (B). Так как $R$ ассоциативна, достаточно
+    проверить совпадение вторых компонент в равенстве
+    \begin{equation}\label{eq:semidirect-assoc}
+        ((x,a)(y,b))(z,c)=(x,a)((y,b)(z,c))
+    \end{equation}
+    %
+    для всех $x,y,z \in R$ и $a,b,c \in I$. По определению умножения в
+    $R\ltimes_{\tau} I$ имеем
+    \[
+        (x,a)(y,b)=(xy,\ \tau_x(b)+ab),\qquad (y,b)(z,c)=(yz,\ \tau_y(c)+bc).
+    \]
+    Поэтому вторая компонента левой части равна
+    \[
+        \tau_{xy}(c)+(\tau_x(b)+ab)c=\tau_{xy}(c)+\tau_x(b)c+(ab)c,
+    \]
+    а вторая компонента правой части равна
+    \[
+        \tau_x(\tau_y(c)+bc)+a(\tau_y(c)+bc)=\tau_x\tau_y(c)+\tau_x(bc)+a\tau_y(c)+a(bc).
+    \]
+    По \textup{(A)} имеем $\tau_x\tau_y(c) = \tau_{xy}(c)$. По условию
+    $\tau_x\in\Der(I)$ и \textup{(B)} имеем
+    \[
+        \tau_x(bc) + a\tau_y(c) = \tau_x(b)c+b\,\tau_x(c) = \tau_x(b)c.
+    \]
+    Наконец, так как $I$ ассоциативна, то $a(bc)=(ab)c$. Следовательно, вторые
+    компоненты совпадают, что и доказывает ассоциативность $R\ltimes_{\tau} I$.
 
+    \medskip
+
+    Пусть теперь алгебра $R\ltimes_{\tau} I$ ассоциативна. Подставляя в тождество
+    ассоциативности \eqref{eq:semidirect-assoc} тройку $(x,0),(y,0),(0,c)$,
+    получаем
+    \[
+        ((x,0)(y,0))(0,c)=(xy,0)(0,c)=(0,\tau_{xy}(c)),
+    \]
+    \[
+        (x,0)((y,0)(0,c))=(x,0)(0,\tau_y(c))=(0,\tau_x\tau_y(c)),
+    \]
+    откуда следует \textup{(A)}.
+
+    \medskip
+
+    Далее, подставляя в \eqref{eq:semidirect-assoc} тройку $(x,0),(0,b),(0,c)$,
+    получаем
+    \[
+        ((x,0)(0,b))(0,c)=(0,\tau_x(b))(0,c)=(0,\tau_x(b)c),
+    \]
+    \[
+        (x,0)((0,b)(0,c))=(x,0)(0,bc)=(0,\tau_x(bc)),
+    \]
+    то есть $\tau_x(bc)=\tau_x(b)c$ для всех $b,c\in I$. Так как
+    $\tau_x\in\Der(I)$, имеем
+    \[
+        \tau_x(bc)=\tau_x(b)c+b\,\tau_x(c),
+    \]
+    и потому $b\,\tau_x(c)=0$ для всех $b,c\in I$, что равносильно \textup{(B)}.
+\end{proof}
 \begin{theorem}\label{th:semidirect-pre-lie}
     %
-    Пусть $R$ и $I$ --- прелиевы алгебры и $\tau\colon R^{(-)}\to\Der(I)$ ---
+    Пусть $R$ и $I$ "--- прелиевы алгебры и $\tau\colon R^{(-)}\to\Der(I)$ ---
     гомоморфизм алгебры Ли $R^{(-)}$ в $\Der(I)$. Тогда алгебра $R\ltimes_{\tau} I$
     является прелиевой. Более того, $(R\ltimes_{\tau} I)^{(-)}$ изоморфна
     полупрямой сумме $R^{(-)}\ltimes_\tau I^{(-)}$, причем
@@ -1685,7 +1753,6 @@ $R^{(-)}$ и $I^{(-)}$ с тем же действием $\tau$.
         [L_{(x,a)},L_{(y,b)}]=L_{[(x,a),(y,b)]}.\qedhere
     \]
 \end{proof}
-
 \begin{corollary}\label{corollary:enveloping-semidirect}
     %
     Пусть $L = \mathfrak{l}\ltimes_{\phi}\mathfrak{h}$ "--- полупрямая сумма алгебр
@@ -1779,7 +1846,7 @@ $R^{(-)}$ и $I^{(-)}$ с тем же действием $\tau$.
 %     [e_{i0},e_{j0}]   & = 2e_{i,-j}, \quad &  & i > j \geq 1.
 % \end{alignat*}
 
-\medskip
+% \medskip
 
 Ясно, что $NA_{n-1}(\mathbb{K}) = \langle e_r\mid r \in A_{n-1} \rangle$
 является подалгеброй в $NB_n(\mathbb{K})$.
@@ -1800,8 +1867,8 @@ $T(r_{10})$, получаем разложение $NB_n(\mathbb{K})$ в пол�
 
 \medskip
 
-Поскольку $NT(n,\mathbb{K})$ является ассоциативной точной обертывающей алгеброй
-алгебры Ли $NA_{n-1}(\mathbb{K})$, зафиксируем изоморфизм алгебр Ли
+Поскольку $NT(n,\mathbb{K})$ является ассоциативной точной обертывающей
+алгеброй алгебры Ли $NA_{n-1}(\mathbb{K})$, зафиксируем изоморфизм алгебр Ли
 \[
     \iota\colon NT(n,\mathbb{K})^{(-)}\xrightarrow{\sim}NA_{n-1}(\mathbb{K}).
 \]
@@ -1833,39 +1900,45 @@ $T(r_{10})$, получаем разложение $NB_n(\mathbb{K})$ в пол�
 
 Поскольку $T(r_{10})^3 = 0$, то умножение
 \[
-    e_r e_s=
+    e_r \cdot e_s \coloneq
     \begin{cases}
         \dfrac12[e_r,e_s], & \Char \mathbb{K}\neq 2, \\[4pt]
-        0,                      & \text{иначе}
+        0,                 & \text{иначе}
     \end{cases}
     \mathrlap{\qquad(e_r,e_s \in T_{r_{10}})}
 \]
-дает ассоциативную обертывающую алгебру, изоморфную $T(r_{10})$.
+дает ассоциативную точную обертывающую алгебру $(T(r_{10}), \cdot) \simeq
+    T(r_{10})$.
 
 \medskip
 
 Применяя теперь \crefVin{corollary:enveloping-semidirect}
 \crefRod{th:semidirect-pre-lie} получаем следующую теорему.
-\begin{theorem}
+\begin{theorem}\label{th:Bn-pre-lie}
     %
     Полупрямая сумма ассоциативных алгебр
     \[
-        RB'_n(\mathbb{K}) = NT(n,\mathbb{K}) \ltimes_{\iota \circ \phi} T(r_{10})
+        RB'_n(\mathbb{K}) \coloneq NT(n,\mathbb{K}) \ltimes_{\phi \circ \iota} T(r_{10})
     \]
     является прелиевой точной обертывающей алгебры $NB_n(\mathbb{K})$.
 \end{theorem}
 
+\begin{remark}\label{remark:RBnprime-nonassoc}
+    %
+    По \crefPred{th:semidirect-assoc-cond} получаем, что при $\Char\mathbb{K}\neq
+        2$ алгебра $RB'_n(\mathbb{K})$ неассоциативна. Действительно, центр $Z$ алгебры
+    Ли $T(r_{10})$ совпадает с ее коммутантом $[T(r_{10}),T(r_{10})]$.
+    Присоединенное действие $\phi$ алгебры Ли $NA_{n-1}(\mathbb{K})$ на $T(r_{10})$
+    нетривиально на факторе $\quot{T(r_{10})}{Z}$, поэтому найдутся $x\in
+        NT(n,\mathbb{K})$ и $u\in T(r_{10})$ такие, что $\phi_{\iota(x)}(u)\notin Z$.
+    Тогда существует $v\in T(r_{10})$ с $[v,\phi_{\iota(x)}(u)]\ne 0$, и значит
+    $v\cdot\phi_{\iota(x)}(u)\ne 0$.
+\end{remark}
+
 % \begin{remark}\label{remark:RBnprime-table}
 %     %
-%     Отождествим линейные пространства $RB'_n(\mathbb{K})$ и $NB_n(\mathbb{K})$,
-%     положив
-%     \[
-%         E_{ij}\longleftrightarrow e_{ij},\qquad v_i\longleftrightarrow e_{i0},\qquad
-%         v_i\wedge v_j\longleftrightarrow e_{i,-j}\quad (i>j),
-%     \]
-%     где $E_{ij}$ "--- матричные единицы в $NT(n,\mathbb{K})$. Тогда из построения
-%     \ref{def:RBnprime} получаем таблицу умножения в корневом базисе
-%     $NB_n(\mathbb{K})$:
+%     Из построения $RB'_n(\mathbb{K})$ получаем таблицу умножения в корневом базисе
+%     $NB_n(\mathbb{K})$ при $\Char K \neq 2$:
 %     \begin{alignat*}{3}
 %          & e_{ij}e_{jk} = e_{ik},\qquad     &  & e_{jk}e_{ij} = 0 \qquad      &  & (i > j > |k| \geq 0) \\
 %          & e_{i0}e_{j0}=e_{i,-j},\qquad     &  & e_{j0}e_{i0}=-e_{i,-j}\qquad &  & (i>j\ge 1),          \\
@@ -1873,152 +1946,6 @@ $T(r_{10})$, получаем разложение $NB_n(\mathbb{K})$ в пол�
 %          & e_{k j}e_{i,-j}=-e_{k,-i},\qquad &  & e_{i,-j}e_{k j}=0\qquad      &  & (k>i>j\ge 1).
 %     \end{alignat*}
 % \end{remark}
-
-% \medskip
-
-% \begin{corollary}\label{corollary:RBnprime-basic}
-%     %
-%     $RB'_n(\mathbb{K})$ является нильпотентной градуированной алгеброй.
-% \end{corollary}
-
-% \begin{lemma}\label{l:RBnprime-quotient-NT}
-%     %
-%     Фактор-алгебра $\quot{RB'_n(\mathbb{K})}{\Lambda^2V}$ изоморфна алгебре
-%     $NT(n+1,\mathbb{K})$.
-% \end{lemma}
-% \begin{proof}
-%     %
-%     Из построения \ref{def:RBnprime} видно, что $\Lambda^2V$ устойчиво относительно
-%     правого умножения (так как $(X+u+\omega)\eta=X\cdot\eta\in\Lambda^2V$) и
-%     относительно левого умножения (так как $\eta(Y+v+\omega')=0$). Следовательно,
-%     $\Lambda^2V$ является двухсторонним идеалом.
-
-%     \medskip
-
-%     Рассмотрим отображение $\varphi\colon NT(n,\mathbb{K})\oplus V\to
-%         NT(n+1,\mathbb{K})$,
-%     \[
-%         \varphi(X+u)=
-%         \begin{pmatrix}
-%             0 & 0 \\
-%             u & X
-%         \end{pmatrix},
-%     \]
-%     где $u$ рассматриваем как столбец в $\mathbb{K}^n$ в фиксированном базисе $V$.
-%     Так как $X$ "--- нижняя нильтреугольная $n\times n$ матрица, то $\varphi(X+u)$
-%     является нижней нильтреугольной матрицей порядка $n+1$. Тогда
-%     \[
-%         \varphi(X+u)\,\varphi(Y+v)=
-%         \begin{pmatrix}
-%             0        & 0  \\
-%             X\cdot v & XY
-%         \end{pmatrix}
-%         =\varphi\bigl(XY+X\cdot v\bigr)
-%         =\varphi\bigl((X+u)(Y+v)\bigr),
-%     \]
-%     поскольку в факторе по $\Lambda^2V$ произведение $uv$ обращается в нуль.
-%     Следовательно, $\varphi$ задает изоморфизм алгебр
-%     $RB'_n(\mathbb{K})/\Lambda^2V\simeq NT(n+1,\mathbb{K})$.
-% \end{proof}
-
-% \begin{theorem}\label{th:RBnprime-unique}
-%     %
-%     Пусть $R$ "--- нильпотентная градуированная точная обертывающая алгебра алгебры
-%     Ли $NB_n(\mathbb{K})$ ($ n \geq 3$). Предположим, что $R$ прелиева и
-%     фактор-алгебра $R/W$ ассоциативна, где
-%     \[
-%         W\coloneq \langle e_{i,-j}\mid 1\le j<i\le n\rangle.
-%     \]
-%     Предположим, наконец, что $\mathrm{char}\,\mathbb{K}\neq 2$ и произведение на
-%     $V\coloneq \langle e_{i0}\mid 1\le i\le n\rangle$ кососимметрично. Тогда
-%     $R\simeq RB'_n(\mathbb{K})$.
-% \end{theorem}
-% \begin{proof}
-%     %
-%     Существование алгебры, удовлетворяющей условиям теоремы, уже установлено: по
-%     леммам \ref{corollary:RBnprime-basic} и \ref{l:RBnprime-prelie-assoc} алгебра
-%     $RB'_n(\mathbb{K})$ является нильпотентной градуированной прелиевой точной
-%     обертывающей алгеброй. Кроме того, по лемме \ref{l:RBnprime-quotient-NT} фактор
-%     $RB'_n(\mathbb{K})/W\simeq NT(n+1,\mathbb{K})$ ассоциативен и, по
-%     \crefDat{def:RBnprime}, произведение на $V$ кососимметрично.
-
-%     \medskip
-
-%     Докажем единственность с точностью до изоморфизма.
-
-%     \medskip
-
-%     По \crefDat{l:enveloping-roots-grading} можем реализовать $R$ на линейном
-%     пространстве $NB_n(\mathbb{K})$ в корневом базисе так, что $e_re_s=0$ при
-%     $r+s\notin\Phi^+$ и $e_re_s\in \mathbb{K}e_{r+s}$ при $r+s\in\Phi^+$, а
-%     коммутатор в $R^{(-)}$ совпадает с лиевой скобкой в $NB_n(\mathbb{K})$.
-%     Обозначим
-%     \[
-%         A_0\coloneq R(\Psi),\qquad V\coloneq \langle e_{i0}\mid 1\le i\le n\rangle,
-%         \qquad W\coloneq \langle e_{i,-j}\mid 1\le j<i\le n\rangle.
-%     \]
-
-%     \medskip
-
-%     Рассмотрим градуированный идеал $W=\langle e_{i,-j}\mid 1\le j<i\le n\rangle$ и
-%     градуированную фактор-алгебру $\bar R\coloneq R/W$. В $\bar R$ имеем $\bar
-%         V\bar V=0$, а коммутатор в $\bar R^{(-)}$ совпадает со скобкой в фактор-алгебре
-%     Ли $NB_n(\mathbb{K})/W \simeq NA_n(\mathbb{K})$.
-
-%     \medskip
-
-%     По условию теоремы фактор-алгебра $\bar R$ ассоциативна. Таким образом
-%     выполняются все условия теоремы \ref{th:Stand-Graded-An} и $\bar R\simeq
-%         NT(n+1,\mathbb{K})$. Зафиксируем такой изоморфизм, согласованный с корневой
-%     градуировкой. Тогда образ $A_0$ в $\bar R$ отождествляется с подалгеброй
-%     $NT(n,\mathbb{K})$, а образ $V$ --- со стандартным модулем $\mathbb{K}^n$
-%     (первым столбцом), и потому левое действие $A_0$ на $V$ совпадает с
-%     естественным действием $NT(n,\mathbb{K})$ на $\mathbb{K}^n$.
-
-%     \medskip
-
-%     Из равенства коммутатора со скобкой в $NB_n(\mathbb{K})$ теперь также получаем
-%     нулевое правое действие $V\cdot A_0=0$: при $i>j$ имеем
-%     $[e_{ij},e_{j0}]=e_{i0}$ и (так как $e_{ij}e_{j0}=e_{i0}$) получаем
-%     $e_{j0}e_{ij}=0$; при $k\ne j$ равенство $[e_{ij},e_{k0}]=0$ вместе с
-%     $e_{ij}e_{k0}=0$ по корневой градуировке дает $e_{k0}e_{ij}=0$.
-
-%     \medskip
-
-%     Далее, из равенств $[e_{i0},e_{j0}]=2e_{i,-j}$ (при $i>j$) и условия $uv+vu=0$
-%     для $u,v\in V$ получаем $e_{i0}e_{j0}=e_{i,-j}$. Действительно,
-%     \[
-%         2e_{i0}e_{j0}=e_{i0}e_{j0}-e_{j0}e_{i0}=[e_{i0},e_{j0}]=2e_{i,-j},
-%     \]
-%     и при $\mathrm{char}\,\mathbb{K}\neq 2$ отсюда следует требуемое равенство.
-%     Положим $u\wedge v\coloneq uv$; тогда $W$ естественно отождествляется с
-%     $\Lambda^2V$.
-
-%     \medskip
-
-%     Осталось восстановить умножение $A_0\times W\to W$. Пусть $u,v\in V$ и $a\in
-%         A_0$. По тождеству прелиевости \eqref{eq:Pre-Lie-Id} для тройки $(u,v,a)$ и с
-%     учетом $V\cdot A_0=0$ получаем
-%     \[
-%         (uv)a=(vu)a.
-%     \]
-%     Так как $uv=-vu$, то $2(uv)a=0$ и, значит, $(uv)a=0$, то есть $W\cdot A_0=0$.
-%     Поэтому из тождества прелиевости для тройки $(a,u,v)$ получаем
-%     \[
-%         a(uv)=(au)v+u(av),
-%     \]
-%     что в обозначениях $uv=u\wedge v$ переписывается как
-%     \[
-%         a\cdot(u\wedge v)=(a\cdot u)\wedge v+u\wedge(a\cdot v),
-%     \]
-%     то есть действие $A_0$ на $W$ совпадает с индуцированным действием на
-%     $\Lambda^2V$.
-
-%     \medskip
-
-%     Таким образом, умножение в $R$ совпадает с умножением из определения
-%     \ref{def:RBnprime}, следовательно, $R\simeq RB'_n(\mathbb{K})$.
-% \end{proof}
 
 \subsection{END}
 
