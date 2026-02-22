@@ -1848,53 +1848,22 @@ $R^{(-)}$ и $I^{(-)}$ с тем же действием $\tau$.
 
 % \medskip
 
-Ясно, что $NA_{n-1}(\mathbb{K}) = \langle e_r\mid r \in A_{n-1} \rangle$
+Ясно, что $NT(n,\mathbb{K})^{(-)} = \langle e_r\mid r \in A_{n-1} \rangle$
 является подалгеброй в $NB_n(\mathbb{K})$.
 
 \medskip
 
-Обозначая через $\phi$ присоединенное действие $NA_{n-1}(\mathbb{K})$ на идеале
+Обозначая через $\phi$ присоединенное действие $NT(n,\mathbb{K})^{(-)}$ на идеале
 $T(r_{10})$, получаем разложение $NB_n(\mathbb{K})$ в полупрямую сумму алгебр
 Ли
 \begin{equation}\label{eq:NBn-semi-direct-sum}
-    NB_n(\mathbb{K})\simeq NA_{n-1}(\mathbb{K}) \ltimes_\phi T(r_{10}).
+    NB_n(\mathbb{K})\simeq NT(n,\mathbb{K})^{(-)} \ltimes_\phi T(r_{10}).
 \end{equation}
 
 \medskip
 
 Построим точную обертывающую алгебры $NB_n(\mathbb{K})$ как полупрямую сумму
 ассоциативных алгебр.
-
-\medskip
-
-Поскольку $NT(n,\mathbb{K})$ является ассоциативной точной обертывающей
-алгеброй алгебры Ли $NA_{n-1}(\mathbb{K})$, зафиксируем изоморфизм алгебр Ли
-\[
-    \iota\colon NT(n,\mathbb{K})^{(-)}\xrightarrow{\sim}NA_{n-1}(\mathbb{K}).
-\]
-Тогда действие $NT(n,\mathbb{K})^{(-)}$ на идеале $T(r_{10})$ определим
-композицией
-\[
-    NT(n,\mathbb{K})^{(-)}\xrightarrow{\ \iota\ }NA_{n-1}(\mathbb{K})
-    \xrightarrow{\ \phi\ }\Der\bigl(T(r_{10})\bigr).
-\]
-% Пусть $V \coloneq \mathbb{K}^n$, $v_1,\dots,v_n$ "--- фиксированный базис $V$ и
-% $\Lambda^2V$ "--- внешний квадрат $V$. Отождествим $V$ с подпространством
-% $\langle e_{i0}\mid 1\le i\le n\rangle$ в $T(r_{10})$ по правилу
-% $v_i\longleftrightarrow e_{i0}$. Аналогично, отождествим $\Lambda^2V$ с
-% $\langle e_{i,-j}\mid 1\le j<i\le n\rangle$, положив
-% \[
-%     v_i\wedge v_j \longleftrightarrow e_{i,-j}.
-% \]
-% Тогда как векторное пространство имеем прямую сумму
-% \[
-%     T(r_{10}) = V \oplus \Lambda^2V.
-% \]
-% Подалгебра $\Lambda^2V$ является центром $T(r_{10})$ и скобка Ли в $T(r_{10})$
-% описывается формулой
-% \[
-%     [v_i,v_j]=2(v_i\wedge v_j) \mathrlap{\qquad (v_i,v_j\in V).}
-% \]
 
 \medskip
 
@@ -1905,7 +1874,7 @@ $T(r_{10})$, получаем разложение $NB_n(\mathbb{K})$ в пол�
         \dfrac12[e_r,e_s], & \Char \mathbb{K}\neq 2, \\[4pt]
         0,                 & \text{иначе}
     \end{cases}
-    \mathrlap{\qquad(e_r,e_s \in T_{r_{10}})}
+    \mathrlap{\qquad(e_r,e_s \in T(r_{10})}
 \]
 дает ассоциативную точную обертывающую алгебру $(T(r_{10}), \cdot) \simeq
     T(r_{10})$.
@@ -1918,7 +1887,7 @@ $T(r_{10})$, получаем разложение $NB_n(\mathbb{K})$ в пол�
     %
     Полупрямая сумма ассоциативных алгебр
     \[
-        RB'_n(\mathbb{K}) \coloneq NT(n,\mathbb{K}) \ltimes_{\phi \circ \iota} T(r_{10})
+        RB'_n(\mathbb{K}) \coloneq NT(n,\mathbb{K}) \ltimes_{\phi} T(r_{10})
     \]
     является прелиевой точной обертывающей алгебры $NB_n(\mathbb{K})$.
 \end{theorem}
@@ -1930,9 +1899,9 @@ $T(r_{10})$, получаем разложение $NB_n(\mathbb{K})$ в пол�
     Ли $T(r_{10})$ совпадает с ее коммутантом $[T(r_{10}),T(r_{10})]$.
     Присоединенное действие $\phi$ алгебры Ли $NA_{n-1}(\mathbb{K})$ на $T(r_{10})$
     нетривиально на факторе $\quot{T(r_{10})}{Z}$, поэтому найдутся $x\in
-        NT(n,\mathbb{K})$ и $u\in T(r_{10})$ такие, что $\phi_{\iota(x)}(u)\notin Z$.
-    Тогда существует $v\in T(r_{10})$ с $[v,\phi_{\iota(x)}(u)]\ne 0$, и значит
-    $v\cdot\phi_{\iota(x)}(u)\ne 0$.
+        NT(n,\mathbb{K})$ и $u\in T(r_{10})$ такие, что $\phi_x(u)\notin Z$.
+    Тогда существует $v\in T(r_{10})$ с $[v,\phi_x(u)]\ne 0$, и значит
+    $v\cdot\phi_x(u)\ne 0$.
 \end{remark}
 
 % \begin{remark}\label{remark:RBnprime-table}
