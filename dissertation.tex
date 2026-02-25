@@ -1560,27 +1560,21 @@ $\mathfrak{sl}_{n+1}(\mathbb{K})$ (см., например, \cite[\S 11.2.1]{car
 \medskip
 
 Левосимметрическую точную обертывающую алгебры Ли $L$ также называют
-\emph{афинной структурой на $L$}. Хорошо известно
-(\cite{burde-pre-lie-survey}), что полупростая алгебра Ли не допускает афинных
-структур. В \cite{milnor-left-sym} Дж. Милнор поставил вопрос, эквивалентный
-вопросу о существовании афинных структур для разрешимых алгебр Ли. В
-\cite{burde-counter-example} были построены примеры нильпотентных алгебр Ли, не
-допускающие афинных структур.
+\emph{афинной} или \emph{левосимметрической структурой} на $L$. Хорошо известно
+(\cite{burde-pre-lie-survey}), что полупростая алгебра Ли над полем
+характеристики 0 не допускает афинных структур. В \cite{milnor-left-sym} Дж.
+Милнор поставил вопрос, эквивалентный вопросу о существовании афинных структур
+для разрешимых алгебр Ли. В \cite{burde-counter-example} были построены примеры
+нильпотентных алгебр Ли, не допускающих афинных структур.
 
 Левосимметрическая алгебра $R$ называетcя \emph{алгеброй Новикова}, если в ней
 выполняется правая коммутативность: $R_yR_z = R_zR_y$ для всех $y,z \in R$. В
 \cite{burde-graaf-2013} разрабатывался метод классификации алгебр Новикова с
 заданной ассоциированной алгеброй Ли.
 
-%
 Для построения прелиевых точных обертывающих алгебр алгебры Ли
-$N\Phi(\mathbb{K})$ типов $B_n$, $C_n$ и $D_n$, используем их известные
-разложения в полупрямые суммы: \fixme{(ссылка или доказательство? GPT-based.)}
-\begin{align*}
-    NB_n(\mathbb{K}) & \simeq NA_{n-1}(\mathbb{K}) \ltimes_\phi (V \oplus \Lambda^2V), \\
-    ND_n(\mathbb{K}) & \simeq NA_{n-1}(\mathbb{K}) \ltimes_\phi \Lambda^2V,            \\
-    NC_n(\mathbb{K}) & \simeq NA_{n-1}(\mathbb{K}) \ltimes_\phi \Sym^2V.
-\end{align*}
+$N\Phi(\mathbb{K})$ типов $B_n$, $C_n$ и $D_n$, используем их разложения в
+полупрямые суммы подалгебры $NA_{n-1}(\mathbb{K})$ с подходящим идеалом.
 
 \begin{definition}[{{\cite[\S~I.2.11]{vinberg-onishik}}}]\label{def:semidirect-lie}
     %
@@ -1596,9 +1590,7 @@ $N\Phi(\mathbb{K})$ типов $B_n$, $C_n$ и $D_n$, используем их 
     алгебры Ли $\mathfrak{g}$ в алгебру Ли дифференцирований $\Der(\mathfrak{h})$ и
     $\phi_x = \phi(x)$.
 \end{definition}
-
-\medskip
-
+%
 По аналогии c \crefTvor{def:semidirect-lie}, введем понятие полупрямой суммы
 для прелиевых алгебр.
 \begin{definition}\label{def:semidirect-pre-lie}
@@ -1674,7 +1666,7 @@ $R^{(-)}$ и $I^{(-)}$ с тем же действием $\tau$.
     \[
         (x,0)((y,0)(0,c))=(x,0)(0,\tau_y(c))=(0,\tau_x\tau_y(c)),
     \]
-    откуда следует \textup{(A)}.
+    откуда следует (A).
 
     \medskip
 
@@ -1691,12 +1683,12 @@ $R^{(-)}$ и $I^{(-)}$ с тем же действием $\tau$.
     \[
         \tau_x(bc)=\tau_x(b)c+b\,\tau_x(c),
     \]
-    и потому $b\,\tau_x(c)=0$ для всех $b,c\in I$, что равносильно \textup{(B)}.
+    и потому $b\,\tau_x(c)=0$ для всех $x \in R$ и $b,c\in I$, что равносильно (B).
 \end{proof}
 \begin{theorem}\label{th:semidirect-pre-lie}
     %
-    Пусть $R$ и $I$ "--- прелиевы алгебры и $\tau\colon R^{(-)}\to\Der(I)$ ---
-    гомоморфизм алгебры Ли $R^{(-)}$ в $\Der(I)$. Тогда алгебра $R\ltimes_{\tau} I$
+    Пусть $R$ и $I$ "--- прелиевы алгебры и $\tau\colon R^{(-)}\to\Der(I)$ "---
+    гомоморфизм алгебр Ли $R^{(-)}$ и $\Der(I)$. Тогда алгебра $R\ltimes_{\tau} I$
     является прелиевой. Более того, $(R\ltimes_{\tau} I)^{(-)}$ изоморфна
     полупрямой сумме $R^{(-)}\ltimes_\tau I^{(-)}$, причем
     \[
@@ -1729,8 +1721,8 @@ $R^{(-)}$ и $I^{(-)}$ с тем же действием $\tau$.
     \medskip
 
     Так как $R$ и $I$ прелиевы, получаем $[L_x,L_y]=L_{[x,y]}$ и
-    $[L_a,L_b]=L_{[a,b]}$. Кроме того, из того, что $\tau$ "--- гомоморфизм алгебры
-    Ли $R^{(-)}$ в $\Der(I)$, следует $[\tau_x,\tau_y]=\tau_{[x,y]}$ и
+    $[L_a,L_b]=L_{[a,b]}$. Кроме того, поскольку $\tau$ "--- гомоморфизм алгебры Ли
+    $R^{(-)}$ в $\Der(I)$, имеем $[\tau_x,\tau_y]=\tau_{[x,y]}$ и
     $[\tau_x,L_a]=L_{\tau_x(a)}$.
 
     Пользуясь полученными тождествами, в ограничениях на $R$ и $I$ получаем
@@ -1775,68 +1767,43 @@ $R^{(-)}$ и $I^{(-)}$ с тем же действием $\tau$.
     откуда $R\ltimes_{\tau}I$ является точной обертывающей алгеброй алгебры Ли $L$.
 \end{proof}
 
-\begin{corollary}\label{corollary:enveloping-semidirect-isomorphism}
-    %
-    Пусть алгебры $R=R_1\ltimes_{\tau} I_1$ и $R' = R_2\ltimes_{\tau'} I_2$
-    являются прелиевыми точными обертывающими алгебры Ли $L =
-        \mathfrak{l}\ltimes_{\phi}\mathfrak{h}$, построенными по
-    \crefDat{corollary:enveloping-semidirect} из прелиевых точных обертывающих
-    алгебр $R_1,I_1$ и $R_2,I_2$ для $\mathfrak{l}$ и $\mathfrak{h}$. Предположим,
-    что существуют изоморфизмы прелиевых алгебр $f\colon R_1\to R_2$ и $g\colon
-        I_1\to I_2$ такие, что для всякого $x\in R_1$ коммутативна диаграмма
-    \[
-        \shorthandoff{"}
-        \begin{tikzcd}
-            I_1 \arrow[r,"\tau_x"] \arrow[d,"g"'] & I_1 \arrow[d,"g"] \\
-            I_2 \arrow[r,"\tau'_{f(x)}"']        & I_2.
-        \end{tikzcd}
-        \shorthandon{"}
-    \]
-    Тогда отображение $F\colon R \to R'$, заданное равенством $F(x,a) =
-        (f(x),g(a))$, является изоморфизмом прелиевых алгебр $R \simeq R'$.
-\end{corollary}
-\begin{proof}
-    %
-    Для $x,y\in R$ и $a,b\in I$ имеем
-    \[
-        F\bigl((x,a)(y,b)\bigr)
-        =F\bigl(xy,\ \tau_x(b)+ab\bigr)
-        =\bigl(f(xy),\ g(\tau_x(b))+g(ab)\bigr).
-    \]
-    Так как $f$ и $g$ являются гомоморфизмами прелиевых алгебр, получаем
-    $f(xy)=f(x)f(y)$ и $g(ab)=g(a)g(b)$. По коммутативности диаграммы имеем
-    $g(\tau_x(b))=\tau'_{f(x)}(g(b))$. Следовательно,
-    \[
-        F\bigl((x,a)(y,b)\bigr)
-        =\bigl(f(x)f(y),\ \tau'_{f(x)}(g(b))+g(a)g(b)\bigr)
-        =F(x,a)\,F(y,b),
-    \]
-    то есть $F$ является гомоморфизмом прелиевых алгебр. Ясно, что $F$ биективно,
-    так как $f$ и $g$ биективны.
-\end{proof}
-
-\subsection{Новая теорема для \texorpdfstring{$B_n$}{Bₙ}}\label{sec:new-Bn}
+\subsection{Новая теорема для \texorpdfstring{$B_n$}{Bₙ}, \texorpdfstring{$C_n$}{Cₙ} и \texorpdfstring{$D_n$}{Dₙ}}\label{sec:new-Bn}
 %
 Используем \crefVin{th:semidirect-pre-lie} и ее
-\crefVin{corollary:enveloping-semidirect} для построения прелиевой точной
-обертывающей нильтреугольный алгебры $N\Phi(\mathbb{K})$ типа $B_n$.
+\crefVin{corollary:enveloping-semidirect} для построения нильпотентных
+градуированных прелиевых точных обертывающих алгебр для $N\Phi(\mathbb{K})$
+типов $B_n$, $C_n$ и $D_n$.
 
 \medskip
 
-Пусть $\Psi = A_{n-1}^+$ из \eqref{eq:An-Root-System}. Систему положительных
-корней типа $B_n$ можно представить в виде объединения (\cite[таблица
-    2]{bourbaki72})
+Пусть $\Psi = A_{n-1}^+$ из \eqref{eq:An-Root-System}. Системы положительных
+корней типов $D_n$, $C_n$ и $B_n$ можно представить в виде объединения
+(\cite[таблицы I--IV]{bourbaki72})
 \[
-    B_n^+=\Psi \cup
-    \{\epsilon_i \mid 1\leq i\leq n\} \cup
-    \{\epsilon_i + \epsilon_j \mid 1\leq j<i\leq n\},\quad \Pi(B_n)=\Pi(\Psi) \cup \{\epsilon_1\}.
+    \begin{aligned}
+        D_n^+ & = \Psi \cup \{\epsilon_i+\epsilon_j \mid 1\le j<i\le n\}, \\
+        C_n^+ & = D_n^+ \cup \{2\epsilon_i \mid 1\le i\le n\},            \\
+        B_n^+ & = D_n^+ \cup \{\epsilon_i \mid 1\le i\le n\}.
+    \end{aligned}
 \]
-% Таким образом, $B_n^+$ составляется из корней вида
-% \[
-%     p_{i,mj} = \epsilon_i - m\epsilon_j, \quad
-%     1 \leq j \leq i  \leq n,\
-%     m \in \{0, -1, +1\}.
-% \]
+%
+Таким образом, $\Phi^+$ составляется из корней вида
+\[
+    r_{i,mj} = \epsilon_i - m\epsilon_j, \quad
+    1 \leq j \leq i  \leq n,\
+    m \in \{0, -1, +1\}.
+\]
+Базу системы корней $\Phi$ типов $D_n$, $C_n$ и $B_n$ запишем в виде $\Pi(\Phi)
+    = \Pi(\Psi) \cup \{r_\Phi\}$, где
+\[
+    r_\Phi\coloneq
+    \begin{cases}
+        r_{2,-1}, & \Phi = D_n, \\
+        r_{1,-1}, & \Phi = C_n, \\
+        r_{10},   & \Phi = B_n.
+    \end{cases}
+\]
+
 % %
 % Полагая $e_r = e_{i,mj}$ при $r=p_{i,mj}$, получаем реализацию
 % $NB_n(\mathbb{K})$ алгебры $N\Phi(\mathbb{K})$ типа $B_n$ с умножением:
@@ -1848,58 +1815,71 @@ $R^{(-)}$ и $I^{(-)}$ с тем же действием $\tau$.
 
 % \medskip
 
-Ясно, что $NT(n,\mathbb{K})^{(-)} = \langle e_r\mid r \in A_{n-1} \rangle$
-является подалгеброй в $NB_n(\mathbb{K})$.
+Ясно, что $N\Psi = \langle e_r\mid r \in \Psi \rangle \simeq
+    NT(n,\mathbb{K})^{(-)}$ является подалгеброй в $N\Phi(\mathbb{K})$ для системы
+корней $\Phi$ ранга $n$.
 
 \medskip
 
 Обозначая через $\phi$ присоединенное действие $NT(n,\mathbb{K})^{(-)}$ на
-идеале $T(r_{10})$, получаем разложение $NB_n(\mathbb{K})$ в полупрямую сумму
+идеале $T(r_\Phi)$, получаем разложение $N\Phi(\mathbb{K})$ в полупрямую сумму
 алгебр Ли
 \begin{equation}\label{eq:NBn-semi-direct-sum}
-    NB_n(\mathbb{K})\simeq NT(n,\mathbb{K})^{(-)} \ltimes_\phi T(r_{10}).
+    N\Phi(\mathbb{K})\simeq NT(n,\mathbb{K})^{(-)} \ltimes_\phi T(r_\Phi).
 \end{equation}
 
 \medskip
 
-Построим точную обертывающую алгебры $NB_n(\mathbb{K})$ как полупрямую сумму
-ассоциативных алгебр.
+По \crefDat{corollary:enveloping-semidirect} \crefRod{th:semidirect-pre-lie},
+чтобы построить точную обертывающую алгебру $N\Phi(\mathbb{K})$ типов $D_n$,
+$C_n$ и $B_n$ в виде полупрямой суммы ассоциативных алгебр, достаточно выбрать
+на идеале $T(r_\Phi)$ ассоциативное умножение
+\[
+    \cdot_\Phi\colon T(r_\Phi) \times T(r_\Phi) \to T(r_\Phi)
+\]
+такое, что $(T(r_\Phi), \cdot_\Phi)^{(-)} \simeq T(r_\Phi)$. Кроме того,
+присоединенное действие $\phi$ алгебры Ли $NT(n,\mathbb{K})^{(-)}$ на
+$T(r_\Phi)$ должно быть согласовано с $\cdot_\Phi$: оператор $\phi_x$ для
+каждого $x\in NT(n,\mathbb{K})$ должен быть дифференцированием ассоциативной
+алгебры $\bigl(T(r_\Phi),\cdot_\Phi\bigr)$.
 
 \medskip
 
-Поскольку центр $Z$ алгебры Ли $T(r_{10})$ совпадает с ее коммутантом, то
-$T(r_{10})^3 = 0$ и умножение
+Для типов $D_n$ и $C_n$ идеал $T(r_\Phi)$ является абелевым и в качестве
+$\cdot_\Phi$ можем взять нулевое умножение.
+
+\medskip
+
+Рассмотрим тип $B_n$. Поскольку центр $Z$ алгебры Ли $T(r_{10})$ совпадает с ее
+коммутантом, то $T(r_{10})^3 = 0$ и умножение
 \[
-    e_r \cdot e_s \coloneq
+    e_r \cdot_{B_n} e_s \coloneq
     \begin{cases}
         \dfrac12[e_r,e_s], & \Char \mathbb{K}\neq 2, \\[4pt]
         0,                 & \text{иначе}
     \end{cases}
     \mathrlap{\qquad(e_r,e_s \in T(r_{10})}
 \]
-дает ассоциативную точную обертывающую алгебру $\bigl(T(r_{10}), \cdot\bigr)
-    \simeq T(r_{10})$.
+дает ассоциативную точную обертывающую алгебру $\bigl(T(r_{10}),
+    \cdot_{B_n}\bigr) \simeq T(r_{10})$.
 
-\medskip
-
-Применяя теперь \crefVin{corollary:enveloping-semidirect}
-\crefRod{th:semidirect-pre-lie} получаем следующую теорему.
 \begin{theorem}\label{th:Bn-pre-lie}
     %
     Полупрямая сумма ассоциативных алгебр
     \[
-        RB'_n(\mathbb{K}) \coloneq NT(n,\mathbb{K}) \ltimes_{\phi} \bigl(T(r_{10}), \cdot\bigr)
+        R\Phi'(\mathbb{K}) \coloneq NT(n,\mathbb{K}) \ltimes_{\phi} \bigl(T(r_\Phi), \cdot_\Phi\bigr)
     \]
-    является прелиевой точной обертывающей алгебры $NB_n(\mathbb{K})$.
+    является прелиевой точной обертывающей алгебры $N\Phi(\mathbb{K})$ типа $D_n$,
+    $C_n$ или $B_n$.
 \end{theorem}
 
 \begin{remark}\label{remark:RBnprime-nonassoc}
     %
-    При $\Char\mathbb{K}\neq 2$ и $n \geq 3$ алгебра $NT(n,\mathbb{K})
-        \ltimes_{\phi} \bigl(T(r_{10}), \cdot\bigr)$ неассоциативна независимo от
-    конкретного выбора ассоциативного умножения на $T(r_{10})$. Действительно,
-    пусть $(\cdot)$ "--- любое ассоциативное умножение на линейном пространстве
-    $T(r_{10})$ такое, что $(T(r_{10}),\cdot)^{(-)}\simeq T(r_{10})$.
+    При $\Char\mathbb{K}\neq 2$ и $n \geq 3$ алгебра $RB'_n(\mathbb{K})$
+    неассоциативна независимo от конкретного выбора ассоциативного умножения на
+    $T(r_{10})$. Действительно, пусть $(\cdot)$ "--- любое ассоциативное умножение
+    на линейном пространстве $T(r_{10})$ такое, что $(T(r_{10}),\cdot)^{(-)}\simeq
+        T(r_{10})$.
 
     \medskip
 
@@ -1924,17 +1904,20 @@ $T(r_{10})^3 = 0$ и умножение
     противоречие.
 \end{remark}
 
-% \begin{remark}\label{remark:RBnprime-table}
-%     %
-%     Из построения $RB'_n(\mathbb{K})$ получаем таблицу умножения в корневом базисе
-%     $NB_n(\mathbb{K})$ при $\Char K \neq 2$:
-%     \begin{alignat*}{3}
-%          & e_{ij}e_{jk} = e_{ik},\qquad     &  & e_{jk}e_{ij} = 0 \qquad      &  & (i > j > |k| \geq 0) \\
-%          & e_{i0}e_{j0}=e_{i,-j},\qquad     &  & e_{j0}e_{i0}=-e_{i,-j}\qquad &  & (i>j\ge 1),          \\
-%          & e_{ij}e_{k,-j}=e_{k,-i},\qquad   &  & e_{k,-j}e_{ij}=0\qquad       &  & (k>i>j\ge 1),        \\
-%          & e_{k j}e_{i,-j}=-e_{k,-i},\qquad &  & e_{i,-j}e_{k j}=0\qquad      &  & (k>i>j\ge 1).
-%     \end{alignat*}
-% \end{remark}
+\begin{remark}\label{remark:RCnprime-nonassoc}\label{remark:RDnprime-nonassoc}
+    %
+    Алгебра $RC'_n(\mathbb{K})$ не является ассоциативной при $n\ge 3$. Аналогично,
+    алгебра $RD'_n(\mathbb{K})$ не является ассоциативной при $n\ge 4$.
+
+    \medskip
+
+    Действительно, если бы одна из этих алгебр была ассоциативной, то по
+    \crefDat{th:semidirect-assoc-cond} выполнялось бы условие \textup{(A)}:
+    $\phi_{xy}=\phi_x\phi_y$ для всех $x,y\in NT(n,\mathbb{K})$. Возьмем $x =
+        e_{21}$ и $y = e_{32}$ (тогда $xy=0$ в $NT(n,\mathbb{K})$) и положим $u =
+        e_{2,-1} \in T(r_\Phi)$. Тогда $\phi_{xy}(u)=0$, но $\phi_x\phi_y(u)\ne 0$, то
+    есть $\phi_{xy}\ne\phi_x\phi_y$. Условие \textup{(A)} нарушается.
+\end{remark}
 
 \subsection{END}
 
