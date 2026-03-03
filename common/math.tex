@@ -1,14 +1,29 @@
-\DeclareMathOperator*{\res}{res}
-\DeclareMathOperator*{\Ann}{Ann}
-\DeclareMathOperator*{\Supp}{Supp}
-\newcommand{\quot}[2]{#1\mathbin{/}#2}
+\DeclareMathOperator*{\res}{res}% Вычет
+\DeclareMathOperator{\Ann}{Ann}% Двухсторонний аннулятор
+\DeclareMathOperator*{\Supp}{Supp}% Носитель градуировки
+\newcommand{\quot}[2]{#1\mathbin{/}#2}% Фактор
 %\def\rt{\mathbin{\restriction}}
 %\DeclareMathSymbol{\restriction}{\mathord}{AMSa}{"16}
 
 \newcommand{\qbinom}[2]{{#1 \brack #2}_q}
 \newcommand{\qnum}[1]{[#1]_q}
 
-\DeclareMathOperator{\rank}{rank}
-\DeclareMathOperator{\height}{ht}
-\DeclareMathOperator{\ad}{ad}
-\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\rank}{rank}% Ранг системы корней
+\DeclareMathOperator{\height}{ht}% Высота корня
+
+\DeclareMathOperator{\ad}{ad}% Присоединенное представление / действие
+\DeclareMathOperator{\End}{End}% Алгебра эндоморфизмов лин. пр-ва / алгебры
+\DeclareMathOperator{\Aut}{Aut}
+
+\DeclareMathOperator{\Der}{Der}% Алгебра Ли дифференцирований
+
+\DeclareMathOperator{\Sym}{Sym}% Симметрическая алгебра
+
+\DeclareMathOperator{\Char}{char}
+
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
