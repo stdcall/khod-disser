@@ -947,7 +947,7 @@ $N\Phi(\mathbb{K})$ все нетривиальные компоненты ин�
 \[
     \Gamma\colon A = \bigoplus_{g \in G}A_g
 \]
-и включение $A_{g}A_{h} \subset A_{gh}$ выполняется для всех $g, h \in G$.
+и включение $A_{g}A_{h} \subset A_{g+h}$ выполняется для всех $g, h \in G$.
 Множество элементов $\Supp\Gamma \coloneq \{g \in G \mid A_g \neq 0 \}$
 называется \emph{носителем} градуировки $\Gamma$.
 
@@ -971,47 +971,11 @@ $\sum_{g \in G}a_g$, где элементы $a_g \in A_g$ называются 
     компонентами $a$}. Подалгебра $R \subset A$ называется градуированной, если она
 содержит однородные компоненты всех своих элементов, т.\;е.
 \[ R = \bigoplus_{g \in G} (A_g \cap R).\]
-
-\begin{lemma}\label{l:graded-factor}
-    %
-    Фактор-алгебра $A/I$ по градуированному идеалу $I$ наследует градуировку
-    алгебры $A$.
-\end{lemma}
-\begin{proof}
-    % В литературе подробного д-ва нет. Сделал как упражнение, думаю можно выкинуть.
-    % Здесь просто дал развенутое д-во из R. Moody, A. Pianzola, Lie algebras with triangular decompositions, 1995, p.18
-    Алгебру $A/I$ можно представить в виде прямой суммы
-    \[
-        A/I = \bigoplus_{g \in G} {(A/I)}_g,
-    \]
-    где ${(A/I)}_g \coloneq (A_g + I)/I \subset A/I$. Действительно, произвольный
-    класс $a + I \in A/I$ раскладывается в сумму $\sum_{g \in G}(a_g + I)$ и каждое
-    слагаемое лежит в $(A_g + I)/I$.
-
-    \medskip
-
-    Покажем, что сумма $\sum_{g \in G} (A_g + I)/I$ является прямой. Пусть
-    \[
-        \sum_{g\in G}(a_g + I) = \sum_{g\in G}a_g + I = 0 \text{ в } A/I.
-    \]
-    Это эквивалентно $\sum_{g\in G}a_g \in I$. Так как $I$ градуирован, то $a_g \in
-        I$ и $a_g + I = 0$ для всех $g \in G$.
-
-    Остается проверить согласованность с умножением. Для $g,h \in G$ имеем $(a_g +
-        I)(a_h + I) = a_ga_h + I \in (A_{gh} + I)/I$, то есть
-    \[
-        (A/I)_g(A/I)_h \subset (A/I)_{gh}.\qedhere
-    \]
-\end{proof}
-% унес в д-во лемму
-%Отметим также, что каноническая проекция $\pi \colon A_g \twoheadrightarrow
-%    (A_g + I)/I$ имеет ядро $A_g \cap I = I_g$ и, по теореме об изоморфизме,
-%\[
-%    (A/I)_g = (A_g + I)/I \simeq A_g/I_g .
-%\]
-
-\medskip
-
+Если $I$ является градуированным идеалом алгебры $A$, то фактор-алгебра
+$A/I$ наследует градуировку~(\cite[\S~1.3]{moody95}), задаваемую формулой
+\[
+    (A/I)_g\coloneq (A_g+I)/I = \{a+I \mid a\in A_g\}/I.
+\]
 Рассмотрим две градуировки алгебры A
 \begin{equation*}
     \Gamma_1 \colon A = \bigoplus_{g \in G}A_g
@@ -1045,6 +1009,12 @@ $\Gamma$ будем называть \emph{градуировкой ширины
         A-1$ раз, то за конечное число шагов мы получим тонкую градуировку.
 \end{proof}
 
+Для любой алгебры $A$ наряду с ее односторонними аннуляторами выделяют
+аннулятор
+\[
+    \Ann(A) \coloneq \{\alpha\in A\ | \ \alpha A = 0 = A\alpha\}.
+\]
+
 Алгебра $A \neq 0$ называется \emph{нильпотентной} класса нильпотентности $m$,
 если $A^m \neq 0$ и $A^{m+1} = 0$. В частности, $A^m \subset \Ann(A) \neq 0$.
 
@@ -1052,14 +1022,6 @@ $\Gamma$ будем называть \emph{градуировкой ширины
 
 Покажем, что любая тонкая градуировка конечномерной нильпотентной алгебры
 является градуировкой ширины один.
-
-\medskip
-
-Для любой алгебры $A$ наряду с ее односторонними аннуляторами выделяют
-аннулятор
-\[
-    \Ann(A) \coloneq \{\alpha\in A\ | \ \alpha A = 0 = A\alpha\}.
-\]
 
 \begin{lemma}\label{l:graded-ann}
     %
@@ -1103,7 +1065,7 @@ $\Gamma$ будем называть \emph{градуировкой ширины
     \end{tikzcd}
     \shorthandon{"}
 \]
-с условиями $\mathrm{Im} \alpha = \mathrm{ker} \beta$, отображение $\alpha$
+с условиями $\operatorname{Im}\alpha = \ker \beta$, отображение $\alpha$
 инъективно, а отображение $\beta$ сюръективно. В частности, из этих условий
 следует, что $V=\alpha(U) \oplus S$ для некоторого подпространства $S \simeq
     W$, а значит $V \simeq U \oplus W$. Подпространство $S$ в $V$ будем называть
@@ -1115,8 +1077,8 @@ $\Gamma$ будем называть \emph{градуировкой ширины
 \end{lemma}
 \begin{proof}
     %
-    Обозначим $I=\Ann(A)$. Согласно леммам~\ref{l:graded-factor} и
-    \ref{l:graded-ann}, алгебра $A/I$ наследует градуировку алгебры $A$:
+    Обозначим $I=\Ann(A)$. Согласно
+    \crefDat{l:graded-ann}, алгебра $A/I$ наследует градуировку алгебры $A$:
     \[
         \Gamma_{\pi} \colon A/I= \bigoplus_{g \in G}(A/I)_g.
     \]
@@ -1139,9 +1101,9 @@ $\Gamma$ будем называть \emph{градуировкой ширины
         \shorthandon{"}
     \]
     и линейное сечение $s \colon A/I \hookrightarrow A\ (\pi \circ s =
-        \mathrm{id}_{A/I}$). Тогда $s(A/I) = \oplus_{h \in H}s((A/I)_h)$ и
+        \mathrm{id}_{A/I}$). Тогда $s(A/I) = \oplus_{h \in H}s\bigl((A/I)_h\bigr)$ и
     \[
-        A = s(A/I) \oplus I = \bigoplus_{h \in H}s((A/I)_h) \oplus I.
+        A = s(A/I) \oplus I = \bigoplus_{h \in H}s\bigl((A/I)_h\bigr) \oplus I.
     \]
 
     У уточнения $\Gamma'_\pi$ есть гомоморфизм огрубления $\phi\colon H \to G$
@@ -1205,30 +1167,18 @@ $\Gamma$ будем называть \emph{градуировкой ширины
         \Gamma\colon A = \bigoplus_{g \in G}A_g.
     \]
     Рассмотрим факторалгебру $\bar{A} = A/\Ann(A)$. Она тоже конечномерна и
-    нильпотентна, причем $\dim \bar{A} < \dim A$.
-
-    \medskip
-
-    По леммам~\ref{l:graded-ann} и \ref{l:fine-graded-factor-ann}, градуировка на
-    $A$ индуцирует тонкую градуировку
+    нильпотентна, причем $\dim \bar{A} < \dim A$. По леммам~\ref{l:graded-ann} и
+    \ref{l:fine-graded-factor-ann}, градуировка на $A$ индуцирует тонкую
+    градуировку
     \[
         \Gamma_\pi \colon \bar{A} = \bigoplus_{g \in G} \bar{A}_g
     \]
     и можем провести доказательство леммы индукцией по $\dim A$.
 
-    \medskip
-
-    По индукционному предположению для $\bar{A}$ имеем
-    \[
-        \dim \bar{A}_g \leq 1\ (g \in G).
-    \]
-
-    Обозначим $I=\Ann(A)$.
-
-    \noindent
-    %
-    Каноническая проекция $\pi \colon A_g \twoheadrightarrow \bar{A}_g$ имеет ядро
-    $A_g \cap I = I_g$ и, по теореме об изоморфизме,
+    По индукционному предположению для $\bar{A}$ имеем $\dim \bar{A}_g \leq 1\ (g
+        \in G)$. Обозначим $I=\Ann(A)$. Каноническая проекция $\pi \colon A_g
+        \twoheadrightarrow \bar{A}_g$ имеет ядро $A_g \cap I = I_g$ и, по теореме об
+    изоморфизме,
     \[
         \bar{A}_g = (A_g + I)/I \simeq A_g/I_g.
     \]
@@ -1246,7 +1196,7 @@ $\Gamma$ будем называть \emph{градуировкой ширины
     \]
     получаем
     \[
-        \dim A_g = \dim(\Ann(A) \cap A_g) + \dim \bar{A}_g.
+        \dim A_g = \dim(\Ann(A) \cap A_g) + \dim \bar{A}_g
     \]
     и для завершения доказательства остается применить
     \crefVin{l:graded-component-ann-intersection}.
@@ -1273,7 +1223,7 @@ $\Gamma$ будем называть \emph{градуировкой ширины
 
     Для любого $g \in G$ с $A_g \neq 0$ имеем $\dim A_g = 1$. Так как $\phi$ "---
     изоморфизм, $\phi(A_g)$ "--- одномерное подпространство в $B$ и, следовательно,
-    существует единственное $h \in G$ такое, что $\phi(A_g) = B_h$. Действительно,
+    существует единственное $h \in H$ такое, что $\phi(A_g) = B_h$. Действительно,
     если $0 \neq a \in A_g$ и $\phi(a) = \sum_{h \in G} b_h$ с $b_h \in B_h$, то
     для любого $c \in \mathbb{K}$ имеем $\phi(ca) = c\phi(a) = \sum_{h \in G}
         cb_h$. Так как $\phi(A_g) = \mathbb{K}\phi(a)$ одномерно и разложение $B =
