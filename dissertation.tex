@@ -1481,25 +1481,6 @@ $R/J(R)$ является полупростым.
     Так как $Z(L)\subset [L,L]$, получаем $1\in [R,R]$, противоречие.
     Следовательно, $R$ нильпотентна.
 \end{proof}
-\begin{corollary}\label{corollary:assoc-envelope-nilpotent-niltriangular}
-    %
-    Пусть $R$ "--- ассоциативная точная обертывающая $\mathbb{K}$-алгебра для
-    алгебры Ли $N\Phi(\mathbb{K})$. Тогда $R$ нильпотентна.
-\end{corollary}
-\begin{proof}
-    %
-    Алгебра Ли $N\Phi(\mathbb{K})$ конечномерна и нильпотентна. Её центр одномерен:
-    $Z(N\Phi(\mathbb{K}))=\mathbb{K}e_\rho$, где $\rho$ "--- максимальный корень в
-    $\Phi^+$. В базисе Шевалле структурные константы $N_{rs}$ принимают значения
-    $\pm 1$, $\pm 2$ или $\pm 3$. Для максимального корня $\rho$ можно выбрать
-    разложение $\rho=\alpha+\beta$ ($\alpha,\beta\in \Phi^+$) так, что
-    $N_{\alpha\beta}=\pm 1$: достаточно взять в качестве $\alpha$ простой корень,
-    входящий в $\rho$ с коэффициентом $1$ по базе $\Pi$; тогда
-    $\beta=\rho-\alpha\in\Phi^+$ и в формуле $N_{\alpha\beta}=\pm(p+1)$
-    (\cite[теорема 4.2.1]{carter72}) число $p$ равно $0$, значит $e_\rho\in
-        [N\Phi(\mathbb{K}),N\Phi(\mathbb{K})]$. По
-    лемме~\ref{l:assoc-envelope-nilpotent} $R$ нильпотентна.
-\end{proof}
 
 Для системы корней $\Phi$ типа $A_n$ будем использовать ее стандартную
 реализацию~\cite[таблица 1]{bourbaki72}:
@@ -1518,6 +1499,16 @@ $\mathfrak{sl}_{n+1}(\mathbb{K})$ (см., например, \cite[\S 11.2.1]{car
     e_{\epsilon_i-\epsilon_j} \longleftrightarrow e_{ij} \qquad (1 \le j < i \le n+1).
 \end{equation}
 
+В реализации \eqref{eq:An-matrix-realization} центром $N\Phi(\mathbb{K})$
+служит $\mathbb{K}e_{n+1,1}$. Кроме того, при $n\ge 2$ имеем
+$e_{n+1,1}=[e_{n+1,2},e_{2,1}]$ и поэтому из
+леммы~\ref{l:assoc-envelope-nilpotent} сразу следует
+
+\begin{corollary}\label{corollary:assoc-envelope-nilpotent-An}
+    %
+    Пусть $R$ "--- ассоциативная точная обертывающая $\mathbb{K}$-алгебра для
+    алгебры Ли $N\Phi(\mathbb{K})$ типа $A_n$ $(n \ge 2)$. Тогда $R$ нильпотентна.
+\end{corollary}
 \begin{theorem}\label{th:Stand-Graded-An}
     %
     Если нильпотентная ассоциативная точная обертывающая алгебра $R$ алгебры Ли
