@@ -11,3 +11,10 @@ modifyLineBreaks:
             a-z: 1
             0-9: 0
             other: "[АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя]"
+noAdditionalIndentGlobal:
+    optionalArguments: 1
+    namedGroupingBracesBrackets: 1
+specialBeginEnd:
+    - amalgamate: 1
+    - name: inlineMath
+      lookForThis: 0
