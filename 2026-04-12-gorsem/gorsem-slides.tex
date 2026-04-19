@@ -1,0 +1,696 @@
+\documentclass[12pt,aspectratio=169]{beamer}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+\usefonttheme{professionalfonts}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian,english]{babel}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{array,booktabs}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{csquotes}
+\usepackage{microtype}
+\usepackage{appendixnumberbeamer}
+
+\usepackage[
+  backend=biber,
+  style=authoryear,
+  sorting=nyt,
+  maxbibnames=4,
+  giveninits=true,
+  uniquename=init,
+  uniquelist=false,
+  doi=false,
+  isbn=false,
+  url=false,
+  eprint=false,
+  autolang=other
+]{biblatex}
+\addbibresource{../disser.bib}
+\addbibresource{../disser-my.bib}
+
+\definecolor{MainBlue}{RGB}{28,63,112}
+\definecolor{MainRed}{RGB}{150,40,40}
+
+\setbeamercolor{structure}{fg=MainBlue}
+\setbeamercolor{title}{fg=MainBlue}
+\setbeamercolor{frametitle}{fg=MainBlue,bg=MainBlue!8}
+\setbeamercolor{block title}{fg=MainBlue,bg=MainBlue!12}
+\setbeamercolor{block body}{fg=black,bg=black!2}
+\setbeamercolor{exampleblock title}{fg=black,bg=black!10}
+\setbeamercolor{exampleblock body}{fg=black,bg=black!1}
+\setbeamercolor{alerted text}{fg=MainRed}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\setbeamersize{text margin left=5mm,text margin right=5mm}
+
+\setbeamerfont{title}{size=\Large}
+\setbeamerfont{subtitle}{size=\normalsize}
+\setbeamerfont{author}{size=\normalsize}
+\setbeamerfont{institute}{size=\small}
+\setbeamerfont{date}{size=\small}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{block title}{size*={12pt}{14pt}}
+\setbeamerfont{block body}{size=\normalsize}
+\setbeamerfont{block title alerted}{size*={12pt}{14pt}}
+\setbeamerfont{block body alerted}{size=\normalsize}
+\setbeamerfont{block title example}{size*={12pt}{14pt}}
+\setbeamerfont{block body example}{size=\normalsize}
+\setbeamerfont{normal text}{size=\normalsize}
+
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Der}{Der}
+\DeclareMathOperator{\Char}{char}
+\DeclareMathOperator*{\Supp}{Supp}
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\quot}[2]{#1\mathbin{/}#2}
+\newcommand{\term}[1]{{\color{MainRed}\bfseries #1}}
+\DeclareCiteCommand{\slidecite}
+  {}
+  {%
+    \printnames{author}%
+    \setunit{\addcomma\space}%
+    \iffieldundef{shortjournal}
+      {%
+        \iffieldundef{journaltitle}
+          {%
+            \iffieldundef{booktitle}
+              {%
+                \iffieldundef{publisher}
+                  {\printfield{title}}
+                  {\printlist{publisher}}%
+              }
+              {\printfield{booktitle}}%
+          }
+          {\printfield{journaltitle}}%
+      }
+      {\printfield{shortjournal}}%
+    \setunit{\addcomma\space}%
+    \printfield{year}%
+  }
+  {\addsemicolon\space}
+  {}
+\newcommand{\sourcefootnote}[1]{\footnote{\slidecite{#1}}}
+\newcommand{\thmline}[1]{%
+  \medskip
+  {\color{MainBlue}\rule{\linewidth}{0.4pt}}
+  \smallskip
+  {\bfseries #1\par}
+}
+
+\AtBeginBibliography{\tiny}
+
+\title[Левосимметрические структуры на $N\Phi(\K)$]{Левосимметрические структуры\\ на нильтреугольных алгебрах Шевалле}
+\author[Н. Д. Ходюня]{Н. Д. Ходюня}
+\institute[СФУ]{Сибирский Федеральный Университет}
+\date[12.04.2026]{Красноярский алгебраический семинар\\16 апреля 2026}
+
+\begin{document}
+
+\begin{frame}[plain]
+    \vfill
+    \begin{center}
+        {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par}
+        \vspace{1.6em}
+        {\usebeamerfont{author}\insertauthor\par}
+        \vspace{0.4em}
+        {\usebeamerfont{institute}\insertinstitute\par}
+    \end{center}
+    \vfill
+    \begin{center}
+        {\usebeamerfont{date}\insertdate\par}
+    \end{center}
+\end{frame}
+
+\begin{frame}[t]{План доклада}
+    \begin{enumerate}
+        \item Точные обертывающие алгебры для $N\Phi(\K)$ и постановка задачи.
+        \item Градуированные алгебры и теорема единственности для типа $A_n$.
+        \item Левосимметрические структуры, их полупрямые суммы и конструкции для типов
+              $B_n$, $C_n$ и $D_n$.
+    \end{enumerate}
+
+    \medskip
+
+    \begin{alertblock}{Основные результаты}
+        \begin{itemize}
+            \item Ассоциативная точная обертывающая алгебра типа $A_n$, допускающая градуировку,
+                  согласованную с градуировкой Картана, единственна с точностью до изоморфизма и
+                  изоморфна $NT(n+1,\K)$.
+            \item Для типов $B_n$, $C_n$ и $D_n$ существуют левосимметрические точные
+                  обертывающие алгебры, построенные как полупрямые суммы алгебры
+                  $NT(n,\mathbb{K})$ и подходящего идеала алгебры $N\Phi(\mathbb{K})$.
+        \end{itemize}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}[plain]
+    \vfill
+    \begin{center}
+        {\usebeamerfont{title}\usebeamercolor[fg]{title}Точные обертывающие алгебры для $N\Phi(\K)$\\ и постановка задачи.\par}
+    \end{center}
+    \vfill
+\end{frame}
+
+\begin{frame}[t]{Неассоциативные точные обертывающие алгебры}
+    \small
+    Ассоциативное кольцо $R$ всегда превращается в кольцо Ли $R^{(-)}$, если
+    заменить умножение в $R$ на коммутатор $[a,b]\coloneq ab - ba$.
+
+    \begin{itemize}
+        \item А.\,А.~Алберт\sourcefootnote{albert48} называет произвольную алгебру $R$ (не
+              обязательно ассоциативную) \term{Ли-допустимой}, когда $R^{(-)}$ есть алгебра
+              Ли.
+
+        \item Алгебра $R$ называется \term{точной обертывающей
+                  алгеброй}\sourcefootnote{DAN2018,imm2020} для алгебры Ли $L$, если
+              \[
+                  R^{(-)}\simeq L.
+              \]
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Определение умножения в $R$ по заданной структуре $R^{(-)}$}
+    \small
+    Если $2\in \K^*$, то для любой $\K$-алгебры $R$ с умножением $xy$ имеем соотношение
+    \[
+        xy = \frac{1}{2}[x,y] + x \circ y,\qquad x \circ y = \frac{1}{2}(xy + yx).
+    \]
+
+    \begin{itemize}
+        \item При заданной структуре на $R^{(-)}$ определение умножения $xy$ в $R$
+              равносильно определению коммутативного произведения $x\circ y$ на векторном
+              пространстве $R$.
+
+        \item Поэтому при изучении Ли-допустимых алгебр основная задача состоит в определении
+              коммутативных произведений $\circ$ по заданной структуре $R^{(-)}$ и
+              дополнительным условиям на $R$.
+
+        \item Вопрос об условиях однозначности неассоциативной обертывающей алгебры отмечал
+              И.\,П.~Шестаков на конференции в 2017 году\sourcefootnote{modernWorldConf2017}.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Нильтреугольные алгебры Шевалле}
+    \small
+    \begin{itemize}
+        \item В теории Картана--Киллинга каждой простой комплексной конечномерной алгебре Ли
+              $L$ сопоставляют единственную с точностью до эквивалентности неразложимую
+              систему корней $\Phi$; выбор простых корней $\Pi$ определяет систему
+              положительных корней $\Phi^+\supseteq \Pi$\sourcefootnote{carter72}.
+        \item Элементы $e_r$ $(r \in \Phi)$ и подходящая база подалгебры Картана алгебры Ли
+              $L=\mathfrak{L}(\Phi,\mathbb{C})$ задают базис Шевалле с целочисленными
+              структурными константами\sourcefootnote{Chev-55}.
+        \item Тем самым определяется алгебра Шевалле $\mathfrak{L}(\Phi,\K)$ над любым полем
+              $\K$.
+        \item Ее подалгебру
+              \[
+                  N\Phi(\K)\coloneq \langle e_r \mid r\in\Phi^+\rangle
+              \]
+              с базой $\{e_r\mid r\in\Phi^+\}$ называем \term{нильтреугольной}.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Универсальная и точная обертывающие}
+    \small
+    \begin{itemize}
+        \item Согласно теореме Пуанкаре--Биркгофа--Витта каждая алгебра Ли может быть
+              получена при помощи выбора подходящей ассоциативной обертывающей алгебры,
+              замены в ней операции на коммутирование и дальнейшего перехода к подходящей
+              подалгебре Ли\sourcefootnote{humphreys-ru,Kurosh1973}.
+        \item Более трудная теорема Адо--Ивасавы устанавливает, что конечномерные алгебры Ли
+              могут быть получены таким способом из конечномерных ассоциативных
+              алгебр\sourcefootnote{jacobson-ru}.
+        \item В случае, когда алгебра Ли $\mathfrak{L}(\Phi,\K)$ является простой,
+              присоединенное представление точно, и ассоциативная алгебра, порожденная
+              образом $N\Phi(\K)$, дает ее конечномерную обертывающую алгебру.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Структурные константы в базисе Шевалле}
+    \small
+    Для нильтреугольных алгебр $N\Phi(\K)$ В.\,М.~Левчук построил семейства точных
+    обертывающих алгебр\sourcefootnote{DAN2018}.
+
+    \medskip
+
+    По теореме Шевалле о базе при $r,s\in\Phi$ имеем\sourcefootnote{carter72}
+    \[
+        [e_r,e_s]=N_{rs}e_{r+s}=-[e_s,e_r]\quad (r+s\in\Phi),
+        \qquad [e_r,e_s]=0\quad (r+s\notin \Phi\cup\{0\}),
+    \]
+    где $N_{rs}=\pm 1$ для типа $A_n$.
+
+    \begin{itemize}
+        \item Знаки структурных констант $N_{rs}$ имеют определенный произвол для алгебры
+              Шевалле, а также для $N\Phi(\K)$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Семейство алгебр $R_\Phi$}
+    \small
+    \begin{block}{Определение}
+        Фиксируя выбор знаков структурных констант $N_{rs}$, через $R_\Phi$ обозначим $\K$-алгебру с базой $\{e_r\mid r\in\Phi^+\}$ и умножением
+        \[
+            e_re_s=0 \quad (r+s\notin\Phi^+),
+        \]
+        \[
+            e_r e_s=e_{r+s},\qquad e_s e_r=(1-N_{rs})e_{r+s}
+            \quad (r,s,r+s\in\Phi^+,\ N_{rs}\ge 1).
+        \]
+    \end{block}
+
+    \begin{itemize}
+        \item Любую из построенных точных обертывающих алгебр $R_\Phi$ однозначно определяет
+              выбор знака $\pm$ для каждой экстраспециальной пары корней.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Тип $A_{n}$ и постановка задачи}
+    \small
+    \begin{block}{Естественный пример}
+        Хорошо известно, что алгебра Ли $N\Phi(\K)$ типа $A_{n-1}$ изоморфна алгебре
+        Ли, ассоциированной с алгеброй $NT(n,\K)$ нижних нильтреугольных матриц.
+        Таким образом, для алгебры Ли $N\Phi(\K)$ типа $A_{n-1}$ существует
+        ассоциативная точная обертывающая алгебра --- алгебра $NT(n,\K)$.
+    \end{block}
+
+    \begin{itemize}
+        \item Ранее единственность $NT(n,\K)$ внутри семейства $R_\Phi$ исследовалась при
+              дополнительном условии на идеалы и при предположении
+              ассоциативности\sourcefootnote{imm2020,smj2023}.
+        \item Мы усиливаем эти результаты, давая условие единственности ассоциативной точной
+              обертывающей алгебры $N\Phi(\K)$ типа $A_n$: существование градуировки,
+              согласованной с градуировкой Картана.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[plain]
+    \vfill
+    \begin{center}
+        {\usebeamerfont{title}\usebeamercolor[fg]{title}Градуированные алгебры и теорема единственности для типа $A_n$.\par}
+    \end{center}
+    \vfill
+\end{frame}
+
+\begin{frame}[t]{Градуированные алгебры}
+    \small
+    Пусть $G$ --- абелева группа. Будем говорить, что на алгебре $A$ задана
+    \term{$G$-градуировка} $\Gamma$, если $A$ представлена в виде прямой суммы
+    подпространств
+    \[
+        \Gamma\colon A=\bigoplus_{g\in G}A_g,
+        \qquad A_gA_h\subset A_{g+h}.
+    \]
+
+    \medskip
+
+    Подалгебра $R\subset A$ называется \term{градуированной}, если
+    $R=\bigoplus_{g\in G}(A_g\cap R)$.
+
+    \medskip
+
+    Если $I$ является градуированным идеалом алгебры $A$, то фактор-алгебра $A/I$
+    наследует градуировку\sourcefootnote{moody95}, задаваемую формулой
+    \[
+        (A/I)_g\coloneq (A_g+I)/I = \{a+I \mid a\in A_g\}/I.
+    \]
+\end{frame}
+
+\begin{frame}[t]{Тонкие градуировки}
+    \begin{itemize}
+        \item Будем говорить, что $\Gamma_2$ является \emph{уточнением} градуировки
+              $\Gamma_1$, если существует гомоморфизм огрубления $\phi\colon H\to G$ такой,
+              что для каждого $h\in H$ выполняется включение $A_h\subset A_{\phi(h)}$.
+
+        \item Если для некоторого $h\in H$ это включение строгое, то будем говорить о
+              \emph{собственном уточнении}.
+
+        \item Градуировка $\Gamma$ называется \term{тонкой}, если она не допускает
+              собственных уточнений\sourcefootnote{patera1989,kochetov2013}.
+
+        \item Тонкую градуировку $\Gamma$ будем называть \term{градуировкой ширины один},
+              если все ее нетривиальные компоненты одномерны\sourcefootnote{mill-graded2019}.
+    \end{itemize}
+    Любая градуировка конечномерной алгебры допускает тонкое уточнение.
+\end{frame}
+
+\begin{frame}[t]{Градуировка Картана}
+    \small
+    Базис Шевалле алгебры $\mathfrak{L}(\Phi,\K)$ ранга $r$ задает на ней
+    \term{$\mathbb Z\Phi$-градуировку
+        Картана}\sourcefootnote{kochetov2013,moody95} целочисленной решеткой корней
+    $\mathbb Z\Phi\simeq \mathbb Z^r$.
+
+    \begin{itemize}
+        \item Компонент с нулевой степенью в этой градуировке является подалгеброй Картана
+              $H$.
+        \item Остальные нетривиальные компоненты являются одномерными $H$-инвариантными
+              подалгебрами в $\mathfrak L(\Phi,\K)$.
+        \item В частности, на подалгебре $N\Phi(\K)$ индуцированная градуировка имеет вид
+              \[
+                  \Gamma_C\colon N\Phi(\K)=\bigoplus_{r\in\Phi^+}\K e_r,
+              \]
+              причем все ее нетривиальные компоненты одномерны.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Эквивалентность градуировок}
+    Рассмотрим две градуированные алгебры
+    \begin{equation}\label{eq:two-graded-algebras}
+        \Gamma_1 \colon A = \bigoplus_{g \in G}A_g
+        \quad \text{и} \quad
+        \Gamma_2 \colon B = \bigoplus_{h \in H}B_h.
+    \end{equation}
+    \begin{block}{Эквивалентность}
+        Градуировки $\Gamma_1$ и $\Gamma_2$ называются \term{эквивалентными}, если существует изоморфизм алгебр $\phi\colon A\to B$ и для любого $g$ найдется $h$ такой, что $\phi(A_g)=B_h$.
+    \end{block}
+\end{frame}
+
+\begin{frame}[t]{Тонкие градуировки нильпотентных алгебр}
+    \begin{block}{Предложение}
+        Любая тонкая градуировка конечномерной нильпотентной алгебры $A$ является градуировкой ширины один.
+    \end{block}
+
+    Доказательство предложения проводится индукцией по $\dim A$ с использованием
+    лемм:
+
+    \begin{itemize}
+        \item Аннулятор $\Ann(A)$ градуированной алгебры является градуированным идеалом.
+
+        \item Если на алгебре $A$ задана тонкая градуировка, то индуцированная градуировка на
+              $\quot{A}{\Ann(A)}$ также тонкая.
+
+        \item Если $A_g\cap \Ann(A)\ne 0$, то $\dim A_g=1$ и $A_g\subset\Ann(A)$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Лемма о восстановлении корневой структуры}
+    На алгебре $N\Phi(\mathbb{K})$ зафиксируем градуировку Картана
+    \[
+        \Gamma_C\colon N\Phi(\mathbb{K})=
+        \bigoplus_{r\in\Phi^+}\mathbb{K}e_r.
+    \]
+    \begin{block}{Лемма}
+        Пусть $R$ --- нильпотентная точная обертывающая алгебра алгебры Ли $N\Phi(\K)$. Если на $R$ задана тонкая градуировка $\Gamma$ такая, что перенесенная на $R^{(-)}$ градуировка эквивалентна $\Gamma_C$, то $R$ можно реализовать на линейном пространстве $N\Phi(\K)$ так, что
+        \[
+            e_r e_s=0\quad \text{при } r+s\notin\Phi^+,
+        \]
+        а коммутатор в $R^{(-)}$ совпадает с коммутатором в $N\Phi(\K)$.
+    \end{block}
+\end{frame}
+
+\begin{frame}[t]{Нильпотентность ассоциативных точных обертывающих алгебр}
+    \begin{block}{Лемма}
+        Пусть $L$ --- конечномерная нильпотентная алгебра Ли такая, что
+        \[
+            \dim Z(L)=1,\qquad Z(L)\subset [L,L].
+        \]
+        Тогда всякая ассоциативная точная обертывающая алгебра алгебры Ли $L$ является
+        нильпотентной.
+    \end{block}
+
+    \begin{block}{Следствие}
+        Пусть $R$ --- ассоциативная точная обертывающая $\K$-алгебра для алгебры Ли $N\Phi(\K)$ типа $A_n$ $(n\ge 2)$. Тогда $R$ нильпотентна.
+    \end{block}
+\end{frame}
+
+\begin{frame}[t]{Главный результат для типа $A_n$}
+    \begin{alertblock}{Теорема}
+        Если ассоциативная точная обертывающая алгебра $R$ алгебры Ли $N\Phi(\K)$ типа $A_n$ $(n\ge 3)$ допускает градуировку, согласованную с градуировкой Картана, то
+        \[
+            R \simeq NT(n+1,\K).
+        \]
+    \end{alertblock}
+
+    \begin{itemize}
+        \item Теорема формулируется для произвольной ассоциативной точной обертывающей
+              алгебры, а не только для специального семейства $R_\Phi$.
+        \item При этом условие согласованности с $\Gamma_C$ заменяет дополнительные
+              ограничения из более ранних результатов\sourcefootnote{imm2020,smj2023}.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Существенность требования согласованности с $\Gamma_C$}
+    \small
+    Если в теореме для $A_n$ не требовать существования градуировки, согласованной с градуировкой Картана, то алгебра $R$, вообще говоря, не обязана быть изоморфной $NT(n+1,\K)$.
+
+    \medskip
+
+    В алгебре $NT(4,\K)$ заменим умножение на новое $\ast$, полагая $x\ast y=xy$
+    для всех пар базисных элементов, кроме пары $(e_{32},e_{21})$, и дополнительно
+    задавая
+    \[
+        e_{32}\ast e_{21}=e_{31}+e_{41},\qquad e_{21}\ast e_{32}=e_{41}.
+    \]
+    Тогда
+    \begin{itemize}
+        \item все коммутаторы базисных элементов совпадают с коммутаторами в $NT(4,\K)$;
+        \item ассоциативность сохраняется, поскольку добавка лежит в аннуляторе;
+        \item новая алгебра не изоморфна $NT(4,\K)$, поскольку меняется размерность левого
+              аннулятора.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[plain]
+    \vfill
+    \begin{center}
+        {\usebeamerfont{title}\usebeamercolor[fg]{title}Левосимметрические структуры\par}
+    \end{center}
+    \vfill
+\end{frame}
+
+\begin{frame}[t]{Левосимметрические алгебры}
+    \small
+    Через $L_x\colon y\mapsto xy$ $(x,y \in R)$ обозначим линейные операторы левого
+    умножения в алгебре $R$.
+
+    \begin{block}{Определение}
+        Алгебра $R$ называется \term{левосимметрической}, если
+        \[
+            (xy)z-x(yz)=(yx)z-y(xz)\qquad (x,y,z\in R),
+        \]
+        или, эквивалентно,
+        \[
+            [L_x,L_y]=L_{[x,y]}.
+        \]
+    \end{block}
+
+    \begin{itemize}
+        \item Как и в ассоциативном случае, всякая левосимметрическая алгебра Ли-допустима.
+        \item Левосимметрическую точную обертывающую алгебру для алгебры Ли $\mathfrak L$
+              называют \term{левосимметрической структурой} на $\mathfrak L$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Вопрос о существовании левосимметрических структур}
+    \begin{itemize}
+        \item Полупростая алгебра Ли над полем характеристики $0$ не допускает
+              левосимметрических структур\sourcefootnote{burde-pre-lie-survey}.
+        \item Дж.~Милнор поставил вопрос, эквивалентный вопросу о существовании
+              левосимметрических структур для разрешимых алгебр
+              Ли\sourcefootnote{milnor-left-sym}.
+        \item Существуют нильпотентные алгебры Ли, не допускающие левосимметрических
+              структур\sourcefootnote{burde-counter-example}.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Полупрямые суммы алгебр Ли}
+    Для построения левосимметрических точных обертывающих алгебр для $N\Phi(\K)$
+    типов $B_n$, $C_n$ и $D_n$ используем разложения этих алгебр в полупрямые
+    суммы подалгебры $NA_{n-1}(\K)$ с подходящим идеалом.
+
+    \medskip
+
+    Полупрямые суммы возникают, например, в теореме Леви--Мальцева о разложении
+    конечномерной алгебры Ли над полем характеристики 0 в полупрямую сумму
+    разрешимого идеала и полупростой подалгебры.\sourcefootnote{vinberg-onishik}
+\end{frame}
+
+\begin{frame}[t]{Определение полупрямой суммы алгебр Ли}
+    \small
+    \begin{block}{Определение}
+        \term{Полупрямой суммой $\mathfrak g\ltimes_{\phi}\mathfrak h$} алгебр Ли $\mathfrak g$ и $\mathfrak h$ называется прямая сумма векторных пространств $\mathfrak g$ и $\mathfrak h$, снабженная операцией коммутирования
+        \[
+            [(x,a),(y,b)] = \bigl([x,y],\ \phi_x(b)-\phi_y(a)+[a,b]\bigr),
+        \]
+        где $\phi\colon\mathfrak{g}\to\Der(\mathfrak{h})$ --- некоторый гомоморфизм
+        алгебры Ли $\mathfrak{g}$ в алгебру Ли дифференцирований $\Der(\mathfrak{h})$ и
+        $\phi_x = \phi(x)$.
+    \end{block}
+\end{frame}
+
+\begin{frame}[t]{Полупрямые суммы левосимметрических алгебр}
+    \small
+    \begin{block}{Определение}
+        \term{Полупрямой суммой} $R\ltimes_\tau I$ левосимметрических алгебр $R$ и
+        $I$ назовем прямую сумму векторных пространств $R$ и $I$, снабженную
+        операцией умножения
+        \[
+            (x,a)(y,b)=(xy,\ \tau_x(b)+ab),
+        \]
+        где $\tau\colon R^{(-)} \to \Der(I)$ --- некоторый гомоморфизм алгебры Ли
+        $R^{(-)}$ в алгебру Ли дифференцирований $\Der(I)$ и $\tau_x = \tau(x)$.
+    \end{block}
+
+    Всякое дифференцирование левосимметрической алгебры $I$ является
+    дифференцированием алгебры Ли $I^{(-)}$; поэтому вместе с $R\ltimes_\tau I$
+    можно одновременно рассматривать и полупрямую сумма алгебр Ли
+    $R^{(-)}\ltimes_\tau I^{(-)}$.
+\end{frame}
+
+\begin{frame}[t]{Два результата о полупрямых суммах левосимметрических алгебр}
+    \small
+    \begin{block}{Теорема}
+        Пусть $R$ и $I$ --- прелиевы алгебры и $\tau\colon R^{(-)}\to\Der(I)$ ---
+        гомоморфизм алгебры Ли $R^{(-)}$ в $\Der(I)$. Тогда алгебра $R\ltimes_{\tau} I$
+        является прелиевой. Более того, $(R\ltimes_{\tau} I)^{(-)}$ изоморфна
+        полупрямой сумме $R^{(-)}\ltimes_\tau I^{(-)}$
+    \end{block}
+
+    \begin{block}{Следствие}
+        Пусть $\mathfrak{L} = \mathfrak{l}\ltimes_{\phi}\mathfrak{h}$ --- полупрямая
+        сумма алгебр Ли, $R$ и $I$ --- прелиевы точные обертывающие алгебры для
+        $\mathfrak{l}$ и $\mathfrak{h}$ соответственно. Пусть также задан гомоморфизм
+        алгебр Ли $\tau\colon R^{(-)}\to\Der(I)$ такой, что индуцированное действием
+        $\tau$ действие алгебры Ли $R^{(-)}$ на $I^{(-)}$ совпадает с действием $\phi$.
+        Тогда алгебра $R\ltimes_{\tau} I$ является прелиевой точной обертывающей
+        алгеброй алгебры Ли $\mathfrak{L}$.  \end{block}
+\end{frame}
+
+\begin{frame}[t]{Когда полупрямая сумма ассоциативных алгебр ассоциативна?}
+    \small
+    \begin{block}{Теорема}
+        Пусть $R$ и $I$ --- ассоциативные алгебры и $\tau\colon R^{(-)}\to\Der(I)$
+        --- гомоморфизм алгебры Ли $R^{(-)}$ в $\Der(I)$. Тогда алгебра
+        $R\ltimes_{\tau} I$ ассоциативна тогда и только тогда, когда выполнены условия:
+        \begin{enumerate}
+            \item[\textup{(A)}] $\tau_{xy}=\tau_x\tau_y$ для всех $x,y\in R$;
+            \item[\textup{(B)}] $\tau_x(I)\subset \Ann_r(I)$ для всех $x\in R$.
+        \end{enumerate}
+    \end{block}
+\end{frame}
+
+\begin{frame}[t]{Стандартные представления корней типов $B_n$, $C_n$, $D_n$}
+    \small
+    Пусть $\Psi=A_{n-1}^+$. Тогда\sourcefootnote{bourbaki72}
+    \[
+        D_n^+=\Psi\cup\{\epsilon_i+\epsilon_j \mid 1\le j<i\le n\},
+    \]
+    \[
+        C_n^+=D_n^+\cup\{2\epsilon_i \mid 1\le i\le n\},
+        \qquad
+        B_n^+=D_n^+\cup\{\epsilon_i \mid 1\le i\le n\}.
+    \]
+
+    \begin{itemize}
+        \item Таким образом, $\Phi^+$ состоит из корней вида
+              $r_{i,mj}=\epsilon_i-m\epsilon_j$, где $m\in\{0,-1,+1\}$.
+        \item Базу $\Pi(\Phi)$ запишем в виде $\Pi(\Psi)\cup\{r_\Phi\}$, где
+              \[
+                  r_\Phi=
+                  \begin{cases}
+                      r_{2,-1}, & \Phi=D_n, \\
+                      r_{1,-1}, & \Phi=C_n, \\
+                      r_{10},   & \Phi=B_n.
+                  \end{cases}
+              \]
+        \item Подалгебра $N\Psi$ изоморфна $NT(n,\K)^{(-)}$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Разложение $N\Phi(\K)$ в полупрямую сумму}
+    \small
+    Для корней будем писать $s\ge r$, если все коэффициенты в разложении $s-r$ по базе простых корней $\Pi$ неотрицательны. Определим идеалы
+    \[
+        T(r)\coloneq \sum_{s\ge r}\K e_s.
+    \]
+
+    \begin{itemize}
+        \item Обозначим через $\phi$ присоединенное действие алгебры Ли $NT(n,\K)^{(-)}$ на
+              идеале $T(r_\Phi)$.
+        \item Тогда получаем разложение алгебр Ли
+              \[
+                  N\Phi(\K)\simeq NT(n,\K)^{(-)}\ltimes_\phi T(r_\Phi).
+              \]
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Выбор умножения на идеале $T(r_\Phi)$}
+    \small
+    \begin{center}
+        \begin{tabular}{>{\raggedright\arraybackslash}p{0.12\linewidth} >{\raggedright\arraybackslash}p{0.27\linewidth} >{\raggedright\arraybackslash}p{0.51\linewidth}}
+            \toprule
+            Тип   & Идеал         & Выбор ассоциативного умножения                         \\
+            \midrule
+            $D_n$ & $T(r_{2,-1})$ & идеал абелев; берем нулевое умножение                  \\
+            $C_n$ & $T(r_{1,-1})$ & идеал абелев; берем нулевое умножение                  \\
+            $B_n$ & $T(r_{10})$   & при $\Char\K\neq 2$ полагаем
+            $\displaystyle u\cdot v=\frac12[u,v]$; при $\Char\K=2$ берем нулевое умножение \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+
+    \begin{itemize}
+        \item Для типа $B_n$ используется то, что коммутант алгебры Ли $T(r_{10})$ лежит в
+              центре, поэтому
+              \[
+                  T(r_{10})^3=0.
+              \]
+        \item Во всех трех случаях $(T(r_\Phi),\cdot_\Phi)^{(-)}\simeq T(r_\Phi)$, а действие
+              $\phi_x$ задает дифференцирование этой ассоциативной алгебры.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Главный результат для типов $B_n$, $C_n$, $D_n$}
+    \begin{alertblock}{Теорема}
+        Полупрямая сумма ассоциативных алгебр
+        \[
+            NT(n,\K)\ltimes_\phi T(r_\Phi)
+        \]
+        является левосимметрической точной обертывающей алгеброй для $N\Phi(\K)$ типов
+        $B_n$, $C_n$ и $D_n$.
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}[t]{Почему эти конструкции неассоциативны}
+    \small
+    \begin{block}{Тип $B_n$}
+        При $\Char\K\neq 2$ и $n\ge 3$ условие
+        \[
+            \phi_x\bigl(T(r_{10})\bigr)\subset \Ann_r\bigl(T(r_{10}),\cdot\bigr)
+        \]
+        невозможно: образ действия $NT(n,K)^{(-)}$ на факторе $\quot{T(r_{10})}{Z}$
+        имеет размерность не менее $2$, а проекция правого аннулятора в
+        $\quot{T(r_{10})}{Z}$ --- не более $1$.
+    \end{block}
+
+    \begin{block}{Типы $C_n$ и $D_n$}
+        Здесь нарушается условие \[\phi_{xy}=\phi_x\phi_y.\] При $x=e_{21}$, $y=e_{32}$ и $u=e_{2,-1}\in T(r_\Phi)$ имеем $\phi_{xy}(u)=0$,
+        но $\phi_x\phi_y(u)\ne 0$.
+    \end{block}
+\end{frame}
+
+\begin{frame}[t]{Итоги}
+    \begin{itemize}
+        \item Для типа $A_n$ ассоциативная точная обертывающая алгебра, допускающая
+              градуировку, согласованную с $\Gamma_C$, единственна с точностью до
+              изоморфизма:
+              \[
+                  R\simeq NT(n+1,\K).
+              \]
+        \item Для типов $B_n$, $C_n$ и $D_n$ построены градуированные левосимметрические
+              точные обертывающие алгебры в виде полупрямых сумм.
+        \item В этих конструкциях ассоциативность, вообще говоря, теряется: в типе $B_n$ при
+              $\Char\K\neq 2$ и $n \geq 3$, в типе $C_n$ при $n\ge 3$, в типе $D_n$ при $n\ge
+              4$.
+    \end{itemize}
+\end{frame}
+
+\end{document}
