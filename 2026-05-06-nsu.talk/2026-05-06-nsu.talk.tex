@@ -596,8 +596,8 @@
                   r_\Phi=
                   \begin{cases}
                       \epsilon_2 + \epsilon_1, & \Phi=D_n, \\
-                      2\epsilon_1, & \Phi=C_n, \\
-                      \epsilon_1,   & \Phi=B_n.
+                      2\epsilon_1,             & \Phi=C_n, \\
+                      \epsilon_1,              & \Phi=B_n.
                   \end{cases}
               \]
         \item Подалгебра $N\Psi$ изоморфна $NT(n,\K)^{(-)}$.
@@ -626,21 +626,21 @@
     \begin{center}
         \begin{tabular}{>{\raggedright\arraybackslash}p{0.12\linewidth} >{\raggedright\arraybackslash}p{0.27\linewidth} >{\raggedright\arraybackslash}p{0.51\linewidth}}
             \toprule
-            Тип   & Идеал         & Выбор ассоциативного умножения                                 \\
+            Тип   & Идеал                        & Выбор ассоциативного умножения                  \\
             \midrule
-            $D_n$ & $T(\epsilon_2 + \epsilon_1)$ & идеал абелев; берем нулевое умножение                          \\
-            $C_n$ & $T(2\epsilon_1)$ & идеал абелев; берем нулевое умножение                          \\
-            $B_n$ & $T(\epsilon_1)$   & при $\Char\K\neq 2$ полагаем
+            $D_n$ & $T(\epsilon_2 + \epsilon_1)$ & идеал абелев; берем нулевое умножение           \\
+            $C_n$ & $T(2\epsilon_1)$             & идеал абелев; берем нулевое умножение           \\
+            $B_n$ & $T(\epsilon_1)$              & при $\Char\K\neq 2$ полагаем
             $\displaystyle e_r\cdot e_s=\frac12[e_r,e_s]$; при $\Char\K=2$ берем нулевое умножение \\
             \bottomrule
         \end{tabular}
     \end{center}
 
     \begin{itemize}
-        \item Для типа $B_n$ используется то, что коммутант алгебры Ли $T(r_{10})$ лежит в ее
-              центре, поэтому
+        \item Для типа $B_n$ используется то, что коммутант алгебры Ли $T(\epsilon_1)$ лежит
+              в ее центре, поэтому
               \[
-                  T(r_{10})^3=0.
+                  T(\epsilon_1)^3=0.
               \]
         \item Во всех трех случаях $(T(r_\Phi),\cdot_\Phi)^{(-)}\simeq T(r_\Phi)$, а действие
               $\phi_x$ задает дифференцирование этой ассоциативной алгебры.
@@ -663,16 +663,17 @@
     \begin{block}{Тип $B_n$}
         При $\Char\K\neq 2$ и $n\ge 3$ выполнение условия
         \[
-            \phi_x\bigl(T(r_{10})\bigr)\subset \Ann_r\bigl(T(r_{10}),\cdot\bigr)
+            \phi_x\bigl(T(\epsilon_1)\bigr)\subset \Ann_r\bigl(T(\epsilon_1),\cdot\bigr)
         \]
         невозможно: образ действия $NT(n,\mathbb{K})^{(-)}$ на факторе
-        $\quot{T(r_{10})}{Z}$ имеет размерность не менее $2$, а проекция правого
-        аннулятора в $\quot{T(r_{10})}{Z}$ --- не более $1$.
+        $\quot{T(\epsilon_1)}{Z}$ имеет размерность не менее $2$, а проекция правого
+        аннулятора в $\quot{T(\epsilon_1)}{Z}$ --- не более $1$.
     \end{block}
 
     \begin{block}{Типы $C_n$ и $D_n$}
-        Здесь нарушается условие \[\phi_{xy}=\phi_x\phi_y.\] При $x=e_{21}$, $y=e_{32}$ и $u=e_{2,-1}\in T(r_\Phi)$ имеем $\phi_{xy}(u)=0$,
-        но $\phi_x\phi_y(u)\ne 0$.
+        %
+        Здесь нарушается условие \[\phi_{xy}=\phi_x\phi_y.\] При $x=e_{\epsilon_2 - \epsilon_1}$, $y=e_{\epsilon_3 - \epsilon_2}$ и
+        $u=e_{\epsilon_2 + \epsilon_1}\in T(r_\Phi)$ имеем $\phi_{xy}(u)=0$, но $\phi_x\phi_y(u)\ne 0$.
     \end{block}
 \end{frame}
 
