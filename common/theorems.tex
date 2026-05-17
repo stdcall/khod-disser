@@ -131,7 +131,7 @@
         \let\@crefcase@s@definition\cref@definition@format
         \let\@crefcase@s@remark\cref@remark@format
     }
-    % Восстановить сохранённые cref-форматы
+    % Восстановить сохраненные cref-форматы
     \newcommand{\@crefcase@restore}{%
         \global\let\cref@theorem@format\@crefcase@s@theorem
         \global\let\cref@lemma@format\@crefcase@s@lemma
@@ -173,7 +173,7 @@
     \newcommand{\crefTvor}[1]{\@crefcase{#1}{теоремой}{леммой}{предложением}{следствием}{определением}{замечанием}}
     \newcommand{\CrefTvor}[1]{\@crefcase{#1}{Теоремой}{Леммой}{Предложением}{Следствием}{Определением}{Замечанием}}
 
-    % --- ПРЕДЛОЖНЫЙ ПАДЕЖ (о чём? где?) ---
+    % --- ПРЕДЛОЖНЫЙ ПАДЕЖ (о чем? где?) ---
     \newcommand{\crefPred}[1]{\@crefcase{#1}{теореме}{лемме}{предложении}{следствии}{определении}{замечании}}
     \newcommand{\CrefPred}[1]{\@crefcase{#1}{Теореме}{Лемме}{Предложении}{Следствии}{Определении}{Замечании}}
 
