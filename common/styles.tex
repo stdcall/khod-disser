@@ -58,18 +58,18 @@
 }
 
 %%% Настройки ссылок на рисунки, таблицы и др. %%%
-% Фикс проблемы со ссылками \subcaptionref в необновлённом TeXLive 2025 и memoir
+% Фикс проблемы со ссылками \subcaptionref в необновленном TeXLive 2025 и memoir
 \makeatletter
 \@ifclasslater{memoir}{2025/09/22}{%
     % Считаем, что версии memoir новее будут взаимодействовать с amsmath и label корректнее
 }{
     \@ifclasslater{memoir}{2025/03/10}{%
-        % Эта версия memoir некорректно взаимодействует с обновлённым amsmath
+        % Эта версия memoir некорректно взаимодействует с обновленным amsmath
         \renewcommand{\memsubfig@captionpar}[2]{%
             \parbox[t]{#1}{\let\label=\memsub@label\@subcapsize\@contsubcstyle #2}}
     }{}
 }
-% Фикс проблемы со ссылками пакета subcaption и обновлённого amsmath
+% Фикс проблемы со ссылками пакета subcaption и обновленного amsmath
 \@ifpackagelater{amsmath}{2025/01/11}{
     % https://tex.stackexchange.com/a/746030
     \patchcmd\caption@subtypehook{\let\label\subcaption@label}
@@ -213,7 +213,7 @@
 
 %%% Правильная нумерация приложений, рисунков и формул %%%
 %% По ГОСТ 2.105, п. 4.3.8 Приложения обозначают заглавными буквами русского алфавита,
-%% начиная с А, за исключением букв Ё, З, Й, О, Ч, Ь, Ы, Ъ.
+%% начиная с А, за исключением букв Е, З, Й, О, Ч, Ь, Ы, Ъ.
 %% Здесь также переделаны все нумерации русскими буквами.
 \makeatletter
 \def\russian@Alph#1{\ifcase#1\or
