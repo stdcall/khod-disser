@@ -21,3 +21,5 @@ build
 *-SAVE-ERROR
 khod-disser-*
 releases
+scripts
+.claude/agents
