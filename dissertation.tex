@@ -1075,11 +1075,10 @@ $\Gamma$ будем называть \emph{градуировкой ширины
     \shorthandon{"}
 \]
 с условиями $\operatorname{Im}\alpha = \ker \beta$, отображение $\alpha$
-инъективно, а отображение $\beta$ сюръективно. Линейное отображение
-$s\colon {W \to V}$ будем называть \emph{линейным сечением} на $W$, если
-$\beta \circ s = \mathrm{id}_W$; такое отображение существует и инъективно.
-В частности, $V=\alpha(U) \oplus s(W)$ и $s(W) \simeq W$, а значит
-$V \simeq U \oplus W$.
+инъективно, а отображение $\beta$ сюръективно. Линейное отображение $s\colon {W
+    \to V}$ будем называть \emph{линейным сечением} на $W$, если $\beta \circ s =
+\mathrm{id}_W$; такое отображение существует и инъективно. В частности,
+$V=\alpha(U) \oplus s(W)$ и $s(W) \simeq W$, а значит $V \simeq U \oplus W$.
 \begin{lemma}\label{l:fine-graded-factor-ann}
     %
     Если на алгебре $A$ задана тонкая градуировка, то индуцированная градуировка на
@@ -1478,7 +1477,7 @@ $R/J(R)$ является полупростым.
 \end{proof}
 
 Для системы корней $\Phi$ типа $A_n$ будем использовать ее стандартную
-реализацию~\cite[таблица 1]{bourbaki72}:
+реализацию~\cite[таблица I]{bourbaki72}:
 \begin{equation}\label{eq:An-Root-System}
     \begin{gathered}
         A_n=\{\epsilon_i-\epsilon_j \mid 1\leq i\neq j\leq n+1\},\qquad
@@ -1650,440 +1649,6 @@ $e_{n+1,1}=[e_{n+1,2},e_{2,1}]$ и поэтому из
     $\Ann_{\ell}=\langle e_{21},e_{31},e_{41}\rangle$ и $\dim\Ann_{\ell}=3$, тогда
     как в $(NT(4,\mathbb{K}),\ast)$ элемент $e_{21}\notin\Ann_{\ell}$, поскольку
     $e_{21}\ast e_{32}=e_{41}\ne 0$, и потому $\dim\Ann_{\ell}=2$.
-\end{remark}
-%
-%
-\subsection{Левосимметрические алгебры и их полупрямые суммы}\label{sec:pre-lie-algs}
-%
-Через $L_x\colon y\mapsto xy$ $(x,y \in R)$ обозначим линейные операторы левого
-умножения в алгебре $R$.
-\begin{definition}\label{def:pre-lie-algebra}
-    %
-    Алгебра $R$ над полем $\mathbb{K}$ называется \emph{левосимметрической} или
-    \emph{прелиевой}, если ее умножение удовлетворяет тождеству
-    \begin{equation*}
-        (xy)z-x(yz)=(yx)z-y(xz) \qquad (x,y,z\in R)
-    \end{equation*}
-    или, эквивалентно, отображение $L\colon x \mapsto L_x$ задает представление
-    $R^{(-)}$ в $\mathfrak{gl}(R)$:
-    \begin{equation*}
-        [L_x,L_y]=L_{[x,y]} \mathrlap{\qquad (x,y \in R).}
-    \end{equation*}
-\end{definition}
-
-Как и в ассоциативном случае, всякая левосимметрическая алгебра Ли-допустима:
-если положить $[x,y]\coloneq xy-yx$, то $(R,[\ ,\ ])$ является алгеброй Ли.
-
-\medskip
-
-Левосимметрическую точную обертывающую алгебру для алгебры Ли $\mathfrak{g}$
-также называют \emph{афинной} или \emph{левосимметрической структурой} на
-$\mathfrak{g}$. Хорошо известно (\cite{burde-pre-lie-survey}), что полупростая
-алгебра Ли над полем характеристики 0 не допускает левосимметрических структур.
-В \cite{milnor-left-sym} Дж. Милнор поставил вопрос, эквивалентный вопросу о
-существовании левосимметрических структур для разрешимых алгебр Ли. В
-\cite{burde-counter-example} были построены примеры нильпотентных алгебр Ли, не
-допускающих левосимметрических структур.
-
-\medskip
-
-Дифференцирование $D$ алгебры Ли $\mathfrak{g}$ называется
-\emph{невырожденным}, если $\ker D = 0$. По
-\cite[следствие~3.4]{burde-pre-lie-survey}, наличие невырожденного
-дифференцирования в конечномерной алгебре Ли влечет существование на ней
-левосимметрической структуры. В следующей лемме приведем явную конструкцию
-такого умножения.
-\begin{lemma}\label{l:nonsing-deriv-pre-lie}
-    %
-    Пусть $D$ "--- невырожденное дифференцирование конечномерной алгебры Ли
-    $\mathfrak{g}$. Тогда формула $x \cdot y \coloneq D^{-1}[x, Dy]$ задает на
-    $\mathfrak{g}$ левосимметрическое умножение, для которого $(\mathfrak{g},
-    \cdot)^{(-)} = \mathfrak{g}$.
-\end{lemma}
-\begin{proof}
-    %
-    Из определения $D(x \cdot y) = [x, Dy]$. Поскольку $D$ "--- дифференцирование,
-    $D[x, y] = [Dx, y] + [x, Dy] = [x, Dy] - [y, Dx]$, откуда
-    \[
-        x \cdot y - y \cdot x = D^{-1}([x, Dy] - [y, Dx]) = D^{-1} D[x, y] = [x, y],
-    \]
-    то есть $(\mathfrak{g}, \cdot)^{(-)} = \mathfrak{g}$. Далее, применяя $D$ к
-    выражению $(x \cdot y) \cdot z - x \cdot (y \cdot z)$, получаем $[x \cdot y,
-    Dz] - [x, [y, Dz]]$, поэтому
-    \[
-        D\bigl((x \cdot y) \cdot z - x \cdot (y \cdot z) - (y \cdot x) \cdot z
-        + y \cdot (x \cdot z)\bigr)
-        = [x \cdot y - y \cdot x, Dz] - [[x, y], Dz] = 0
-    \]
-    по доказанному и тождеству Якоби. Невырожденность $D$ дает левосимметрическое
-    тождество.
-\end{proof}
-%
-Диагональное отображение $D(e_r) \coloneq \height(r) e_r$ ($r \in \Phi^+$)
-является дифференцированием алгебры $N\Phi(\mathbb{K})$ и невырождено при
-$\Char\mathbb{K} = 0$ либо $\Char\mathbb{K} > \height(\rho)$, где $\rho$ "---
-максимальный в $\Phi^+$ корень. По \crefDat{l:nonsing-deriv-pre-lie} формула
-\[
-    e_r \cdot e_s = D^{-1}[e_r, D e_s] =
-    \frac{\height(s)}{\height(r) + \height(s)}\, [e_r, e_s]
-    \qquad (r, s \in \Phi^+)
-\]
-задает левосимметрическую структуру на $N\Phi(\mathbb{K})$.
-
-\medskip
-
-Для построения левосимметрических точных обертывающих алгебр для алгебр Ли
-$N\Phi(\mathbb{K})$ типов $B_n$, $C_n$ и $D_n$ над произвольным полем
-$\mathbb{K}$, используем их разложения в полупрямые суммы подалгебры
-$NA_{n-1}(\mathbb{K})$ с подходящим идеалом.
-
-\begin{definition}[{{\cite[\S~1.2.11]{vinberg-onishik}}}]\label{def:semidirect-lie}
-    %
-    \emph{Полупрямой суммой $\mathfrak{g}\ltimes_{\phi} \mathfrak{h}$} алгебр
-    Ли $\mathfrak{g}$ и $\mathfrak{h}$ называется прямая сумма векторных
-    пространств $\mathfrak{g}$ и $\mathfrak{h}$, снабженная операцией
-    коммутирования по формуле
-    \[
-        [(x,a),(y,b)] = \bigl([x,y],\ \phi_x(b)-\phi_y(a) + [a,b]\bigr),
-    \]
-    где $\phi\colon\mathfrak{g}\to\Der(\mathfrak{h})$ "--- некоторый гомоморфизм
-    алгебры Ли $\mathfrak{g}$ в алгебру Ли дифференцирований $\Der(\mathfrak{h})$ и
-    $\phi_x = \phi(x)$.
-\end{definition}
-%
-Полупрямые суммы алгебр Ли возникают, например, в теореме Леви--Мальцева о
-разложении конечномерной алгебры Ли над полем характеристики 0 в полупрямую
-сумму разрешимого идеала и полупростой подалгебры
-\cite[\S~6.1]{vinberg-onishik}.
-
-По аналогии с \crefTvor{def:semidirect-lie}, введем понятие полупрямой суммы
-для левосимметрических алгебр.
-\begin{definition}\label{def:semidirect-pre-lie}
-    %
-    \emph{Полупрямой суммой}
-    $R\ltimes_{\tau} I$ левосимметрических алгебр $R$ и $I$ назовем прямую сумму
-    векторных пространств $R$ и $I$, снабженную операцией умножения по формуле
-    \[
-        (x,a)(y,b) = (xy,\ \tau_x(b) + ab),
-    \]
-    где $\tau\colon R^{(-)} \to \Der(I)$ "--- некоторый гомоморфизм алгебры Ли
-    $R^{(-)}$ в алгебру Ли дифференцирований $\Der(I)$ и $\tau_x = \tau(x)$.
-\end{definition}
-%
-Всякое дифференцирование левосимметрической алгебры $I$ является
-дифференцированием алгебры Ли $I^{(-)}$, то есть $\Der(I)\subset
-\Der(I^{(-)})$. Таким образом, при рассмотрении полупрямой суммы
-левосимметрических алгебр $R\ltimes_{\tau} I$ можно одновременно рассматривать
-и полупрямую сумму ассоциированных алгебр Ли $R^{(-)}$ и $I^{(-)}$ с тем же
-действием $\tau$.
-
-\medskip
-
-Как показывают следующие две теоремы, полупрямая сумма ассоциативных алгебр
-может быть неассоциативной, но всегда является левосимметрической.
-\begin{theorem}\label{th:semidirect-assoc-cond}
-    %
-    Пусть $R$ и $I$ "--- ассоциативные алгебры и $\tau\colon R^{(-)}\to\Der(I)$
-    "--- гомоморфизм алгебры Ли $R^{(-)}$ в $\Der(I)$. Алгебра $R\ltimes_{\tau} I$
-    ассоциативна тогда и только тогда, когда выполнены условия:
-    \begin{enumerate}
-        \item[\textup{(A)}] $\tau_{xy}=\tau_x\tau_y$ для всех $x,y\in R$;
-        \item[\textup{(B)}] $\tau_x(I)\subset \Ann_r(I)$ для всех $x\in R$.
-    \end{enumerate}
-\end{theorem}
-\begin{proof}
-    %
-    Пусть выполняются условия (A) и (B). Так как $R$ ассоциативна, достаточно
-    проверить совпадение вторых компонент в равенстве
-    \begin{equation}\label{eq:semidirect-assoc}
-        ((x,a)(y,b))(z,c)=(x,a)((y,b)(z,c))
-    \end{equation}
-    %
-    для всех $x,y,z \in R$ и $a,b,c \in I$. По определению умножения в
-    $R\ltimes_{\tau} I$ имеем
-    \[
-        (x,a)(y,b)=(xy,\ \tau_x(b)+ab),\qquad (y,b)(z,c)=(yz,\ \tau_y(c)+bc).
-    \]
-    Поэтому вторая компонента левой части равна
-    \[
-        \tau_{xy}(c)+(\tau_x(b)+ab)c=\tau_{xy}(c)+\tau_x(b)c+(ab)c,
-    \]
-    а вторая компонента правой части равна
-    \[
-        \tau_x(\tau_y(c)+bc)+a(\tau_y(c)+bc)=\tau_x\tau_y(c)+\tau_x(bc)+a\tau_y(c)+a(bc).
-    \]
-    По \textup{(A)} имеем $\tau_x\tau_y(c) = \tau_{xy}(c)$. По условию
-    $\tau_x\in\Der(I)$ и \textup{(B)} имеем
-    \[
-        \tau_x(bc) + a\tau_y(c) = \tau_x(b)c+b\,\tau_x(c) = \tau_x(b)c.
-    \]
-    Наконец, так как $I$ ассоциативна, то $a(bc)=(ab)c$. Следовательно, вторые
-    компоненты совпадают, что и доказывает ассоциативность $R\ltimes_{\tau} I$.
-
-    \medskip
-
-    Пусть теперь алгебра $R\ltimes_{\tau} I$ ассоциативна. Подставляя в тождество
-    ассоциативности \eqref{eq:semidirect-assoc} тройку $(x,0),(y,0),(0,c)$,
-    получаем
-    \[
-        ((x,0)(y,0))(0,c)=(xy,0)(0,c)=(0,\tau_{xy}(c)),
-    \]
-    \[
-        (x,0)((y,0)(0,c))=(x,0)(0,\tau_y(c))=(0,\tau_x\tau_y(c)),
-    \]
-    откуда следует (A).
-
-    \medskip
-
-    Далее, подставляя в \eqref{eq:semidirect-assoc} тройку $(x,0),(0,b),(0,c)$,
-    получаем
-    \[
-        ((x,0)(0,b))(0,c)=(0,\tau_x(b))(0,c)=(0,\tau_x(b)c),
-    \]
-    \[
-        (x,0)((0,b)(0,c))=(x,0)(0,bc)=(0,\tau_x(bc)),
-    \]
-    то есть $\tau_x(bc)=\tau_x(b)c$ для всех $b,c\in I$. Так как
-    $\tau_x\in\Der(I)$, имеем
-    \[
-        \tau_x(bc)=\tau_x(b)c+b\,\tau_x(c),
-    \]
-    и потому $b\,\tau_x(c)=0$ для всех $x \in R$ и $b,c\in I$, что равносильно (B).
-\end{proof}
-\begin{theorem}\label{th:semidirect-pre-lie}
-    %
-    Пусть $R$ и $I$ "--- левосимметрические алгебры и $\tau\colon
-    R^{(-)}\to\Der(I)$ "--- гомоморфизм алгебры Ли $R^{(-)}$ в $\Der(I)$. Тогда
-    алгебра $R\ltimes_{\tau} I$ является левосимметрической. Более того,
-    $(R\ltimes_{\tau} I)^{(-)}$ изоморфна полупрямой сумме $R^{(-)}\ltimes_\tau
-    I^{(-)}$, причем
-    \[
-        [(x,a),(y,b)]=\bigl([x,y],\ \tau_x(b)-\tau_y(a)+[a,b]\bigr).
-    \]
-\end{theorem}
-\begin{proof}
-    %
-    Непосредственным вычислением находим формулу коммутатора в $(R\ltimes_{\tau}
-    I)^{(-)}$:
-    \[
-        [(x,a),(y,b)]=\bigl([x,y],\ \tau_x(b)-\tau_y(a)+[a,b]\bigr),
-    \]
-    и тем самым получаем изоморфизм $(R\ltimes_{\tau} I)^{(-)} \simeq
-    R^{(-)}\ltimes_\tau I^{(-)}$.
-
-    \medskip
-
-    Докажем левосимметричность $R\ltimes_{\tau} I$.
-
-    \medskip
-
-    Для $(x,a) \in R\ltimes_{\tau} I$ оператор $L_{(x,a)}$ действует на
-    $R\ltimes_{\tau} I$ по формуле
-    \[
-        L_{(x,a)}(y,b)=(xy,\ \tau_x(b)+ab),
-    \]
-    то есть $L_{(x,a)}|_R = L_x$ и $L_{(x,a)}|_I = \tau_x+L_a$.
-
-    \medskip
-
-    Так как $R$ и $I$ левосимметрические, получаем $[L_x,L_y]=L_{[x,y]}$ и
-    $[L_a,L_b]=L_{[a,b]}$. Кроме того, поскольку $\tau$ "--- гомоморфизм алгебры Ли
-    $R^{(-)}$ в $\Der(I)$, имеем $[\tau_x,\tau_y]=\tau_{[x,y]}$ и
-    $[\tau_x,L_a]=L_{\tau_x(a)}$.
-
-    Пользуясь полученными тождествами, в ограничениях на $R$ и $I$ получаем
-    \begin{align*}
-        \restr{[L_{(x,a)}, L_{(y,b)}]}{R}
-         & = [L_x, L_y] = L_{[x,y]}                                        \\
-         & = \restr{L_{[(x,a),(y,b)]}}{R},                                 \\
-        \restr{[L_{(x,a)}, L_{(y,b)}]}{I}
-         & = [\tau_x + L_a, \tau_y + L_b]                                  \\
-         & = [\tau_x, \tau_y] + [L_a, \tau_y] + [\tau_x, L_b] + [L_a, L_b] \\
-         & = \tau_{[x,y]} - L_{\tau_y(a)} + L_{\tau_x(b)} + L_{[a,b]}      \\
-         & = \tau_{[x,y]} + L_{[a,b] + \tau_x(b) - \tau_y(a)}              \\
-         & = \restr{L_{([x,y],\ \tau_x(b) - \tau_y(a) + [a,b])}}{I}        \\
-         & = \restr{L_{[(x,a),(y,b)]}}{I}.
-    \end{align*}
-
-    Поскольку оба оператора $[L_{(x,a)}, L_{(y,b)}]$ и $L_{[(x,a),(y,b)]}$
-    сохраняют подпространства $R$ и $I$ и совпадают на них, получаем
-    \[
-        [L_{(x,a)},L_{(y,b)}]=L_{[(x,a),(y,b)]}.\qedhere
-    \]
-\end{proof}
-\begin{corollary}\label{corollary:enveloping-semidirect}
-    %
-    Пусть $\mathfrak{g} = \mathfrak{l}\ltimes_{\phi}\mathfrak{h}$ "--- полупрямая
-    сумма алгебр Ли, $R$ и $I$ "--- левосимметрические точные обертывающие алгебры
-    для $\mathfrak{l}$ и $\mathfrak{h}$ соответственно. Пусть также задан
-    гомоморфизм алгебр Ли $\tau\colon R^{(-)}\to\Der(I)$ такой, что индуцированное
-    действием $\tau$ действие алгебры Ли $R^{(-)}$ на $I^{(-)}$ совпадает с
-    действием $\phi$. Тогда алгебра $R\ltimes_{\tau} I$ является левосимметрической
-    точной обертывающей алгеброй алгебры Ли $\mathfrak{g}$.
-\end{corollary}
-\begin{proof}
-    %
-    По \crefDat{th:semidirect-pre-lie} алгебра $R\ltimes_{\tau}I$
-    левосимметрическая, а значит, Ли-допустима. Кроме того,
-    \[
-        (R\ltimes_{\tau}I)^{(-)}\simeq
-        R^{(-)}\ltimes_\tau I^{(-)}\simeq
-        \mathfrak{l}\ltimes_{\phi}\mathfrak{h} = \mathfrak{g},
-    \]
-    откуда $R\ltimes_{\tau}I$ является точной обертывающей алгеброй алгебры Ли
-    $\mathfrak{g}$.
-\end{proof}
-
-\subsection{Новая теорема для \texorpdfstring{$B_n$}{Bₙ}, \texorpdfstring{$C_n$}{Cₙ} и \texorpdfstring{$D_n$}{Dₙ}}\label{sec:new-Bn}
-%
-Используем \crefVin{th:semidirect-pre-lie} и ее
-\crefVin{corollary:enveloping-semidirect} для построения нильпотентных
-градуированных левосимметрических точных обертывающих алгебр для
-$N\Phi(\mathbb{K})$ типов $B_n$, $C_n$ и $D_n$.
-
-\medskip
-
-Пусть $\Psi = A_{n-1}^+$ из \eqref{eq:An-Root-System}. Системы положительных
-корней типов $D_n$, $C_n$ и $B_n$ можно представить в виде объединения
-(\cite[таблицы I--IV]{bourbaki72})
-\[
-    \begin{aligned}
-        D_n^+ & = \Psi \cup \{\epsilon_i+\epsilon_j \mid 1\le j<i\le n\}, \\
-        C_n^+ & = D_n^+ \cup \{2\epsilon_i \mid 1\le i\le n\},            \\
-        B_n^+ & = D_n^+ \cup \{\epsilon_i \mid 1\le i\le n\}.
-    \end{aligned}
-\]
-%
-Таким образом, $\Phi^+$ составляется из корней вида
-\[
-    r_{i,mj} = \epsilon_i - m\epsilon_j, \quad
-    1 \leq j \leq i  \leq n,\
-    m \in \{0, -1, +1\}.
-\]
-Базу системы корней $\Phi$ типов $D_n$, $C_n$ и $B_n$ запишем в виде $\Pi(\Phi)
-= \Pi(\Psi) \cup \{r_\Phi\}$, где
-\[
-    r_\Phi\coloneq
-    \begin{cases}
-        r_{2,-1}, & \Phi = D_n, \\
-        r_{1,-1}, & \Phi = C_n, \\
-        r_{10},   & \Phi = B_n.
-    \end{cases}
-\]
-
-% %
-% Полагая $e_r = e_{i,mj}$ при $r=p_{i,mj}$, получаем реализацию
-% $NB_n(\mathbb{K})$ алгебры $N\Phi(\mathbb{K})$ типа $B_n$ с умножением:
-% \begin{alignat*}{2}
-%     [e_{ij},e_{jv}]   & = e_{iv},    \quad &  & i > j > |v| \geq 0; \\
-%     [e_{jv},e_{i,-v}] & = e_{i,-j},  \quad &  & i > j > |v| > 0;    \\
-%     [e_{i0},e_{j0}]   & = 2e_{i,-j}, \quad &  & i > j \geq 1.
-% \end{alignat*}
-
-% \medskip
-
-Ясно, что $N\Psi = \langle e_r\mid r \in \Psi \rangle \simeq
-NT(n,\mathbb{K})^{(-)}$ является подалгеброй в $N\Phi(\mathbb{K})$ для системы
-корней $\Phi$ ранга $n$.
-
-\medskip
-
-Обозначая через $\phi$ присоединенное действие $NT(n,\mathbb{K})^{(-)}$ на
-идеале $T(r_\Phi)$, получаем разложение $N\Phi(\mathbb{K})$ в полупрямую сумму
-алгебр Ли
-\begin{equation}\label{eq:NBn-semi-direct-sum}
-    N\Phi(\mathbb{K})\simeq NT(n,\mathbb{K})^{(-)} \ltimes_\phi T(r_\Phi).
-\end{equation}
-
-\medskip
-
-По \crefDat{corollary:enveloping-semidirect} \crefRod{th:semidirect-pre-lie},
-чтобы построить точную обертывающую алгебру $N\Phi(\mathbb{K})$ типов $D_n$,
-$C_n$ и $B_n$ в виде полупрямой суммы ассоциативных алгебр, достаточно выбрать
-на идеале $T(r_\Phi)$ ассоциативное умножение
-\[
-    \cdot_\Phi\colon T(r_\Phi) \times T(r_\Phi) \to T(r_\Phi)
-\]
-такое, что $(T(r_\Phi), \cdot_\Phi)^{(-)} \simeq T(r_\Phi)$. Кроме того,
-присоединенное действие $\phi$ алгебры Ли $NT(n,\mathbb{K})^{(-)}$ на
-$T(r_\Phi)$ должно быть согласовано с $\cdot_\Phi$: оператор $\phi_x$ для
-каждого $x\in NT(n,\mathbb{K})$ должен быть дифференцированием ассоциативной
-алгебры $\bigl(T(r_\Phi),\cdot_\Phi\bigr)$.
-
-\medskip
-
-Для типов $D_n$ и $C_n$ идеал $T(r_\Phi)$ является абелевым и в качестве
-$\cdot_\Phi$ можем взять нулевое умножение.
-
-\medskip
-
-Рассмотрим тип $B_n$. Поскольку коммутант алгебры Ли $T(r_{10})$ лежит в ее
-центре $Z$, имеем $T(r_{10})^3 = 0$ и умножение
-\[
-    e_r \cdot_{B_n} e_s \coloneq
-    \begin{cases}
-        \dfrac12[e_r,e_s], & \Char \mathbb{K}\neq 2, \\[4pt]
-        0,                 & \text{иначе}
-    \end{cases}
-    \mathrlap{\qquad\bigl(e_r,e_s \in T(r_{10})\bigr)}
-\]
-дает ассоциативную точную обертывающую алгебру $\bigl(T(r_{10}),
-\cdot_{B_n}\bigr)$ для $T(r_{10})$.
-
-\begin{theorem}\label{th:Bn-pre-lie}
-    %
-    Полупрямая сумма ассоциативных алгебр
-    \[
-        R\Phi'(\mathbb{K}) \coloneq NT(n,\mathbb{K}) \ltimes_{\phi} \bigl(T(r_\Phi), \cdot_\Phi\bigr)
-    \]
-    является левосимметрической точной обертывающей алгебры $N\Phi(\mathbb{K})$
-    типа $D_n$, $C_n$ или $B_n$.
-\end{theorem}
-
-\begin{remark}\label{remark:RBnprime-nonassoc}
-    %
-    При $\Char\mathbb{K}\neq 2$ и $n \geq 3$ алгебра $RB'_n(\mathbb{K})$
-    неассоциативна независимо от конкретного выбора ассоциативного умножения на
-    $T(r_{10})$. Действительно, пусть $(\cdot)$ "--- любое ассоциативное умножение
-    на линейном пространстве $T(r_{10})$ такое, что $(T(r_{10}),\cdot)^{(-)}\simeq
-    T(r_{10})$.
-
-    \medskip
-
-    Если бы алгебра $NT(n,\mathbb{K})\ltimes_{\phi} \bigl(T(r_{10}),\cdot\bigr)$
-    была ассоциативной, то по \crefDat{th:semidirect-assoc-cond} имели бы
-    $\phi_x\bigl(T(r_{10})\bigr)\subset \Ann_r\bigl(T(r_{10}),\cdot\bigr)$ для всех
-    $x \in NT(n,\mathbb{K})$.
-
-    \medskip
-
-    Для любых $a,b\in \Ann_r\bigl(T(r_{10}),\cdot\bigr)$ имеем $a\cdot b=b\cdot
-    a=0$, то есть $[a,b] = 0$. Если классы элементов $a,b\in T(r_{10})$ в
-    $\quot{T(r_{10})}{Z}$ линейно независимы, то $[a,b]\ne 0$. Отсюда следует, что
-    проекция подпространства $\Ann_r(T(r_{10}),\cdot)$ в фактор
-    $\quot{T(r_{10})}{Z}$ имеет размерность не более $1$.
-
-    С другой стороны, при $n\ge 3$, присоединенное действие $\phi$ алгебры Ли
-    $NT(n,\mathbb{K})^{(-)}$ на факторе $\quot{T(r_{10})}{Z}$ нетривиально и имеет
-    образ размерности не менее $2$. Следовательно, существуют $x_1,x_2\in
-    NT(n,\mathbb{K})$ и $u_1,u_2\in T(r_{10})$ такие, что классы $\phi_{x_1}(u_1)$
-    и $\phi_{x_2}(u_2)$ в $\quot{T(r_{10})}{Z}$ линейно независимы. Получили
-    противоречие.
-\end{remark}
-
-\begin{remark}\label{remark:RCnprime-nonassoc}\label{remark:RDnprime-nonassoc}
-    %
-    Алгебра $RC'_n(\mathbb{K})$ не является ассоциативной при $n\ge 3$. Аналогично,
-    алгебра $RD'_n(\mathbb{K})$ не является ассоциативной при $n\ge 4$.
-
-    \medskip
-
-    Действительно, если бы одна из этих алгебр была ассоциативной, то по
-    \crefDat{th:semidirect-assoc-cond} выполнялось бы условие \textup{(A)}:
-    $\phi_{xy}=\phi_x\phi_y$ для всех $x,y\in NT(n,\mathbb{K})$. Возьмем $x =
-    e_{21}$ и $y = e_{32}$ (тогда $xy=0$ в $NT(n,\mathbb{K})$) и положим $u =
-    e_{2,-1} \in T(r_\Phi)$. Тогда $\phi_{xy}(u)=0$, но $\phi_x\phi_y(u)\ne 0$, то
-    есть $\phi_{xy}\ne\phi_x\phi_y$. Условие \textup{(A)} нарушается.
 \end{remark}
 
 \subsection{END}
@@ -2530,6 +2095,461 @@ $B_n$, в силу \eqref{InclusRBn-Dn}, определены и монотон�
 \end{remark}
 
 \FloatBarrier
+
+\chapter{Левосимметрические структуры на нильтреугольных алгебрах Шевалле}\label{ch:pre-lie}
+Точная обертывающая алгебра для $N\Phi(\mathbb{K})$ существует при любом типе
+$\Phi$ (\cref{p:mult-enveloping}). Однако специальные обертывающие $R_\Phi$
+типов с корнями разных длин, в частности $B_n$ и $C_n$, неассоциативны
+(\cref{l:Const-RPhi-Non-assoc}), а стандартной обертывающей $R_\Phi$ для типов
+$D_n$ $(n \geq 4)$ и $E_n$ не существует (\cref{p:Exc-Dn-En}). В этой главе для
+$N\Phi(\mathbb{K})$ типов $B_n$, $C_n$ и $D_n$ точные обертывающие алгебры
+строятся в классе левосимметрических алгебр, расширяющем класс ассоциативных
+алгебр; для типа $A_{n-1}$ ассоциативная точная обертывающая $NT(n,\mathbb{K})$
+указана в главе~1 (\S~\ref{sec:new-An}).
+
+\medskip
+
+В \S~\ref{sec:pre-lie-algs} развивается общий аппарат: левосимметрические
+алгебры и их полупрямые суммы. Здесь же (\cref{l:nonsing-deriv-pre-lie})
+левосимметрическая структура на $N\Phi(\mathbb{K})$ произвольного типа строится
+по невырожденному дифференцированию, однако лишь при ограничении на
+характеристику поля $\mathbb{K}$. Основная конструкция главы
+(\S~\ref{sec:semidirect-classical}) свободна от этого ограничения: для типов $B_n$, $C_n$ и
+$D_n$ левосимметрическая точная обертывающая алгебра над произвольным полем
+строится как полупрямая сумма алгебры $NT(n,\mathbb{K})$ и подходящего идеала
+алгебры Ли $N\Phi(\mathbb{K})$ (\cref{th:BnCnDn-pre-lie}).
+
+\section{Левосимметрические алгебры и их полупрямые суммы}\label{sec:pre-lie-algs}
+%
+Через $L_x\colon y\mapsto xy$ $(x,y \in R)$ обозначим линейные операторы левого
+умножения в алгебре $R$.
+\begin{definition}\label{def:pre-lie-algebra}
+    %
+    Алгебра $R$ над полем $\mathbb{K}$ называется \emph{левосимметрической} или
+    \emph{прелиевой}, если ее умножение удовлетворяет тождеству
+    \begin{equation*}
+        (xy)z-x(yz)=(yx)z-y(xz) \qquad (x,y,z\in R)
+    \end{equation*}
+    или, эквивалентно, отображение $L\colon x \mapsto L_x$ задает представление
+    алгебры Ли $R^{(-)}$ в $\mathfrak{gl}(R)$:
+    \begin{equation*}
+        [L_x,L_y]=L_{[x,y]} \mathrlap{\qquad (x,y \in R).}
+    \end{equation*}
+\end{definition}
+
+Как и в ассоциативном случае, всякая левосимметрическая алгебра Ли-допустима:
+если положить $[x,y]\coloneq xy-yx$, то $(R,[\ ,\ ])$ является алгеброй Ли.
+
+\medskip
+
+Левосимметрическую точную обертывающую алгебру для алгебры Ли $\mathfrak{g}$
+также называют \emph{аффинной} или \emph{левосимметрической структурой} на
+$\mathfrak{g}$. Хорошо известно (\cite{burde-pre-lie-survey}), что полупростая
+конечномерная алгебра Ли над полем характеристики 0 не допускает
+левосимметрических структур. В \cite{milnor-left-sym} Дж. Милнор поставил
+вопрос, эквивалентный вопросу о существовании левосимметрических структур для
+разрешимых алгебр Ли. В \cite{burde-counter-example} были построены примеры
+нильпотентных алгебр Ли, не допускающих левосимметрических структур.
+
+\medskip
+
+Дифференцирование $D$ алгебры Ли $\mathfrak{g}$ называется
+\emph{невырожденным}, если $\ker D = 0$. По
+\cite[следствие~3.4]{burde-pre-lie-survey}, наличие невырожденного
+дифференцирования в конечномерной алгебре Ли влечет существование на ней
+левосимметрической структуры. В следующей лемме приведем явную конструкцию
+такого умножения.
+\begin{lemma}\label{l:nonsing-deriv-pre-lie}
+    %
+    Пусть $D$ "--- невырожденное дифференцирование конечномерной алгебры Ли
+    $\mathfrak{g}$. Тогда формула $x \cdot y \coloneq D^{-1}[x, Dy]$ задает на
+    $\mathfrak{g}$ левосимметрическое умножение, для которого $(\mathfrak{g},
+    \cdot)^{(-)} = \mathfrak{g}$.
+\end{lemma}
+\begin{proof}
+    %
+    Из определения $D(x \cdot y) = [x, Dy]$. Поскольку $D$ "--- дифференцирование,
+    $D[x, y] = [Dx, y] + [x, Dy] = [x, Dy] - [y, Dx]$, откуда
+    \[
+        x \cdot y - y \cdot x = D^{-1}([x, Dy] - [y, Dx]) = D^{-1} D[x, y] = [x, y],
+    \]
+    то есть $(\mathfrak{g}, \cdot)^{(-)} = \mathfrak{g}$. Далее, применяя $D$ к
+    выражению $(x \cdot y) \cdot z - x \cdot (y \cdot z)$, получаем $[x \cdot y,
+    Dz] - [x, [y, Dz]]$, поэтому
+    \[
+        D\bigl((x \cdot y) \cdot z - x \cdot (y \cdot z) - (y \cdot x) \cdot z
+        + y \cdot (x \cdot z)\bigr)
+        = [x \cdot y - y \cdot x, Dz] - [[x, y], Dz] = 0
+    \]
+    по доказанному и тождеству Якоби. Невырожденность $D$ дает левосимметрическое
+    тождество.
+\end{proof}
+%
+Диагональное отображение $D(e_r) \coloneq \height(r) e_r$ ($r \in \Phi^+$)
+является дифференцированием алгебры $N\Phi(\mathbb{K})$ и невырождено при
+$\Char\mathbb{K} = 0$ либо $\Char\mathbb{K} > \height(\rho)$, где $\rho$ "---
+максимальный в $\Phi^+$ корень. По \crefDat{l:nonsing-deriv-pre-lie} формула
+\[
+    e_r \cdot e_s = D^{-1}[e_r, D e_s] =
+    \frac{\height(s)}{\height(r) + \height(s)}\, [e_r, e_s]
+    \qquad (r, s \in \Phi^+)
+\]
+задает левосимметрическую структуру на $N\Phi(\mathbb{K})$.
+
+\medskip
+
+Для построения левосимметрических точных обертывающих алгебр для алгебр Ли
+$N\Phi(\mathbb{K})$ типов $B_n$, $C_n$ и $D_n$ над произвольным полем
+$\mathbb{K}$ используем их разложения в полупрямые суммы подалгебры
+$NA_{n-1}(\mathbb{K})$ с подходящим идеалом.
+
+\begin{definition}[{{\cite[\S~1.2.11]{vinberg-onishik}}}]\label{def:semidirect-lie}
+    %
+    \emph{Полупрямой суммой $\mathfrak{g}\ltimes_{\phi} \mathfrak{h}$} алгебр
+    Ли $\mathfrak{g}$ и $\mathfrak{h}$ называется прямая сумма векторных
+    пространств $\mathfrak{g}$ и $\mathfrak{h}$, снабженная операцией
+    коммутирования по формуле
+    \[
+        [(x,a),(y,b)] = \bigl([x,y],\ \phi_x(b)-\phi_y(a) + [a,b]\bigr),
+    \]
+    где $\phi\colon\mathfrak{g}\to\Der(\mathfrak{h})$ "--- некоторый гомоморфизм
+    алгебры Ли $\mathfrak{g}$ в алгебру Ли дифференцирований $\Der(\mathfrak{h})$ и
+    $\phi_x = \phi(x)$.
+\end{definition}
+%
+Полупрямые суммы алгебр Ли возникают, например, в теореме Леви--Мальцева о
+разложении конечномерной алгебры Ли над полем характеристики 0 в полупрямую
+сумму разрешимого идеала и полупростой подалгебры
+\cite[\S~6.1]{vinberg-onishik}.
+
+По аналогии с \crefTvor{def:semidirect-lie}, введем понятие полупрямой суммы
+для левосимметрических алгебр.
+\begin{definition}\label{def:semidirect-pre-lie}
+    %
+    \emph{Полупрямой суммой}
+    $R\ltimes_{\tau} I$ левосимметрических алгебр $R$ и $I$ назовем прямую сумму
+    векторных пространств $R$ и $I$, снабженную операцией умножения по формуле
+    \[
+        (x,a)(y,b) = (xy,\ \tau_x(b) + ab),
+    \]
+    где $\tau\colon R^{(-)} \to \Der(I)$ "--- некоторый гомоморфизм алгебры Ли
+    $R^{(-)}$ в алгебру Ли дифференцирований $\Der(I)$ и $\tau_x = \tau(x)$.
+\end{definition}
+%
+Всякое дифференцирование левосимметрической алгебры $I$ является
+дифференцированием алгебры Ли $I^{(-)}$, то есть $\Der(I)\subset
+\Der(I^{(-)})$. Таким образом, при рассмотрении полупрямой суммы
+левосимметрических алгебр $R\ltimes_{\tau} I$ можно одновременно рассматривать
+и полупрямую сумму ассоциированных алгебр Ли $R^{(-)}$ и $I^{(-)}$ с тем же
+действием $\tau$.
+
+\medskip
+
+Как показывают следующие две теоремы, полупрямая сумма ассоциативных алгебр
+может быть неассоциативной, но всегда является левосимметрической.
+\begin{theorem}\label{th:semidirect-assoc-cond}
+    %
+    Пусть $R$ и $I$ "--- ассоциативные алгебры и $\tau\colon R^{(-)}\to\Der(I)$
+    "--- гомоморфизм алгебры Ли $R^{(-)}$ в $\Der(I)$. Алгебра $R\ltimes_{\tau} I$
+    ассоциативна тогда и только тогда, когда выполнены условия:
+    \begin{enumerate}
+        \item[\textup{(A)}] $\tau_{xy}=\tau_x\tau_y$ для всех $x,y\in R$;
+        \item[\textup{(B)}] $\tau_x(I)\subset \Ann_r(I)$ для всех $x\in R$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    %
+    Пусть выполняются условия (A) и (B). Так как $R$ ассоциативна, достаточно
+    проверить совпадение вторых компонент в равенстве
+    \begin{equation}\label{eq:semidirect-assoc}
+        ((x,a)(y,b))(z,c)=(x,a)((y,b)(z,c))
+    \end{equation}
+    %
+    для всех $x,y,z \in R$ и $a,b,c \in I$. По определению умножения в
+    $R\ltimes_{\tau} I$ имеем
+    \[
+        (x,a)(y,b)=(xy,\ \tau_x(b)+ab),\qquad (y,b)(z,c)=(yz,\ \tau_y(c)+bc).
+    \]
+    Поэтому вторая компонента левой части равна
+    \[
+        \tau_{xy}(c)+(\tau_x(b)+ab)c=\tau_{xy}(c)+\tau_x(b)c+(ab)c,
+    \]
+    а вторая компонента правой части равна
+    \[
+        \tau_x(\tau_y(c)+bc)+a(\tau_y(c)+bc)=\tau_x\tau_y(c)+\tau_x(bc)+a\tau_y(c)+a(bc).
+    \]
+    По \textup{(A)} имеем $\tau_x\tau_y(c) = \tau_{xy}(c)$. По условию
+    $\tau_x\in\Der(I)$ и \textup{(B)} имеем
+    \[
+        \tau_x(bc) + a\tau_y(c) = \tau_x(b)c+b\,\tau_x(c) = \tau_x(b)c.
+    \]
+    Наконец, так как $I$ ассоциативна, то $a(bc)=(ab)c$. Следовательно, вторые
+    компоненты совпадают, что и доказывает ассоциативность $R\ltimes_{\tau} I$.
+
+    \medskip
+
+    Пусть теперь алгебра $R\ltimes_{\tau} I$ ассоциативна. Подставляя в тождество
+    ассоциативности \eqref{eq:semidirect-assoc} тройку $(x,0),(y,0),(0,c)$,
+    получаем
+    \[
+        ((x,0)(y,0))(0,c)=(xy,0)(0,c)=(0,\tau_{xy}(c)),
+    \]
+    \[
+        (x,0)((y,0)(0,c))=(x,0)(0,\tau_y(c))=(0,\tau_x\tau_y(c)),
+    \]
+    откуда следует (A).
+
+    \medskip
+
+    Далее, подставляя в \eqref{eq:semidirect-assoc} тройку $(x,0),(0,b),(0,c)$,
+    получаем
+    \[
+        ((x,0)(0,b))(0,c)=(0,\tau_x(b))(0,c)=(0,\tau_x(b)c),
+    \]
+    \[
+        (x,0)((0,b)(0,c))=(x,0)(0,bc)=(0,\tau_x(bc)),
+    \]
+    то есть $\tau_x(bc)=\tau_x(b)c$ для всех $b,c\in I$. Так как
+    $\tau_x\in\Der(I)$, имеем
+    \[
+        \tau_x(bc)=\tau_x(b)c+b\,\tau_x(c),
+    \]
+    и потому $b\,\tau_x(c)=0$ для всех $x \in R$ и $b,c\in I$, что равносильно (B).
+\end{proof}
+\begin{theorem}\label{th:semidirect-pre-lie}
+    %
+    Пусть $R$ и $I$ "--- левосимметрические алгебры и $\tau\colon
+    R^{(-)}\to\Der(I)$ "--- гомоморфизм алгебры Ли $R^{(-)}$ в $\Der(I)$. Тогда
+    алгебра $R\ltimes_{\tau} I$ является левосимметрической. Более того,
+    $(R\ltimes_{\tau} I)^{(-)}$ изоморфна полупрямой сумме $R^{(-)}\ltimes_\tau
+    I^{(-)}$, причем
+    \[
+        [(x,a),(y,b)]=\bigl([x,y],\ \tau_x(b)-\tau_y(a)+[a,b]\bigr).
+    \]
+\end{theorem}
+\begin{proof}
+    %
+    Непосредственным вычислением находим формулу коммутатора в $(R\ltimes_{\tau}
+    I)^{(-)}$:
+    \[
+        [(x,a),(y,b)]=\bigl([x,y],\ \tau_x(b)-\tau_y(a)+[a,b]\bigr),
+    \]
+    и тем самым получаем изоморфизм $(R\ltimes_{\tau} I)^{(-)} \simeq
+    R^{(-)}\ltimes_\tau I^{(-)}$.
+
+    \medskip
+
+    Докажем левосимметричность $R\ltimes_{\tau} I$.
+
+    \medskip
+
+    Для $(x,a) \in R\ltimes_{\tau} I$ оператор $L_{(x,a)}$ действует на
+    $R\ltimes_{\tau} I$ по формуле
+    \[
+        L_{(x,a)}(y,b)=(xy,\ \tau_x(b)+ab),
+    \]
+    то есть $L_{(x,a)}|_R = L_x$ и $L_{(x,a)}|_I = \tau_x+L_a$.
+
+    \medskip
+
+    Так как $R$ и $I$ левосимметрические, получаем $[L_x,L_y]=L_{[x,y]}$ и
+    $[L_a,L_b]=L_{[a,b]}$. Кроме того, поскольку $\tau$ "--- гомоморфизм алгебры Ли
+    $R^{(-)}$ в $\Der(I)$, имеем $[\tau_x,\tau_y]=\tau_{[x,y]}$ и
+    $[\tau_x,L_a]=L_{\tau_x(a)}$.
+
+    Пользуясь полученными тождествами, в ограничениях на $R$ и $I$ получаем
+    \begin{align*}
+        \restr{[L_{(x,a)}, L_{(y,b)}]}{R}
+         & = [L_x, L_y] = L_{[x,y]}                                        \\
+         & = \restr{L_{[(x,a),(y,b)]}}{R},                                 \\
+        \restr{[L_{(x,a)}, L_{(y,b)}]}{I}
+         & = [\tau_x + L_a, \tau_y + L_b]                                  \\
+         & = [\tau_x, \tau_y] + [L_a, \tau_y] + [\tau_x, L_b] + [L_a, L_b] \\
+         & = \tau_{[x,y]} - L_{\tau_y(a)} + L_{\tau_x(b)} + L_{[a,b]}      \\
+         & = \tau_{[x,y]} + L_{[a,b] + \tau_x(b) - \tau_y(a)}              \\
+         & = \restr{L_{([x,y],\ \tau_x(b) - \tau_y(a) + [a,b])}}{I}        \\
+         & = \restr{L_{[(x,a),(y,b)]}}{I}.
+    \end{align*}
+
+    Поскольку оба оператора $[L_{(x,a)}, L_{(y,b)}]$ и $L_{[(x,a),(y,b)]}$
+    сохраняют подпространства $R$ и $I$ и совпадают на них, получаем
+    \[
+        [L_{(x,a)},L_{(y,b)}]=L_{[(x,a),(y,b)]}.\qedhere
+    \]
+\end{proof}
+\begin{corollary}\label{corollary:enveloping-semidirect}
+    %
+    Пусть $\mathfrak{g} = \mathfrak{l}\ltimes_{\phi}\mathfrak{h}$ "--- полупрямая
+    сумма алгебр Ли, $R$ и $I$ "--- левосимметрические точные обертывающие алгебры
+    для $\mathfrak{l}$ и $\mathfrak{h}$ соответственно. Пусть также задан
+    гомоморфизм алгебр Ли $\tau\colon R^{(-)}\to\Der(I)$ такой, что индуцированное
+    действием $\tau$ действие алгебры Ли $R^{(-)}$ на $I^{(-)}$ совпадает с
+    действием $\phi$. Тогда алгебра $R\ltimes_{\tau} I$ является левосимметрической
+    точной обертывающей алгеброй алгебры Ли $\mathfrak{g}$.
+\end{corollary}
+\begin{proof}
+    %
+    По \crefDat{th:semidirect-pre-lie} алгебра $R\ltimes_{\tau}I$
+    левосимметрическая, а значит, Ли-допустима. Кроме того,
+    \[
+        (R\ltimes_{\tau}I)^{(-)}\simeq
+        R^{(-)}\ltimes_\tau I^{(-)}\simeq
+        \mathfrak{l}\ltimes_{\phi}\mathfrak{h} = \mathfrak{g},
+    \]
+    откуда $R\ltimes_{\tau}I$ является точной обертывающей алгеброй алгебры Ли
+    $\mathfrak{g}$.
+\end{proof}
+
+\section{Левосимметрические структуры для типов \texorpdfstring{$B_n$}{Bₙ}, \texorpdfstring{$C_n$}{Cₙ} и \texorpdfstring{$D_n$}{Dₙ}}\label{sec:semidirect-classical}
+%
+Используем \crefVin{th:semidirect-pre-lie} и ее
+\crefVin{corollary:enveloping-semidirect} для построения нильпотентных
+градуированных левосимметрических точных обертывающих алгебр для
+$N\Phi(\mathbb{K})$ типов $B_n$, $C_n$ и $D_n$.
+
+\medskip
+
+Пусть $\Psi = A_{n-1}^+$ из \eqref{eq:An-Root-System}. Системы положительных
+корней типов $D_n$, $C_n$ и $B_n$ можно представить в виде объединения
+(\cite[таблицы I--IV]{bourbaki72})
+\[
+    \begin{aligned}
+        D_n^+ & = \Psi \cup \{\epsilon_i+\epsilon_j \mid 1\le j<i\le n\}, \\
+        C_n^+ & = D_n^+ \cup \{2\epsilon_i \mid 1\le i\le n\},            \\
+        B_n^+ & = D_n^+ \cup \{\epsilon_i \mid 1\le i\le n\}.
+    \end{aligned}
+\]
+%
+Всюду в этом параграфе считаем $n \geq 2$. Базу системы корней $\Phi$ типов
+$D_n$, $C_n$ и $B_n$ запишем в виде $\Pi(\Phi) = \Pi(\Psi) \cup \{r_\Phi\}$,
+где
+\[
+    r_\Phi\coloneq
+    \begin{cases}
+        \epsilon_2 + \epsilon_1, & \Phi = D_n, \\
+        2\epsilon_1,             & \Phi = C_n, \\
+        \epsilon_1,              & \Phi = B_n.
+    \end{cases}
+\]
+
+Ясно, что $N\Psi = \langle e_r\mid r \in \Psi \rangle \simeq
+NT(n,\mathbb{K})^{(-)}$ является подалгеброй в $N\Phi(\mathbb{K})$ для системы
+корней $\Phi$ ранга $n$.
+
+\medskip
+
+Обозначая через $\phi$ присоединенное действие $NT(n,\mathbb{K})^{(-)}$ на
+идеале $T(r_\Phi)$, получаем разложение $N\Phi(\mathbb{K})$ в полупрямую сумму
+алгебр Ли
+\begin{equation*}
+    N\Phi(\mathbb{K})\simeq NT(n,\mathbb{K})^{(-)} \ltimes_\phi T(r_\Phi).
+\end{equation*}
+
+\medskip
+
+По \crefDat{corollary:enveloping-semidirect} \crefRod{th:semidirect-pre-lie},
+чтобы построить точную обертывающую алгебру $N\Phi(\mathbb{K})$ типов $D_n$,
+$C_n$ и $B_n$ в виде полупрямой суммы ассоциативных алгебр, достаточно выбрать
+на идеале $T(r_\Phi)$ ассоциативное умножение
+\[
+    \cdot_\Phi\colon T(r_\Phi) \times T(r_\Phi) \to T(r_\Phi)
+\]
+такое, что $(T(r_\Phi), \cdot_\Phi)^{(-)} = T(r_\Phi)$. Кроме того,
+присоединенное действие $\phi$ алгебры Ли $NT(n,\mathbb{K})^{(-)}$ на
+$T(r_\Phi)$ должно быть согласовано с $\cdot_\Phi$: оператор $\phi_x$ для
+каждого $x\in NT(n,\mathbb{K})$ должен быть дифференцированием ассоциативной
+алгебры $\bigl(T(r_\Phi),\cdot_\Phi\bigr)$.
+
+\medskip
+
+Для типов $D_n$ и $C_n$ идеал $T(r_\Phi)$ является абелевым и в качестве
+$\cdot_\Phi$ можем взять нулевое умножение.
+
+\medskip
+
+Рассмотрим тип $B_n$. Поскольку коммутант алгебры Ли $T(\epsilon_1)$ лежит в ее
+центре $Z$, имеем $T(\epsilon_1)^3 = 0$ и умножение
+\[
+    e_r \cdot_{B_n} e_s \coloneq
+    \begin{cases}
+        \dfrac12[e_r,e_s], & \Char \mathbb{K}\neq 2, \\[4pt]
+        0,                 & \text{иначе}
+    \end{cases}
+    \mathrlap{\qquad\bigl(e_r,e_s \in T(\epsilon_1)\bigr)}
+\]
+дает ассоциативную точную обертывающую алгебру $\bigl(T(\epsilon_1),
+\cdot_{B_n}\bigr)$ для $T(\epsilon_1)$.
+
+\begin{theorem}\label{th:BnCnDn-pre-lie}
+    %
+    Полупрямая сумма ассоциативных алгебр
+    \[
+        R\Phi'(\mathbb{K}) \coloneq NT(n,\mathbb{K}) \ltimes_{\phi} \bigl(T(r_\Phi), \cdot_\Phi\bigr)
+    \]
+    является левосимметрической точной обертывающей алгебры $N\Phi(\mathbb{K})$
+    типа $D_n$, $C_n$ или $B_n$.
+\end{theorem}
+
+\medskip
+
+Базис $\{e_r \mid r \in \Phi^+\}$ задает на алгебре $R\Phi'(\mathbb{K})$
+градуировку решеткой корней $\mathbb{Z}\Phi$, согласованную с градуировкой
+Картана: $\mathbb{K}e_r \cdot \mathbb{K}e_s \subset \mathbb{K}e_{r+s}$
+(полагаем $e_{r+s}=0$ при $r+s\notin\Phi^+$), поскольку однородны матричное
+умножение в $NT(n,\mathbb{K})$, присоединенное действие $\phi$ и умножение
+$\cdot_\Phi$. Кроме того, произведение любых $m$ базисных элементов лежит в
+компоненте корня высоты не менее $m$, поэтому $R\Phi'(\mathbb{K})^{m}=0$ при $m
+> \height(\rho)$ и алгебра $R\Phi'(\mathbb{K})$ нильпотентна.
+
+\begin{remark}\label{remark:RBnprime-nonassoc}
+    %
+    При $\Char\mathbb{K}\neq 2$ и $n \geq 3$ алгебра $RB'_n(\mathbb{K})$
+    неассоциативна независимо от конкретного выбора ассоциативного умножения на
+    $T(\epsilon_1)$. Действительно, пусть $(\cdot)$ "--- любое ассоциативное
+    умножение на линейном пространстве $T(\epsilon_1)$ такое, что
+    $(T(\epsilon_1),\cdot)^{(-)} = T(\epsilon_1)$ и оператор $\phi_x$ для
+    каждого $x \in NT(n,\mathbb{K})$ является дифференцированием алгебры
+    $\bigl(T(\epsilon_1),\cdot\bigr)$.
+
+    \medskip
+
+    Если бы алгебра $NT(n,\mathbb{K})\ltimes_{\phi}
+    \bigl(T(\epsilon_1),\cdot\bigr)$ была ассоциативной, то по
+    \crefDat{th:semidirect-assoc-cond} имели бы
+    $\phi_x\bigl(T(\epsilon_1)\bigr)\subset \Ann_r\bigl(T(\epsilon_1),\cdot\bigr)$
+    для всех $x \in NT(n,\mathbb{K})$.
+
+    \medskip
+
+    Для любых $a,b\in \Ann_r\bigl(T(\epsilon_1),\cdot\bigr)$ имеем $a\cdot b=b\cdot
+    a=0$, то есть $[a,b] = 0$. Если классы элементов $a,b\in T(\epsilon_1)$ в
+    $\quot{T(\epsilon_1)}{Z}$ линейно независимы, то $[a,b]\ne 0$. Отсюда следует,
+    что проекция подпространства $\Ann_r(T(\epsilon_1),\cdot)$ в фактор
+    $\quot{T(\epsilon_1)}{Z}$ имеет размерность не более $1$.
+
+    С другой стороны, при $n\ge 3$, присоединенное действие $\phi$ алгебры Ли
+    $NT(n,\mathbb{K})^{(-)}$ на факторе $\quot{T(\epsilon_1)}{Z}$ нетривиально и
+    имеет образ размерности не менее $2$. Следовательно, существуют $x_1,x_2\in
+    NT(n,\mathbb{K})$ и $u_1,u_2\in T(\epsilon_1)$ такие, что классы
+    $\phi_{x_1}(u_1)$ и $\phi_{x_2}(u_2)$ в $\quot{T(\epsilon_1)}{Z}$ линейно
+    независимы. Получили противоречие.
+\end{remark}
+
+\begin{remark}\label{remark:RCnprime-nonassoc}\label{remark:RDnprime-nonassoc}
+    %
+    Алгебра $RC'_n(\mathbb{K})$ не является ассоциативной при $n\ge 3$. Аналогично,
+    алгебра $RD'_n(\mathbb{K})$ не является ассоциативной при $n\ge 4$.
+
+    \medskip
+
+    Действительно, если бы одна из этих алгебр была ассоциативной, то по
+    \crefDat{th:semidirect-assoc-cond} выполнялось бы условие \textup{(A)}:
+    $\phi_{xy}=\phi_x\phi_y$ для всех $x,y\in NT(n,\mathbb{K})$. Возьмем $x =
+    e_{21}$ и $y = e_{32}$ (тогда $xy=0$ в $NT(n,\mathbb{K})$) и положим $u =
+    e_{\epsilon_2+\epsilon_1} \in T(r_\Phi)$. Тогда $\phi_{xy}(u)=0$, но
+    $\phi_x\phi_y(u)\ne 0$, то есть $\phi_{xy}\ne\phi_x\phi_y$. Условие
+    \textup{(A)} нарушается.
+\end{remark}
 
 \chapter{Проблемы перечисления идеалов нильтреугольных алгебр Шевалле}\label{ch:enumeration}
 Проблемы комбинаторного перечисления стандартных идеалов и всех идеалов алгебр
