@@ -1,16 +1,14 @@
 %-------------------------------------------------
 \numberwithin{equation}{section}
+\RequirePackage{thmtools}
 %-------------------------------------------------
-\theoremstyle{plain}
-\newtheorem{theorem}{Теорема}
-\newtheorem{corollary}{Следствие}[theorem]
-\newtheorem{lemma}{Лемма}[section]
-\newtheorem{proposition}{Предложение}
-%-------------------------------------------------
-\theoremstyle{definition}
-\newtheorem{definition}{Определение}
+\declaretheorem[name=Теорема, numberwithin=section, style=plain]{theorem}
+\declaretheorem[name=Следствие, sibling=theorem, style=plain]{corollary}
+\declaretheorem[name=Лемма, sibling=theorem, style=plain]{lemma}
+\declaretheorem[name=Предложение, sibling=theorem, style=plain]{proposition}
+\declaretheorem[name=Определение, sibling=theorem, style=definition]{definition}
 %\newtheorem{proof}{Доказательство}\def\theproof{}
-\newtheorem{remark}{Замечание}
+\declaretheorem[name=Замечание, sibling=theorem, style=definition]{remark}
 
 %-------------------------------------------------
 % Проверка правильности префиксов лейблов
