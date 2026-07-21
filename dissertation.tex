@@ -2690,11 +2690,11 @@ $\mathbb{F}_q^m$ обозначим через $V_q(m,t)$. В~\cite[лемма 2
     \end{equation}
 \end{lemma}
 
-\medskip
-
 В~\cite[заключение]{IzvIrkGU-2016} высказывалась потребность
 алгебраически-комбинаторного доказательства формул \eqref{eq:vmt-rec-egorychev}
-и \eqref{eq:vmt-comb-egorychev}. Доказана
+и \eqref{eq:vmt-comb-egorychev}. Рекуррентная формула
+\eqref{eq:vmt-rec-egorychev} получается перенесением схемы перечисления
+канонических баз из \crefRod{l:LieIdeal} (\S~\ref{sec:canonicalbase}). Доказана
 
 \begin{lemma}[{{\cite[лемма 2.3]{smj2023}}}]\label{l:vmt-comb}
     %
@@ -2708,8 +2708,6 @@ $\mathbb{F}_q^m$ обозначим через $V_q(m,t)$. В~\cite[лемма 2
 \begin{proof}
     Докажем формулу \eqref{eq:vmt-comb} для числа $V_q(m, t)$ всех координатно
     полных $t$-мерных подпространств в $\mathbb{F}_q^m$.
-    Н.\,Д. Ходюня получает рекуррентную формулу \eqref{eq:vmt-rec-egorychev}
-    перенесением схемы перечисления канонических баз в \crefPred{l:LieIdeal}.
 
     \medskip
 
@@ -2947,7 +2945,7 @@ $N\Phi(q)$ классических типов, в \cite[\S\ 4]{vmj2015} рас�
 
     \begin{equation}\label{eq:base1'}
         \alpha_i=  \sum_{j=1}^m a_{ij}e_{r_j}+\alpha_i' ,\quad
-        i=1,2,\dots, t,\quad  t= \dim_K\ H / H \cap Q(\mathcal{L}),
+        i=1,2,\dots, t,\quad  t= \dim_{\mathbb{K}} H / H \cap Q(\mathcal{L}),
     \end{equation}
 
     где $||a_{ij}||$ "--- $t\times m$-матрица ранга $t$ над $\mathbb{K}$\ $(t \leq
@@ -3017,7 +3015,7 @@ $N\Phi(q)$ классических типов, в \cite[\S\ 4]{vmj2015} рас�
 \]
 (последнее слагаемое при $m=2$ отбрасываем). Упрощая в
 \eqref{eq:base1'} элементы $\alpha_i$ по модулю $H \cap Q(\mathcal{L})$,
-находим $d_i\in K$ такие, что $\alpha_i'= d_ie_{s_k}, \
+находим $d_i\in \mathbb{K}$ такие, что $\alpha_i'= d_ie_{s_k}, \
 i=1,2, \dots, t.$
 
 \medskip
@@ -3025,7 +3023,7 @@ i=1,2, \dots, t.$
 Таким образом, идеал $H$ представляется в виде
 
 \begin{equation}\label{eq:IdH0}
-    Id\ \{ \mathcal{L}, k, t, ||a_{ij}||,\ c, d_1, \dots d_t \}\ \coloneq
+    Id\ \{ \mathcal{L}, k, t, ||a_{ij}||,\ c, d_1, \dots, d_t \}\ \coloneq
     \sum_{i=1}^t \ \mathbb{K}(d_ie_{s_k}+\sum_{j=1}^m a_{ij}e_{r_j})+
 \end{equation}
 \[
@@ -3036,25 +3034,25 @@ i=1,2, \dots, t.$
 множество углов $\mathcal{L}=\mathcal{L}(H)$ вида \eqref{eq:R-stepsId},
 параметры $k, t$ с условиями
 \[
-    1\leq k\leq n-1-\height(s),\quad 1\leq t= \dim_K\ H / H \cap Q(\mathcal{L}) <|\mathcal{L}|=m <n,
+    1\leq k\leq n-1-\height(s),\quad 1\leq t= \dim_{\mathbb{K}} H / H \cap Q(\mathcal{L}) <|\mathcal{L}|=m <n,
 \]
 элементы $c\neq 0$, $d_1, \dots , d_t$ из $\mathbb{K}$ и $t\times m$-матрица
 $||a_{ij}||$ над $\mathbb{K}$ ранга $t$\ с условиями $a_{12}=c$ и
 \eqref{eq:base-1}. Тем самым, доказана
 
-\begin{theorem}\label{th:ExIdForm}
+\begin{theorem}[{{\cite[теорема 6]{smj2023}}}]\label{th:ExIdForm}
     В обертывающей алгебре $RD_n(\mathbb{K})$ всякий нестандартный идеал $H$
     имеет множество углов $\mathcal{L}=\mathcal{L}(H)$ вида
     \eqref{eq:R-stepsId} и представляется как идеал \eqref{eq:IdH0},
     однозначно характеризуемый набором $\mathcal{L}, k, t, ||a_{ij}||,\
-    c, d_1, \dots d_t$.
+    c, d_1, \dots, d_t$.
 \end{theorem}
 
 \section{Метод коэффициентов и перечисление идеалов алгебры \texorpdfstring{$RD_n(q)$}{RDₙ(q)}}\label{sec:egorychev-RDn}
 %
 \Cref{th:enum-stand-id-classical}, решая проблему 1 из \cite{sigsam2001}
 о числе всех стандартных идеалов алгебры Ли $N\Phi(q)$ классического типа над
-полем $K=GF(q)$, дает и число всех идеалов ее обертывающей алгебры
+полем $\mathbb{K}=GF(q)$, дает и число всех идеалов ее обертывающей алгебры
 $R_{\Phi}(q)$, когда она стандартна.
 
 В силу теорем \ref{th:enum-stand-id-classical} и \ref{th:classical-Exc-RDn},
@@ -3066,8 +3064,8 @@ $R_{\Phi}(q)$, когда она стандартна.
 
 Основной в этом параграфе является
 
-\begin{theorem}\label{th:Enum-Dn}
-    Число нестандартных идеалов алгебры $RD_n(q)$ равно
+\begin{theorem}[{{\cite[теорема 7]{smj2023}}}]\label{th:Enum-Dn}
+    Число нестандартных идеалов алгебры $RD_n(q)$ $(n \geq 3)$ равно
     \[
         \sum_{m=2}^{n-1} \binom{n-2}{m-2}\binom{n-1}{m}
         \sum_{t=1}^{m-1}q^t(q-1)
@@ -3079,14 +3077,14 @@ $R_{\Phi}(q)$, когда она стандартна.
     Нестандартные идеалы алгебры $RD_n(q)$, по \crefDat{th:ExIdForm},
     исчерпываются идеалами вида~\eqref{eq:IdH0},
     которые характеризуются однозначно набором $\mathcal{L}, k, t,
-    ||a_{ij}||,\ c, d_1, \dots d_t$. Записывая $\mathcal{L}$ как в
+    ||a_{ij}||,\ c, d_1, \dots, d_t$. Записывая $\mathcal{L}$ как в
     \eqref{eq:R-stepsId} в матричном представлении, считаем
     \[
         e_{s}=e_{i1},\quad e_{\bar{s}}=e_{i,-1},\quad e_{s_k}=e_{i+k,1}\quad (2\leq i\leq n-k).
     \]
     Через $B(m,n,i,k)$ обозначим число всевозможных $m$-элементных множеств углов
     вида \eqref{eq:R-stepsId}, у которых два угла соответствуют базисным элементам
-    $e_{s}$ и $e_{\bar{s}}$ и нет углов в строках с номерами $j$, $i < j \leq k$.
+    $e_{s}$ и $e_{\bar{s}}$ и нет углов в строках с номерами $j$, $i < j \leq i+k$.
     Нам потребуется
 
     \begin{lemma}\label{l:rdn}
@@ -3098,14 +3096,16 @@ $R_{\Phi}(q)$, когда она стандартна.
     \end{lemma}
 
     \begin{proof}
-        При фиксированных $|\mathcal{L}|= m$ и $\mathbb{K}$ число способов выбора
-        параметра $c\neq 0$ в $K=GF(q)$ и наборов $(d_1, \dots , d_t)$
-        над $\mathbb{K}$ равно $q^t(q-1)$. Согласно доказательству леммы
-        \ref{l:LieIdeal}, число возможностей выбора матриц $||a_{ij}||$,
-        требуемых для канонических базисов идеалов, совпадает с
-        $V_q(m-1,t)$ при любых $t,m$. Отсюда для числа
-        нестандартных идеалов алгебры $RD_n(q)$ получаем формулу
-        \eqref{eq:enum-Dn-1}.
+        %
+        При фиксированных $|\mathcal{L}|= m$ и $k$ число способов выбора параметра
+        $c\neq 0$ в $\mathbb{K}=GF(q)$ и наборов $(d_1, \dots , d_t)$ над $\mathbb{K}$
+        равно $q^t(q-1)$. Согласно доказательству \crefRod{l:LieIdeal}, число
+        возможностей выбора матриц $||a_{ij}||$, требуемых для канонических базисов
+        идеалов, совпадает с $V_q(m-1,t)$ при $1 \leq t \leq m-1$: ввиду $a_{12}=c$ и
+        условий \eqref{eq:base-1} второй столбец матрицы равен $(c,0,\dots,0)^T$, а
+        остальные столбцы образуют каноническую $t\times(m-1)$-матрицу без нулевых
+        столбцов. Отсюда для числа нестандартных идеалов алгебры $RD_n(q)$ получаем
+        формулу \eqref{eq:enum-Dn-1}.
     \end{proof}
 
     Второе и третье суммирования в комбинаторной сумме~\eqref{eq:enum-Dn-1}
@@ -3140,8 +3140,8 @@ $R_{\Phi}(q)$, когда она стандартна.
     \[\sum_k (f(w))^k\res_z\{A(z)z^{-k-1}\} = A(f(w)).\]
 
     Если $C(w)=\sum_kc_kw^k$ из $L$ есть производящая функция для
-    последовательности $\{c_k\}$, то $c_k=\res_wC(w)w^{-k-1}$ для любого
-    $\mathbb{K}$. Когда $n,k = 0,1,2,\dots$, приходим к биномиальным коэффициентам
+    последовательности $\{c_k\}$, то $c_k=\res_wC(w)w^{-k-1}$ для любого $k$. Когда
+    $n,k = 0,1,2,\dots$, приходим к биномиальным коэффициентам
     %
     \begin{equation}\label{integral_formula}
         \binom{n}{k} = \res_w\{\frac{(1+w)^n}{w^{k+1}}\} = \frac{1}{2\pi
@@ -3149,13 +3149,11 @@ $R_{\Phi}(q)$, когда она стандартна.
             w \rvert=\theta} \frac{(1+w)^n}{w^{k+1}}\,dw,\ \theta > 0,
     \end{equation}
     \[
-        \binom{-n}{k} \coloneq \binom{n+k-1}{k} =
+        (-1)^k\binom{-n}{k} = \binom{n+k-1}{k} =
         \res_w\{\frac{(1-w)^{-n}}{w^{k+1}}\} = \frac{1}{2\pi
             i}\int_{\lvert
             w \rvert=\theta} \frac{(1-w)^{-n}}{w^{k+1}}\,dw,\ 0 < \theta < 1.
     \]
-
-    \medskip
 
     В доказательстве \crefRod{th:Enum-Dn} основной является
     %
@@ -3186,9 +3184,9 @@ $R_{\Phi}(q)$, когда она стандартна.
             B^{(+)}(u,v,l) =
             \binom{u+v}{l}\binom{u}{l} - \binom{u+v-1}{l-1}\binom{u+1}{l+1}.
         \end{equation}
-        Несложная индукция по $v$ дает также равенство
+        Несложная индукция по $l$ дает также равенство
         \begin{eqnarray}\label{bminus}
-            B^{(-)}(u,v) = \binom{u+1}{2v}.
+            B^{(-)}(u,l) = \binom{u+1}{2l}.
         \end{eqnarray}
 
         В силу~\eqref{Bmnik}-\eqref{bminus}, второе и третье суммирования
@@ -3206,12 +3204,12 @@ $R_{\Phi}(q)$, когда она стандартна.
             \right\}
             - \res_{z,w}\left\{ \frac{(1+z)^{u+v-1}}{z^l}\frac{(1+w)^{u+1}}{w^{(l+1)+1}}
             \right\} = \\
-            = \res_{z,w}\left\{ \frac{(1+z)^{u+v-1}(1+w)^u}{z^{l+2}}(w-z) \right\}
+            = \res_{z,w}\left\{ \frac{(1+z)^{u+v-1}(1+w)^u}{z^{l+1}w^{l+2}}(w-z) \right\}
         \end{gather*}
         и, тем самым,
         \begin{equation}\label{integral_formula_bplus}
             \begin{gathered}
-                B^{(+)}(n-i-k, i+k-1, m - 2 - l) \coloneq \\
+                B^{(+)}(n-i-k, i+k-1, m - 2 - l) = \\
                 \res_{z,w}\left\{ \frac{(1+z)^{n-2}(1+w)^{n-i-k}}{z^{(m-2-l) +
                         1}w^{(m-1-l)
                         + 1}}(w-z) \right\}.
@@ -3251,7 +3249,7 @@ $R_{\Phi}(q)$, когда она стандартна.
         \end{gather*}
         ($\lvert w\rvert \gg 1$, $\lvert (1 + \sqrt{zw})/(1+w)\rvert < 1$,
         $\lvert (1-\sqrt{zw})/(1+w) \rvert < 1$, суммирование по индексам
-        $i$ и $\mathbb{K}$, формула геометрической прогрессии)
+        $i$ и $k$, формула геометрической прогрессии)
         \begin{gather*}
             \frac{1}{2}\res_{z,w}\{
             \frac{(1+z)^{n-2}(1+w)^{n-2}(w-z)}{z^{(m-2)+1}w^{(m-1)+1}} \times \\
@@ -3271,8 +3269,8 @@ $R_{\Phi}(q)$, когда она стандартна.
             \res_{z,w}\left\{
             \frac{(1+z)^{n-2}(1+w)^{n-1}}{z^{(m-2)+1}w^{m+1}} \right\} =
             \\
-            \res_{z,w}\left\{ \frac{(1+z)^{n-2}}{z^{(m-2)+1}} \right\} \times
-            \res_{z,w}\left\{ \frac{(1+w)^{n-1}}{w^{m+1}} \right\} \coloneq
+            \res_{z}\left\{ \frac{(1+z)^{n-2}}{z^{(m-2)+1}} \right\} \times
+            \res_{w}\left\{ \frac{(1+w)^{n-1}}{w^{m+1}} \right\} =
             \binom{n-2}{m-2}\binom{n-1}{m}.
         \end{gather*}
         Тем самым, доказательство \crefRod{l:B'-Dn} завершается.
@@ -3281,6 +3279,23 @@ $R_{\Phi}(q)$, когда она стандартна.
     Применяя к \crefDat{l:rdn} \cref{l:vmt-comb,l:B'-Dn}, получаем утверждение
     \crefRod{th:Enum-Dn}.
 \end{proof}
+
+\begin{remark}\label{remark:Enum-Dn-inner-sum}
+    %
+    Тождество $V_q(m,t)=(q-1)^{m-t}S_q[m,t]$ (\S~\ref{s:coordinate-complete}) и
+    стандартное рекуррентное соотношение
+    $S_q[m,t]=S_q[m-1,t-1]+\frac{q^t-1}{q-1}\,S_q[m-1,t]$ для $q$-чисел Стирлинга
+    второго рода после умножения на $(q-1)^{m-t}$ и суммирования по $t$ дают
+    тождество
+    \[
+        \sum_{t=1}^{m} V_q(m,t) = \sum_{t=1}^{m-1} q^t\,V_q(m-1,t).
+    \]
+    Поэтому число нестандартных идеалов алгебры $RD_n(q)$ из \crefRod{th:Enum-Dn}
+    равно
+    \[
+        (q-1)\,\sum_{m=2}^{n-1}\binom{n-2}{m-2}\binom{n-1}{m}\sum_{t=1}^{m}V_q(m,t).
+    \]
+\end{remark}
 
 \begin{remark}\label{remark:problem-2}
     В отличие от идеалов алгебры $RD_n(\mathbb{K})$, для идеалов $H$ алгебры Ли
