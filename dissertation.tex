@@ -3144,13 +3144,13 @@ $R_{\Phi}(q)$, когда она стандартна.
     $n,k = 0,1,2,\dots$, приходим к биномиальным коэффициентам
     %
     \begin{equation}\label{integral_formula}
-        \binom{n}{k} = \res_w\{\frac{(1+w)^n}{w^{k+1}}\} = \frac{1}{2\pi
+        \binom{n}{k} = \res_w\left\{\frac{(1+w)^n}{w^{k+1}}\right\} = \frac{1}{2\pi
             i}\int_{\lvert
             w \rvert=\theta} \frac{(1+w)^n}{w^{k+1}}\,dw,\ \theta > 0,
     \end{equation}
     \[
         (-1)^k\binom{-n}{k} = \binom{n+k-1}{k} =
-        \res_w\{\frac{(1-w)^{-n}}{w^{k+1}}\} = \frac{1}{2\pi
+        \res_w\left\{\frac{(1-w)^{-n}}{w^{k+1}}\right\} = \frac{1}{2\pi
             i}\int_{\lvert
             w \rvert=\theta} \frac{(1-w)^{-n}}{w^{k+1}}\,dw,\ 0 < \theta < 1.
     \]
@@ -3237,7 +3237,7 @@ $R_{\Phi}(q)$, когда она стандартна.
             \times \frac{(1 + \sqrt{zw})^{i-2} + (1 - \sqrt{zw})^{i-2}}{2}
             \right\}
             = \\
-            \frac{1}{2}\res_{z,w} \{
+            \frac{1}{2}\res_{z,w} \biggl\{
             %
             \frac{(1+z)^{n-2}(1+w)^{n-2}(w-z)}{z^{(m-2)+1}w^{(m-1)+1}} \times \\
             \left[ \sum_{i=2}^{\infty} \left(
@@ -3245,18 +3245,18 @@ $R_{\Phi}(q)$, когда она стандартна.
             \frac{1-\sqrt{zw}}{1+w}\right)^{i-2} \right] \times
             \sum_{k=1}^{\infty}\left(\frac{1}{1+w}\right)^k
             %
-            \} =
+            \biggr\} =
         \end{gather*}
         ($\lvert w\rvert \gg 1$, $\lvert (1 + \sqrt{zw})/(1+w)\rvert < 1$,
         $\lvert (1-\sqrt{zw})/(1+w) \rvert < 1$, суммирование по индексам
         $i$ и $k$, формула геометрической прогрессии)
         \begin{gather*}
-            \frac{1}{2}\res_{z,w}\{
+            \frac{1}{2}\res_{z,w}\biggl\{
             \frac{(1+z)^{n-2}(1+w)^{n-2}(w-z)}{z^{(m-2)+1}w^{(m-1)+1}} \times \\
             \left[ 1/(1 - \frac{1+ \sqrt{zw}}{1+w}) + 1 / (1 - \frac{1 -
                 \sqrt{zw}}{1+w}) \right] \times \frac{1}{1+w} \times \frac{1}{1 -
                 \frac{1}{1+w}}
-            \} = \\
+            \biggr\} = \\
             \frac{1}{2}\res_{z,w}\left\{
             \frac{(1+z)^{n-2}(1+w)^{n-1}(w-z)}{z^{(m-2)+1}w^{(m-1)+1}} \times
             \left[ \frac{1}{w-\sqrt{zw}} + \frac{1}{w + \sqrt{zw}} \right]
