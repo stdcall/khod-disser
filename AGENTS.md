@@ -225,7 +225,7 @@ L$. В работе может встретиться под названием 
   (\ref{def:pre-lie-algebra}), полупрямые суммы левосимметрических алгебр
   (\ref{def:semidirect-pre-lie}, \ref{th:semidirect-assoc-cond},
   \ref{th:semidirect-pre-lie}).
-- \ref{sec:new-Bn} — теорема \ref{th:Bn-pre-lie}: построение нильпотентной
+- \ref{sec:new-Bn} — теорема \ref{th:BnCnDn-pre-lie}: построение нильпотентной
   градуированной левосимметрической точной обертывающей для $N\Phi(\mathbb{K})$
   типов $B_n$, $C_n$, $D_n$ через полупрямую сумму
   $NT(n,\mathbb{K}) \ltimes_\phi \bigl(T(r_\Phi), \cdot_\Phi\bigr)$.
