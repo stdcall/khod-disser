@@ -23,3 +23,6 @@ khod-disser-*
 releases
 scripts
 .claude/agents
+.codex
+examples
+thesis-stats.tex
