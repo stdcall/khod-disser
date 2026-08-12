@@ -1,0 +1,9 @@
+% Показатели объема диссертации. Значения пишет сборка dissertation.tex
+% в файл thesis-stats.tex; оба документа читают их отсюда.
+% Читаем после преамбулы: иначе totcount перетрет значения при чтении .aux.
+\newtotcounter{disschapters}
+\newtotcounter{disspages}
+\newtotcounter{dissfigures}
+\newtotcounter{disstables}
+\newtotcounter{dissrefs}
+\AfterEndPreamble{\InputIfFileExists{thesis-stats}{}{}}

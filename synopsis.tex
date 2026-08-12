@@ -1,0 +1,70 @@
+%&preformat-synopsis
+% Автореферат диссертации.
+% Порядок загрузки повторяет dissertation.tex (шрифты --- ДО polyglossia).
+\documentclass[a5paper,10pt,twoside,openany,article]{memoir}
+\newif\ifsynopsis  % Условие, проверяющее, что документ --- автореферат
+\synopsistrue
+
+\input{common/setup}
+% Номера теорем и разделов берем из dissertation.aux, чтобы они совпадали с
+% диссертацией. xr-hyper обязан идти до hyperref из common/packages.
+\usepackage{xr-hyper}
+\input{common/packages}
+\externaldocument{dissertation}
+\input{Synopsis/synpackages}
+\input{Synopsis/userpackages}
+
+\input{Synopsis/setup}
+
+\input{common/newnames}         % Новые переменные, для всего проекта
+\input{common/data}             % Основные сведения
+\input{common/stats}            % Показатели объема диссертации (из thesis-stats.tex)
+\input{common/fonts}
+% Шрифты должны загружаться ДО polyglossia
+\usepackage{polyglossia}
+\setmainlanguage[babelshorthands=true]{russian}
+\setotherlanguage{english}
+
+\input{common/styles}           % Стили общие для диссертации и автореферата
+\input{common/theorems}
+\input{common/math}
+\input{Synopsis/synstyles}
+\input{Synopsis/userstyles}
+\input{biblio/biblatex}
+
+\begin{document}
+%%% Переопределение именований типовых разделов
+\gappto\captionsrussian{\input{common/renames}} % for polyglossia and babel
+\input{common/renames}
+
+\input{Synopsis/title}        % Титульный лист
+\mainmatter*                  % Нумерация страниц начнётся с новой страницы
+\input{Synopsis/content}      % Содержание автореферата
+
+%%% Выходные сведения типографии
+\newpage\thispagestyle{empty}
+
+\vspace*{0pt plus1fill}
+
+\small
+\begin{center}
+    \textit{\thesisAuthor}
+    \par\medskip
+
+    \thesisTitle
+    \par\medskip
+
+    Автореф. дис. на соискание ученой степени \thesisDegreeShort
+    \par\bigskip
+
+    Подписано в печать
+    \blank[\widthof{999}].\blank[\widthof{999}].\blank[\widthof{99999}]. Заказ №
+    \blank[\widthof{999999999999}]
+
+    Формат 60\(\times\)90/16. Усл. печ. л. 1. Тираж 100 экз.
+
+    Типография \blank[0.5\linewidth]
+\end{center}
+\cleardoublepage
+
+\end{document}

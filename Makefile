@@ -1,20 +1,34 @@
 SHELL = /bin/bash
 MAINSOURCE = dissertation
+SYNSOURCE = synopsis
 COMMON = $(wildcard ./common/*.tex)
 BIB = $(wildcard ./*.bib) $(wildcard ./biblio/*.tex)
 DISS = $(wildcard ./Dissertation/*.tex)
+SYN = $(wildcard ./Synopsis/*.tex)
 
 # If BUILD_DIR is set, use it as output directory
 ifdef BUILD_DIR
 OUTDIR_FLAG = -outdir=$(BUILD_DIR)
 TARGET = $(BUILD_DIR)/$(MAINSOURCE).pdf
+SYNTARGET = $(BUILD_DIR)/$(SYNSOURCE).pdf
 else
 OUTDIR_FLAG =
 TARGET = $(MAINSOURCE).pdf
+SYNTARGET = $(SYNSOURCE).pdf
 endif
 
 $(TARGET): $(COMMON) $(BIB) $(DISS) latexmkrc $(MAINSOURCE).tex
 	latexmk $(OUTDIR_FLAG) $(MAINSOURCE).tex
+	@# thesis-stats.tex пишется в выходной каталог, автореферат ищет его в корне
+	@if [ -n "$(BUILD_DIR)" ]; then cp -f $(BUILD_DIR)/thesis-stats.tex .; fi
+
+# Автореферат
+synopsis: $(SYNTARGET)
+
+# Зависит от $(TARGET): автореферат читает thesis-stats.tex, который
+# создается сборкой диссертации в том же выходном каталоге.
+$(SYNTARGET): $(TARGET) $(COMMON) $(BIB) $(SYN) latexmkrc $(SYNSOURCE).tex
+	latexmk $(OUTDIR_FLAG) $(SYNSOURCE).tex
 
 # Convenience target - only when BUILD_DIR is set
 ifdef BUILD_DIR
@@ -25,6 +39,7 @@ clean:
 	latexmk -c
 	rm -rf `biber --cache`
 	rm -f $(MAINSOURCE).{aux,bcf,bbl,fls,log,out,run.xml,toc}
+	rm -f $(SYNSOURCE).{aux,bcf,bbl,fls,log,out,run.xml,toc}
 
 archive:
 	git ls-files | grep -v '\.pdf$$' | tar -czf archive-$$(date +%Y-%m-%d).tar.gz -T -
@@ -57,4 +72,4 @@ release: $(TARGET)
 		echo "Released archive as releases/$$ARCHIVE_NAME-$$COUNTER.tar.gz"; \
 	fi
 
-.PHONY: clean archive release
+.PHONY: clean archive release synopsis

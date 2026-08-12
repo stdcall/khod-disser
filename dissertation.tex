@@ -11,6 +11,7 @@
 
 \input{common/newnames}         % Новые переменные, для всего проекта
 \input{common/data}             % Основные сведения
+\input{common/stats}            % Показатели объема (общие с авторефератом)
 \input{common/fonts}
 % Шрифты должны загружаться ДО polyglossia
 \usepackage{polyglossia}
@@ -23,6 +24,22 @@
 \input{Dissertation/disstyles}
 \input{Dissertation/userstyles}
 \input{biblio/biblatex}
+
+% Выгружаем показатели объема для автореферата (см. common/stats.tex)
+\makeatletter
+\newwrite\thesis@statsout
+\newcommand{\thesis@stat}[1]{\ifcsname c@#1\endcsname\arabic{#1}\else 0\fi}
+\AtEndDocument{%
+    \immediate\openout\thesis@statsout=thesis-stats.tex
+    \immediate\write\thesis@statsout{\@percentchar\space Создается сборкой dissertation.tex. Не редактировать.}%
+    \immediate\write\thesis@statsout{\string\setcounter{disschapters@totc}{\thesis@stat{totalchapter@totc}}}%
+    \immediate\write\thesis@statsout{\string\setcounter{disspages@totc}{\thesis@stat{TotPages@totc}}}%
+    \immediate\write\thesis@statsout{\string\setcounter{dissfigures@totc}{\thesis@stat{totalcount@figure@totc}}}%
+    \immediate\write\thesis@statsout{\string\setcounter{disstables@totc}{\thesis@stat{totalcount@table@totc}}}%
+    \immediate\write\thesis@statsout{\string\setcounter{dissrefs@totc}{\thesis@stat{citenum@totc}}}%
+    \immediate\closeout\thesis@statsout
+}
+\makeatother
 
 \begin{document}
 %%% Переопределение именований типовых разделов
@@ -127,10 +144,12 @@ $N_{rs}=\pm 2$ или $\pm 3$ и $\Phi$ типа $G_2$. Согласно \cite[�
 $R_{\Phi}$ и их связь с алгеброй Ли $N\Phi(\mathbb{K})$ выявляет
 
 \begin{proposition}\label{p:mult-enveloping}
+    %<*p:mult-enveloping>
     %
     Каждая специальная обертывающая алгебра $R_{\Phi}$ является точной обертывающей
     алгебры Ли $N\Phi(\mathbb{K})$, и число таких алгебр не превосходит $2^{|\Phi^+
         \setminus \Pi|}$.
+    %</p:mult-enveloping>
 \end{proposition}
 
 \begin{proof}
@@ -163,10 +182,12 @@ $R_{\Phi}$ и их связь с алгеброй Ли $N\Phi(\mathbb{K})$ вы�
 \end{proof}
 
 \begin{lemma}\label{l:Const-RPhi-Non-assoc}
+    %<*l:Const-RPhi-Non-assoc>
     %
     Все ненулевые структурные константы алгебр $R_{\Phi}$ в выбранной базе равны \
     $\pm 1$ для типа $\neq G_2$ и равны $1$, когда все корни в $\Phi$ одной длины.
     Если $\Phi$ имеет корни разных длин, то все алгебры $R_{\Phi}$ неассоциативные.
+    %</l:Const-RPhi-Non-assoc>
 \end{lemma}
 
 \begin{proof}
@@ -585,9 +606,11 @@ $N\Phi(\mathbb{K})$ типа $F_4$. Пусть $L_i= \sum_{\height(r) \geq i }T(
 \end{proof}
 
 \begin{theorem}[{{\cite[теорема 1.1]{jsfu2018}}}]\label{th:stand-f4}
+    %<*th:stand-f4>
     %
     Существуют как стандартные, так и нестандартные специальные обертывающие
     алгебры $R_\Phi$ типа $F_4$.
+    %</th:stand-f4>
 \end{theorem}
 \begin{proof}
     Переобозначая $N_{rs}$ через $N(r,s)$, выберем значения $N(r,s)$ на следующих
@@ -610,10 +633,10 @@ $N\Phi(\mathbb{K})$ типа $F_4$. Пусть $L_i= \sum_{\height(r) \geq i }T(
     Выбирая произвольно для оставшихся экстраспециальных пар корней $r$ и $s$ знаки
     структурных констант $N_{rs}$, получаем алгебру $R_1$. Легко видеть, что в
     алгебре $R_1$ идеалы вида
-    \begin{equation}\label{eq:f4-nonstandard-ideal}
+    \begin{equation*}%\label{eq:f4-nonstandard-ideal}
         \mathbb{K}(e_{q_{30}} + ce_{q_{2,-1}}) + \mathbb{K}(e_{p_{42}} + ce_{p_{3,-2}}) + T(q_{3,-1}) +
         T(q_{43}) \quad (c \in \mathbb{K}^*)
-    \end{equation}
+    \end{equation*}
     являются нестандартными. Кроме того, легко проверить, что все остальные идеалы в $R_1$
     являются стандартными.
 
@@ -623,7 +646,7 @@ $N\Phi(\mathbb{K})$ типа $F_4$. Пусть $L_i= \sum_{\height(r) \geq i }T(
     типа $F_4$ можно выбрать так, что все идеалы кольца $R_\Phi$ будут
     стандартными. Прямая вычислительная проверка показывает, что алгебра $R_\Phi$
     типа $F_4$ является стандартной, если выполняются следующие условия:
-    \begin{equation*}\label{eq:F4-stand-condition}
+    \begin{equation*}%\label{eq:F4-stand-condition}
         \begin{aligned}
             N(q_{21},q_{3,-1}) = -N(q_{21},p_{31}), \quad & N(q_{32},p_{3,-1}) =
             -N(q_{32},q_{2,-1}),                                                 \\
@@ -640,7 +663,7 @@ $N\Phi(\mathbb{K})$ типа $F_4$. Пусть $L_i= \sum_{\height(r) \geq i }T(
     используем~\eqref{eq:StructConst-Stand-F4}. Полагаем также $N(q_{32},q_{20}) =
     -1$ и $N(q_{10},q_{20})=- 2$. Далее, по тождеству Якоби получаем
     $N(p_{32},q_{20}) = 1$ и
-    \begin{equation*}\label{eq:Jacobi-F4}
+    \begin{equation*}
         N(p_{32},q_{2,-1}) = 1,\quad
         N(p_{32},q_{30}) = -1,\quad
         N(q_{10},q_{31}) = 1.
@@ -891,12 +914,14 @@ $A_3$. Очевидна
 классифицирует
 
 \begin{theorem}[{{\cite[теорема 1]{imm2020}}}]\label{th:Stand-An}
+    %<*th:Stand-An>
     Специальная обертывающая алгебра $R_\Phi$ алгебры Ли $N\Phi(\mathbb{K})$ типа
     $A_{n-1}$ $(n>3)$ стандартна тогда и только тогда, когда алгебра $R_\Phi$ или
-    $R_\Phi^{(op)}$ по модулю аннулятора изоморфна $NT(n,\mathbb{K})/\mathbb{K}e_{n1}$.
-    Ассоциативная специальная обертывающая алгебра $R_\Phi$ алгебры Ли $N\Phi(\mathbb{K})$
-    типа $A_{n-1}$ $(n>3)$, с точностью до изоморфизма
-    единственна и изоморфна алгебре $NT(n,\mathbb{K})$.
+    $R_\Phi^{(op)}$ по модулю аннулятора изоморфна
+    $NT(n,\mathbb{K})/\mathbb{K}e_{n1}$. Ассоциативная специальная обертывающая
+    алгебра $R_\Phi$ алгебры Ли $N\Phi(\mathbb{K})$ типа $A_{n-1}$ $(n>3)$, с
+    точностью до изоморфизма единственна и изоморфна алгебре $NT(n,\mathbb{K})$.
+    %</th:Stand-An>
 \end{theorem}
 
 \begin{proof}
@@ -947,9 +972,10 @@ $A_3$. Очевидна
 Перечислим возможные типы $\Phi$ стандартных обертывающих алгебр $R_{\Phi}$.
 
 \begin{proposition}\label{p:Exc-Dn-En}
-    Стандартная обертывающая $R_{\Phi}$ алгебры Ли $N\Phi(\mathbb{K})$
-    существует для всех типов ${\Phi}$, кроме типа $D_n$ $(n \geq 4)$
-    и $E_n\ (n=6,7$ и $8)$.
+    %<*p:Exc-Dn-En>
+    Стандартная обертывающая $R_{\Phi}$ алгебры Ли $N\Phi(\mathbb{K})$ существует
+    для всех типов ${\Phi}$, кроме типа $D_n$ $(n \geq 4)$ и $E_n\ (n=6,7$ и $8)$.
+    %</p:Exc-Dn-En>
 \end{proposition}
 
 \begin{proof}
@@ -959,7 +985,7 @@ $A_3$. Очевидна
 
     \begin{theorem}\label{th:classical-Exc-RDn}
         Пусть $R_{\Phi}$ есть алгебра классического типа из списка
-        \ref{eq:RAn-RDn}. Если $s$ "--- угол идеала $H$ кольца $R_{\Phi}$ и
+        \eqref{eq:RAn-RDn}. Если $s$ "--- угол идеала $H$ кольца $R_{\Phi}$ и
         $Q(s) \not\subset H$, то $\Phi$ типа $D_n$, $s=r_{iv}$, $2 \leq
         i<n$, $v=\pm 1$, причем идеалы $T(r_{i+1,1})$ и $T(r_{i+1,-1})$
         оба не лежат в $H$.
@@ -1041,7 +1067,7 @@ $A_3$. Очевидна
 $C_n$ над полем.
 
 Системы корней $\Phi$ типа $B_n$ и $C_n$ дуальны друг другу. В терминологии
-Ж.-П.~Серра \cite{Serre}, графы Кокстера у них совпадают, см. также замечание в
+Ж.-П.~Серра \cite{Serre} графы Кокстера у них совпадают, см. также замечание в
 \cite[\S\ 1]{JA-12}. Однако при $n>2$ различаются схемы Дынкина, то есть графы
 Кокстера с приписанным каждой вершине числом (обычно, квадрат длины
 соответствующего вершине корня, когда короткие корни длины 1),
@@ -1131,7 +1157,7 @@ $R_{\Phi}$ накладываем условие
 \end{equation}
 
 \begin{lemma}\label{l:Subsistem-B3}
-    Алгебра $R_{\Phi}$ типа $B_3$ с условием (\ref{IsomR-Bn})
+    Алгебра $R_{\Phi}$ типа $B_3$ с условием \eqref{IsomR-Bn}
     стандартная. С точностью до выбора знака произведения $e_{10}e_{2
         0}=\pm e_{2,-1}$, она определена однозначно, когда подалгебра
     $R(\Psi)$ для подсистемы $\Psi$ типа $A_3$ в $\Phi$ ассоциативная.
@@ -1140,7 +1166,7 @@ $R_{\Phi}$ накладываем условие
 \begin{proof}
     Все длинные корни системы корней $\Phi$ типа $B_3$ образуют
     единственную подсистему $\Psi$ типа $A_3$. С учетом равенств
-    (\ref{IsomR-B3}), условие (\ref{IsomR-Bn}) легко дает
+    \eqref{IsomR-B3}, условие \eqref{IsomR-Bn} легко дает
     стандартность алгебры $R_{\Phi}$.
 
     Базу в $\Psi$ дают корень $r_{32}$ и $r_{32}$-связанные корни $r_{2,-1}$ и
@@ -1148,7 +1174,7 @@ $R_{\Phi}$ накладываем условие
     \[
         \Psi= \Psi(r_{2,-1}, r_{32}, r_{21}).
     \]
-    В силу (\ref{IsomR-Bn}), имеем $e_{32} e_{21}= e_{31}$, $e_{21} e_{32} = 0$.
+    В силу \eqref{IsomR-Bn}, имеем $e_{32} e_{21}= e_{31}$, $e_{21} e_{32} = 0$.
     Поэтому стандартность подалгебры $R(\Psi)$ по \crefDat{l:stand-A3} равносильна
     равенствам
     \[
@@ -1189,7 +1215,7 @@ $R_{\Phi}$ накладываем условие
 
 \begin{lemma}\label{l:Subsistem-Bn}
     Пусть $R_n=R_{\Phi}$ есть стандартная обертывающая алгебра типа
-    $B_n$ $(n > 3)$ с условием $($\ref{IsomR-Bn}$)$. Тогда $R_{\Phi}=RB_n
+    $B_n$ $(n > 3)$ с условием \eqref{IsomR-Bn}. Тогда $R_{\Phi}=RB_n
     (\mathbb{K})$ по модулю идеала $T_{n,-1}$, с точностью до выбора знака
     $c=\pm 1$ произведения $e_{20} e_{10}= ce_{2,-1}$.
 \end{lemma}
@@ -1200,12 +1226,12 @@ $R_{\Phi}$ накладываем условие
     r_{ki}\}$. Корень $r_{ij}$ и $r_{ij}$-связанные корни $r_{j,-m}$,
     $r_{ki}$ образуют базу подсистемы $\Psi$ типа $A_3$, то есть
     %
-    \begin{equation}\label{SubsystA3-Bn}
+    \begin{equation*}%\label{SubsystA3-Bn}
         \Psi=\Psi (r_{j, -m}, r_{ij},  r_{ki}),\quad 1\leq m<j<i<k\leq n.
-    \end{equation}
+    \end{equation*}
     %
 
-    Пусть стандартная алгебра $R_{\Phi}$ выбрана с условием (\ref{IsomR-Bn}). По
+    Пусть стандартная алгебра $R_{\Phi}$ выбрана с условием \eqref{IsomR-Bn}. По
     \crefDat{l:stand-A3}, если $e_{ij} e_{j,-m} =0$ (как и в
     \crefPred{l:Subsistem-B3} при $n=3$), то в подалгебре $R(\Psi)$, а при $i=j+1$
     и в алгебре $R_{\Phi}$, находим нестандартные идеалы с двумя углами
@@ -1243,9 +1269,9 @@ $R_{\Phi}$ накладываем условие
         [e_{ij}, e_{jm}]]=[e_{j,-m},e_{im}],
     \]
     %
-    \begin{equation}\label{RelatA3-RBn}
+    \begin{equation*}%\label{RelatA3-RBn}
         e_{i,-j}=e_{jm}e_{i,-m}=[e_{jm},e_{i,-m}]=[e_{j,-m},e_{im}]=e_{j,-m}e_{im}.
-    \end{equation}
+    \end{equation*}
     %
 
     Учитывая произвол в выборе подсистемы $\Psi_{m,j,i,k}\ (i<k\leq n)$, с
@@ -1267,7 +1293,7 @@ $R_{\Phi}$ накладываем условие
 единственна и графовый автоморфизм $\theta$ алгебры Ли $N\Phi(\mathbb{K})$
 порядка 2 определяется правилом
 \[
-    \theta : \ e_r \to e_{\bar {r}}\quad (r \in \Phi^+)
+    \theta\colon\ e_r \mapsto e_{\bar {r}}\quad (r \in \Phi^+).
 \]
 \begin{lemma}\label{l:RB_n-RDn+1}
     Алгебра $RB_n(\mathbb{K})$ представляется в алгебре $RD_{n+1}(\mathbb{K})$
@@ -1304,7 +1330,7 @@ $R_{\Phi}$ накладываем условие
     его 0-м, а остальные столбцы не изменяем. Заменяя в новой матрице номер $i$
     каждой строки на $i-1$, а номер $\pm (v-1)$ столбца элементов из них на номер
     $\pm v\ (1<v < i\leq n)$, получаем изоморфный образ элемента $\alpha$.
-    Равенства (\ref{IsomRBn-Dn}) определяют обратное изоморфное вложение.
+    Равенства \eqref{IsomRBn-Dn} определяют обратное изоморфное вложение.
 \end{proof}
 
 \medskip
@@ -1327,10 +1353,10 @@ $R_{\Phi}$ накладываем условие
 
 Соответствующий пример с естественными изоморфными вложениями дает
 %
-\begin{equation}\label{InclusRBn}
+\begin{equation*}%\label{InclusRBn}
     RB_3(\mathbb{K})\subset RB_4(\mathbb{K})\subset \cdots \subset RB_n(\mathbb{K})\subset
     RB_{n+1}(\mathbb{K}) \subset \cdots .
-\end{equation}
+\end{equation*}
 %
 Монотонность здесь, очевидно, нарушается (вместе с первым включением) при
 замене $RB_3(\mathbb{K})$ на алгебру $R_{\Phi}$ типа $B_3$ из леммы
@@ -1355,9 +1381,11 @@ $R_{\Phi}$ накладываем условие
 \crefRod{l:Subsistem-Bn} вытекает
 
 \begin{theorem}\label{th:Stand-Bn}
+    %<*th:Stand-Bn>
     Если последовательность $R_n= R_{\Phi}$ стандартных обертывающих алгебр типа
     $B_n$ $(n=3, 4, \cdots )$ с условием \eqref{IsomR-Bn} монотонная, то $R_n$
     изоморфна $RB_n(\mathbb{K})$.
+    %</th:Stand-Bn>
 \end{theorem}
 
 Отметим, что наряду с последовательностями стандартных обертывающих алгебр типа
@@ -1369,7 +1397,7 @@ $B_n$, в силу \eqref{InclusRBn-Dn}, определены и монотон�
 \begin{remark}\label{remark:Stand-Cn}
     По аналогии с теоремой \ref{th:Stand-Bn} выделяется обертывающая
     алгебра $R_{\Phi}$ типа $C_n\ (n\geq 3)$ с условием
-    (\ref{IsomR-Cn}) "--- алгебра $RC_n(\mathbb{K})$. Подчеркнем, что построения
+    \eqref{IsomR-Cn} "--- алгебра $RC_n(\mathbb{K})$. Подчеркнем, что построения
     изоморфных вложений основаны на лемме о гомоморфизмах систем
     корней \cite[Лемма 7]{VLev-82MZ}. Так, алгебра $RC_n(\mathbb{K})$
     представляется централизатором в алгебре $RA_{2n-1}(\mathbb{K})=NT(2n,\mathbb{K})$
@@ -1617,9 +1645,11 @@ $V=\alpha(U) \oplus s(W)$ и $s(W) \simeq W$, а значит $V \simeq U \oplus
 \end{proof}
 
 \begin{proposition}\label{p:fine-graded-nilpotent}
+    %<*p:fine-graded-nilpotent>
     %
     Любая тонкая градуировка конечномерной нильпотентной алгебры $A$ является
     градуировкой ширины один.
+    %</p:fine-graded-nilpotent>
 \end{proposition}
 \begin{proof}
     %
@@ -1664,11 +1694,11 @@ $V=\alpha(U) \oplus s(W)$ и $s(W) \simeq W$, а значит $V \simeq U \oplus
 \end{proof}
 
 Рассмотрим две градуированные алгебры
-\begin{equation}\label{eq:two-graded-algebras}
+\begin{equation*}
     \Gamma_1 \colon A = \bigoplus_{g \in G}A_g
     \quad \text{и} \quad
     \Gamma_2 \colon B = \bigoplus_{h \in H}B_h.
-\end{equation}
+\end{equation*}
 
 Градуировки $\Gamma_1$ и $\Gamma_2$ называются \emph{эквивалентными}, если
 существует изоморфизм алгебр $\phi \colon A \to B$ и для любого $g \in G$
@@ -1692,6 +1722,7 @@ $N\Phi(\mathbb{K})$, называем \emph{согласованной с гра
 \end{equation*}
 
 \begin{lemma}\label{l:enveloping-roots-grading}
+    %<*l:enveloping-roots-grading>
     %
     Пусть $R$ "--- нильпотентная точная обертывающая $\mathbb{K}$-алгебра алгебры
     Ли $N\Phi(\mathbb{K})$. Если на $R$ задана тонкая градуировка $\Gamma$ такая,
@@ -1700,13 +1731,14 @@ $N\Phi(\mathbb{K})$, называем \emph{согласованной с гра
     $N\Phi(\mathbb{K})$ так, что $e_re_s \in \mathbb{K}e_{r+s}$ при $r+s \in
     \Phi^{+}$, $e_re_s = 0$ при $r+s \not\in \Phi^{+}$, и коммутатор в $R^{(-)}$
     совпадает с коммутатором в $N\Phi(\mathbb{K})$.
+    %</l:enveloping-roots-grading>
 \end{lemma}
 \begin{proof}
     %
     По \crefDat{p:fine-graded-nilpotent} тонкая градуировка
-    \begin{equation}\label{eq:R-An-width-1}
+    \begin{equation*}
         \Gamma\colon R=\bigoplus_{g\in G}R_g
-    \end{equation}
+    \end{equation*}
     %
     алгебры $R$ является градуировкой ширины 1 и имеет ровно $\dim R$ ненулевых
     одномерных компонент. Градуировка $\Gamma$ также является градуировкой алгебры
@@ -1961,10 +1993,12 @@ $e_{n+1,1}=[e_{n+1,2},e_{2,1}]$ и поэтому из
     алгебры Ли $N\Phi(\mathbb{K})$ типа $A_n$ $(n \ge 2)$. Тогда $R$ нильпотентна.
 \end{corollary}
 \begin{theorem}\label{th:Stand-Graded-An}
+    %<*th:Stand-Graded-An>
     %
     Если ассоциативная точная обертывающая алгебра $R$ алгебры Ли
     $N\Phi(\mathbb{K})$ типа $A_n\ (n \ge 3)$ допускает градуировку, согласованную
     с градуировкой Картана, то $R \simeq NT(n+1,\mathbb{K})$.
+    %</th:Stand-Graded-An>
 \end{theorem}
 \begin{proof}
     %
@@ -2178,6 +2212,7 @@ $B_n$, $C_n$ и $D_n$ левосимметрическая точная обер
 Через $L_x\colon y\mapsto xy$ $(x,y \in R)$ обозначим линейные операторы левого
 умножения в алгебре $R$.
 \begin{definition}\label{def:pre-lie-algebra}
+    %<*def:pre-lie-algebra>
     %
     Алгебра $R$ над полем $\mathbb{K}$ называется \emph{левосимметрической} или
     \emph{прелиевой}, если ее умножение удовлетворяет тождеству
@@ -2189,6 +2224,7 @@ $B_n$, $C_n$ и $D_n$ левосимметрическая точная обер
     \begin{equation*}
         [L_x,L_y]=L_{[x,y]} \mathrlap{\qquad (x,y \in R).}
     \end{equation*}
+    %</def:pre-lie-algebra>
 \end{definition}
 
 Как и в ассоциативном случае, всякая левосимметрическая алгебра Ли-допустима:
@@ -2279,6 +2315,7 @@ $NA_{n-1}(\mathbb{K})$ с подходящим идеалом.
 По аналогии с \crefTvor{def:semidirect-lie}, введем понятие полупрямой суммы
 для левосимметрических алгебр.
 \begin{definition}\label{def:semidirect-pre-lie}
+    %<*def:semidirect-pre-lie>
     %
     \emph{Полупрямой суммой}
     $R\ltimes_{\tau} I$ левосимметрических алгебр $R$ и $I$ назовем прямую сумму
@@ -2288,6 +2325,7 @@ $NA_{n-1}(\mathbb{K})$ с подходящим идеалом.
     \]
     где $\tau\colon R^{(-)} \to \Der(I)$ "--- некоторый гомоморфизм алгебры Ли
     $R^{(-)}$ в алгебру Ли дифференцирований $\Der(I)$ и $\tau_x = \tau(x)$.
+    %</def:semidirect-pre-lie>
 \end{definition}
 %
 Всякое дифференцирование левосимметрической алгебры $I$ является
@@ -2302,6 +2340,7 @@ $NA_{n-1}(\mathbb{K})$ с подходящим идеалом.
 Как показывают следующие две теоремы, полупрямая сумма ассоциативных алгебр
 может быть неассоциативной, но всегда является левосимметрической.
 \begin{theorem}\label{th:semidirect-assoc-cond}
+    %<*th:semidirect-assoc-cond>
     %
     Пусть $R$ и $I$ "--- ассоциативные алгебры и $\tau\colon R^{(-)}\to\Der(I)$
     "--- гомоморфизм алгебры Ли $R^{(-)}$ в $\Der(I)$. Алгебра $R\ltimes_{\tau} I$
@@ -2310,6 +2349,7 @@ $NA_{n-1}(\mathbb{K})$ с подходящим идеалом.
         \item[\textup{(A)}] $\tau_{xy}=\tau_x\tau_y$ для всех $x,y\in R$;
         \item[\textup{(B)}] $\tau_x(I)\subset \Ann_r(I)$ для всех $x\in R$.
     \end{enumerate}
+    %</th:semidirect-assoc-cond>
 \end{theorem}
 \begin{proof}
     %
@@ -2371,6 +2411,7 @@ $NA_{n-1}(\mathbb{K})$ с подходящим идеалом.
     и потому $b\,\tau_x(c)=0$ для всех $x \in R$ и $b,c\in I$, что равносильно (B).
 \end{proof}
 \begin{theorem}\label{th:semidirect-pre-lie}
+    %<*th:semidirect-pre-lie>
     %
     Пусть $R$ и $I$ "--- левосимметрические алгебры и $\tau\colon
     R^{(-)}\to\Der(I)$ "--- гомоморфизм алгебры Ли $R^{(-)}$ в $\Der(I)$. Тогда
@@ -2380,6 +2421,7 @@ $NA_{n-1}(\mathbb{K})$ с подходящим идеалом.
     \[
         [(x,a),(y,b)]=\bigl([x,y],\ \tau_x(b)-\tau_y(a)+[a,b]\bigr).
     \]
+    %</th:semidirect-pre-lie>
 \end{theorem}
 \begin{proof}
     %
@@ -2535,6 +2577,7 @@ $\cdot_\Phi$ можем взять нулевое умножение.
 \cdot_{B_n}\bigr)$ для $T(\epsilon_1)$.
 
 \begin{theorem}\label{th:BnCnDn-pre-lie}
+    %<*th:BnCnDn-pre-lie>
     %
     Полупрямая сумма ассоциативных алгебр
     \[
@@ -2542,6 +2585,7 @@ $\cdot_\Phi$ можем взять нулевое умножение.
     \]
     является левосимметрической точной обертывающей алгебры $N\Phi(\mathbb{K})$
     типа $D_n$, $C_n$ или $B_n$.
+    %</th:BnCnDn-pre-lie>
 \end{theorem}
 
 \medskip
@@ -2607,8 +2651,8 @@ $\cdot_\Phi$. Кроме того, произведение любых $m$ ба�
 
 \chapter{Проблемы перечисления идеалов нильтреугольных алгебр Шевалле}\label{ch:enumeration}
 Проблемы комбинаторного перечисления стандартных идеалов и всех идеалов алгебр
-Ли $N\Phi(q) \coloneq N\Phi(GF(q))$ классических типов записаны в 2001 году
-\cite[проблемы 1 и 2]{sigsam2001}.
+Ли $N\Phi(q) \coloneq N\Phi(\mathbb{F}_q)$ классических типов записаны в 2001
+году \cite[проблемы 1 и 2]{sigsam2001}.
 
 \medskip
 
@@ -2798,11 +2842,11 @@ $\mathbb{K}^m$.
 \medskip
 
 Как и в \S~\ref{s:coordinate-complete}, число всех координатно полных
-$t$-мерных подпространств пространства $\mathbb{K}^m$ при $\mathbb{K}=GF(q)$
-обозначим через $V_q(m,t)$, а через $B(\Phi,m)$ "--- число всех $m$-элементных
-множеств углов $\mathcal{L}$ в $\Phi^+$. Из биективности соответствия
-\eqref{eq:hls} между стандартными идеалами и парами $(\mathcal{L}, S)$ сразу же
-вытекает
+$t$-мерных подпространств пространства $\mathbb{K}^m$ при
+$\mathbb{K}=\mathbb{F}_q$ обозначим через $V_q(m,t)$, а через $B(\Phi,m)$ "---
+число всех $m$-элементных множеств углов $\mathcal{L}$ в $\Phi^+$. Из
+биективности соответствия \eqref{eq:hls} между стандартными идеалами и парами
+$(\mathcal{L}, S)$ сразу же вытекает
 
 \begin{lemma}\label{l:enum-stand-id-reduct-BV}
     Число стандартных идеалов алгебры Ли $N\Phi(q)$ ранга $n$ равно
@@ -2837,8 +2881,9 @@ $t$-мерных подпространств пространства $\mathbb{
 
 Полное решение проблемы~1 из \cite{sigsam2001} дает следующая теорема.
 \begin{theorem}[{{\cite[теорема 1]{smj2023}}}]\label{th:enum-stand-id-classical}
-    Число стандартных идеалов алгебры Ли $N\Phi(q)$ классического типа
-    $\Phi = A_{n-1}$, $B_n$, $C_n$, $D_n$ равно
+    %<*th:enum-stand-id-classical>
+    Число стандартных идеалов алгебры Ли $N\Phi(q)$ классического типа $\Phi =
+    A_{n-1}$, $B_n$, $C_n$, $D_n$ равно
     %
     \begin{equation*}
         1+\sum_{m=1}^n B(\Phi,m) \sum_{t=1}^m
@@ -2849,6 +2894,7 @@ $t$-мерных подпространств пространства $\mathbb{
         B(A_{n-1},m) = \frac{1}{n}\binom{n}{m}\binom{n}{m+1}, \quad B(D_n,m) =
         \binom{n}{m}\left( \binom{n-1}{m} + \binom{n-2}{m-2} \right).
     \]
+    %</th:enum-stand-id-classical>
 \end{theorem}
 \begin{proof}
     %
@@ -2887,8 +2933,8 @@ $t$-мерных подпространств пространства $\mathbb{
 завершает решение задачи~\textbf{(A)} для классических типов. Для
 исключительных типов ее решает
 \begin{theorem}[{{\cite[теорема 2.1]{jsfu2018}}}]\label{th:enum-stand-id-exceptional}
-    Число стандартных идеалов алгебры Ли $N\Phi(q)$ исключительного типа
-    равно
+    %<*th:enum-stand-id-exceptional>
+    Число стандартных идеалов алгебры Ли $N\Phi(q)$ исключительного типа равно
     \[G_2:\ q+7;\qquad F_4:\ q^4+3\,q^3+44\,q^2+32\,q+25;\]
     %
     \[E_6:\ q^9+3\,q^8+4\,q^7+67\,q^6+69\,q^5+230\,q^4+306\,q^3+94\,q^2+22\,q+37;\]
@@ -2898,6 +2944,7 @@ $t$-мерных подпространств пространства $\mathbb{
     %
     \[E_8:\ q^{16}+3\,q^{15}+4\,q^{14}+7\,q^{13}+237\,q^{12}+239\,q^{11}+693\,q^{10}+1647\,q^9+3554\,q^8+{}\]
     \[{}+4283\,q^7+5829\,q^6+7055\,q^5+3773\,q^4-2361\,q^3-244\,q^2+239\,q+121.\]
+    %</th:enum-stand-id-exceptional>
 \end{theorem}
 \begin{proof}
     %
@@ -3041,18 +3088,19 @@ $||a_{ij}||$ над $\mathbb{K}$ ранга $t$\ с условиями $a_{12}=c
 \eqref{eq:base-1}. Тем самым, доказана
 
 \begin{theorem}[{{\cite[теорема 6]{smj2023}}}]\label{th:ExIdForm}
-    В обертывающей алгебре $RD_n(\mathbb{K})$ всякий нестандартный идеал $H$
-    имеет множество углов $\mathcal{L}=\mathcal{L}(H)$ вида
-    \eqref{eq:R-stepsId} и представляется как идеал \eqref{eq:IdH0},
-    однозначно характеризуемый набором $\mathcal{L}, k, t, ||a_{ij}||,\
-    c, d_1, \dots, d_t$.
+    %<*th:ExIdForm>
+    В обертывающей алгебре $RD_n(\mathbb{K})$ всякий нестандартный идеал $H$ имеет
+    множество углов $\mathcal{L}=\mathcal{L}(H)$ вида \eqref{eq:R-stepsId} и
+    представляется как идеал \eqref{eq:IdH0}, однозначно характеризуемый набором
+    $\mathcal{L}, k, t, ||a_{ij}||,\ c, d_1, \dots, d_t$.
+    %</th:ExIdForm>
 \end{theorem}
 
 \section{Метод коэффициентов и перечисление идеалов алгебры \texorpdfstring{$RD_n(q)$}{RDₙ(q)}}\label{sec:egorychev-RDn}
 %
 \Cref{th:enum-stand-id-classical}, решая проблему 1 из \cite{sigsam2001}
 о числе всех стандартных идеалов алгебры Ли $N\Phi(q)$ классического типа над
-полем $\mathbb{K}=GF(q)$, дает и число всех идеалов ее обертывающей алгебры
+полем $\mathbb{K}=\mathbb{F}_q$, дает и число всех идеалов ее обертывающей алгебры
 $R_{\Phi}(q)$, когда она стандартна.
 
 В силу теорем \ref{th:enum-stand-id-classical} и \ref{th:classical-Exc-RDn},
@@ -3065,12 +3113,14 @@ $R_{\Phi}(q)$, когда она стандартна.
 Основной в этом параграфе является
 
 \begin{theorem}[{{\cite[теорема 7]{smj2023}}}]\label{th:Enum-Dn}
+    %<*th:Enum-Dn>
     Число нестандартных идеалов алгебры $RD_n(q)$ $(n \geq 3)$ равно
     \[
         \sum_{m=2}^{n-1} \binom{n-2}{m-2}\binom{n-1}{m}
         \sum_{t=1}^{m-1}q^t(q-1)
         \sum_{j=0}^{m-1-t} (-1)^j \binom{m-1}{j} {m-1-j \brack t}_q.
     \]
+    %</th:Enum-Dn>
 \end{theorem}
 
 \begin{proof}
@@ -3098,14 +3148,14 @@ $R_{\Phi}(q)$, когда она стандартна.
     \begin{proof}
         %
         При фиксированных $|\mathcal{L}|= m$ и $k$ число способов выбора параметра
-        $c\neq 0$ в $\mathbb{K}=GF(q)$ и наборов $(d_1, \dots , d_t)$ над $\mathbb{K}$
-        равно $q^t(q-1)$. Согласно доказательству \crefRod{l:LieIdeal}, число
-        возможностей выбора матриц $||a_{ij}||$, требуемых для канонических базисов
-        идеалов, совпадает с $V_q(m-1,t)$ при $1 \leq t \leq m-1$: ввиду $a_{12}=c$ и
-        условий \eqref{eq:base-1} второй столбец матрицы равен $(c,0,\dots,0)^T$, а
-        остальные столбцы образуют каноническую $t\times(m-1)$-матрицу без нулевых
-        столбцов. Отсюда для числа нестандартных идеалов алгебры $RD_n(q)$ получаем
-        формулу \eqref{eq:enum-Dn-1}.
+        $c\neq 0$ в $\mathbb{K}=\mathbb{F}_q$ и наборов $(d_1, \dots , d_t)$ над
+        $\mathbb{K}$ равно $q^t(q-1)$. Согласно доказательству \crefRod{l:LieIdeal},
+        число возможностей выбора матриц $||a_{ij}||$, требуемых для канонических
+        базисов идеалов, совпадает с $V_q(m-1,t)$ при $1 \leq t \leq m-1$: ввиду
+        $a_{12}=c$ и условий \eqref{eq:base-1} второй столбец матрицы равен
+        $(c,0,\dots,0)^T$, а остальные столбцы образуют каноническую
+        $t\times(m-1)$-матрицу без нулевых столбцов. Отсюда для числа нестандартных
+        идеалов алгебры $RD_n(q)$ получаем формулу \eqref{eq:enum-Dn-1}.
     \end{proof}
 
     Второе и третье суммирования в комбинаторной сумме~\eqref{eq:enum-Dn-1}
@@ -3158,11 +3208,13 @@ $R_{\Phi}(q)$, когда она стандартна.
     В доказательстве \crefRod{th:Enum-Dn} основной является
     %
     \begin{lemma}\label{l:B'-Dn}
+        %<*l:B'-Dn>
         Справедлива следующая формула суммирования
         \[
             \sum_{i=2}^{n-1} \sum_{k=1}^{n-i} B(m,n,i,k) =
             \binom{n-2}{m-2}\binom{n-1}{m}.
         \]
+        %</l:B'-Dn>
     \end{lemma}
 
     \begin{proof}
@@ -3207,14 +3259,14 @@ $R_{\Phi}(q)$, когда она стандартна.
             = \res_{z,w}\left\{ \frac{(1+z)^{u+v-1}(1+w)^u}{z^{l+1}w^{l+2}}(w-z) \right\}
         \end{gather*}
         и, тем самым,
-        \begin{equation}\label{integral_formula_bplus}
+        \begin{equation*}
             \begin{gathered}
                 B^{(+)}(n-i-k, i+k-1, m - 2 - l) = \\
                 \res_{z,w}\left\{ \frac{(1+z)^{n-2}(1+w)^{n-i-k}}{z^{(m-2-l) +
                         1}w^{(m-1-l)
                         + 1}}(w-z) \right\}.
             \end{gathered}
-        \end{equation}
+        \end{equation*}
 
         Отсюда, в силу \eqref{Bmnik}-\eqref{bminus}, получаем
         \begin{gather*}
