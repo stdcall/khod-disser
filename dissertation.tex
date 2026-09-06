@@ -1371,19 +1371,25 @@ $R_{\Phi}$ накладываем условие
 \medskip
 
 \begin{remark}\label{remark:Stand-Cn}
-    По аналогии с теоремой \ref{th:Stand-Bn} выделяется обертывающая
-    алгебра $R_{\Phi}$ типа $C_n\ (n\geq 3)$ с условием
-    \eqref{IsomR-Cn} "--- алгебра $RC_n(\mathbb{K})$. Подчеркнем, что построения
-    изоморфных вложений основаны на лемме о гомоморфизмах систем
-    корней \cite[Лемма 7]{VLev-82MZ}. Так, алгебра $RC_n(\mathbb{K})$
-    представляется централизатором в алгебре $RA_{2n-1}(\mathbb{K})=NT(2n,\mathbb{K})$
-    графового автоморфизма $\theta$ порядка 2 алгебры Ли
-    $RA_{2n-1}(\mathbb{K})^{(-)}$. Получаем:
+    %
+    Аналог теоремы \ref{th:Stand-Bn} для типа $C_n$ $(n\geq 3)$ с условием
+    \eqref{IsomR-Cn} выделяет алгебру $RC_n(\mathbb{K})$. Здесь также
+    предполагаются стандартность специальных обертывающих алгебр $R_{\Phi}$ и
+    монотонность последовательности относительно вложений, сохраняющих корневые
+    компоненты при естественных включениях $C_n\subset C_{n+1}$.
 
-    \begin{equation*}
-        RC_n(\mathbb{K})\subset NT(2n,\mathbb{K})\subset RC_{n+1}(\mathbb{K})\subset
-        NT(2n+2,\mathbb{K})\subset \cdots ,\  n=3,4,\dots  .
-    \end{equation*}
+    Последовательность алгебр $RC_n(\mathbb{K})$ также монотонна:
+    \[
+        RC_3(\mathbb{K})\subset RC_4(\mathbb{K})\subset \cdots\subset
+        RC_n(\mathbb{K})\subset RC_{n+1}(\mathbb{K})\subset\cdots.
+    \]
+    Естественные вложения $RC_n(\mathbb{K})\hookrightarrow RC_{n+1}(\mathbb{K})$
+    задаются правилом $e_{iv}\mapsto e_{iv}$ и сохраняют умножение, заданное в
+    \crefPred{l:mult-RAn-RDn}.
+
+    Гомоморфизму систем корней $A_{2n-1}\to C_n$ из \cite[Лемма 7]{VLev-82MZ}
+    соответствует представление алгебры Ли $NC_n(\mathbb{K})$ в виде централизатора
+    графового автоморфизма $\theta$ порядка 2 алгебры Ли $NT(2n,\mathbb{K})^{(-)}$.
 \end{remark}
 
 \FloatBarrier
