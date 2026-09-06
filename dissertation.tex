@@ -1490,9 +1490,7 @@ A_{\phi(h)}$. Если для некоторого $h \in H$ с $A_h \neq 0$ э�
 строгое, то будем говорить о \emph{собственном уточнении}.
 
 Градуировка $\Gamma$ называется \emph{тонкой}, если она не допускает
-собственных уточнений (\cite[определение 2]{patera1989}). Тонкую градуировку
-$\Gamma$ будем называть \emph{градуировкой ширины один} \cite{mill-graded2019},
-если все ее нетривиальные компоненты одномерны.
+собственных уточнений (\cite[определение 2]{patera1989}).
 
 \begin{lemma}\label{l:graded-fine-existence}
     %
@@ -1516,9 +1514,6 @@ $\Gamma$ будем называть \emph{градуировкой ширины
 если $A^m \neq 0$ и $A^{m+1} = 0$. В частности, $A^m \subset \Ann(A) \neq 0$.
 
 \medskip
-
-Покажем, что любая тонкая градуировка конечномерной нильпотентной алгебры
-является градуировкой ширины один.
 
 \begin{lemma}\label{l:graded-ann}
     %
@@ -1546,159 +1541,6 @@ $\Gamma$ будем называть \emph{градуировкой ширины
         \Ann(A) = \bigoplus_{g \in G} (\Ann(A) \cap A_g),
     \]
     то есть $\Ann(A)$ "--- градуированный идеал.
-\end{proof}
-
-\emph{Точной последовательностью} (\cite[\S\ 13.3]{linalg1986}) будем
-называть последовательность линейных пространств и отображений
-% short exact sequence
-\[
-    \shorthandoff{"}
-    \begin{tikzcd}[column sep=small]
-        0 \arrow[r] &
-        U \arrow[r, "\alpha"{xshift=-2pt}] &
-        V \arrow[r, "\beta"{xshift=-2pt}] &
-        W \arrow[r] &
-        0
-    \end{tikzcd}
-    \shorthandon{"}
-\]
-с условиями $\operatorname{Im}\alpha = \ker \beta$, отображение $\alpha$
-инъективно, а отображение $\beta$ сюръективно. Линейное отображение $s\colon {W
-    \to V}$ будем называть \emph{линейным сечением} на $W$, если $\beta \circ s =
-\mathrm{id}_W$; такое отображение существует и инъективно. В частности,
-$V=\alpha(U) \oplus s(W)$ и $s(W) \simeq W$, а значит $V \simeq U \oplus W$.
-\begin{lemma}\label{l:fine-graded-factor-ann}
-    %
-    Если на алгебре $A$ задана тонкая градуировка, то индуцированная градуировка на
-    $\quot{A}{\Ann(A)}$ тоже тонкая.
-\end{lemma}
-\begin{proof}
-    %
-    Обозначим $I=\Ann(A)$. Согласно \crefDat{l:graded-ann}, алгебра $A/I$ наследует
-    градуировку алгебры $A$:
-    \[
-        \Gamma_{\pi} \colon A/I= \bigoplus_{g \in G}(A/I)_g.
-    \]
-    Докажем, что градуировка $\Gamma_{\pi}$ не допускает собственных уточнений.
-    Предположим противное: градуировка $\Gamma_\pi$ имеет собственное уточнение
-    \[
-        \Gamma'_\pi\colon A/I = \bigoplus_{h \in H}(A/I)_h.
-    \]
-    Пусть $\pi\colon A \twoheadrightarrow A/I$ "--- каноническая проекция.
-    Рассмотрим точную последовательность
-    \[
-        \shorthandoff{"}
-        \begin{tikzcd}[column sep=small]
-            0 \arrow[r] &
-            I \arrow[r, "i"{xshift=-2pt}] &
-            A \arrow[r, "\pi"{xshift=-2pt}] &
-            A/I \arrow[r] &
-            0
-        \end{tikzcd}
-        \shorthandon{"}
-    \]
-    и линейное сечение $s \colon A/I \hookrightarrow A\ (\pi \circ s =
-    \mathrm{id}_{A/I}$). Тогда $s(A/I) = \oplus_{h \in H}s\bigl((A/I)_h\bigr)$ и
-    \[
-        A = s(A/I) \oplus I = \bigoplus_{h \in H}s\bigl((A/I)_h\bigr) \oplus I.
-    \]
-
-    У уточнения $\Gamma'_\pi$ есть гомоморфизм огрубления $\phi\colon H \to G$
-    такой, что для каждого $h \in H$
-    \[
-        (A/I)_h \subset (A/I)_{\phi(h)}.
-    \]
-
-    Определим новую $G {\times} H$-градуировку $\Gamma'$ на $A$ следующим образом.
-
-    \medskip
-
-    \begin{enumerate}
-        \item Если $a \in s((A/I)_h)$, то $\mathrm{deg}_{\Gamma'}(a) = (\phi(h), h)$.
-        \item Если $a \in I$, то $a \in I \cap A_g$ для некоторого $g \in G$ и
-              $\mathrm{deg}_{\Gamma'}(a) = (g, 0)$.
-    \end{enumerate}
-
-    \medskip
-
-    По условию леммы, $IA = 0 = AI$ и поэтому $\Gamma'$ корректно согласована с
-    умножением в $A$. Таким образом, мы получили уточнение градуировки на $A$.
-    Остается показать, что полученное уточнение является собственным.
-
-    \medskip
-
-    Действительно, поскольку $\Gamma'_\pi$ собственно уточняет $\Gamma_\pi$,
-    существует компонента $(A/I)_g$ градуировки $\Gamma_\pi$, которая строго
-    содержит объединение нескольких компонент $(A/I)_h$ с $\phi(h) = g$ в
-    градуировке $\Gamma'_\pi$. Их прообразы через сечение $s$ лежат в компоненте
-    $A_g$ исходной градуировки $\Gamma$, но получают различные степени $(g, h)$ в
-    градуировке $\Gamma'$.
-\end{proof}
-
-\begin{lemma}\label{l:graded-component-ann-intersection}
-    %
-    Пусть $\mathbb{K}$-алгебра $A$ имеет тонкую $G$-градуировку $\Gamma$. Если
-    компонента $A_g$ имеет ненулевое пересечение с $\Ann(A)$, то $\dim A_g = 1$ и
-    $A_g \subset \Ann(A)$.
-\end{lemma}
-\begin{proof}
-    %
-    Пусть $0\ne u\in A_g\cap \Ann(A)$. Если существует $v\in A_g$, не
-    пропорциональный $u$, то градуировку $\Gamma$ можно уточнить следующим образом:
-    положим $G' = G{\times}\mathbb{Z}$ и зададим $G'$-градуировку $\Gamma'$, вынеся
-    $\mathbb{K}u$ в степень $(g,1)$, а все остальные элементы компоненты $A_g$
-    оставив в степени $(g,0)$; на прочих компонентах вторую координату полагаем
-    равной $0$. Это противоречит тонкости $\Gamma$. Следовательно, $\dim A_g=1$ и
-    $A_g \subset\Ann(A)$.
-\end{proof}
-
-\begin{proposition}\label{p:fine-graded-nilpotent}
-    %<*p:fine-graded-nilpotent>
-    %
-    Любая тонкая градуировка конечномерной нильпотентной алгебры $A$ является
-    градуировкой ширины один.
-    %</p:fine-graded-nilpotent>
-\end{proposition}
-\begin{proof}
-    %
-    Пусть на конечномерной нильпотентной алгебре $A$ задана тонкая $G$-градуировка
-    \[
-        \Gamma\colon A = \bigoplus_{g \in G}A_g.
-    \]
-    Рассмотрим факторалгебру $\bar{A} = A/\Ann(A)$. Она тоже конечномерна и
-    нильпотентна, причем $\dim \bar{A} < \dim A$. По леммам~\ref{l:graded-ann} и
-    \ref{l:fine-graded-factor-ann}, градуировка на $A$ индуцирует тонкую
-    градуировку
-    \[
-        \Gamma_\pi \colon \bar{A} = \bigoplus_{g \in G} \bar{A}_g
-    \]
-    и можем провести доказательство предложения индукцией по $\dim A$.
-
-    По индукционному предположению для $\bar{A}$ имеем $\dim \bar{A}_g \leq 1\ (g
-    \in G)$. Обозначим $I=\Ann(A)$. Каноническая проекция $\pi \colon A_g
-    \twoheadrightarrow \bar{A}_g$ имеет ядро $A_g \cap I = I_g$ и, по теореме об
-    изоморфизме,
-    \[
-        \bar{A}_g = (A_g + I)/I \simeq A_g/I_g.
-    \]
-    Для каждого $g \in G$, рассматривая точную последовательность
-    \[
-        \shorthandoff{"}
-        \begin{tikzcd}[column sep=small]
-            0 \arrow[r] &
-            I_g \arrow[r, "i"] &
-            A_g \arrow[r, "\pi"] &
-            \bar{A}_g \arrow[r] &
-            0,
-        \end{tikzcd}
-        \shorthandon{"}
-    \]
-    получаем
-    \[
-        \dim A_g = \dim(\Ann(A) \cap A_g) + \dim \bar{A}_g
-    \]
-    и для завершения доказательства остается применить
-    \crefVin{l:graded-component-ann-intersection}.
 \end{proof}
 
 Рассмотрим две градуированные алгебры
