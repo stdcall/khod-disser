@@ -1,3 +1,20 @@
+\AtBeginDocument{%
+    %%% Русская традиция начертания математических знаков
+    \renewcommand{\le}{\ensuremath{\leqslant}}
+    \renewcommand{\leq}{\ensuremath{\leqslant}}
+    \renewcommand{\ge}{\ensuremath{\geqslant}}
+    \renewcommand{\geq}{\ensuremath{\geqslant}}
+    \renewcommand{\emptyset}{\varnothing}
+    %%% Русская традиция начертания математических функций (на случай копирования из зарубежных источников)
+    \renewcommand{\tan}{\operatorname{tg}}
+    \renewcommand{\cot}{\operatorname{ctg}}
+    \renewcommand{\csc}{\operatorname{cosec}}
+    %%% Русская традиция начертания греческих букв
+    \renewcommand{\epsilon}{\ensuremath{\varepsilon}}%  русская традиция записи
+    \renewcommand{\phi}{\ensuremath{\varphi}}
+    %\renewcommand{\kappa}{\ensuremath{\varkappa}}%
+}
+
 \DeclareMathOperator*{\res}{res}% Вычет
 \DeclareMathOperator{\Ann}{Ann}% Двухсторонний аннулятор
 \DeclareMathOperator*{\Supp}{Supp}% Носитель градуировки
