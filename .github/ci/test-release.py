@@ -178,6 +178,12 @@ class ReleaseTests(unittest.TestCase):
         for document in ("dissertation", "synopsis"):
             self.assertFalse((self.root / f"{document}.pdf").exists())
 
+    def test_release_pdfs_does_not_archive_sources(self):
+        self.run_command("make", "-j4", "release-pdfs", "BUILD_DIR=build")
+        self.assert_pair(build_dir="build")
+        self.assert_build_order()
+        self.assertEqual(list(self.root.rglob("*.tar.gz")), [])
+
     def test_repeat_preserves_previous_release(self):
         self.release()
         previous = self.snapshot_releases()

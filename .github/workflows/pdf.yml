@@ -25,6 +25,7 @@ jobs:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Set up fonts and formatter
         run: bash .github/ci/setup-tex.sh 2>&1 | tee setup.log
@@ -36,18 +37,16 @@ jobs:
             git config --global --add safe.directory "$GITHUB_WORKSPACE"
             python3 .github/ci/test-release.py
             bash .github/ci/check-format.sh
-            make BUILD_DIR=build release
+            make BUILD_DIR=build release-pdfs
             python3 .github/ci/check-build.py build
           } 2>&1 | tee ci.log
 
-      - name: Upload PDFs and sources
+      - name: Upload PDFs
         id: pdf
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: pdf
-          path: |
-            releases/*.pdf
-            releases/*.tar.gz
+          path: releases/*.pdf
           if-no-files-found: error
           retention-days: 30
 
@@ -87,7 +86,7 @@ jobs:
         if: success()
         env:
           PDF_URL: ${{ steps.pdf.outputs.artifact-url }}
-        run: printf '[PDF диссертации, автореферата и исходники](%s)\n' "$PDF_URL" >> "$GITHUB_STEP_SUMMARY"
+        run: printf '[Артефакт сборки с двумя PDF (ZIP)](%s)\n' "$PDF_URL" >> "$GITHUB_STEP_SUMMARY"
 
   release:
     needs: build

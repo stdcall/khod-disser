@@ -54,7 +54,7 @@ jobs:
             const marker = `<!-- pdf-build:${run.id} -->`;
             let body = `${marker}\n**PDF: ${ok ? 'сборка и проверки пройдены' : 'сборка или проверки не пройдены'}** (${run.head_sha.slice(0, 7)}).\n\n`;
             if (ok && link('pdf')) {
-              body += `[Скачать PDF диссертации, автореферата и исходники](${link('pdf')}).\n\n`;
+              body += `[Скачать артефакт с двумя PDF (ZIP)](${link('pdf')}).\n\n`;
             }
             body += `[Открыть сборку](${run.html_url})`;
             if (link('build-logs')) body += ` · [Скачать полные логи](${link('build-logs')})`;

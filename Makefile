@@ -44,7 +44,7 @@ clean:
 archive:
 	git ls-files | grep -v '\.pdf$$' | tar -czf archive-$$(date +%Y-%m-%d).tar.gz -T -
 
-release: $(TARGET) $(SYNTARGET)
+release-pdfs: $(TARGET) $(SYNTARGET)
 	@mkdir -p releases
 	@set -euo pipefail; \
 	DATE=$$(date +%Y-%m-%d); \
@@ -64,7 +64,11 @@ release: $(TARGET) $(SYNTARGET)
 		cp $(SYNTARGET) "releases/$$SYN_NAME-$$COUNTER.pdf"; \
 		echo "Released PDF as releases/$$BASE_NAME-$$COUNTER.pdf"; \
 		echo "Released PDF as releases/$$SYN_NAME-$$COUNTER.pdf"; \
-	fi; \
+	fi
+
+release: release-pdfs
+	@set -euo pipefail; \
+	DATE=$$(date +%Y-%m-%d); \
 	ARCHIVE_NAME="archive-$$DATE"; \
 	if [ ! -f "releases/$$ARCHIVE_NAME.tar.gz" ]; then \
 		git ls-files | grep -v '\.pdf$$' | tar -czf "releases/$$ARCHIVE_NAME.tar.gz" -T -; \
@@ -78,4 +82,4 @@ release: $(TARGET) $(SYNTARGET)
 		echo "Released archive as releases/$$ARCHIVE_NAME-$$COUNTER.tar.gz"; \
 	fi
 
-.PHONY: clean archive release synopsis
+.PHONY: clean archive release release-pdfs synopsis
