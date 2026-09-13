@@ -13,7 +13,7 @@ bash .github/ci/check-format.sh
 python3 .github/ci/check-build.py build
 ```
 
-Форматирование проверяется без изменения файлов: `latexindent` **4.0.2**
+Форматирование проверяется без изменения файлов: `latexindent -m` **4.0.2**
 с `latexindent.yaml` должен давать нулевой diff. Проверяются `dissertation.tex`,
 `synopsis.tex` и все отслеживаемые TeX-файлы в `common/`, `Dissertation/`,
 `Synopsis/` и `biblio/`. Тесты `make release` проверяют порядок сборки, имена и

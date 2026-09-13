@@ -11,7 +11,7 @@ git ls-files -z -- dissertation.tex synopsis.tex \
 status=0
 while IFS= read -r -d '' file; do
   output="$format_temp/$(basename "$file")"
-  latexindent -c "$format_temp" -l ./latexindent.yaml "$file" > "$output"
+  latexindent -m -c "$format_temp" -l ./latexindent.yaml "$file" > "$output"
   if ! diff -u "$file" "$output"; then
     printf '::error file=%s::Formatting differs from latexindent 4.0.2\n' "$file"
     status=1
