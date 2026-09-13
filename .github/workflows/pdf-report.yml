@@ -23,7 +23,7 @@ jobs:
       - name: Download the PDFs
         if: github.event.workflow_run.conclusion == 'success'
         continue-on-error: true
-        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: pdf-${{ github.event.workflow_run.run_attempt }}
           path: ${{ runner.temp }}/pr-pdf
@@ -32,7 +32,7 @@ jobs:
 
       - name: Download the diagnostic text
         continue-on-error: true
-        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: build-report-${{ github.event.workflow_run.run_attempt }}
           path: ${{ runner.temp }}/build-report
@@ -40,7 +40,7 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
 
       - name: Comment on the pull request
-        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           REPORT_PATH: ${{ runner.temp }}/build-report/diagnostics.txt
           PDF_PATH: ${{ runner.temp }}/pr-pdf
@@ -58,18 +58,10 @@ jobs:
               prs = response.data.filter(pr =>
                 pr.base.repo.full_name === `${owner}/${repo}` && pr.head.sha === run.head_sha);
             }
-            const artifacts = await github.paginate(github.rest.actions.listWorkflowRunArtifacts,
-              {owner, repo, run_id: run.id});
-            const link = name => {
-              const artifact = artifacts.filter(a => a.name === `${name}-${run.run_attempt}` && !a.expired)
-                .sort((a, b) => b.id - a.id)[0];
-              return artifact && `${process.env.GITHUB_SERVER_URL}/${owner}/${repo}/actions/runs/${run.id}/artifacts/${artifact.id}`;
-            };
             const ok = run.conclusion === 'success';
             const marker = `<!-- pdf-build:${run.id} -->`;
             let body = `${marker}\n**PDF: ${ok ? 'сборка и проверки пройдены' : 'сборка или проверки не пройдены'}** (${run.head_sha.slice(0, 7)}).\n\n`;
-            body += `[Открыть сборку](${run.html_url})`;
-            if (link('build-logs')) body += ` · [Скачать полные логи](${link('build-logs')})`;
+            body += `[Открыть сборку и логи](${run.html_url})`;
             if (!ok && fs.existsSync(process.env.REPORT_PATH)) {
               const fd = fs.openSync(process.env.REPORT_PATH, 'r');
               let excerpt;
