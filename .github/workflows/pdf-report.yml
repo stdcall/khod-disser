@@ -1,0 +1,168 @@
+name: PDF report
+
+on:
+  workflow_run:
+    workflows: [PDF]
+    types: [completed]
+
+# This job never checks out or executes code from a pull request.
+permissions:
+  actions: read
+  contents: write
+  pull-requests: write
+
+jobs:
+  report:
+    if: github.event.workflow_run.event == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    concurrency:
+      group: pdf-report-${{ github.event.workflow_run.id }}
+      cancel-in-progress: false
+    steps:
+      - name: Download the PDFs
+        if: github.event.workflow_run.conclusion == 'success'
+        continue-on-error: true
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: pdf-${{ github.event.workflow_run.run_attempt }}
+          path: ${{ runner.temp }}/pr-pdf
+          github-token: ${{ github.token }}
+          run-id: ${{ github.event.workflow_run.id }}
+
+      - name: Download the diagnostic text
+        continue-on-error: true
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: build-report-${{ github.event.workflow_run.run_attempt }}
+          path: ${{ runner.temp }}/build-report
+          github-token: ${{ github.token }}
+          run-id: ${{ github.event.workflow_run.id }}
+
+      - name: Comment on the pull request
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        env:
+          REPORT_PATH: ${{ runner.temp }}/build-report/diagnostics.txt
+          PDF_PATH: ${{ runner.temp }}/pr-pdf
+        with:
+          script: |
+            const fs = await import('node:fs');
+            const path = await import('node:path');
+            const run = context.payload.workflow_run;
+            const {owner, repo} = context.repo;
+            let prs = run.pull_requests || [];
+            if (!prs.length) {
+              const response = await github.rest.repos.listPullRequestsAssociatedWithCommit({
+                owner, repo, commit_sha: run.head_sha
+              });
+              prs = response.data.filter(pr =>
+                pr.base.repo.full_name === `${owner}/${repo}` && pr.head.sha === run.head_sha);
+            }
+            const artifacts = await github.paginate(github.rest.actions.listWorkflowRunArtifacts,
+              {owner, repo, run_id: run.id});
+            const link = name => {
+              const artifact = artifacts.filter(a => a.name === `${name}-${run.run_attempt}` && !a.expired)
+                .sort((a, b) => b.id - a.id)[0];
+              return artifact && `${process.env.GITHUB_SERVER_URL}/${owner}/${repo}/actions/runs/${run.id}/artifacts/${artifact.id}`;
+            };
+            const ok = run.conclusion === 'success';
+            const marker = `<!-- pdf-build:${run.id} -->`;
+            let body = `${marker}\n**PDF: ${ok ? 'сборка и проверки пройдены' : 'сборка или проверки не пройдены'}** (${run.head_sha.slice(0, 7)}).\n\n`;
+            body += `[Открыть сборку](${run.html_url})`;
+            if (link('build-logs')) body += ` · [Скачать полные логи](${link('build-logs')})`;
+            if (!ok && fs.existsSync(process.env.REPORT_PATH)) {
+              const fd = fs.openSync(process.env.REPORT_PATH, 'r');
+              let excerpt;
+              try {
+                const size = fs.fstatSync(fd).size;
+                const buffer = Buffer.alloc(Math.min(size, 6000));
+                const length = fs.readSync(fd, buffer, 0, buffer.length, Math.max(0, size - buffer.length));
+                excerpt = buffer.subarray(0, length).toString('utf8').replace(/`/g, "'");
+              } finally {
+                fs.closeSync(fd);
+              }
+              body += `\n\n<details><summary>Последние сообщения сборки</summary>\n\n\`\`\`text\n${excerpt}\n\`\`\`\n</details>`;
+            }
+            let release;
+            let pdfs;
+            if (ok && prs.length) {
+              try {
+                pdfs = ['disser', 'synopsis'].map(kind => {
+                  const names = fs.readdirSync(process.env.PDF_PATH)
+                    .filter(name => new RegExp(`^khod-${kind}-[0-9]{4}-[0-9]{2}-[0-9]{2}\\.pdf$`).test(name));
+                  if (names.length !== 1) throw new Error(`Expected one ${kind} PDF`);
+                  const filename = path.join(process.env.PDF_PATH, names[0]);
+                  const stat = fs.lstatSync(filename);
+                  if (!stat.isFile() || stat.size < 5 || stat.size > 20 * 1024 * 1024) {
+                    throw new Error(`Invalid ${kind} PDF file`);
+                  }
+                  const data = fs.readFileSync(filename);
+                  if (data.subarray(0, 5).toString() !== '%PDF-') throw new Error(`Invalid ${kind} PDF header`);
+                  return {kind, data};
+                });
+                try {
+                  ({data: release} = await github.rest.repos.getReleaseByTag({owner, repo, tag: 'pr-pdfs'}));
+                } catch (error) {
+                  if (error.status !== 404) throw error;
+                  // Store PDFs as assets without tagging untrusted PR source.
+                  // Tagging a PR that edits workflows needs a separate token.
+                  try {
+                    ({data: release} = await github.rest.repos.createRelease({
+                      owner, repo, tag_name: 'pr-pdfs',
+                      name: 'PDF для проверки pull request',
+                      body: 'PDF разных сборок PR. Имена файлов содержат номер PR, SHA исходников и номер запуска. '
+                        + 'Ссылки на конкретные сборки находятся в комментариях PR. '
+                        + 'Автоматические архивы Source code относятся к служебному тегу, а не к исходникам этих PDF.',
+                      prerelease: true, make_latest: 'false'
+                    }));
+                  } catch (error) {
+                    if (error.status !== 422) throw error;
+                    // Another completed build may have created the store meanwhile.
+                    ({data: release} = await github.rest.repos.getReleaseByTag({owner, repo, tag: 'pr-pdfs'}));
+                  }
+                }
+              } catch (error) {
+                core.setFailed(`Cannot publish PDFs: ${error.message}`);
+                body += '\n\nНе удалось опубликовать прямые ссылки на PDF; подробности в логе PDF report.';
+                release = undefined;
+              }
+            }
+            for (const pr of prs) {
+              let commentBody = body;
+              if (release) {
+                try {
+                  const assets = await github.paginate(github.rest.repos.listReleaseAssets,
+                    {owner, repo, release_id: release.id});
+                  const links = [];
+                  for (const {kind, data} of pdfs) {
+                    const name = `khod-${kind}-pr${pr.number}-${run.head_sha.slice(0, 12)}-${run.id}-${run.run_attempt}.pdf`;
+                    let asset = assets.find(a => a.name === name);
+                    if (asset && asset.state !== 'uploaded') {
+                      // Failed uploads can leave an empty asset reserving its name.
+                      await github.rest.repos.deleteReleaseAsset({owner, repo, asset_id: asset.id});
+                      asset = undefined;
+                    }
+                    if (!asset) {
+                      ({data: asset} = await github.rest.repos.uploadReleaseAsset({
+                        owner, repo, release_id: release.id, name,
+                        headers: {'content-type': 'application/pdf', 'content-length': String(data.length)},
+                        data
+                      }));
+                    }
+                    links.push(`[${kind === 'disser' ? 'Диссертация' : 'Автореферат'} (PDF)](${asset.browser_download_url})`);
+                  }
+                  commentBody = commentBody.replace('\n\n', `\n\n${links.join(' · ')}\n\n`);
+                } catch (error) {
+                  core.setFailed(`Cannot upload PDFs: ${error.message}`);
+                  commentBody += '\n\nНе удалось опубликовать прямые ссылки на PDF; подробности в логе PDF report.';
+                }
+              }
+              const comments = await github.paginate(github.rest.issues.listComments,
+                {owner, repo, issue_number: pr.number});
+              const previous = comments.find(c => c.user.login === 'github-actions[bot]' && c.body.includes(marker));
+              if (previous) {
+                await github.rest.issues.updateComment({owner, repo, comment_id: previous.id, body: commentBody});
+              } else {
+                await github.rest.issues.createComment({owner, repo, issue_number: pr.number, body: commentBody});
+              }
+            }

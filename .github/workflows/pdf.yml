@@ -1,0 +1,129 @@
+name: PDF
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    container:
+      # Newer LaTeX kernels currently conflict with thmtools:
+      # https://github.com/muzimuzhi/thmtools/issues/75
+      image: ghcr.io/xu-cheng/texlive-debian:20260401@sha256:7cb19a92fa304e0cd16819496fc5ba829c122a411bac0792c0a5800dd78a4aa3
+    defaults:
+      run:
+        shell: bash
+    timeout-minutes: 35
+    outputs:
+      pdf-artifact-name: ${{ format('pdf-{0}', github.run_attempt) }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up fonts and formatter
+        run: bash .github/ci/setup-tex.sh 2>&1 | tee setup.log
+
+      - name: Check and build both documents
+        run: |
+          set -euo pipefail
+          {
+            git config --global --add safe.directory "$GITHUB_WORKSPACE"
+            python3 .github/ci/test-release.py
+            bash .github/ci/check-format.sh
+            make BUILD_DIR=build release-pdfs
+            python3 .github/ci/check-build.py build
+          } 2>&1 | tee ci.log
+
+      - name: Upload PDFs
+        id: pdf
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: pdf-${{ github.run_attempt }}
+          path: releases/*.pdf
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Collect diagnostic excerpt
+        if: always()
+        run: |
+          mkdir -p build/ci-report
+          if [ -f ci.log ]; then
+            tail -n 60 ci.log > build/ci-report/diagnostics.txt
+          elif [ -f setup.log ]; then
+            tail -n 60 setup.log > build/ci-report/diagnostics.txt
+          else
+            echo 'The job failed before producing a build log.' > build/ci-report/diagnostics.txt
+          fi
+
+      - name: Upload diagnostic excerpt
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: build-report-${{ github.run_attempt }}
+          path: build/ci-report/diagnostics.txt
+          retention-days: 30
+
+      - name: Upload full logs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: build-logs-${{ github.run_attempt }}
+          path: |
+            setup.log
+            ci.log
+            build/*.log
+            build/*.blg
+          retention-days: 30
+
+      - name: Link downloads in the job summary
+        if: success()
+        env:
+          PDF_URL: ${{ steps.pdf.outputs.artifact-url }}
+        run: printf '[Артефакт сборки с двумя PDF (ZIP)](%s)\n' "$PDF_URL" >> "$GITHUB_STEP_SUMMARY"
+
+  release:
+    needs: build
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: ${{ needs.build.outputs.pdf-artifact-name }}
+          path: releases
+
+      - name: Publish the PDFs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          pdfs=(releases/khod-disser-*.pdf)
+          test "${#pdfs[@]}" -eq 1
+          release_date="${pdfs[0]#releases/khod-disser-}"
+          release_date="${release_date%.pdf}"
+          tag="pdf-${release_date}-${GITHUB_SHA:0:12}"
+          title="PDF ${release_date} (${GITHUB_SHA:0:7})"
+          printf 'Диссертация и автореферат из коммита %s.\n\n[Сборка и проверки](%s/%s/actions/runs/%s).\n' \
+            "$GITHUB_SHA" "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" > release-notes.md
+          latest=false
+          if [ "$(gh api "repos/$GH_REPO/git/ref/heads/master" --jq .object.sha)" = "$GITHUB_SHA" ]; then
+            latest=true
+          fi
+          if gh release view "$tag" > /dev/null 2>&1; then
+            gh release upload "$tag" releases/* --clobber
+          else
+            gh release create "$tag" releases/* --target "$GITHUB_SHA" \
+              --title "$title" --notes-file release-notes.md --latest="$latest"
+          fi

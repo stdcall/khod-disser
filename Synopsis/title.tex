@@ -2,35 +2,35 @@
 
 \noindent%
 \begin{tabularx}{\textwidth}{@{}lXr@{}}%
-    & & \large{На правах рукописи}\\
-    \IfFileExists{images/logo.pdf}{\includegraphics[height=2.5cm]{logo}}{\rule[0pt]{0pt}{2.5cm}}  & &
+                                                                                                 &  & \large{На правах рукописи} \\
+    \IfFileExists{images/logo.pdf}{\includegraphics[height=2.5cm]{logo}}{\rule[0pt]{0pt}{2.5cm}} &  &
     \ifnumequal{\value{showperssign}}{0}{%
         \rule[0pt]{0pt}{1.5cm}
     }{
         \includegraphics[height=1.5cm]{personal-signature.png}
-    }\\
+    }                                                                    \\
 \end{tabularx}
 
 \vspace{0pt plus1fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
 \begin{center}
-\textbf {\large \thesisAuthor}
+    \textbf {\large \thesisAuthor}
 \end{center}
 
 \vspace{0pt plus3fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
 \begin{center}
-\textbf {\Large %\MakeUppercase
-\thesisTitle}
+    \textbf {\Large %\MakeUppercase
+        \thesisTitle}
 
-\vspace{0pt plus3fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
-{\large \thesisSpecialtyNumber\ "--- \thesisSpecialtyTitle\par (\thesisSpecialtyBranch)}
+    \vspace{0pt plus3fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
+    {\large \thesisSpecialtyNumber\ "--- \thesisSpecialtyTitle\par (\thesisSpecialtyBranch)}
 
-\ifdefined\thesisSpecialtyTwoNumber
-{\large Специальность \thesisSpecialtyTwoNumber\ "---\par <<\thesisSpecialtyTwoTitle>>}
-\fi
+    \ifdefined\thesisSpecialtyTwoNumber
+        {\large Специальность \thesisSpecialtyTwoNumber\ "---\par <<\thesisSpecialtyTwoTitle>>}
+    \fi
 
-\vspace{0pt plus1.5fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
-\Large{Автореферат}\par
-\large{диссертации на соискание учёной степени\par \thesisDegree}
+    \vspace{0pt plus1.5fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
+    \Large{Автореферат}\par
+    \large{диссертации на соискание учёной степени\par \thesisDegree}
 \end{center}
 
 \vspace{0pt plus4fill} %число перед fill = кратность относительно некоторого расстояния fill, кусками которого заполнены пустые места
@@ -45,31 +45,31 @@
 \noindent%
 \begin{tabularx}{\textwidth}{@{}lX@{}}
     \ifdefined\supervisorTwoFio
-    Научные руководители:   & \supervisorRegalia\par
-                              \ifdefined\supervisorDead
-                              \framebox{\textbf{\supervisorFio}}
-                              \else
-                              \textbf{\supervisorFio}
-                              \fi
-                              \par
-                              \vspace{0.013\paperheight}
-                              \supervisorTwoRegalia\par
-                              \ifdefined\supervisorTwoDead
-                              \framebox{\textbf{\supervisorTwoFio}}
-                              \else
-                              \textbf{\supervisorTwoFio}
-                              \fi
-                              \vspace{0.013\paperheight}\\
+        Научные руководители:   & \supervisorRegalia\par
+        \ifdefined\supervisorDead
+            \framebox{\textbf{\supervisorFio}}
+        \else
+            \textbf{\supervisorFio}
+        \fi
+        \par
+        \vspace{0.013\paperheight}
+        \supervisorTwoRegalia\par
+        \ifdefined\supervisorTwoDead
+            \framebox{\textbf{\supervisorTwoFio}}
+        \else
+            \textbf{\supervisorTwoFio}
+        \fi
+        \vspace{0.013\paperheight}\\
     \else
-    Научный руководитель:   & \supervisorRegalia\par
-                              \ifdefined\supervisorDead
-                              \framebox{\textbf{\supervisorFio}}
-                              \else
-                              \textbf{\supervisorFio}
-                              \fi
-                              \vspace{0.013\paperheight}\\
+        Научный руководитель:   & \supervisorRegalia\par
+        \ifdefined\supervisorDead
+            \framebox{\textbf{\supervisorFio}}
+        \else
+            \textbf{\supervisorFio}
+        \fi
+        \vspace{0.013\paperheight}\\
     \fi
-    Официальные оппоненты:  &
+    Официальные оппоненты: &
     \ifnumequal{\value{showopplead}}{0}{\vspace{13\onelineskip plus1fill}}{%
         \textbf{\opponentOneFio,}\par
         \opponentOneRegalia,\par
@@ -80,21 +80,21 @@
         \opponentTwoRegalia,\par
         \opponentTwoJobPlace,\par
         \opponentTwoJobPost
-    \ifdefined\opponentThreeFio
-        \par
-        \vspace{0.01\paperheight}
-        \textbf{\opponentThreeFio,}\par
-        \opponentThreeRegalia,\par
-        \opponentThreeJobPlace,\par
-        \opponentThreeJobPost
-    \fi
+        \ifdefined\opponentThreeFio
+            \par
+            \vspace{0.01\paperheight}
+            \textbf{\opponentThreeFio,}\par
+            \opponentThreeRegalia,\par
+            \opponentThreeJobPlace,\par
+            \opponentThreeJobPost
+        \fi
     }%
     \vspace{0.013\paperheight} \\
     \ifdefined\leadingOrganizationTitle
-    Ведущая организация:    &
-    \ifnumequal{\value{showopplead}}{0}{\vspace{6\onelineskip plus1fill}}{%
-        \leadingOrganizationTitle
-    }%
+        Ведущая организация:    &
+        \ifnumequal{\value{showopplead}}{0}{\vspace{6\onelineskip plus1fill}}{%
+            \leadingOrganizationTitle
+        }%
     \fi
 \end{tabularx}
 \vspace{0.008\paperheight plus1fill}
@@ -110,17 +110,17 @@
 \vspace{0.008\paperheight plus1fill}
 \noindent%
 \begin{tabularx}{\textwidth}{@{}%
->{\raggedright\arraybackslash}b{18em}@{}
->{\centering\arraybackslash}X
-r
-@{}}
+        >{\raggedright\arraybackslash}b{18em}@{}
+        >{\centering\arraybackslash}X
+        r
+        @{}}
     Ученый секретарь\par
     диссертационного совета\par
     \defenseCouncilNumber
-    &
+     &
     \ifnumequal{\value{showsecrsign}}{0}{}{%
         \includegraphics[width=2cm]{secretary-signature.png}%
     }%
-    &
+     &
     \defenseSecretaryFio
 \end{tabularx}

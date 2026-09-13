@@ -5,28 +5,28 @@
 \makeatletter
 \ifnumequal{\value{draft}}{0}{% Чистовик
     \usepackage[%
-        backend=biber,% движок
-        bibencoding=utf8,% кодировка bib файла
-        sorting=none,% настройка сортировки списка литературы
-        style=gost-numeric,% стиль цитирования и библиографии (по ГОСТ)
-        language=autobib,% получение языка из babel/polyglossia, default: autobib % если ставить autocite или auto, то цитаты в тексте с указанием страницы, получат указание страницы на языке оригинала
-        autolang=other,% многоязычная библиография
-        clearlang=true,% внутренний сброс поля language, если он совпадает с языком из babel/polyglossia
-        defernumbers=true,% нумерация проставляется после двух компиляций, зато позволяет выцеплять библиографию по ключевым словам и нумеровать не из большего списка
-        sortcites=true,% сортировать номера затекстовых ссылок при цитировании (если в квадратных скобках несколько ссылок, то отображаться будут отсортированно, а не абы как)
-        doi=false,% Показывать или нет ссылки на DOI
-        isbn=false,% Показывать или нет ISBN, ISSN, ISRN
-        url=false,
+    backend=biber,% движок
+    bibencoding=utf8,% кодировка bib файла
+    sorting=none,% настройка сортировки списка литературы
+    style=gost-numeric,% стиль цитирования и библиографии (по ГОСТ)
+    language=autobib,% получение языка из babel/polyglossia, default: autobib % если ставить autocite или auto, то цитаты в тексте с указанием страницы, получат указание страницы на языке оригинала
+    autolang=other,% многоязычная библиография
+    clearlang=true,% внутренний сброс поля language, если он совпадает с языком из babel/polyglossia
+    defernumbers=true,% нумерация проставляется после двух компиляций, зато позволяет выцеплять библиографию по ключевым словам и нумеровать не из большего списка
+    sortcites=true,% сортировать номера затекстовых ссылок при цитировании (если в квадратных скобках несколько ссылок, то отображаться будут отсортированно, а не абы как)
+    doi=false,% Показывать или нет ссылки на DOI
+    isbn=false,% Показывать или нет ISBN, ISSN, ISRN
+    url=false,
     ]{biblatex}[2016/09/17]
     \ltx@iffilelater{biblatex-gost.def}{2017/05/03}%
     {\toggletrue{bbx:gostbibliography}%
         \renewcommand*{\revsdnamepunct}{\addcomma}}{}
 }{%Черновик
     \usepackage[%
-        backend=biber,% движок
-        bibencoding=utf8,% кодировка bib файла
-        sorting=none,% настройка сортировки списка литературы
-        % defernumbers=true, % откомментируйте, если требуется правильная нумерация ссылок на литературу в режиме черновика. Замедляет сборку
+    backend=biber,% движок
+    bibencoding=utf8,% кодировка bib файла
+    sorting=none,% настройка сортировки списка литературы
+    % defernumbers=true, % откомментируйте, если требуется правильная нумерация ссылок на литературу в режиме черновика. Замедляет сборку
     ]{biblatex}[2016/09/17]%
 }
 \makeatother
@@ -74,10 +74,10 @@
         % `date`, чтобы biber не пытался валидировать год как дату.
         \map[overwrite]{
             \step[fieldsource=date,
-                match=\regexp{^[0-9]{4}$},
-                fieldset=year,
-                origfieldval,
-                final]
+            match=\regexp{^[0-9]{4}$},
+            fieldset=year,
+            origfieldval,
+            final]
             \step[fieldset=date, null]
         }
         \map{% перекидываем значения полей language в поля langid, которыми пользуется biblatex
@@ -104,8 +104,8 @@
         }
         \map{% если в поле medium написано "Электронный ресурс", то устанавливаем поле media, которым пользуется biblatex, в значение eresource.
             \step[fieldsource=medium,
-                match=\regexp{Электронный\s+ресурс},
-                final]
+            match=\regexp{Электронный\s+ресурс},
+            final]
             \step[fieldset=media, fieldvalue=eresource]
             \step[fieldset=medium, null]
         }
@@ -118,9 +118,9 @@
         }
         \map[overwrite]{ % переделка формата записи даты
             \step[fieldsource=urldate,
-                match=\regexp{([0-9]{2})\.([0-9]{2})\.([0-9]{4})},
-                replace={$3-$2-$1$4}, % $4 вставлен исключительно ради нормальной работы программ подсветки синтаксиса, которые некорректно обрабатывают $ в таких конструкциях
-                final]
+            match=\regexp{([0-9]{2})\.([0-9]{2})\.([0-9]{4})},
+            replace={$3-$2-$1$4}, % $4 вставлен исключительно ради нормальной работы программ подсветки синтаксиса, которые некорректно обрабатывают $ в таких конструкциях
+            final]
         }
         \map[overwrite]{ % стираем ключевые слова
             \step[fieldsource=keywords]
@@ -239,31 +239,31 @@
     \DeclareSourcemap{
         \maps{
             \map[overwrite,foreach={%
-                        % {{{ Список лишних полей в презентации
-                        address,%
-                        chapter,%
-                        edition,%
-                        editor,%
-                        eid,%
-                        howpublished,%
-                        institution,%
-                        key,%
-                        month,%
-                        note,%
-                        number,%
-                        organization,%
-                        pages,%
-                        publisher,%
-                        school,%
-                        series,%
-                        type,%
-                        media,%
-                        url,%
-                        doi,%
-                        location,%
-                        volume,%
-                        % Список лишних полей в презентации }}}
-                    }]{
+                    % {{{ Список лишних полей в презентации
+                    address,%
+                    chapter,%
+                    edition,%
+                    editor,%
+                    eid,%
+                    howpublished,%
+                    institution,%
+                    key,%
+                    month,%
+                    note,%
+                    number,%
+                    organization,%
+                    pages,%
+                    publisher,%
+                    school,%
+                    series,%
+                    type,%
+                    media,%
+                    url,%
+                    doi,%
+                    location,%
+                    volume,%
+                    % Список лишних полей в презентации }}}
+                }]{
                 \perdatasource{biblio/author.bib}
                 \step[fieldset=$MAPLOOP,null]
             }
