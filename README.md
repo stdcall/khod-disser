@@ -4,6 +4,46 @@
 
 Для сборки диссертации можно использовать команду `latexmk dissertation.tex`.
 
+Команда `make BUILD_DIR=build synopsis` собирает диссертацию и автореферат.
+`make BUILD_DIR=build release` также сохраняет в `releases/` оба PDF с одной
+датой (`khod-disser-YYYY-MM-DD.pdf`, `khod-synopsis-YYYY-MM-DD.pdf`) и архив
+исходников. При повторном выпуске PDF получают одинаковый числовой суффикс.
+Готовые PDF не хранятся в Git; локальная сборка создает их как обычно.
+
+### PDF на GitHub
+
+- Каждый коммит в PR к `master` запускает сборку и проверки. Артефакт `pdf`
+  содержит оба PDF и исходники; он доступен на странице запуска Actions
+  в течение 30 дней. Для скачивания артефактов нужен вход в GitHub.
+- После успешной сборки коммита в `master` PDF и исходники публикуются в
+  [Releases](https://github.com/stdcall/khod-disser/releases). Последний релиз
+  доступен [по постоянной ссылке](https://github.com/stdcall/khod-disser/releases/latest).
+- Бот оставляет в PR комментарий со ссылками на артефакты, а при ошибке —
+  фрагментом лога. Обработчик комментариев начинает работать после включения
+  workflow `PDF report` в основную ветку.
+- Сборку можно повторить вручную: **Actions → PDF → Run workflow**.
+
+GitHub Actions использует Ubuntu 24.04, LuaLaTeX и Biber из TeX Live Ubuntu,
+Microsoft Core Fonts и STIX Two Math 2.12. Шрифты устанавливаются при сборке;
+их файлы в репозиторий не включаются. Версии пакетов и Microsoft-шрифтов
+могут отличаться от локального MacTeX, поэтому побитовое совпадение PDF
+между окружениями не предполагается.
+
+### Проверки
+
+```sh
+python3 .github/ci/test-release.py
+bash .github/ci/check-format.sh
+python3 .github/ci/check-build.py build
+```
+
+Форматирование проверяется без изменения файлов: `latexindent` **4.0.2**
+с `latexindent.yaml` должен давать нулевой diff. Проверяются `dissertation.tex`,
+`synopsis.tex` и все отслеживаемые TeX-файлы в `common/`, `Dissertation/`,
+`Synopsis/` и `biblio/`. Тесты `make release` проверяют порядок сборки, имена и
+сохранность предыдущих выпусков. После компиляции проверяются готовые PDF,
+ссылки, цитирования, повторные пользовательские метки и отсутствующие символы.
+
 Иногда сборка падает из-за повреждения кэша biber, в этом случае помогает
 его очистка командой `rm -rf $(biber --cache)`.
 

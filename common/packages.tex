@@ -37,11 +37,11 @@
 \usepackage{aliascnt}
 \usepackage[figure,table]{totalcount}   % Счетчик рисунков и таблиц
 \usepackage{totcount}   % Пакет создания счетчиков на основе последнего номера
-                        % подсчитываемого элемента (может требовать дважды
-                        % компилировать документ)
+% подсчитываемого элемента (может требовать дважды
+% компилировать документ)
 \usepackage{totpages}   % Счетчик страниц, совместимый с hyperref (ссылается
-                        % на номер последней страницы). Желательно ставить
-                        % последним пакетом в преамбуле
+% на номер последней страницы). Желательно ставить
+% последним пакетом в преамбуле
 
 %%% Продвинутое управление групповыми ссылками (пока только формулами) %%%
 \ifpresentation
@@ -79,7 +79,7 @@
 
 \makeatletter
 %\show\f@size    % неплохо для отслеживания, но вызывает стопорение процесса,
-                 % если документ компилируется без команды  -interaction=nonstopmode
+% если документ компилируется без команды  -interaction=nonstopmode
 \setlength{\curtextsize}{\f@size pt}
 \makeatother
 
@@ -101,7 +101,7 @@
 \usepackage{longtable} % Длинные таблицы
 \usepackage{multirow,makecell}   % Улучшенное форматирование таблиц
 \usepackage{tabulary,tabularray} % Таблицы с автоматически подбирающейся
-                                 % шириной столбцов
+% шириной столбцов
 \UseTblrLibrary{booktabs}
 \ExplSyntaxOn% define \IfTokenListEmpty to use \captionof with tabularray
 \prg_generate_conditional_variant:Nnn \tl_if_empty:n { e } { TF }

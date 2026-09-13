@@ -44,20 +44,26 @@ clean:
 archive:
 	git ls-files | grep -v '\.pdf$$' | tar -czf archive-$$(date +%Y-%m-%d).tar.gz -T -
 
-release: $(TARGET)
+release: $(TARGET) $(SYNTARGET)
 	@mkdir -p releases
-	@DATE=$$(date +%Y-%m-%d); \
+	@set -euo pipefail; \
+	DATE=$$(date +%Y-%m-%d); \
 	BASE_NAME="khod-disser-$$DATE"; \
-	if [ ! -f "releases/$$BASE_NAME.pdf" ]; then \
+	SYN_NAME="khod-synopsis-$$DATE"; \
+	if [ ! -f "releases/$$BASE_NAME.pdf" ] && [ ! -f "releases/$$SYN_NAME.pdf" ]; then \
 		cp $(TARGET) "releases/$$BASE_NAME.pdf"; \
+		cp $(SYNTARGET) "releases/$$SYN_NAME.pdf"; \
 		echo "Released PDF as releases/$$BASE_NAME.pdf"; \
+		echo "Released PDF as releases/$$SYN_NAME.pdf"; \
 	else \
 		COUNTER=1; \
-		while [ -f "releases/$$BASE_NAME-$$COUNTER.pdf" ]; do \
+		while [ -f "releases/$$BASE_NAME-$$COUNTER.pdf" ] || [ -f "releases/$$SYN_NAME-$$COUNTER.pdf" ]; do \
 			COUNTER=$$((COUNTER + 1)); \
 		done; \
 		cp $(TARGET) "releases/$$BASE_NAME-$$COUNTER.pdf"; \
+		cp $(SYNTARGET) "releases/$$SYN_NAME-$$COUNTER.pdf"; \
 		echo "Released PDF as releases/$$BASE_NAME-$$COUNTER.pdf"; \
+		echo "Released PDF as releases/$$SYN_NAME-$$COUNTER.pdf"; \
 	fi; \
 	ARCHIVE_NAME="archive-$$DATE"; \
 	if [ ! -f "releases/$$ARCHIVE_NAME.tar.gz" ]; then \

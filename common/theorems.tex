@@ -50,11 +50,11 @@
 \renewcommand{\label}[1]{%
     \ifskiptheoremcheck
         % Проверка отключена (внутри equation и т.д.) - просто создаем лейбл
-        \originallabel{#1}%
+    \originallabel{#1}%
     \else
         \ifx\currenttheoremtype\relax
             % Вне теоремных окружений - просто вызываем оригинальный \label
-            \originallabel{#1}%
+        \originallabel{#1}%
         \else
             % Внутри теоремного окружения - проверяем префикс
             \checklabelprefix{\currenttheoremtype}{#1}%
