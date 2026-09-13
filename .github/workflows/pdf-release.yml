@@ -1,0 +1,54 @@
+name: PDF release
+
+on:
+  workflow_run:
+    workflows: [PDF]
+    types: [completed]
+    branches: [master]
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  release:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      (github.event.workflow_run.event == 'push' ||
+       github.event.workflow_run.event == 'workflow_dispatch')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: pdf-${{ github.event.workflow_run.run_attempt }}
+          path: releases
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+
+      - name: Publish the PDFs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          SOURCE_SHA: ${{ github.event.workflow_run.head_sha }}
+          BUILD_URL: ${{ github.event.workflow_run.html_url }}
+        run: |
+          set -euo pipefail
+          pdfs=(releases/khod-disser-*.pdf)
+          test "${#pdfs[@]}" -eq 1
+          release_date="${pdfs[0]#releases/khod-disser-}"
+          release_date="${release_date%.pdf}"
+          tag="pdf-${release_date}-${SOURCE_SHA:0:12}"
+          title="PDF ${release_date} (${SOURCE_SHA:0:7})"
+          printf 'Диссертация и автореферат из коммита %s.\n\n[Сборка и проверки](%s).\n' \
+            "$SOURCE_SHA" "$BUILD_URL" > release-notes.md
+          latest=false
+          if [ "$(gh api "repos/$GH_REPO/git/ref/heads/master" --jq .object.sha)" = "$SOURCE_SHA" ]; then
+            latest=true
+          fi
+          if gh release view "$tag" > /dev/null 2>&1; then
+            gh release upload "$tag" releases/* --clobber
+          else
+            gh release create "$tag" releases/* --target "$SOURCE_SHA" \
+              --title "$title" --notes-file release-notes.md --latest="$latest"
+          fi
