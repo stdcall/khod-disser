@@ -13,15 +13,19 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-24.04
+    container:
+      image: ghcr.io/xu-cheng/texlive-debian:20260701@sha256:3bdf292b53c04ffa3ca694a5114397859bcd39b6b417c212414e1505e7fe8ec5
+    defaults:
+      run:
+        shell: bash
     timeout-minutes: 35
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           persist-credentials: false
 
-      - name: Install TeX and fonts
-        shell: bash
-        run: bash .github/ci/install-tex.sh 2>&1 | tee setup.log
+      - name: Set up fonts and formatter
+        run: bash .github/ci/setup-tex.sh 2>&1 | tee setup.log
 
       - name: Check and build both documents
         run: |

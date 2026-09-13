@@ -1,17 +1,23 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-sudo add-apt-repository --yes --no-update multiverse
-sudo apt-get update
-printf '%s\n' \
-  'ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula boolean true' \
-  | sudo debconf-set-selections
-sudo env DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
-  latexmk biber texlive-luatex texlive-latex-extra texlive-latex-recommended \
-  texlive-pictures texlive-lang-cyrillic texlive-bibtex-extra \
-  texlive-fonts-recommended fontconfig ttf-mscorefonts-installer
+# TeX Live and its tools are preinstalled in the pinned Debian container.
+lualatex --version
+biber --version
+latexmk --version
 
-# Install the mathematical font without the much larger texlive-fonts-extra.
+cat > /etc/apt/sources.list.d/ms-fonts.sources <<'EOF'
+Types: deb
+URIs: https://deb.debian.org/debian
+Suites: trixie
+Components: contrib
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+EOF
+apt-get update
+DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
+  ttf-mscorefonts-installer
+
+# Pin the mathematical font independently of TeX Live's bundled version.
 stix_dir="$HOME/.local/share/fonts/stix-two"
 mkdir -p "$stix_dir"
 curl --fail --location --retry 3 \

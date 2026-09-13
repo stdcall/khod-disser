@@ -23,11 +23,13 @@
   workflow `PDF report` в основную ветку.
 - Сборку можно повторить вручную: **Actions → PDF → Run workflow**.
 
-GitHub Actions использует Ubuntu 24.04, LuaLaTeX и Biber из TeX Live Ubuntu,
-Microsoft Core Fonts и STIX Two Math 2.12. Шрифты устанавливаются при сборке;
-их файлы в репозиторий не включаются. Версии пакетов и Microsoft-шрифтов
-могут отличаться от локального MacTeX, поэтому побитовое совпадение PDF
-между окружениями не предполагается.
+GitHub Actions использует стандартный раннер Ubuntu 24.04 и готовый образ
+`ghcr.io/xu-cheng/texlive-debian:20260701`, закрепленный по SHA256 digest.
+LuaLaTeX, Biber и latexmk уже установлены в образе; при запуске добавляются
+Microsoft Core Fonts, STIX Two Math 2.12 и `latexindent` 4.0.2. Файлы шрифтов
+в репозиторий не включаются. Версии пакетов и Microsoft-шрифтов могут
+отличаться от локального MacTeX, поэтому побитовое совпадение PDF между
+окружениями не предполагается.
 
 ### Проверки
 
