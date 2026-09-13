@@ -164,6 +164,7 @@
     }
 \fi
 
+% \begin{noindent}
 \hypersetup{
     linktocpage=true,           % ссылки с номера страницы в оглавлении, списке таблиц и списке рисунков
     %    linktoc=all,                % both the section and page part are links
@@ -187,6 +188,7 @@
         draft,
     }
 }{}
+% \end{noindent}
 
 %%% Списки %%%
 % Используем короткое тире (endash) для ненумерованных списков (ГОСТ 2.105-95, пункт 4.1.7, требует дефиса, но так лучше смотрится)
@@ -240,6 +242,7 @@
 
 %%http://www.linux.org.ru/forum/general/6993203#comment-6994589 (используется totcount)
 \makeatletter
+% \begin{noindent}
 \def\formtotal#1#2#3#4#5{%
     \newcount\@c
     \@c\totvalue{#1}\relax
@@ -259,5 +262,6 @@
     \fi
 }
 \makeatother
+% \end{noindent}
 
 \newcommand{\formbytotal}[5]{\total{#1}~\formtotal{#1}{#2}{#3}{#4}{#5}}

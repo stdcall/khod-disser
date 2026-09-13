@@ -103,7 +103,7 @@ a proof / statement / etc.).
 Для управления выравниванием используется `latexindent` с конфигурацией,
 определенной в файле ./latexindent.yaml. Отформатировать tex-файл можно вызвав
 команду Format Document внутри VS Code, либо вызовом в корне проекта
-`latexindent -c ./.latexindent-backups -l ./latexindent.yaml FILE-NAME.tex`
+`latexindent -m -c ./.latexindent-backups -l ./latexindent.yaml FILE-NAME.tex`
 (выведет отформатированный текст в stdout).
 
 ## labels
