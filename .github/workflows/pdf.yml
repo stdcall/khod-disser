@@ -14,7 +14,9 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     container:
-      image: ghcr.io/xu-cheng/texlive-debian:20260701@sha256:3bdf292b53c04ffa3ca694a5114397859bcd39b6b417c212414e1505e7fe8ec5
+      # Newer LaTeX kernels currently conflict with thmtools:
+      # https://github.com/muzimuzhi/thmtools/issues/75
+      image: ghcr.io/xu-cheng/texlive-debian:20260401@sha256:7cb19a92fa304e0cd16819496fc5ba829c122a411bac0792c0a5800dd78a4aa3
     defaults:
       run:
         shell: bash
@@ -31,6 +33,7 @@ jobs:
         run: |
           set -euo pipefail
           {
+            git config --global --add safe.directory "$GITHUB_WORKSPACE"
             python3 .github/ci/test-release.py
             bash .github/ci/check-format.sh
             make BUILD_DIR=build release
