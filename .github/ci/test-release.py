@@ -132,11 +132,11 @@ class ReleaseTests(unittest.TestCase):
 
     def release(self, build_dir=None):
         arguments = ["make", "-j4", "release"]
-        if build_dir:
+        if build_dir is not None:
             arguments.append(f"BUILD_DIR={build_dir}")
         self.run_command(*arguments)
 
-    def assert_pair(self, suffix="", build_dir="."):
+    def assert_pair(self, suffix="", build_dir="build"):
         for document, prefix in (("dissertation", "khod-disser"), ("synopsis", "khod-synopsis")):
             product = self.root / build_dir / f"{document}.pdf"
             released = self.root / "releases" / f"{prefix}-{DATE}{suffix}.pdf"
@@ -165,18 +165,24 @@ class ReleaseTests(unittest.TestCase):
             self.assertEqual((self.root / "releases" / name).read_bytes(), content, name)
 
     def test_release_in_root(self):
+        self.release("")
+        self.assert_pair(build_dir=".")
+        self.assert_build_order()
+        self.assert_source_archive()
+
+    def test_release_in_default_build_directory(self):
         self.release()
         self.assert_pair()
         self.assert_build_order()
         self.assert_source_archive()
-
-    def test_release_in_build_directory(self):
-        self.release("build")
-        self.assert_pair(build_dir="build")
-        self.assert_build_order()
-        self.assert_source_archive()
         for document in ("dissertation", "synopsis"):
             self.assertFalse((self.root / f"{document}.pdf").exists())
+
+    def test_release_in_custom_build_directory(self):
+        self.release("custom-build")
+        self.assert_pair(build_dir="custom-build")
+        self.assert_build_order()
+        self.assert_source_archive()
 
     def test_release_pdfs_does_not_archive_sources(self):
         self.run_command("make", "-j4", "release-pdfs", "BUILD_DIR=build")
@@ -198,8 +204,8 @@ class ReleaseTests(unittest.TestCase):
         message = f"simulated {command} failure"
         stub.write_text(f"#!/bin/sh\nprintf '%s\\n' '{message}' >&2\nexit 17\n")
         stub.chmod(0o755)
-        # Without BUILD_DIR, cp is used only by release, not by statistics export.
-        result = subprocess.run(["make", "-j4", "release"], cwd=self.root, env=self.env,
+        # In the root, cp is used only by release, not by statistics export.
+        result = subprocess.run(["make", "-j4", "release", "BUILD_DIR="], cwd=self.root, env=self.env,
                                 text=True, stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT, timeout=30)
         self.assertIn(message, result.stdout)
