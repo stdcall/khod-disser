@@ -6,13 +6,9 @@ lualatex --version
 biber --version
 latexmk --version
 
-cat > /etc/apt/sources.list.d/ms-fonts.sources <<'EOF'
-Types: deb
-URIs: https://deb.debian.org/debian
-Suites: trixie
-Components: contrib
-Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
-EOF
+# Keep the image's Debian mirror and signing-key settings.
+sed -i 's/^Components: main$/Components: main contrib/' \
+  /etc/apt/sources.list.d/debian.sources
 apt-get update
 DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
   ttf-mscorefonts-installer
