@@ -5,6 +5,7 @@ COMMON = $(wildcard ./common/*.tex)
 BIB = $(wildcard ./*.bib) $(wildcard ./biblio/*.tex)
 DISS = $(wildcard ./Dissertation/*.tex)
 SYN = $(wildcard ./Synopsis/*.tex)
+BUILD_DIR ?= build
 
 # If BUILD_DIR is set, use it as output directory
 ifdef BUILD_DIR
@@ -36,7 +37,7 @@ dissertation.pdf: $(TARGET)
 endif
 
 clean:
-	latexmk -c
+	latexmk $(OUTDIR_FLAG) -c
 	rm -rf `biber --cache`
 	rm -f $(MAINSOURCE).{aux,bcf,bbl,fls,log,out,run.xml,toc}
 	rm -f $(SYNSOURCE).{aux,bcf,bbl,fls,log,out,run.xml,toc}
