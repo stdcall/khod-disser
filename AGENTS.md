@@ -141,8 +141,6 @@ When you i'm referencing something as `\ref{p:mult-enveloping}` in the prompt
 ## Miscellaneous
 
 - \medskip should be separated from the main text by blank lines above and below
-- In the begin of every theorem and proof environment place a single line with
-  empty comment. We need it for `latexindent` to work properly.
 
 # About contents
 

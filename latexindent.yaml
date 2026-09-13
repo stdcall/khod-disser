@@ -6,6 +6,14 @@ modifyLineBreaks:
     condenseMultipleBlankLinesInto: 1
     textWrapOptions:
         columns: 80
+        blocksFollow:
+            # Первый абзац окружения переносится и без отдельного комментария %.
+            # Сохраняем штатные правила для \] и \item; учитываем \cite[...] в заголовке.
+            other: |-
+                \\\]|\\item(?:\h|\[)
+                |\\begin\{(?:theorem|lemma|proof|proposition|corollary|remark|definition)\}
+                (?:\h*\[(?:[^\[\]\r\n]|\[[^\[\]\r\n]*\])*\])?
+                (?:(?:\h|\R)*\\label\{[^}\r\n]*\})*
         blocksBeginWith:
             A-Z: 1
             a-z: 1
