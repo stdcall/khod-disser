@@ -288,10 +288,14 @@ r_{k,-k}$.
 и $\Phi^+$-матрицей $||a_{iv}||$ над $\mathbb{K}$ соответствующего типа. Так,
 $B_n^+$-матрица имеет вид
 %
-\[a_{10}\]
-\[a_{2,-1}\ a_{20}\ a_{21}\]
-\[\dots\ \ \dots\ \ \dots\]
-\[a_{n,-n+1}\ \dots\  a_{n,-1}\ a_{n0}\ a_{n1}\ \dots\ a_{n,n-1}.\]
+\[
+    \begin{gathered}
+        a_{10} \\
+        a_{2,-1}\ a_{20}\ a_{21} \\
+        \dots\ \ \dots\ \ \dots \\
+        a_{n,-n+1}\ \dots\ a_{n,-1}\ a_{n0}\ a_{n1}\ \dots\ a_{n,n-1}.
+    \end{gathered}
+\]
 %
 Отбрасывая столбец с нулевым номером, получаем $D_n^+$-матрицу.
 
@@ -310,8 +314,6 @@ $B_n^+$-матрица имеет вид
     \[[e_{jm},e_{i,-m}]=[e_{im},e_{j,-m}]=e_{i,-j}\quad(\Phi=C_n),\quad
         i>j>m\geq1.\]
 \end{lemma}
-
-\medskip
 
 Соответственно типу ${\Phi}$ для алгебр Ли $N\Phi(\mathbb{K})$ используем
 обозначения $NB_n(\mathbb{K})$, $NC_n(\mathbb{K})$ и так далее. Очевидным
@@ -1050,8 +1052,6 @@ $\Psi$ лежит в базе $\Pi(\Phi)$, нестандартный идеал
     2 \cref{p:Exc-Dn-En} следует из \crefRod{l:stand-one-corner}.
 \end{proof}
 
-\medskip
-
 Исследуем условия однозначности обертывающих алгебр $R_{\Phi}$ типов $B_n$ и
 $C_n$ над полем.
 
@@ -1107,8 +1107,6 @@ $C_n$ над полем.
 
     \end{picture}
 \]
-
-\medskip
 
 В отличие от типа $D_n$, в системах ${\Phi}$ типа $B_n$ и $C_n$ корни $r_{jv}$
 и $r_{j, -v}$ всегда инцидентны, то есть в $R_{\Phi}$ один из идеалов
@@ -1279,8 +1277,6 @@ $B_n$, в силу \crefRod{p:mult-enveloping},
     остальных базисных элементах, задает требуемый изоморфизм фактор-алгебр.
 \end{proof}
 
-\medskip
-
 \begin{remark}\label{remark:graph-automorphisms}
     Согласно доказательству предложения 12.2.3 в \cite{carter72} (см. также
     \cite{vl90a_ru}), алгебра Ли $N\Phi (\mathbb{K})$ допускает графовый
@@ -1296,15 +1292,11 @@ $B_n$, в силу \crefRod{p:mult-enveloping},
     \]
 \end{remark}
 
-\medskip
-
 \begin{definition}
     Последовательность обертывающих алгебр $R_n$ одного классического типа (скажем,
     $B_n$) возрастающих рангов $n$ назовем \emph{монотонной}, если каждый ее член
     изоморфно представляется подалгеброй следующего члена.
 \end{definition}
-
-\medskip
 
 Соответствующий пример с естественными изоморфными вложениями дает
 %
@@ -1316,8 +1308,6 @@ $B_n$, в силу \crefRod{p:mult-enveloping},
 При замене $RB_3(\mathbb{K})$ на алгебру $R_{\Phi}$ типа $B_3$ из леммы
 \ref{l:Subsistem-B3} первое естественное вложение нарушается.
 
-\medskip
-
 \begin{remark}\label{remark:RBn-sign}
     Одновременная смена всех знаков $c_{jm}$ в \eqref{IsomR-B3} не меняет класс
     изоморфизма: диагональная замена $e_{i,-j}\mapsto -e_{i,-j}$ (тождественная на
@@ -1328,8 +1318,6 @@ $B_n$, в силу \crefRod{p:mult-enveloping},
     произведений элементы $e_{i,-j}$ либо не участвуют, либо стоят и в сомножителе,
     и в результате).
 \end{remark}
-
-\medskip
 
 Сейчас мы можем указать условия однозначности обертывающих алгебр $R_{\Phi}$
 классических типов. Для типа $B_n$ справедлива следующая теорема.
@@ -1363,8 +1351,6 @@ $B_n$, в силу \crefRod{p:mult-enveloping},
 вложения $RD_n(\mathbb{K})\hookrightarrow RD_{n+1}(\mathbb{K})$ задаются
 правилом $e_{iv}\mapsto e_{iv}$ и сохраняют умножение по
 \crefDat{l:mult-RAn-RDn}.
-
-\medskip
 
 \begin{remark}\label{remark:Stand-Cn}
     Аналог теоремы \ref{th:Stand-Bn} для типа $C_n$ $(n\geq 3)$ с условием
@@ -1432,8 +1418,6 @@ $\mathrm{deg}_\Gamma(a) = g$. Отметим, что при таком опре�
 называется \emph{однородной компонентой степени $g$}. При фиксированной
 градуировке $\Gamma$ алгебру $A$ будем называть \emph{градуированной}.
 
-\noindent
-%
 Произвольный элемент $a \in A$ можно однозначно представить в виде суммы
 $\sum_{g \in G}a_g$, где элементы $a_g \in A_g$ называются \emph{однородными
     компонентами $a$}. Подалгебра $R \subset A$ называется градуированной, если она
@@ -1444,15 +1428,13 @@ $\sum_{g \in G}a_g$, где элементы $a_g \in A_g$ называются 
 \[
     (A/I)_g\coloneq (A_g+I)/I = \{a+I \mid a\in A_g\}.
 \]
+
 Рассмотрим две градуировки алгебры $A$
 \begin{equation*}
     \Gamma_1 \colon A = \bigoplus_{g \in G}A_g
     \quad \text{и} \quad
     \Gamma_2 \colon A = \bigoplus_{h \in H}A_h.
 \end{equation*}
-
-\medskip
-
 Будем говорить, что $\Gamma_2$ является \emph{уточнением} градуировки
 $\Gamma_1$, если существует \emph{гомоморфизм огрубления} $\phi\colon H \to G$
 такой, что для каждого $h \in H$ выполняется включение $A_h \subset
@@ -1480,8 +1462,6 @@ A_{\phi(h)}$. Если для некоторого $h \in H$ с $A_h \neq 0$ э�
 
 Алгебра $A \neq 0$ называется \emph{нильпотентной} класса нильпотентности $m$,
 если $A^m \neq 0$ и $A^{m+1} = 0$. В частности, $A^m \subset \Ann(A) \neq 0$.
-
-\medskip
 
 \begin{lemma}\label{l:graded-ann}
     Аннулятор $\Ann(A)$ градуированной алгебры $A = \oplus_{g \in G}A_g$ является
@@ -2294,8 +2274,6 @@ NT(n,\mathbb{K})^{(-)}$ является подалгеброй в $N\Phi(\mathb
     N\Phi(\mathbb{K})\simeq NT(n,\mathbb{K})^{(-)} \ltimes_\phi T(r_\Phi).
 \end{equation*}
 
-\medskip
-
 По \crefDat{corollary:enveloping-semidirect} \crefRod{th:semidirect-pre-lie},
 чтобы построить точную обертывающую алгебру $N\Phi(\mathbb{K})$ типов $D_n$,
 $C_n$ и $B_n$ в виде полупрямой суммы ассоциативных алгебр, достаточно выбрать
@@ -2339,8 +2317,6 @@ $\cdot_\Phi$ можем взять нулевое умножение.
     типа $D_n$, $C_n$ или $B_n$.
     %</th:BnCnDn-pre-lie>
 \end{theorem}
-
-\medskip
 
 Базис $\{e_r \mid r \in \Phi^+\}$ задает на алгебре $R\Phi'(\mathbb{K})$
 градуировку решеткой корней $\mathbb{Z}\Phi$, согласованную с градуировкой
@@ -2554,8 +2530,6 @@ $\mathbb{F}_q^m$ обозначим через $V_q(m,t)$. В~\cite[лемма 2
     %Это дает решение задачи 1 из \cite{IzvIrkGU-2016}.
 \end{remark}
 
-\medskip
-
 Отметим в заключение параграфа равенство чисел $V_q(n,s)$ числам $A_n^{(s)}$ из
 \cite[формула~(9)]{carlitz1933}:
 \[
@@ -2638,8 +2612,6 @@ $(\mathcal{L}, S)$ сразу же вытекает
     есть идеалам $H = T(\mathcal{L})$.
 \end{remark}
 
-\medskip
-
 Полное решение проблемы~1 из \cite{sigsam2001} дает следующая теорема.
 \begin{theorem}[{{\cite[теорема 1]{smj2023}}}]\label{th:enum-stand-id-classical}
     %<*th:enum-stand-id-classical>
@@ -2686,8 +2658,6 @@ $(\mathcal{L}, S)$ сразу же вытекает
     Учитывая \cref{l:vmt-comb,l:enum-stand-id-reduct-BV}, доказательство теоремы
     \ref{th:enum-stand-id-classical} завершено.
 \end{proof}
-
-\medskip
 
 Решая проблему~1 из \cite{sigsam2001}, \cref{th:enum-stand-id-classical}
 завершает решение задачи~\textbf{(A)} для классических типов. Для
