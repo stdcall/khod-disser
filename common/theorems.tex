@@ -10,6 +10,14 @@
 %\newtheorem{proof}{Доказательство}\def\theproof{}
 \declaretheorem[name=Замечание, sibling=theorem, style=definition]{remark}
 
+% PDF-адреса общих счетчиков должны учитывать сброс в каждом параграфе.
+\renewcommand*{\theHtheorem}{\theHsection.\arabic{theorem}}
+\renewcommand*{\theHcorollary}{\theHtheorem}
+\renewcommand*{\theHlemma}{\theHtheorem}
+\renewcommand*{\theHproposition}{\theHtheorem}
+\renewcommand*{\theHdefinition}{\theHtheorem}
+\renewcommand*{\theHremark}{\theHtheorem}
+
 %-------------------------------------------------
 % Проверка правильности префиксов лейблов
 %-------------------------------------------------

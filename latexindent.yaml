@@ -18,7 +18,7 @@ modifyLineBreaks:
             A-Z: 1
             a-z: 1
             0-9: 0
-            other: "[АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя]"
+            other: '[АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя]|\{\\actuality\}'
 noAdditionalIndentGlobal:
     optionalArguments: 1
     namedGroupingBracesBrackets: 1
