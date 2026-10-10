@@ -7,7 +7,7 @@
     \usepackage[%
     backend=biber,% движок
     bibencoding=utf8,% кодировка bib файла
-    sorting=none,% настройка сортировки списка литературы
+    sorting=nty,% алфавитный порядок списка литературы
     style=gost-numeric,% стиль цитирования и библиографии (по ГОСТ)
     language=autobib,% получение языка из babel/polyglossia, default: autobib % если ставить autocite или auto, то цитаты в тексте с указанием страницы, получат указание страницы на языке оригинала
     autolang=other,% многоязычная библиография
@@ -25,7 +25,7 @@
     \usepackage[%
     backend=biber,% движок
     bibencoding=utf8,% кодировка bib файла
-    sorting=none,% настройка сортировки списка литературы
+    sorting=nty,% алфавитный порядок списка литературы
     % defernumbers=true, % откомментируйте, если требуется правильная нумерация ссылок на литературу в режиме черновика. Замедляет сборку
     ]{biblatex}[2016/09/17]%
 }
@@ -513,40 +513,34 @@
 \defbibheading{pubgroup}{\section*{#1}} % обычный стиль, заголовок-секция
 \defbibheading{pubsubgroup}{\noindent\textbf{#1}} % для подразделов "по типу источника"
 
-%%%Сортировка списка литературы Русский-Английский (предварительно удалить dissertation.bbl) (начало)
-%%%Источник: https://github.com/odomanov/biblatex-gost/wiki/%D0%9A%D0%B0%D0%BA-%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C,-%D1%87%D1%82%D0%BE%D0%B1%D1%8B-%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%BE%D1%8F%D0%B7%D1%8B%D1%87%D0%BD%D1%8B%D0%B5-%D0%B8%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA%D0%B8-%D0%BF%D1%80%D0%B5%D0%B4%D1%88%D0%B5%D1%81%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BB%D0%B8-%D0%BE%D1%81%D1%82%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%BC
-%\DeclareSourcemap{
-%    \maps[datatype=bibtex]{
-%        \map{
-%            \step[fieldset=langid, fieldvalue={tempruorder}]
-%        }
-%        \map[overwrite]{
-%            \step[fieldsource=langid, match=russian, final]
-%            \step[fieldsource=presort,
-%            match=\regexp{(.+)},
-%            replace=\regexp{aa$1}]
-%        }
-%        \map{
-%            \step[fieldsource=langid, match=russian, final]
-%            \step[fieldset=presort, fieldvalue={az}]
-%        }
-%        \map[overwrite]{
-%            \step[fieldsource=langid, notmatch=russian, final]
-%            \step[fieldsource=presort,
-%            match=\regexp{(.+)},
-%            replace=\regexp{za$1}]
-%        }
-%        \map{
-%            \step[fieldsource=langid, notmatch=russian, final]
-%            \step[fieldset=presort, fieldvalue={zz}]
-%        }
-%        \map{
-%            \step[fieldsource=langid, match={tempruorder}, final]
-%            \step[fieldset=langid, null]
-%        }
-%    }
-%}
-%Сортировка списка литературы (конец)
+% Внешние источники: русскоязычные перед иностранными.
+% Публикации автора: статьи перед тезисами; годы сортируются в refcontext ниже.
+\DeclareSourcemap{
+    \maps[datatype=bibtex]{
+        \map[overwrite]{
+            \perdatasource{./disser.bib}
+            \step[fieldset=presort, fieldvalue={02}]
+        }
+        \map[overwrite]{
+            \perdatasource{./disser.bib}
+            \step[fieldsource=langid, match={russian}, final]
+            \step[fieldset=presort, fieldvalue={01}]
+        }
+        \map[overwrite]{
+            \perdatasource{./disser-my.bib}
+            \step[fieldset=presort, fieldvalue={02}]
+        }
+        \map[overwrite]{
+            \perdatasource{./disser-my.bib}
+            \step[typesource=article, typetarget=article, final]
+            \step[fieldset=presort, fieldvalue={01}]
+        }
+        \map[overwrite]{
+            \perdatasource{./disser-my.bib}
+            \step[fieldset=options, fieldvalue={,maxbibnames=99}, append=true]
+        }
+    }
+}
 
 %%% Создание команд для вывода списка литературы %%%
 \newcommand*{\insertbibliofull}{
@@ -556,12 +550,16 @@
     }{}
 }
 \newcommand*{\insertbiblioauthor}{
-    % Счётчик общего количества наименований списка литературы (citenum)
-    % должен учитывать и этот подпункт.
-    \ifnumequal{\value{draft}}{0}{
-        \printbibliography[heading=nobibheading, section=0, env=counteradd, filter=papersregistered]
-    }{}
-    \printbibliography[heading=pubgroup, section=0, filter=papersregistered, title=\bibtitleauthor]
+    \nocite{vmj2015,jsfu2018,imm2020,smj2023,jsfu2026,
+        svobodniy2016,levconf2016,malcevconf2016,modernWorldConf2017,
+        kuroshconf2018,malcevconf2023}
+    \begin{refcontext}[sorting=ynt]
+        % Счётчик citenum включает обе части списка литературы.
+        \ifnumequal{\value{draft}}{0}{
+            \printbibliography[heading=nobibheading, section=0, env=counteradd, filter=papersregistered]
+        }{}
+        \printbibliography[heading=pubgroup, section=0, filter=papersregistered, title=\bibtitleauthor]
+    \end{refcontext}
 }
 \newcommand*{\insertbiblioauthorimportant}{
     \ifnumequal{\value{draft}}{0}{
