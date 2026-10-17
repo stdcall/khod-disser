@@ -9,6 +9,7 @@
 \declaretheorem[name=Определение, sibling=theorem, style=definition]{definition}
 %\newtheorem{proof}{Доказательство}\def\theproof{}
 \declaretheorem[name=Замечание, sibling=theorem, style=definition]{remark}
+\declaretheorem[name=Пример, sibling=theorem, style=definition]{example}
 
 % PDF-адреса общих счетчиков должны учитывать сброс в каждом параграфе.
 \renewcommand*{\theHtheorem}{\theHsection.\arabic{theorem}}
@@ -17,6 +18,7 @@
 \renewcommand*{\theHproposition}{\theHtheorem}
 \renewcommand*{\theHdefinition}{\theHtheorem}
 \renewcommand*{\theHremark}{\theHtheorem}
+\renewcommand*{\theHexample}{\theHtheorem}
 
 %-------------------------------------------------
 % Проверка правильности префиксов лейблов
@@ -87,6 +89,7 @@
 \RegisterTheoremLabelCheck{corollary}{corollary}
 \RegisterTheoremLabelCheck{definition}{def}
 \RegisterTheoremLabelCheck{remark}{remark}
+\RegisterTheoremLabelCheck{example}{example}
 
 % Отключаем проверку при входе в математические и другие окружения с лейблами
 \SkipLabelCheckIn{equation}
@@ -126,6 +129,9 @@
     \crefname{remark}{замечание}{замечания}
     \Crefname{remark}{Замечание}{Замечания}
 
+    \crefname{example}{пример}{примеры}
+    \Crefname{example}{Пример}{Примеры}
+
     \makeatletter
     % Сохранить текущие cref-форматы (\crefformat записывает глобально,
     % поэтому \begingroup/\endgroup НЕ восстанавливает их автоматически)
@@ -136,6 +142,7 @@
         \let\@crefcase@s@corollary\cref@corollary@format
         \let\@crefcase@s@definition\cref@definition@format
         \let\@crefcase@s@remark\cref@remark@format
+        \let\@crefcase@s@example\cref@example@format
     }
     % Восстановить сохраненные cref-форматы
     \newcommand{\@crefcase@restore}{%
@@ -145,13 +152,14 @@
         \global\let\cref@corollary@format\@crefcase@s@corollary
         \global\let\cref@definition@format\@crefcase@s@definition
         \global\let\cref@remark@format\@crefcase@s@remark
+        \global\let\cref@example@format\@crefcase@s@example
     }
 
     % Вспомогательная команда для создания падежных ссылок.
     % #1 = label
     % #2 = theorem, #3 = lemma, #4 = proposition,
-    % #5 = corollary, #6 = definition, #7 = remark
-    \newcommand{\@crefcase}[7]{%
+    % #5 = corollary, #6 = definition, #7 = remark, #8 = example
+    \newcommand{\@crefcase}[8]{%
         \@crefcase@save
         \crefformat{theorem}{#2~##2##1##3}%
         \crefformat{lemma}{#3~##2##1##3}%
@@ -159,29 +167,47 @@
         \crefformat{corollary}{#5~##2##1##3}%
         \crefformat{definition}{#6~##2##1##3}%
         \crefformat{remark}{#7~##2##1##3}%
+        \crefformat{example}{#8~##2##1##3}%
         \cref{#1}%
         \@crefcase@restore
     }
 
     % --- РОДИТЕЛЬНЫЙ ПАДЕЖ (кого? чего?) ---
-    \newcommand{\crefRod}[1]{\@crefcase{#1}{теоремы}{леммы}{предложения}{следствия}{определения}{замечания}}
-    \newcommand{\CrefRod}[1]{\@crefcase{#1}{Теоремы}{Леммы}{Предложения}{Следствия}{Определения}{Замечания}}
+    \newcommand{\crefRod}[1]{\@crefcase{#1}{теоремы}{леммы}{предложения}{следствия}{определения}{замечания}{примера}}
+    \newcommand{\CrefRod}[1]{\@crefcase{#1}{Теоремы}{Леммы}{Предложения}{Следствия}{Определения}{Замечания}{Примера}}
 
     % --- ДАТЕЛЬНЫЙ ПАДЕЖ (чему?) ---
-    \newcommand{\crefDat}[1]{\@crefcase{#1}{теореме}{лемме}{предложению}{следствию}{определению}{замечанию}}
-    \newcommand{\CrefDat}[1]{\@crefcase{#1}{Теореме}{Лемме}{Предложению}{Следствию}{Определению}{Замечанию}}
+    \newcommand{\crefDat}[1]{\@crefcase{#1}{теореме}{лемме}{предложению}{следствию}{определению}{замечанию}{примеру}}
+    \newcommand{\CrefDat}[1]{\@crefcase{#1}{Теореме}{Лемме}{Предложению}{Следствию}{Определению}{Замечанию}{Примеру}}
 
     % --- ВИНИТЕЛЬНЫЙ ПАДЕЖ (что?) ---
-    \newcommand{\crefVin}[1]{\@crefcase{#1}{теорему}{лемму}{предложение}{следствие}{определение}{замечание}}
-    \newcommand{\CrefVin}[1]{\@crefcase{#1}{Теорему}{Лемму}{Предложение}{Следствие}{Определение}{Замечание}}
+    \newcommand{\crefVin}[1]{\@crefcase{#1}{теорему}{лемму}{предложение}{следствие}{определение}{замечание}{пример}}
+    \newcommand{\CrefVin}[1]{\@crefcase{#1}{Теорему}{Лемму}{Предложение}{Следствие}{Определение}{Замечание}{Пример}}
 
     % --- ТВОРИТЕЛЬНЫЙ ПАДЕЖ (чем?) ---
-    \newcommand{\crefTvor}[1]{\@crefcase{#1}{теоремой}{леммой}{предложением}{следствием}{определением}{замечанием}}
-    \newcommand{\CrefTvor}[1]{\@crefcase{#1}{Теоремой}{Леммой}{Предложением}{Следствием}{Определением}{Замечанием}}
+    \newcommand{\crefTvor}[1]{\@crefcase{#1}{теоремой}{леммой}{предложением}{следствием}{определением}{замечанием}{примером}}
+    \newcommand{\CrefTvor}[1]{\@crefcase{#1}{Теоремой}{Леммой}{Предложением}{Следствием}{Определением}{Замечанием}{Примером}}
 
     % --- ПРЕДЛОЖНЫЙ ПАДЕЖ (о чем? где?) ---
-    \newcommand{\crefPred}[1]{\@crefcase{#1}{теореме}{лемме}{предложении}{следствии}{определении}{замечании}}
-    \newcommand{\CrefPred}[1]{\@crefcase{#1}{Теореме}{Лемме}{Предложении}{Следствии}{Определении}{Замечании}}
+    \newcommand{\crefPred}[1]{\@crefcase{#1}{теореме}{лемме}{предложении}{следствии}{определении}{замечании}{примере}}
+    \newcommand{\CrefPred}[1]{\@crefcase{#1}{Теореме}{Лемме}{Предложении}{Следствии}{Определении}{Замечании}{Примере}}
 
     \makeatother
 \fi
+
+% Утверждение диссертации по его метке: слово и номер дает \Cref, текст
+% вытаскивается из dissertation.tex по одноименной метке %<*...>.
+% Захват идет в токен-регистр: у \ExecuteMetaData нельзя задать \endlinechar,
+% и при склейке строк пропадают пробелы.
+\newtoks\dissthtok
+\newcommand{\dissstmt}[2]{%
+    \par\addvspace{\topsep}%
+    \noindent\textbf{\Cref{#2}.}\enspace
+    \begingroup#1%
+    \CatchFileBetweenTags\dissthtok{dissertation.tex}{#2}[\endlinechar=13\relax]%
+    \the\dissthtok\par
+    \endgroup
+    \addvspace{\topsep}%
+}
+\newcommand{\dissth}[1]{\dissstmt{\itshape}{#1}}   % теоремы, леммы, предложения
+\newcommand{\dissdef}[1]{\dissstmt{\upshape}{#1}}  % определения и замечания

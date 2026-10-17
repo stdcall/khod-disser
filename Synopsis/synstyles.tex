@@ -49,21 +49,3 @@
 % Ссылки на диссертацию (xr-hyper) hyperref считает файловыми и красит
 % отдельным цветом filecolor, а не linkcolor.
 \hypersetup{filecolor=black, runcolor=black}
-
-% Утверждение диссертации по его метке: слово и номер дает \Cref (метки
-% импортированы из dissertation.aux пакетом xr-hyper), текст вытаскивается
-% из dissertation.tex по одноименной метке %<*...> (catchfilebetweentags).
-% Захват идет в токен-регистр: у \ExecuteMetaData нельзя задать \endlinechar,
-% и при склейке строк пропадают пробелы.
-\newtoks\dissthtok
-\newcommand{\dissstmt}[2]{%
-    \par\addvspace{\topsep}%
-    \noindent\textbf{\Cref{#2}.}\enspace
-    \begingroup#1%
-    \CatchFileBetweenTags\dissthtok{dissertation.tex}{#2}[\endlinechar=13\relax]%
-    \the\dissthtok\par
-    \endgroup
-    \addvspace{\topsep}%
-}
-\newcommand{\dissth}[1]{\dissstmt{\itshape}{#1}}   % теоремы, леммы, предложения
-\newcommand{\dissdef}[1]{\dissstmt{\upshape}{#1}}  % определения и замечания
