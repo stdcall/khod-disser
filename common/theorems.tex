@@ -204,7 +204,10 @@
     \par\addvspace{\topsep}%
     \noindent\textbf{\Cref{#2}.}\enspace
     \begingroup#1%
+    % Служебное чтение исходника не должно создавать повторные записи в SyncTeX.
+    \ifluatex\directlua{tex.set_synctex_no_files(1)}\fi%
     \CatchFileBetweenTags\dissthtok{dissertation.tex}{#2}[\endlinechar=13\relax]%
+    \ifluatex\directlua{tex.set_synctex_no_files(0)}\fi%
     \the\dissthtok\par
     \endgroup
     \addvspace{\topsep}%
