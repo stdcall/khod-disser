@@ -262,6 +262,9 @@ $T(\mathcal{L})$; исключение угловых позиций дает $Q
 \begin{figure}[htbp]
     \centering
     \begingroup
+    \delimiterfactor=1000
+    \delimitershortfall=0pt
+    \nulldelimiterspace=0pt
     \begin{tikzpicture}[
         x=7mm, y=7mm,
         every node/.style={font=\footnotesize},
@@ -269,13 +272,15 @@ $T(\mathcal{L})$; исключение угловых позиций дает $Q
         staircase/.style={line width=.65pt},
         guides/.style={line width=.35pt},
         pics/matrix frame/.style={code={
-                        \draw[matrix edge] (.1,.15) -- (-.2,.15) -- (-.2,-6.65) -- (.1,-6.65);
-                        \draw[matrix edge] (6.4,.15) -- (6.7,.15) -- (6.7,-6.65) -- (6.4,-6.65);
+                        \node[inner sep=0pt, outer sep=0pt] at (-.1,-3.25)
+                        {$\left(\vcenter{\hbox{\rule{0pt}{47.6mm}}}\right.$};
+                        \node[inner sep=0pt, outer sep=0pt] at (6.6,-3.25)
+                        {$\left.\vcenter{\hbox{\rule{0pt}{47.6mm}}}\right)$};
                         \node[font=\Large] at (4.7,-1.6) {$0$};
                         \node[anchor=south] at (.25,.3) {$1$};
                         \node[anchor=south] at (6.25,.3) {$n$};
-                        \node[anchor=east] at (-.4,-.25) {$1$};
-                        \node[anchor=east] at (-.4,-6.25) {$n$};
+                        \node[anchor=east] at (-.75,-.25) {$1$};
+                        \node[anchor=east] at (-.75,-6.25) {$n$};
                     }},
         pics/corner staircase/.style args={#1}{code={
                         \pic {matrix frame};
@@ -306,10 +311,10 @@ $T(\mathcal{L})$; исключение угловых позиций дает $Q
                         \node[anchor=south] at (2.75,.3) {$j_2$};
                         \node[anchor=south] at (3.75,.3) {$\cdots$};
                         \node[anchor=south] at (4.75,.3) {$j_m$};
-                        \node[anchor=east] at (-.4,-2.5) {$i_1$};
-                        \node[anchor=east] at (-.4,-3.75) {$i_2$};
-                        \node[anchor=east] at (-.4,-4.6) {$\vdots$};
-                        \node[anchor=east] at (-.4,-5.5) {$i_m$};
+                        \node[anchor=east] at (-.75,-2.5) {$i_1$};
+                        \node[anchor=east] at (-.75,-3.75) {$i_2$};
+                        \node[anchor=east] at (-.75,-4.6) {$\vdots$};
+                        \node[anchor=east] at (-.75,-5.5) {$i_m$};
                         \ifnum#1=1\relax
                             \node at (3.25,-7.15) {$Q(\mathcal{L})$};
                         \else

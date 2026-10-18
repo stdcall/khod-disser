@@ -56,12 +56,16 @@ H$.
 
     \begin{figure}[htbp]
         \centering
+        \delimiterfactor=1000
+        \delimitershortfall=0pt
+        \nulldelimiterspace=0pt
         \begin{tikzpicture}[x=7mm, y=-6mm, every node/.style={font=\small}]
             \foreach \panelx/\cutcorners/\idealname in {0/0/T,8/1/Q} {
                 \begin{scope}[shift={(\panelx,0)}]
-                    \draw[line width=.4pt]
-                    (.55,.5) -- (.35,.5) -- (.35,5.5) -- (.55,5.5)
-                    (5.45,.5) -- (5.65,.5) -- (5.65,5.5) -- (5.45,5.5);
+                    \node[inner sep=0pt, outer sep=0pt] at (.35,3)
+                    {$\left(\vcenter{\hbox{\rule{0pt}{30mm}}}\right.$};
+                    \node[inner sep=0pt, outer sep=0pt] at (5.65,3)
+                    {$\left.\vcenter{\hbox{\rule{0pt}{30mm}}}\right)$};
                     \foreach \row in {1,...,5} {
                         \foreach \col in {1,...,5} {
                             \pgfmathtruncatemacro{\allowed}{
