@@ -43,9 +43,9 @@
 
 \vspace{0.008\paperheight plus1fill}
 \noindent%
-\begin{tabularx}{\textwidth}{@{}lX@{}}
-    \ifdefined\supervisorTwoFio
-        Научные руководители:   & \supervisorRegalia\par
+\begin{tabularx}{\textwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+    \ifnumequal{\value{showlevchuk}}{1}{%
+        Научные руководители: & \supervisorRegalia\par
         \ifdefined\supervisorDead
             \framebox{\textbf{\supervisorFio}}
         \else
@@ -53,22 +53,16 @@
         \fi
         \par
         \vspace{0.013\paperheight}
-        \supervisorTwoRegalia\par
-        \ifdefined\supervisorTwoDead
-            \framebox{\textbf{\supervisorTwoFio}}
-        \else
-            \textbf{\supervisorTwoFio}
-        \fi
-        \vspace{0.013\paperheight}\\
+    }{%
+        Научный руководитель: &
+    }%
+    \supervisorTwoRegalia\par
+    \ifdefined\supervisorTwoDead
+        \framebox{\textbf{\supervisorTwoFio}}
     \else
-        Научный руководитель:   & \supervisorRegalia\par
-        \ifdefined\supervisorDead
-            \framebox{\textbf{\supervisorFio}}
-        \else
-            \textbf{\supervisorFio}
-        \fi
-        \vspace{0.013\paperheight}\\
+        \textbf{\supervisorTwoFio}
     \fi
+    \vspace{0.013\paperheight} \\
     Официальные оппоненты: &
     \ifnumequal{\value{showopplead}}{0}{\vspace{13\onelineskip plus1fill}}{%
         \textbf{\opponentOneFio,}\par
