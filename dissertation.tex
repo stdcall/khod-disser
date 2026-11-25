@@ -227,19 +227,22 @@ $[,]$ выберем точную обертывающую алгебру $R$ с
 
 Как и во введении, для корней $r,s\in\Phi^+$ полагаем $s\geq r$, если в
 разложении $s-r$ по базису $\Pi$ все коэффициенты неотрицательны. Корни
-$r,s\in\Phi^+$ называем \emph{инцидентными}, если $r\geq s$ или $s\geq r$.
-Множество попарно неинцидентных корней в $\Phi^+$ называем \emph{антицепью}.
-
-Для антицепи $\mathcal{L}$ в $\Phi^+$ выделим в $N\Phi(\mathbb{K})$ идеалы
+$r,s\in\Phi^+$ называем \emph{инцидентными}, если $r\geq s$ или $s\geq r$. В
+$N\Phi(\mathbb{K})$ корню $r\in\Phi^+$ сопоставим идеалы
 \[
-    T(r)\coloneq\sum_{s\geq r}\mathbb{K}e_s,\quad
-    Q(r)\coloneq\sum_{s>r}\mathbb{K}e_s\quad(r\in\Phi^+),\quad
+    T(r)\coloneq\sum_{s\geq r}\mathbb{K}e_s,\qquad
+    Q(r)\coloneq\sum_{s>r}\mathbb{K}e_s.
+\]
+
+Для \emph{антицепи} $\mathcal{L}$, то есть множества попарно неинцидентных
+корней в $\Phi^+$, положим
+\[
+    T(\mathcal{L})\coloneq\sum_{r\in\mathcal{L}}T(r),\qquad
     Q(\mathcal{L})\coloneq\sum_{r\in\mathcal{L}}Q(r).
 \]
-Если $H\subset T(\mathcal{L})\coloneq\sum_{r\in\mathcal{L}}T(r)$ и включение
-нарушается при любой замене $T(r)$ на $Q(r)$ в сумме, то множество
-$\mathcal{L}=\mathcal{L}(H)$ определено однозначно и называется
-\emph{множеством углов в $H$} \cite[\S~6]{Lev1992}.
+Если $H\subset T(\mathcal{L})$ и замена любого слагаемого $T(r)$ на $Q(r)$
+нарушает это включение, то множество $\mathcal{L}=\mathcal{L}(H)$ определено
+однозначно и называется \emph{множеством углов в $H$}~\cite[\S~6]{Lev1992}.
 
 Проиллюстрируем множества углов и идеалы $T(r)$, $Q(r)$, $T(\mathcal{L})$,
 $Q(\mathcal{L})$ на примере алгебры Ли $NT(n,\mathbb{K})^{(-)}$ типа $A_{n-1}$.
